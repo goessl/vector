@@ -14,7 +14,7 @@ $$
 #### Scalar product
 
 $$
-    <f|g>_{L_\mathbb{R}^2}=\sum_{k=0}^\infty f_k^*g_k
+    <f|g>_{L_{\mathbb{R}^2}}=\sum_{k=0}^\infty f_k^*g_k
 $$
 
 #### Norm
