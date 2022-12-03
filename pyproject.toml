@@ -3,12 +3,12 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "hermite_functions"
+name = "hermite_function"
 version = "0.0.1"
 authors = [
   { name="Sebastian Gössl", email="goessl@student.tugraz.at" },
 ]
-description = "Hermite function series module"
+description = "A Hermite function series module."
 readme = "README.md"
 requires-python = ">=3.7"
 classifiers = [
@@ -18,5 +18,5 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/goessl/hermite_functions"
-"Bug Tracker" = "https://github.com/goessl/hermite_functions/issues"
+"Homepage" = "https://github.com/goessl/hermite_function"
+"Bug Tracker" = "https://github.com/goessl/hermite_function/issues"
