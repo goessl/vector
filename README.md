@@ -111,6 +111,8 @@ f.kin(), str(f.prod_reorder(g))
 
 ## Proofs
 
+***Note: [Githubs Latex rendering is buggy](https://github.com/community/community/discussions/17384), therefore better have a look at the [notebook](README.ipynb) that generated this markdown you are reading right now.***
+
 In the following let
 $$
     f=\sum_{k=0}^\infty f_k h_k, \ g=\sum_{k=0}^\infty g_k h_k.
