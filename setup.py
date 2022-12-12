@@ -5,8 +5,8 @@ this_directory = Path(__file__).parent
 long_description = (this_directory / 'README.md').read_text()
   
 setup(
-    name = 'hermite_function',
-    version = '0.9.1',
+    name = 'hermite-function',
+    version = '0.9.2',
     description = 'A Hermite function series module.',
     long_description = long_description,
     long_description_content_type = 'text/markdown',
@@ -15,7 +15,7 @@ setup(
     author_email = 'goessl@student.tugraz.at',
     license = 'MIT',
 
-    url = 'https://github.com/goessl/hermite_function',
+    url = 'https://github.com/goessl/hermite-function',
     py_modules = ['HermiteFunction'],
     python_requires = '>=3.7',
     install_requires = ['numpy', 'scipy'],

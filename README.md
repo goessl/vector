@@ -18,9 +18,15 @@ plt.show()
 
 
     
-![png](readme/hermite_functions.png)
+![png](https://raw.githubusercontent.com/goessl/hermite_function/main/readme/hermite_functions.png)
     
 
+
+## Installation
+
+```
+pip install hermite-function
+```
 
 ## Usage
 
@@ -43,7 +49,7 @@ plt.show()
 
 
     
-![png](readme/initialization.png)
+![png](https://raw.githubusercontent.com/goessl/hermite_function/main/readme/initialization.png)
     
 
 
@@ -60,7 +66,7 @@ plt.show()
 
 
     
-![png](readme/differentiation.png)
+![png](https://raw.githubusercontent.com/goessl/hermite_function/main/readme/differentiation.png)
     
 
 
@@ -78,7 +84,7 @@ plt.show()
 
 
     
-![png](readme/algebra.png)
+![png](https://raw.githubusercontent.com/goessl/hermite_function/main/readme/algebra.png)
     
 
 
