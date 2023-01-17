@@ -9,6 +9,7 @@ from itertools import zip_longest
 class HermiteFunction:
     """A Hermite function series class."""
     
+    #construction stuff
     def __init__(self, coef):
         """Creates a new Hermite function series.
         
@@ -76,6 +77,7 @@ class HermiteFunction:
         return HermiteFunction(coef)
     
     
+    #Hilbert space stuff
     def dot(self, other):
         """Returns the $L_\mathbb{R}^2$ dot product of self with other.
         
@@ -104,20 +106,28 @@ class HermiteFunction:
         """
         return np.linalg.norm(self.coef)
     
-    def __rmul__(self, other):
-        """Scalar/elementwise multiplies with other.
+    def __mul__(self, other):
+        """Scalar/elementwise multiplies other to the coefficients
+        and returns the result as a new series object.
         
         Parameters
         ----------
-        other : scalar or HermiteFunction
+        other : number, array or HermiteFunction
             Other factor.
         
         Returns
         -------
         hermite function series : HermiteFunction
-            The scalar/elementswise multiplied product.
+            The product of self and other.
         """
-        return HermiteFunction(self.coef * other)
+        if isinstance(other, HermiteFunction):
+            return HermiteFunction([a*b for a, b \
+                in zip_longest(self.coef, other.coef, fillvalue=0)])
+        else:
+            return HermiteFunction(self.coef * other)
+    
+    def __rmul__(self, other):
+        return self.__mul__(other)
     
     def __add__(self, other):
         """Adds other to the coefficients
@@ -139,7 +149,11 @@ class HermiteFunction:
         else:
             return HermiteFunction(self.coef + other)
     
+    def __radd__(self, other):
+        return self.__add__(other)
     
+    
+    #function stuff
     def __call__(self, x):
         """Evaluates the series at the given point(s).
         
@@ -215,6 +229,7 @@ class HermiteFunction:
         return self.der().norm()**2 / 2
     
     
+    #python stuff
     def __str__(self):
         """Returns a Latex representation.
         

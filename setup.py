@@ -6,22 +6,23 @@ long_description = (this_directory / 'README.md').read_text()
   
 setup(
     name = 'hermite-function',
-    version = '0.9.2',
+    version = '0.9.3',
     description = 'A Hermite function series module.',
     long_description = long_description,
     long_description_content_type = 'text/markdown',
-
+    
     author = 'Sebastian Gössl',
     author_email = 'goessl@student.tugraz.at',
     license = 'MIT',
-
+    
     url = 'https://github.com/goessl/hermite-function',
     py_modules = ['HermiteFunction'],
     python_requires = '>=3.7',
     install_requires = ['numpy', 'scipy'],
-
+    
     classifiers = [
       'Programming Language :: Python :: 3.7',
-      'License :: OSI Approved :: MIT License'
+      'License :: OSI Approved :: MIT License',
+      'Operating System :: OS Independent'
     ]
 )
