@@ -6,7 +6,7 @@ long_description = (this_directory / 'README.md').read_text()
   
 setup(
     name = 'hermite-function',
-    version = '0.9.3',
+    version = '0.9.4',
     description = 'A Hermite function series module.',
     long_description = long_description,
     long_description_content_type = 'text/markdown',
