@@ -1,8 +1,9 @@
 import numpy as np
-from numpy.polynomial.hermite import Hermite
-from math import factorial
-from scipy.special import binom
-from itertools import zip_longest
+from numpy.polynomial.hermite import hermval, hermfit
+from scipy.special import factorial, binom
+from itertools import starmap, zip_longest
+import operator
+from functools import cached_property
 
 
 
@@ -29,13 +30,8 @@ class HermiteFunction:
         """Creates a least squares Hermite function series fit
         with the given degree for the given x and y values."""
         #https://de.wikipedia.org/wiki/Multiple_lineare_Regression
-        X_T = np.array([HermiteFunction(i)(x) for i in range(deg)])
-        X = X_T.T
-        X_T_X = X_T @ X
-        X_T_X_inv = np.linalg.inv(X_T_X)
-        coef = np.dot(X_T_X_inv @ X_T, y)
-        
-        return HermiteFunction(coef)
+        return HermiteFunction(c * np.sqrt(2**i*factorial(i)*np.sqrt(np.pi))
+                for i, c in enumerate(hermfit(x, y/np.exp(-x**2/2), deg)))
     
     
     #Hilbert space stuff
@@ -71,11 +67,10 @@ class HermiteFunction:
     
     #function stuff
     def __call__(self, x):
-        y = 0
-        for n, c in enumerate(self.coef):
-            y += Hermite([0]*n+[c])(x) \
-                / np.sqrt(2**n * factorial(n) * np.sqrt(np.pi))
-        return y * np.exp(-x**2 / 2)
+        return np.exp(-x**2/2) \
+                * sum(c / np.sqrt(2**i * factorial(i) * np.sqrt(np.pi))
+                * hermval(x, [0]*n+[1])
+                for i, c in enumerate(self.coef))
     
     def der(self, n=1):
         """Returns the n-th derivative of this series."""
