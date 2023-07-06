@@ -28,14 +28,14 @@ class HermiteFunction:
             coef = [0]*coef + [1]
         self.coef = np.array(coef)
     
-    def random(deg, normed=False):
+    def random(deg, normed=True):
         """Creates a Hermite function series
         with random coefficients in [-1, 1[.
         
         Parameters
         ----------
         deg : int
-            Degree of the series (index deg not included).
+            Degree of the series (index deg included).
         normed : boolean, optional
             True if the coefficients should be normed
             to euclidian length 1 (default: False).
@@ -45,7 +45,7 @@ class HermiteFunction:
         hermite function series : HermiteFunction
             A new Hermite function series object.
         """
-        coef = np.random.uniform(-1, +1, deg)
+        coef = np.random.uniform(-1, +1, deg+1)
         if normed:
             coef /= np.linalg.norm(coef)
         return HermiteFunction(coef)
@@ -91,10 +91,8 @@ class HermiteFunction:
         dot product : complex
             The dot product of self and other.
         """
-        return np.vdot(np.pad(self.coef,
-                    (0, max(0, len(other.coef)-len(self.coef)))),
-                np.pad(other.coef,
-                    (0, max(0, len(self.coef)-len(other.coef)))))
+        return np.vdot(self.coef[:len(other.coef)], \
+                      other.coef[:len(self.coef)])
     
     def norm(self):
         """Returns $L_\mathbb{R}^2$ norm of self.
@@ -121,8 +119,8 @@ class HermiteFunction:
             The product of self and other.
         """
         if isinstance(other, HermiteFunction):
-            return HermiteFunction([a*b for a, b \
-                in zip_longest(self.coef, other.coef, fillvalue=0)])
+            return HermiteFunction(
+                    self.coef[:len(other.coef)] * other.coef[:len(self.coef)])
         else:
             return HermiteFunction(self.coef * other)
     
