@@ -25,7 +25,7 @@ def test_fit():
 
 #Hilbert space stuff
 #def dot(self, other):
-#def norm(self):
+#def __abs__(self):
 
 def test_mul():
     for _ in range(100):
@@ -75,7 +75,7 @@ def kin_num(x, y):
 def test_kin():
     for _ in range(100):
         f = HermiteFunction.random(5)
-        assert np.isclose(f.kin(), kin_num(x, f(x)), atol=1e-2)
+        assert np.isclose(f.kin, kin_num(x, f(x)), atol=1e-2)
 
 #python stuff
 #def __str__(self):

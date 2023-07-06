@@ -18,6 +18,7 @@ class HermiteFunction:
             coef = [0]*coef + [1]
         self.coef = np.array(coef)
     
+    @staticmethod
     def random(deg, normed=True):
         """Creates a Hermite function series of the given degree
         with random coefficients in [-1, 1[."""
@@ -26,6 +27,7 @@ class HermiteFunction:
             coef /= np.linalg.norm(coef)
         return HermiteFunction(coef)
     
+    @staticmethod
     def fit(x, y, deg):
         """Creates a least squares Hermite function series fit
         with the given degree for the given x and y values."""
@@ -40,8 +42,7 @@ class HermiteFunction:
         return np.vdot(self.coef[:len(other.coef)], \
                       other.coef[:len(self.coef)])
     
-    def norm(self):
-        """Returns L_R^2 norm of this series."""
+    def __abs__(self):
         return np.linalg.norm(self.coef)
     
     def __mul__(self, other):
@@ -66,6 +67,11 @@ class HermiteFunction:
     
     
     #function stuff
+    @property
+    def deg(self):
+        """Degree of this series (index of the highest set coefficient)."""
+        return len(self) - 1
+    
     def __call__(self, x):
         return np.exp(-x**2/2) \
                 * sum(c / np.sqrt(2**i * factorial(i) * np.sqrt(np.pi))
@@ -95,9 +101,12 @@ class HermiteFunction:
                             * np.sqrt(factorial(b)/(factorial(i)*factorial(j)))
         return HermiteFunction(coef)
     
+    @cached_property
     def kin(self):
-        """Returns the kinetic energy of this series."""
-        return self.der().norm()**2 / 2
+        """The kinetic energy of this series."""
+        #return -1/2 * self.dot(self.der(2))
+        return abs(self.der())**2 / 2
+    
     
     
     #python stuff
