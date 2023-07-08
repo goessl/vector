@@ -32,8 +32,8 @@ class HermiteFunction:
         """Creates a least squares Hermite function series fit
         with the given degree for the given x and y values."""
         #https://de.wikipedia.org/wiki/Multiple_lineare_Regression
-        return HermiteFunction(c * np.sqrt(2**i*factorial(i)*np.sqrt(np.pi))
-                for i, c in enumerate(hermfit(x, y/np.exp(-x**2/2), deg)))
+        return HermiteFunction(tuple(c * np.sqrt(2**i*factorial(i)*np.sqrt(np.pi))
+                for i, c in enumerate(hermfit(x, y/np.exp(-x**2/2), deg))))
     
     
     #Hilbert space stuff
@@ -75,7 +75,7 @@ class HermiteFunction:
     def __call__(self, x):
         return np.exp(-x**2/2) \
                 * sum(c / np.sqrt(2**i * factorial(i) * np.sqrt(np.pi))
-                * hermval(x, [0]*n+[1])
+                * hermval(x, [0]*i+[1])
                 for i, c in enumerate(self.coef))
     
     def der(self, n=1):
