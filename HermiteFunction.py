@@ -22,8 +22,8 @@ class HermiteFunction:
     @staticmethod
     def random(deg, normed=True):
         """Creates a Hermite function series of the given degree
-        with random coefficients in [-1, 1[."""
-        coef = np.random.uniform(-1, +1, deg+1)
+        with normal distributed coefficients."""
+        coef = np.random.normal(size=deg+1)
         if normed:
             coef /= np.linalg.norm(coef)
         return HermiteFunction(coef)
