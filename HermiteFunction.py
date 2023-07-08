@@ -37,33 +37,50 @@ class HermiteFunction:
     
     
     #Hilbert space stuff
-    def dot(self, other):
-        """Returns the L_R^2 dot product of self with other."""
-        return np.vdot(self.coef[:len(other.coef)], \
-                      other.coef[:len(self.coef)])
-    
     def __abs__(self):
-        return np.linalg.norm(self.coef)
+        return np.sqrt(self @ self)
+    
+    def __matmul__(self, other):
+        return np.dot(self.coef, other.coef)
+    
+    
+    
+    #Vector space operations
+    @staticmethod
+    def map_zip(f, v, w):
+        """Applies f(v, w) elementwise if possible,
+                otherwise elementwise in the first argument."""
+        try: #second argument HermiteFunction
+            return HermiteFunction(tuple(
+                    f(a, b) for a, b in zip(v.coef, w.coef)))
+        except AttributeError: #second argument scalar
+            return HermiteFunction(tuple(f(c, w) for c in v.coef))
+    
+    @staticmethod
+    def map_zip_longest(f, v, w):
+        """Applies f(v, w) elementwise if possible,
+                otherwise elementwise in the first argument."""
+        try: #second argument HermiteFunction
+            return HermiteFunction(tuple(f(a, b)
+                    for a, b in zip_longest(v.coef, w.coef, fillvalue=0)))
+        except AttributeError: #second argument scalar
+            return HermiteFunction(tuple(f(c, w) for c in v.coef))
+    
+    #implement vector space operations like they would be correct on paper:
+    #v+w, v-w, av, va, v/a
+    def __add__(self, other):
+        return HermiteFunction.map_zip_longest(operator.add, self, other)
+    
+    def __sub__(self, other):
+        return HermiteFunction.map_zip_longest(operator.sub, self, other)
     
     def __mul__(self, other):
-        if isinstance(other, HermiteFunction):
-            return HermiteFunction(
-                    self.coef[:len(other.coef)] * other.coef[:len(self.coef)])
-        else:
-            return HermiteFunction(self.coef * other)
+        return HermiteFunction.map_zip(operator.mul, self, other)
+    __rmul__ = __mul__
     
-    def __rmul__(self, other):
-        return self.__mul__(other)
+    def __truediv__(self, other):
+        return HermiteFunction.map_zip(operator.truediv, self, other)
     
-    def __add__(self, other):
-        if isinstance(other, HermiteFunction):
-            return HermiteFunction([a+b for a, b \
-                in zip_longest(self.coef, other.coef, fillvalue=0)])
-        else:
-            return HermiteFunction(self.coef + other)
-    
-    def __radd__(self, other):
-        return self.__add__(other)
     
     
     #function stuff
