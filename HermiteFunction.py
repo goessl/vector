@@ -15,8 +15,9 @@ class HermiteFunction:
         """Creates a new Hermite function series with the given coefficients
         or the i-th basis vector if an index is given."""
         if isinstance(coef, int):
-            coef = [0]*coef + [1]
-        self.coef = np.array(coef)
+            self.coef = (0,)*coef + (1,)
+        else:
+            self.coef = tuple(coef)
     
     @staticmethod
     def random(deg, normed=True):
@@ -32,8 +33,34 @@ class HermiteFunction:
         """Creates a least squares Hermite function series fit
         with the given degree for the given x and y values."""
         #https://de.wikipedia.org/wiki/Multiple_lineare_Regression
-        return HermiteFunction(tuple(c * np.sqrt(2**i*factorial(i)*np.sqrt(np.pi))
-                for i, c in enumerate(hermfit(x, y/np.exp(-x**2/2), deg))))
+        return HermiteFunction(c * np.sqrt(2**i*factorial(i)*np.sqrt(np.pi))
+                for i, c in enumerate(hermfit(x, y/np.exp(-x**2/2), deg)))
+    
+    
+    
+    #container stuff
+    def __len__(self):
+        return len(self.coef)
+    
+    def __getitem__(self, key):
+        try:
+            return self.coef[key]
+        except IndexError:
+            return 0
+    
+    def __iter__(self):
+        return iter(self.coef)
+    
+    def __eq__(self, other):
+        return self.coef == other.coef
+    
+    
+    def __lshift__(self, other):
+        return HermiteFunction(self[1:])
+    
+    def __rshift__(self, other):
+        return HermiteFunction((0,) + self.coef)
+    
     
     
     #Hilbert space stuff
@@ -41,30 +68,30 @@ class HermiteFunction:
         return np.sqrt(self @ self)
     
     def __matmul__(self, other):
-        return np.dot(self.coef, other.coef)
+        #https://docs.python.org/3/library/itertools.html
+        return sum(starmap(operator.mul, zip(self, other)))
     
     
     
-    #Vector space operations
+    #vector space operations
     @staticmethod
     def map_zip(f, v, w):
         """Applies f(v, w) elementwise if possible,
                 otherwise elementwise in the first argument."""
-        try: #second argument HermiteFunction
-            return HermiteFunction(tuple(
-                    f(a, b) for a, b in zip(v.coef, w.coef)))
-        except AttributeError: #second argument scalar
-            return HermiteFunction(tuple(f(c, w) for c in v.coef))
+        try: #second argument iterable
+            return HermiteFunction(f(a, b) for a, b in zip(v, w))
+        except TypeError: #second argument scalar
+            return HermiteFunction(f(c, w) for c in v)
     
     @staticmethod
     def map_zip_longest(f, v, w):
         """Applies f(v, w) elementwise if possible,
                 otherwise elementwise in the first argument."""
-        try: #second argument HermiteFunction
-            return HermiteFunction(tuple(f(a, b)
-                    for a, b in zip_longest(v.coef, w.coef, fillvalue=0)))
-        except AttributeError: #second argument scalar
-            return HermiteFunction(tuple(f(c, w) for c in v.coef))
+        try: #second argument iterable
+            return HermiteFunction(f(a, b)
+                    for a, b in zip_longest(v, w, fillvalue=0))
+        except TypeError: #second argument scalar
+            return HermiteFunction(f(c, w) for c in v)
     
     #implement vector space operations like they would be correct on paper:
     #v+w, v-w, av, va, v/a
@@ -92,30 +119,27 @@ class HermiteFunction:
     def __call__(self, x):
         return np.exp(-x**2/2) \
                 * sum(c / np.sqrt(2**i * factorial(i) * np.sqrt(np.pi))
-                * hermval(x, [0]*i+[1])
-                for i, c in enumerate(self.coef))
+                * hermval(x, (0,)*i+(1,))
+                for i, c in enumerate(self))
     
     def der(self, n=1):
         """Returns the n-th derivative of this series."""
-        coef = self.coef
+        res = self
         for _ in range(n):
-            i = np.arange(len(coef)+1)
-            coef = np.append(coef[1:], [0, 0])*np.sqrt((i+1)/2) \
-                    - np.append([0], coef)*np.sqrt(i/2)
-        return HermiteFunction(coef)
+            res = (np.sqrt((i+1)/2) for i in range(len(res)-1)) * (res<<1) \
+                    - (np.sqrt(i/2) for i in range(len(res)+1)) * (res>>1)
+        return res
     
     def prod_reorder(self, other):
         """Returns the product of self and other, divided by h_0."""
-        coef = np.zeros(len(self.coef)+len(other.coef)-1)
-        for b in range(len(coef)):
-            for n in range(b, len(self.coef)+len(other.coef)-1, 2):
-                for d in range(-b, b+1, 2):
-                    i, j = (n-d)//2, (n+d)//2
-                    k = (n-b)//2
-                    if 0<=i<len(self.coef) and 0<=j<len(other.coef):
-                        coef[b] += self.coef[i] * other.coef[j] \
+        coef = [0] * (self.deg+other.deg + 1)
+        for i, fi in enumerate(self):
+            for j, gj in enumerate(other):
+                for k in range(min(i, j) + 1):
+                    coef[i+j-2*k] += fi * gj \
                             * factorial(k) * binom(i, k) * binom(j, k) \
-                            * np.sqrt(factorial(b)/(factorial(i)*factorial(j)))
+                            * np.sqrt(factorial(i+j-2*k) \
+                                / (factorial(i)*factorial(j)))
         return HermiteFunction(coef)
     
     @cached_property
@@ -128,7 +152,7 @@ class HermiteFunction:
     
     #python stuff
     def __str__(self):
-        s = f'{self.coef[0]:.1f} h_0'
-        for i, c in enumerate(self.coef[1:]):
+        s = f'{self[0]:.1f} h_0'
+        for i, c in enumerate(self[1:]):
             s += f' + {c:.1f} h_{i+1}'
         return s
