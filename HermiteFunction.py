@@ -130,18 +130,6 @@ class HermiteFunction:
                     - (np.sqrt(i/2) for i in range(len(res)+1)) * (res>>1)
         return res
     
-    def prod_reorder(self, other):
-        """Returns the product of self and other, divided by h_0."""
-        coef = [0] * (self.deg+other.deg + 1)
-        for i, fi in enumerate(self):
-            for j, gj in enumerate(other):
-                for k in range(min(i, j) + 1):
-                    coef[i+j-2*k] += fi * gj \
-                            * factorial(k) * binom(i, k) * binom(j, k) \
-                            * np.sqrt(factorial(i+j-2*k) \
-                                / (factorial(i)*factorial(j)))
-        return HermiteFunction(coef)
-    
     @cached_property
     def kin(self):
         """The kinetic energy of this series."""

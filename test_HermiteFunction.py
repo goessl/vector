@@ -59,13 +59,6 @@ if __name__ == '__main__':
         assert np.allclose(f.der()(der_num(x, f(x))[0]),
                 der_num(x, f(x))[1], atol=1e-3)
     
-    """prod_reorder"""
-    for _ in range(100):
-        f = HermiteFunction.random(np.random.randint(0, 20))
-        g = HermiteFunction.random(np.random.randint(0, 20))
-        assert np.allclose(f(x)*g(x),
-                HermiteFunction(0)(x)*((f.prod_reorder(g))(x)))
-    
     """kin"""
     def kin_num(x, y):
         """Nummeric kinetic energy."""
