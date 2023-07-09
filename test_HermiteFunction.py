@@ -2,51 +2,71 @@ import numpy as np
 from HermiteFunction import HermiteFunction
 
 
+
 if __name__ == '__main__':
     x = np.linspace(-4, +4, 1000)
     
     
-    #def __init__(self, coef):
-    #def random(deg, normed=False):
     
-    """fit"""
-    #try replicating other Hermite function
+    #HermiteFunction
+    #HermiteFunction.random
+    
+    #fitting
     for _ in range(100):
-        f = HermiteFunction.random(20)
+        deg = np.random.randint(0, 20)
+        f = HermiteFunction.random(deg)
         y = f(x)
-        fit = HermiteFunction.fit(x, y, 20)
+        fit = HermiteFunction.fit(x, y, deg)
         assert np.allclose(f.coef, fit.coef)
-    #try hitting some points
-    #x = np.linspace(-4, +4, 4)
-    #for _ in range(100):
-    #    y = np.random.uniform(-1, +1, len(x))
-    #    fit = HermiteFunction.fit(x, y, 20)
-    #    assert np.allclose(y, fit(x))
     
-    #Hilbert space stuff
-    #def dot(self, other):
-    #def __abs__(self):
     
-    """mul"""
-    for _ in range(100):
-        f = HermiteFunction.random(np.random.randint(0, 20))
-        c = np.random.rand()
-        assert np.allclose((c*f)(x), c*(f(x)))
     
-    #def __rmul__(self, other):
+    f = HermiteFunction.random(20)
+    #length
+    assert len(f) == 21
+    #indexing
+    f[5]
+    assert f[999] == 0
+    #iterating
+    for c in f:
+        pass
+    #comparison
+    assert f != HermiteFunction(21)
+    #shifting
+    assert (f<<1).deg == 19 and (f>>1).deg == 21
     
-    """add"""
+    
+    
+    #norm
+    assert np.isclose(abs(f), 1)
+    #dot
+    assert np.isclose(f @ HermiteFunction(21), 0)
+    
+    
+    
+    #addition & subtraction
     for _ in range(100):
         f = HermiteFunction.random(np.random.randint(0, 20))
         g = HermiteFunction.random(np.random.randint(0, 20))
         assert np.allclose((f+g)(x), f(x)+g(x))
+        assert np.allclose((f-g)(x), f(x)-g(x))
     
-    #def __radd__(self, other):
+    #scalar multiplication and division
+    for _ in range(100):
+        f = HermiteFunction.random(np.random.randint(0, 20))
+        c = np.random.rand()
+        assert np.allclose((c*f)(x), c*(f(x)))
+        assert np.allclose((f/c)(x), (f(x))/c)
     
-    #function stuff
-    #def __call__(self, x):
     
-    """der"""
+    
+    f = HermiteFunction.random(20)
+    #degree
+    assert f.deg == 20
+    #calling
+    f(x)
+    
+    #derivative
     def der_num(x, y, n=1):
         """Nummerical differentiation."""
         for _ in range(n):
@@ -59,7 +79,7 @@ if __name__ == '__main__':
         assert np.allclose(f.der()(der_num(x, f(x))[0]),
                 der_num(x, f(x))[1], atol=1e-3)
     
-    """kin"""
+    #kintetic energy
     def kin_num(x, y):
         """Nummeric kinetic energy."""
         x, y_lapl = der_num(x, y, 2)
@@ -69,6 +89,8 @@ if __name__ == '__main__':
     for _ in range(100):
         f = HermiteFunction.random(5)
         assert np.isclose(f.kin, kin_num(x, f(x)), atol=1e-2)
-        
+    
+    
+    
     #python stuff
-    #def __str__(self):
+    str(f)
