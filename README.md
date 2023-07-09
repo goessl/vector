@@ -2,7 +2,7 @@
 
 A Hermite function series package.
 ```python
-from HermiteFunction import HermiteFunction
+from hermitefunction import HermiteFunction
 import numpy as np
 import matplotlib.pyplot as plt
 

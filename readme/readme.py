@@ -1,4 +1,4 @@
-from HermiteFunction import HermiteFunction
+from hermitefunction import HermiteFunction
 import numpy as np
 import matplotlib.pyplot as plt
 

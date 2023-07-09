@@ -1,5 +1,5 @@
 import numpy as np
-from HermiteFunction import HermiteFunction
+from hermitefunction import HermiteFunction
 
 
 
