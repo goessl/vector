@@ -13,7 +13,7 @@ for n in range(5):
 plt.legend(loc='lower right')
 plt.show()
 ```
-![png](readme/hermite_functions.png)
+![png](https://raw.githubusercontent.com/goessl/hermite-function/main/readme/hermite_functions.png)
 
 ## Installation
 
@@ -39,7 +39,7 @@ plt.plot(x, h(x), ':', label='$h$')
 plt.legend()
 plt.show()
 ```
-![png](readme/initialization.png)
+![png](https://raw.githubusercontent.com/goessl/hermite-function/main/readme/initialization.png)
 The container interface is implemented so the coefficients can be
 - accessed by indexing: `f[2]` (coefficients not set return to 0),
 - iterated over: `for c in f` (stops at last set coefficient),
@@ -60,7 +60,7 @@ plt.plot(x, f_pp(x), ':', label=rf"$f'' \ (\deg f''={f_pp.deg})$")
 plt.legend()
 plt.show()
 ```
-![png](readme/differentiation.png)
+![png](https://raw.githubusercontent.com/goessl/hermite-function/main/readme/differentiation.png)
 Hilbert space operations are also provided, where the Hermite functions are used as an orthonormal basis of the $L_\mathbb{R}^2$ space:
 - Vector addition & subtraction `f + g, f - g`,
 - scalar multiplication & division `2 * f, f / 2`,
@@ -76,7 +76,7 @@ plt.plot(x, i(x), '-.', label='$i$')
 plt.legend()
 plt.show()
 ```
-![png](readme/arithmetic.png)
+![png](https://raw.githubusercontent.com/goessl/hermite-function/main/readme/arithmetic.png)
 Because this package was intended as a tool to work with quantum mechanical wavefunctions, the expectation value for the kinetic energy is also implemented ($\langle\hat{P}^2\rangle=\frac{1}{2}\int_\mathbb{R}f^*(x)f''(x)dx$, natural units):
 ```python
 f.kin
