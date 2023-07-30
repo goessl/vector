@@ -1,6 +1,6 @@
 import numpy as np
 from numpy.polynomial.hermite import hermval, hermfit
-from scipy.special import factorial, binom
+from scipy.special import factorial, binom, erf
 from itertools import starmap, zip_longest
 import operator
 from functools import cached_property
@@ -129,6 +129,22 @@ class HermiteFunction:
             res = (np.sqrt((i+1)/2) for i in range(len(res)-1)) * (res<<1) \
                     - (np.sqrt(i/2) for i in range(len(res)+1)) * (res>>1)
         return res
+    
+    def antider(self):
+        """Returns F, r so that the antiderivative of this series is of form
+        F(x) + r*HermiteFunction.zeroth_antiderivative(x)
+        where F is also a Hermite series."""
+        tmp = list(self)
+        F = (len(self)-1) * [0]
+        for i in reversed(range(1, len(self))):
+            F[i-1] -= tmp[i] * np.sqrt(2/i)
+            tmp[i-2] += tmp[i] * np.sqrt((i-1)/i)
+        return HermiteFunction(F), tmp[0]
+    
+    @staticmethod
+    def zeroth_antiderivative(x):
+        """Evaluation of the antiderivative of the zeroth Hermite function."""
+        return np.sqrt(np.sqrt(np.pi)/2) * (erf(x/np.sqrt(2)) + 1)
     
     @cached_property
     def kin(self):

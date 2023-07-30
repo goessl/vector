@@ -116,6 +116,30 @@ $$
 
 With $h'\_k=\sqrt{\frac{k}{2}}h_{k+1}-\sqrt{\frac{k+1}{2}}h_{k-1}$ from [Wikipedia - Hermite functions](https://en.wikipedia.org/wiki/Hermite_polynomials\#Hermite_functions).
 
+### Integration
+
+With the same relation as above we get
+
+$$
+    \begin{aligned}
+        h_k' &= \sqrt{\frac{k}{2}}h_{k-1} - \sqrt{\frac{k+1}{2}}h_{k+1} \\
+        &\qquad\mid +\sqrt{\frac{k+1}{2}}h_{k+1} - h_k' \\
+        \sqrt{\frac{k+1}{2}}h_{k+1} &= \sqrt{\frac{k}{2}}h_{k-1} - h_k' \\
+        &\qquad\mid \cdot\sqrt{\frac{2}{k+1}} \\
+        h_{k+1} &= \sqrt{\frac{k}{k+1}}h_{k-1} - \sqrt{\frac{2}{k+1}}h_k' \\
+        &\qquad\mid k+1 \to k \\
+        h_k &= \sqrt{\frac{k-1}{k}}h_{k-2} - \sqrt{\frac{2}{k}}h_{k-1}' \\
+        &\qquad\mid \int \\
+        H_k &= \sqrt{\frac{k-1}{k}}H_{k-2} - \sqrt{\frac{2}{k}}h_{k-1}
+    \end{aligned}
+$$
+
+which can be applied from the highest to the lowest order. For $h_0$ we then get
+
+$$
+    H_0(x) = \int_{-\infty}^xh_0(x')dx' = \int_{-\infty}^x\frac{e^{-\frac{x'^2}{2}}}{\sqrt[4]{\pi}}dx' = \sqrt{\frac{\sqrt{\pi}}{2}}\text{erf}\left(\frac{x}{\sqrt{2}}\right) \ \left(+\sqrt{\frac{\sqrt{\pi}}{2}}\right)
+$$
+
 ### Kinetic energy
 
 $$

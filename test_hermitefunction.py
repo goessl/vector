@@ -1,5 +1,6 @@
 import numpy as np
 from hermitefunction import HermiteFunction
+from scipy.integrate import cumulative_trapezoid
 
 
 
@@ -75,11 +76,18 @@ if __name__ == '__main__':
         return x, y
     
     for _ in range(100):
-        f = HermiteFunction(np.random.randint(0, 20))
+        f = HermiteFunction.random(np.random.randint(0, 20))
         assert np.allclose(f.der()(der_num(x, f(x))[0]),
                 der_num(x, f(x))[1], atol=1e-3)
     
-    #kintetic energy
+    #antiderivative
+    for _ in range(100):
+        f = HermiteFunction.random(np.random.randint(0, 5))
+        F, r = f.antider()
+        assert np.allclose(F(x) + r * HermiteFunction.zeroth_antiderivative(x),
+                cumulative_trapezoid(f(x), x, initial=0), atol=1e-1)
+    
+    #kinetic energy
     def kin_num(x, y):
         """Nummeric kinetic energy."""
         x, y_lapl = der_num(x, y, 2)
