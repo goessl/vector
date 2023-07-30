@@ -56,10 +56,10 @@ class HermiteFunction:
     
     
     def __lshift__(self, other):
-        return HermiteFunction(self[1:])
+        return HermiteFunction(self[other:])
     
     def __rshift__(self, other):
-        return HermiteFunction((0,) + self.coef)
+        return HermiteFunction(other*(0,) + self.coef)
     
     
     
