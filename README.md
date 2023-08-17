@@ -49,7 +49,9 @@ The container interface is implemented so the coefficients can be
 
 Methods for functions:
 - evaluation with `f(x)`,
-- differentiation to an arbitrary degree `f.der(n)` &
+- differentiation to an arbitrary degree `f.der(n)`,
+- integration `f.antider()`,
+- Fourier transformation `f.fourier()` &
 - getting the degree of the series `f.deg` are implemented.
 ```python
 f_p = f.der()
@@ -139,6 +141,10 @@ which can be applied from the highest to the lowest order. For $h_0$ we then get
 $$
     H_0(x) = \int_{-\infty}^xh_0(x')dx' = \int_{-\infty}^x\frac{e^{-\frac{x'^2}{2}}}{\sqrt[4]{\pi}}dx' = \sqrt{\frac{\sqrt{\pi}}{2}}\text{erf}\left(\frac{x}{\sqrt{2}}\right) \ \left(+\sqrt{\frac{\sqrt{\pi}}{2}}\right)
 $$
+
+### Fourier transformation
+
+[Wikipedia - Hermite functions](https://en.wikipedia.org/wiki/Hermite_polynomials#Hermite_functions_as_eigenfunctions_of_the_Fourier_transform)
 
 ### Kinetic energy
 

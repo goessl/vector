@@ -146,6 +146,11 @@ class HermiteFunction:
         """Evaluation of the antiderivative of the zeroth Hermite function."""
         return np.sqrt(np.sqrt(np.pi)/2) * (erf(x/np.sqrt(2)) + 1)
     
+    def fourier(self):
+        """Returns the Fourier transform (unitary, in angular frequency)
+        of this series."""
+        return HermiteFunction((-1j)**n * c for n, c in enumerate(self))
+    
     @cached_property
     def kin(self):
         """The kinetic energy of this series."""

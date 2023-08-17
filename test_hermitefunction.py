@@ -87,6 +87,20 @@ if __name__ == '__main__':
         assert np.allclose(F(x) + r * HermiteFunction.zeroth_antiderivative(x),
                 cumulative_trapezoid(f(x), x, initial=0), atol=1e-1)
     
+    #fourier
+    def fourier(y, x):
+        #https://stackoverflow.com/a/24077914
+        dx = (max(x)-min(x)) / len(x)
+        w = np.fft.fftshift(np.fft.fftfreq(len(x), dx)) * 2*np.pi
+        g = np.fft.fftshift(np.fft.fft(y))
+        g *= dx * np.exp(-complex(0,1)*w*min(x)) / np.sqrt(2*np.pi)
+        return w, g
+    
+    for _ in range(100):
+        f = HermiteFunction.random(np.random.randint(0, 5))
+        Fx, Ff = fourier(f(x), x)
+        assert np.allclose(f.fourier()(Fx), Ff, atol=1e-1)
+    
     #kinetic energy
     def kin_num(x, y):
         """Nummeric kinetic energy."""
