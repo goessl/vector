@@ -13,7 +13,7 @@ class HermiteFunction:
     #construction stuff
     def __init__(self, coef):
         """Creates a new Hermite function series with the given coefficients
-        or the i-th basis vector if an index is given."""
+        or the i-th Hermite function if an integer i is given."""
         if isinstance(coef, int):
             self.coef = (0,)*coef + (1,)
         else:
