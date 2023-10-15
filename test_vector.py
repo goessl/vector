@@ -13,6 +13,8 @@ if __name__ == '__main__':
     assert v[999] == 0
     assert v<<1 == Vector((2, 3, 4, 5))
     assert v>>1 == Vector((0, 1, 2, 3, 4, 5))
+    assert Vector((1, 0)).trim() == Vector((1,)) \
+            and Vector(tuple()).trim() == Vector(tuple())
     
     assert np.isclose(abs(v), np.sqrt(55))
     assert v+Vector((3, 2, 1)) == Vector((4, 4, 4, 4, 5))

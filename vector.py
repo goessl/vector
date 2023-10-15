@@ -1,4 +1,4 @@
-from math import sqrt
+from math import sqrt, isclose
 from random import gauss
 from itertools import starmap, zip_longest
 import operator
@@ -55,6 +55,13 @@ class Vector:
     
     def __rshift__(self, other):
         return type(self)(other*(0,) + self.coef)
+    
+    def trim(self):
+        """Removes all trailing near zero coefficients."""
+        c = self.coef
+        while c and isclose(c[-1], 0):
+            c = c[:-1]
+        return Vector(c)
     
     
     
