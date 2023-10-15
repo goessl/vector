@@ -6,7 +6,7 @@ long_description = (this_directory / 'README.md').read_text()
   
 setup(
     name = 'hermite-function',
-    version = '1.3.1',
+    version = '1.3.2',
     description = 'A Hermite function series module.',
     long_description = long_description,
     long_description_content_type = 'text/markdown',
@@ -35,6 +35,7 @@ setup(
         'Programming Language :: Python :: 3.12',
         'Programming Language :: Python :: 3.13',
         'Topic :: Scientific/Engineering',
+        'Topic :: Scientific/Engineering :: Mathematics',
         'Topic :: Scientific/Engineering :: Physics'
     ]
 )

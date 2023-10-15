@@ -12,9 +12,13 @@ class Vector:
         """Creates a new vector with the given coefficients
         or the i-th basis vector if an integer i is given."""
         if isinstance(coef, int):
-            self.coef = (0,)*coef + (1,)
+            self.coef = Vector.basis_tuple(coef)
         else:
             self.coef = tuple(coef)
+    
+    @staticmethod
+    def basis_tuple(i):
+        return (0,)*i + (1,)
     
     @staticmethod
     def random(n, normed=True):
