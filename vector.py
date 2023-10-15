@@ -1,4 +1,5 @@
-import numpy as np
+from math import sqrt
+from random import gauss
 from itertools import starmap, zip_longest
 import operator
 
@@ -24,10 +25,10 @@ class Vector:
     def random(n, normed=True):
         """Creates a, by default normed, vector of the given dimensionality
         with normal distributed coefficients."""
-        coef = np.random.normal(size=n)
+        v = Vector(gauss() for _ in range(n))
         if normed:
-            coef /= np.linalg.norm(coef)
-        return Vector(coef)
+            v /= abs(v)
+        return v
     
     
     
@@ -59,7 +60,7 @@ class Vector:
     
     #Hilbert space stuff
     def __abs__(self):
-        return np.sqrt(self @ self)
+        return sqrt(self @ self)
     
     def __matmul__(self, other):
         #https://docs.python.org/3/library/itertools.html
@@ -111,3 +112,7 @@ class Vector:
     #python stuff
     def __str__(self):
         return 'Vector(' + ', '.join(map(str, self.coef)) + ', 0, ...)'
+
+
+
+Vector.ZERO = Vector(tuple())
