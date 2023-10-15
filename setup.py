@@ -5,9 +5,9 @@ this_directory = Path(__file__).parent
 long_description = (this_directory / 'README.md').read_text()
   
 setup(
-    name = 'hermite-function',
-    version = '1.3.4',
-    description = 'A Hermite function series module.',
+    name = 'vector',
+    version = '1.0',
+    description = 'An infinite dimensional vector module.',
     long_description = long_description,
     long_description_content_type = 'text/markdown',
     
@@ -15,10 +15,9 @@ setup(
     author_email = 'goessl@student.tugraz.at',
     license = 'MIT',
     
-    py_modules = ['hermitefunction', 'vector'],
-    url = 'https://github.com/goessl/hermite-function',
-    python_requires = '>=3.8',
-    install_requires = ['numpy', 'scipy'],
+    py_modules = ['vector'],
+    url = 'https://github.com/goessl/vector',
+    python_requires = '>=3.5',
     
     classifiers = [
         'Development Status :: 5 - Production/Stable',
@@ -28,6 +27,9 @@ setup(
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3 :: Only',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
