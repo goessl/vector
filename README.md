@@ -46,7 +46,7 @@ Container and sequence interfaces are implemented so the coefficients can be
 Hilbert space operations are provided:
 - Vector addition & subtraction `v + w, v - w`,
 - scalar multiplication & division `2 * v, w / 2`,
-- inner product & norm `v @ w, abs(v)` (real inner product; complex conjugation of an argument has to be handles by the user; to comply with [numpy.matmul](https://numpy.org/doc/stable/reference/generated/numpy.matmul.html)).
+- inner product & norm `v @ w, abs(v)` (real inner product; complex conjugation of an argument has to be handled by the user; to comply with [numpy.matmul](https://numpy.org/doc/stable/reference/generated/numpy.matmul.html)).
 
 The multiplicative operations are overloaded to perform scalar multiplication/division if the other argument is a scalar, or elementwise multiplication/division if both operands are `Vector`s, `v*w`.
 

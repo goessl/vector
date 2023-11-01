@@ -26,9 +26,7 @@ class Vector:
         """Creates a, by default normed, vector of the given dimensionality
         with normal distributed coefficients."""
         v = Vector(gauss() for _ in range(n))
-        if normed:
-            v /= abs(v)
-        return v
+        return v / abs(v) if normed else v
     
     
     
@@ -63,6 +61,10 @@ class Vector:
             c = c[:-1]
         return Vector(c)
     
+    def round(self, ndigits=None):
+        """Rounds all coefficients to the given precision."""
+        return Vector(round(c, ndigits) for c in self).trim()
+    
     
     
     #Hilbert space stuff
@@ -78,7 +80,7 @@ class Vector:
     #vector space operations
     #The return type of the arithmetic operations is determined by
     #the first argument (self) to enable correctly typed results for subclasses.
-    #E.g. the sum of two HermiteSeries should again be a HermiteSeries,
+    #E.g. the sum of two HermiteFunctions should again be a HermiteFunction,
     #and not a Vector.
     @staticmethod
     def map_zip(f, v, w):

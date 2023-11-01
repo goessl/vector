@@ -5,6 +5,7 @@ from math import isclose, sqrt
 
 if __name__ == '__main__':
     assert isclose(abs(Vector.random(10)), 1)
+    assert not isclose(abs(Vector.random(10, normed=False)), 1)
     assert abs(Vector.ZERO) == 0
     
     v = Vector((1, 2, 3, 4, 5))
