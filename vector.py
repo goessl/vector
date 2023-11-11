@@ -59,11 +59,11 @@ class Vector:
         c = self.coef
         while c and isclose(c[-1], 0):
             c = c[:-1]
-        return Vector(c)
+        return type(self)(c)
     
     def round(self, ndigits=None):
         """Rounds all coefficients to the given precision."""
-        return Vector(round(c, ndigits) for c in self).trim()
+        return type(self)(round(c, ndigits) for c in self).trim()
     
     
     
