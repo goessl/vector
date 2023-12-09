@@ -1,6 +1,6 @@
 from math import sqrt, isclose
 from random import gauss
-from itertools import starmap, zip_longest
+from itertools import starmap, zip_longest, repeat
 import operator
 
 
@@ -35,7 +35,6 @@ class Vector:
         return len(self.coef)
     
     def __getitem__(self, key):
-        #TODO: slicing
         try:
             return self.coef[key]
         except IndexError:
@@ -45,7 +44,7 @@ class Vector:
         return iter(self.coef)
     
     def __eq__(self, other):
-        return self.coef == other.coef
+        return isinstance(other, Vector) and self.coef == other.coef
     
     
     def __lshift__(self, other):
@@ -55,9 +54,9 @@ class Vector:
         return type(self)(other*(0,) + self.coef)
     
     def trim(self):
-        """Removes all trailing near zero coefficients."""
+        """Removes all trailing near zero (<=1e-8) coefficients."""
         c = self.coef
-        while c and isclose(c[-1], 0):
+        while c and isclose(c[-1], 0, abs_tol=1e-8):
             c = c[:-1]
         return type(self)(c)
     
@@ -84,22 +83,19 @@ class Vector:
     #and not a Vector.
     @staticmethod
     def map_zip(f, v, w):
-        """Applies f(v, w) elementwise if possible,
-        otherwise elementwise in the first argument."""
+        """Applies f(v, w) elementwise; the second argument may be iterable."""
         try: #second argument iterable
-            return type(v)(f(a, b) for a, b in zip(v, w))
+            return type(v)(map(f, v, w))
         except TypeError: #second argument scalar
-            return type(v)(f(c, w) for c in v)
+            return type(v)(map(f, v, repeat(w)))
     
     @staticmethod
     def map_zip_longest(f, v, w):
-        """Applies f(v, w) elementwise if possible,
-        otherwise elementwise in the first argument."""
+        """Applies f(v, w) elementwise; the second argument may be iterable."""
         try: #second argument iterable
-            return type(v)(f(a, b)
-                    for a, b in zip_longest(v, w, fillvalue=0))
+            return type(v)(starmap(f, zip_longest(v, w, fillvalue=0)))
         except TypeError: #second argument scalar
-            return type(v)(f(c, w) for c in v)
+            return type(v)(map(f, v, repeat(w)))
     
     #implement vector space operations like they would be correct on paper:
     #v+w, v-w, av, va, v/a
@@ -120,7 +116,7 @@ class Vector:
     
     #python stuff
     def __str__(self):
-        return 'Vector(' + ', '.join(map(str, self.coef)) + ', 0, ...)'
+        return 'Vector(' + ', '.join(map(str, self.coef)) + ', ...)'
 
 
 
