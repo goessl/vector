@@ -1,7 +1,7 @@
 from math import sqrt, isclose
 from random import gauss
 from itertools import starmap, zip_longest, repeat
-import operator
+from operator import add, sub, mul, truediv
 
 
 
@@ -53,10 +53,10 @@ class Vector:
     def __rshift__(self, other):
         return type(self)(other*(0,) + self.coef)
     
-    def trim(self):
-        """Removes all trailing near zero (<=1e-8) coefficients."""
+    def trim(self, tol=1e-8):
+        """Removes all trailing near zero (<=tol=1e-8) coefficients."""
         c = self.coef
-        while c and isclose(c[-1], 0, abs_tol=1e-8):
+        while c and isclose(c[-1], 0, abs_tol=tol):
             c = c[:-1]
         return type(self)(c)
     
@@ -72,7 +72,7 @@ class Vector:
     
     def __matmul__(self, other):
         #https://docs.python.org/3/library/itertools.html
-        return sum(starmap(operator.mul, zip(self, other)))
+        return sum(starmap(mul, zip(self, other)))
     
     
     
@@ -100,17 +100,17 @@ class Vector:
     #implement vector space operations like they would be correct on paper:
     #v+w, v-w, av, va, v/a
     def __add__(self, other):
-        return Vector.map_zip_longest(operator.add, self, other)
+        return Vector.map_zip_longest(add, self, other)
     
     def __sub__(self, other):
-        return Vector.map_zip_longest(operator.sub, self, other)
+        return Vector.map_zip_longest(sub, self, other)
     
     def __mul__(self, other):
-        return Vector.map_zip(operator.mul, self, other)
+        return Vector.map_zip(mul, self, other)
     __rmul__ = __mul__
     
     def __truediv__(self, other):
-        return Vector.map_zip(operator.truediv, self, other)
+        return Vector.map_zip(truediv, self, other)
     
     
     
