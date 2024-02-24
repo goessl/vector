@@ -13,6 +13,8 @@ v = Vector((1, 2, 3, 4, 5))
 assert len(v) == 5
 assert v[2] == 3
 assert v[999] == 0
+assert Vector((1, 2, 3)) == Vector((1, 2, 3, 0))
+assert not Vector((1, 2, 3)) == Vector((1, 2, 3, 1))
 assert v<<1 == Vector((2, 3, 4, 5))
 assert v>>1 == Vector((0, 1, 2, 3, 4, 5))
 assert Vector((1, 0)).trim() == Vector((1,)) \

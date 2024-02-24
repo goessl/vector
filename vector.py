@@ -30,7 +30,7 @@ class Vector:
     
     
     
-    #container stuff
+    #sequence stuff
     def __len__(self):
         return len(self.coef)
     
@@ -44,7 +44,7 @@ class Vector:
         return iter(self.coef)
     
     def __eq__(self, other):
-        return isinstance(other, Vector) and self.coef == other.coef
+        return isinstance(other, type(self)) and self.trim().coef == other.trim().coef
     
     
     def __lshift__(self, other):
@@ -56,7 +56,7 @@ class Vector:
     def trim(self, tol=1e-8):
         """Removes all trailing near zero (<=tol=1e-8) coefficients."""
         c = self.coef
-        while c and isclose(c[-1], 0, abs_tol=tol):
+        while c and abs(c[-1])<=tol:
             c = c[:-1]
         return type(self)(c)
     
@@ -97,7 +97,7 @@ class Vector:
         except TypeError: #second argument scalar
             return type(v)(map(f, v, repeat(w)))
     
-    #implement vector space operations like they would be correct on paper:
+    #implementing vector space operations like they would be correct on paper:
     #v+w, v-w, av, va, v/a
     def __add__(self, other):
         return Vector.map_zip_longest(add, self, other)
