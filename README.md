@@ -52,6 +52,10 @@ The multiplicative operations are overloaded to perform scalar multiplication/di
 
 A static zero-vector `Vector.ZERO` is provided.
 
+## profiling
+
+For most methods a runtime comparison between different approaches has been made. The results can be found in [profiling.ipynb](profiling.ipynb) or [profiling.ipynb](profiling.pdf).
+
 ## License (MIT)
 
 Copyright (c) 2023 Sebastian Gössl

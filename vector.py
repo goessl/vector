@@ -1,4 +1,4 @@
-from math import sqrt, isclose
+from math import sqrt, isclose, hypot
 from random import gauss
 from itertools import starmap, zip_longest, repeat
 from operator import add, sub, mul, truediv
@@ -68,11 +68,11 @@ class Vector:
     
     #Hilbert space stuff
     def __abs__(self):
-        return sqrt(self @ self)
+        return hypot(*self)
     
     def __matmul__(self, other):
         #https://docs.python.org/3/library/itertools.html
-        return sum(starmap(mul, zip(self, other)))
+        return sum(map(mul, self, other))
     
     
     

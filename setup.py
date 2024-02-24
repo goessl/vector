@@ -6,7 +6,7 @@ long_description = (this_directory / 'README.md').read_text()
 
 setup(
     name = 'vector',
-    version = '1.1.4',
+    version = '1.2',
     description = 'An infinite dimensional vector module.',
     long_description = long_description,
     long_description_content_type = 'text/markdown',
