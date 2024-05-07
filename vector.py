@@ -35,6 +35,9 @@ class Vector:
         return len(self.coef)
     
     def __getitem__(self, key):
+        if isinstance(key, slice):
+            return Vector(
+                    self.coef[i] for i in range(*key.indices(len(self.coef))))
         try:
             return self.coef[key]
         except IndexError:
