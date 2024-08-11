@@ -1,12 +1,15 @@
 # vector
 
-An infinite dimensional vector package.
+An infinite-dimensional vector package.
 ```python
+>>> from vector import vecadd
+>>> vecadd((1, 2), (4, 5, 6))
+(5, 7, 6)
 >>> from vector import Vector
 >>> v = Vector((1, 2))
 >>> w = Vector((4, 5, 6))
 >>> v+w
-Vector(5, 7, 6, 0, ...)
+Vector(5, 7, 6, ...)
 ```
 
 ## Installation
@@ -17,48 +20,104 @@ pip install git+https://github.com/goessl/vector.git
 
 ## Usage
 
-This package provides a single class, `Vector`, to handle infinite dimensional vectors.
-A vector can be initialized in two ways:
- - With the constructor `Vector(coef)`, that takes a non-negative integer to create a basis vector with the given index, or an iterable of coefficients to create a vector with the given coefficients as the first elements.
- - With the random factory `Vector.random(n, normed=True)` for a random vector of a given dimensionality.
-A static helper method `Vector.basis_tuple(i)` is also provided, that generates a basis vector in form of a tuple.
-The objects are immutable (coefficients are internally stored in a tuple) and zero-indexed.
+This package offers a suite of minimalistic, general-purpose *functions* alongside a clean, higher-level, operator overloaded *class* designed to handle infinite-dimensional vectors.
+It operates on vectors of different lengths, treating them as infinite-dimensional by assuming that all components after the given ones are *integer zeros*.
+
+### Functions
+
 ```python
->>> from vector import Vector
->>> v = Vector((1, 2, 3))
->>> w = Vector.random(3)
->>> v
-Vector(1, 2, 3, 0, ...)
->>> w
-Vector(-0.5613820142699765, -0.028308921297709365, 0.8270724508948077, 0, ...)
->>> Vector.basis_tuple(3)
-(0, 0, 0, 1)
+>>> from vector import vecadd
+>>> a = (5, 6, 7)
+>>> b = [2]
+>>> c = range(4)
+>>> vecadd(a, b, c)
+(7, 7, 9, 3)
 ```
 
-Container and sequence interfaces are implemented so the coefficients can be
-- accessed by indexing: `v[2]` (coefficients not set return to 0),
-- iterated over: `for c in v` (stops at last set coefficient),
-- counted: `len(v)` (number of set coefficients),
-- compared: `v == w` (tuple of coefficients get compared),
-- shifted: `v >> 1, w << 2` &
-- trimmed: `v.trim()` (trailing non-zero coefficients get removed).
+All functions *accept sequences*, most even *single exhaustible iterables*.
 
-Hilbert space operations are provided:
-- Vector addition & subtraction `v + w, v - w`,
-- scalar multiplication & division `2 * v, w / 2`,
-- inner product & norm `v @ w, abs(v)` (real inner product; complex conjugation of an argument has to be handled by the user; to comply with [numpy.matmul](https://numpy.org/doc/stable/reference/generated/numpy.matmul.html)).
+They *return vectors as tuples*.
 
-The multiplicative operations are overloaded to perform scalar multiplication/division if the other argument is a scalar, or elementwise multiplication/division if both operands are `Vector`s, `v*w`.
+The functions are *type-independent*. However, the data types used must *support necessary scalar operations*. For instance, for vector addition, components must be addable — this may include operations with padded integer zeros. Empty sums or dot products of empty vectors return integer zeros.
 
-A static zero-vector `Vector.ZERO` is provided.
+creation stuff
+- `veczero = ()`: Zero vector.
+- `vecbasis(i, c=1)`: Return the `i`-th basis vector times `c`. The retured value is a tuple with `i` integer zeros followed by `c`.
+- `def vecrandom(n)`: Return a random vector of `n` uniform coefficients in `[0, 1[`.
+- `def vecgauss(n, normed=True, mu=0, sigma=1)`: Return a random vector of `n` normal distributed coefficients.
+
+sequence stuff
+- `veceq(v, w)`: Return if two vectors are equal.
+- `vectrim(v, tol=1e-9)`: Remove all trailing near zero (<=tol) coefficients.
+- `vecround(v, ndigits=None)`: Round all coefficients to the given precision.
+
+Hilbert space stuff
+- `vecabsq(v)`: Return the sum of absolute squares of the coefficients.
+- `vecabs(v)`: Return the Euclidean/L2-norm.
+- `vecdot(v, w)`: Return the real dot product of two vectors. No argument is complex conjugated. All coefficients are used as is.
+
+vector space stuff
+- `vecadd(*vs)`: Return the sum of vectors.
+- `vecsub(v, w)`: Return the difference of two vectors.
+- `vecmul(a, v)`: Return the product of a scalar and a vector.
+- `vectruediv(v, a)`: Return the true division of a vector and a scalar.
+- `vecfloordiv(v, a)`: Return the floor division of a vector and a scalar.
+
+### Class
+
+The immutable `Vector` class wraps all the mentioned functions into a tidy package, making them easier to use by enabling interaction through operators.
+Its coefficients are internally stored as a tuple in the `coef` attribute and therefore *zero-indexed*.
+
+initialisation stuff
+- `Vector(i)`: Create a new vector with the given coefficients or the `i`-th basis vector if an integer `i` is given.
+- `Vector.random(n)`: Create a random vector of `n` uniform coefficients in `[0, 1[`.
+- `Vector.gauss(n, normed=True, mu=0, sigma=1))`: Create a random vector of `n` normal distributed coefficients.
+- `Vector.ZERO`: Zero vector.
+
+```python
+>>> from vector import Vector
+>>> Vector((1, 2, 3))
+Vector(1, 2, 3, ...)
+>>> Vector.gauss(3)
+Vector(-0.5613820142699765, -0.028308921297709365, 0.8270724508948077, ...)
+>>> Vector(3)
+Vector(0, 0, 0, 1, ...)
+```
+
+container and sequence stuff
+- `len(v)`: Return the number of set coefficients.
+- `v[key]`: Return the indexed coefficient or coefficients. Not set coefficients default to 0.
+- `iter(v)`: Return an iterator over the set coefficients.
+- `v == w`: Return if of same type with same coefficients.
+- `v << i`: Return a vector with coefficients shifted to lower indices.
+- `v >> i`: Return a vector with coefficients shifted to higher indices.
+- `v.trim(tol=1e-9)`: Remove all trailing near zero (abs<=tol) coefficients.
+- `v.round(ndigits=None)`: Round all coefficients to the given precision.
+
+Hilbert space stuff
+- `v.absq()`: Return the sum of absolute squares of the coefficients.
+- `abs(v)`: Return the Euclidean/L2-norm. Return the square root of `vecabsq`.
+- `v @ w`: Return the real dot product of two vectors. No argument is complex conjugated. All coefficients are used as is.
+
+vector space stuff
+- `v + w`: Return the vector sum.
+- `v - w`: Return the vector difference.
+- `v * a`: Return the scalar product.
+- `v / a`: Return the scalar true division.
+- `v // a`: Return the scalar floor division.
 
 ## profiling
 
-For most methods a runtime comparison between different approaches has been made. The results can be found in [profiling.ipynb](profiling.ipynb) or [profiling.ipynb](profiling.pdf).
+For most functions a performance comparison between different approaches has been made. The results can be found in [profiling.ipynb](profiling.ipynb).
+
+## todo
+
+ - [x] docstrings
+ - [ ] `numpy` routines
 
 ## License (MIT)
 
-Copyright (c) 2023 Sebastian Gössl
+Copyright (c) 2022-2024 Sebastian Gössl
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
