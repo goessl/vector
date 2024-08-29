@@ -5,11 +5,18 @@ An infinite-dimensional vector package.
 >>> from vector import vecadd
 >>> vecadd((1, 2), (4, 5, 6))
 (5, 7, 6)
+>>> 
 >>> from vector import Vector
 >>> v = Vector((1, 2))
 >>> w = Vector((4, 5, 6))
->>> v+w
+>>> v + w
 Vector(5, 7, 6, ...)
+>>>
+>>> from npvec import vecnpadd
+>>> vecnpadd((1, 2), ((3, 4, 5),
+...                   (6, 7, 8)))
+array([[4, 6, 5],
+       [7, 9, 8]])
 ```
 
 ## Installation
@@ -20,8 +27,12 @@ pip install git+https://github.com/goessl/vector.git
 
 ## Usage
 
-This package offers a suite of minimalistic, general-purpose *functions* alongside a clean, higher-level, operator overloaded *class* designed to handle infinite-dimensional vectors.
-It operates on vectors of different lengths, treating them as infinite-dimensional by assuming that all components after the given ones are *integer zeros*.
+This package includes
+- general-purpose *functions*,
+- a clean *class*
+- improved *numpy-routines*
+to handle infinite-dimensional vectors.
+It operates on vectors of different lengths, treating them as infinite-dimensional by assuming that all components after the given ones are *zero*.
 
 ### Functions
 
@@ -38,13 +49,15 @@ All functions *accept sequences*, most even *single exhaustible iterables*.
 
 They *return vectors as tuples*.
 
-The functions are *type-independent*. However, the data types used must *support necessary scalar operations*. For instance, for vector addition, components must be addable — this may include operations with padded integer zeros. Empty sums or dot products of empty vectors return integer zeros.
+The functions are *type-independent*. However, the data types used must *support necessary scalar operations*. For instance, for vector addition, components must be addable — this may include operations with padded integer zeros. Empty empty operations return zero vector (e.g. `vecsum()==veczero`) or integer zeros (e.g. `vecdot(veczero, veczero)==int(0)`).
+
+Padding is done with `int(0)`.
 
 creation stuff
 - `veczero = ()`: Zero vector.
 - `vecbasis(i, c=1)`: Return the `i`-th basis vector times `c`. The retured value is a tuple with `i` integer zeros followed by `c`.
-- `def vecrandom(n)`: Return a random vector of `n` uniform coefficients in `[0, 1[`.
-- `def vecgauss(n, normed=True, mu=0, sigma=1)`: Return a random vector of `n` normal distributed coefficients.
+- `def vecrand(n)`: Return a random vector of `n` uniform coefficients in `[0, 1[`.
+- `def vecrandn(n, normed=True, mu=0, sigma=1)`: Return a random vector of `n` normal distributed coefficients.
 
 sequence stuff
 - `veceq(v, w)`: Return if two vectors are equal.
@@ -54,7 +67,7 @@ sequence stuff
 Hilbert space stuff
 - `vecabsq(v)`: Return the sum of absolute squares of the coefficients.
 - `vecabs(v)`: Return the Euclidean/L2-norm.
-- `vecdot(v, w)`: Return the real dot product of two vectors. No argument is complex conjugated. All coefficients are used as is.
+- `vecdot(v, w)`: Return the inner product of two vectors without conjugation.
 
 vector space stuff
 - `vecadd(*vs)`: Return the sum of vectors.
@@ -66,12 +79,13 @@ vector space stuff
 ### Class
 
 The immutable `Vector` class wraps all the mentioned functions into a tidy package, making them easier to use by enabling interaction through operators.
+
 Its coefficients are internally stored as a tuple in the `coef` attribute and therefore *zero-indexed*.
 
 initialisation stuff
 - `Vector(i)`: Create a new vector with the given coefficients or the `i`-th basis vector if an integer `i` is given.
-- `Vector.random(n)`: Create a random vector of `n` uniform coefficients in `[0, 1[`.
-- `Vector.gauss(n, normed=True, mu=0, sigma=1))`: Create a random vector of `n` normal distributed coefficients.
+- `Vector.rand(n)`: Create a random vector of `n` uniform coefficients in `[0, 1[`.
+- `Vector.randn(n, normed=True, mu=0, sigma=1))`: Create a random vector of `n` normal distributed coefficients.
 - `Vector.ZERO`: Zero vector.
 
 ```python
@@ -97,7 +111,7 @@ container and sequence stuff
 Hilbert space stuff
 - `v.absq()`: Return the sum of absolute squares of the coefficients.
 - `abs(v)`: Return the Euclidean/L2-norm. Return the square root of `vecabsq`.
-- `v @ w`: Return the real dot product of two vectors. No argument is complex conjugated. All coefficients are used as is.
+- `v @ w`: Return the inner product of two vectors without conjugation.
 
 vector space stuff
 - `v + w`: Return the vector sum.
@@ -106,6 +120,44 @@ vector space stuff
 - `v / a`: Return the scalar true division.
 - `v // a`: Return the scalar floor division.
 
+## `numpy`-routines
+
+```python
+>>> from npvec import vecnpadd
+>>> vecnpadd((1, 2), ((3, 4, 5),
+...                   (6, 7, 8)))
+array([[4, 6, 5],
+       [7, 9, 8]])
+```
+
+`numpy`-version of the functions are also provided, to many vectors at once. They behave like the ones in `numpy.polynomial.polynomial`, but also work on 2D-arrays and broadcast to multiple dimensions like the usual `numpy` operations (but adjust the shapes accordingly).
+
+`vecnpzero` is `np.array([0])` like `numpy.polynomial.polynomial.polyzero`, not `veczero=()` (empty tuple, no zero coefficient left) like in the functions and class above.
+
+Padding is done with `numpy.int64` zeros.
+
+Creation routines have a dimension argument `d`. If left to `None`, the returned values are 1D, so a single vector. If given, the routines return a 2D-array representing mutiple vectors in rows.
+
+creation stuff
+- `vecnpzero(d=None)`: Return `d` zero vectors. The retured value is a `(d, 1)`-array of zeros if `d` is not `None` or `[0]` otherwise.
+- `vecnpbasis(i, c=1, d=None)`: Return `d` many `i`-th basis vectors times `c`. The retured value is a `(d, i+1)`-array if `d` is not `None` or `(i+1,)` otherwise.
+- `vecnprand(n, d=None)`: Return `d` random vectors of `n` uniform coefficients in `[0, 1[`. The retured value is a `(d, n)`-array if `d` is not `None` or `(n,)` otherwise.
+- `vecnprandn(n, normed=True, d=None)`: Return `d` random vectors of `n` normal distributed coefficients. The retured value is a `(d, n)`-array if `d` is not `None` or `(n,)` otherwise.
+
+sequence stuff
+- `vecnpeq(v, w)`: Return if two vectors are equal.
+- `vecnptrim(v, tol=1e-9)`: Remove all trailing near zero (abs(v_i)<=tol) coefficients.
+- (`numpy.round` already exists)
+
+Hilbert space stuff
+- `vecnpabsq(v)`: Return the sum of absolute squares of the coefficients.
+- `vecnpabs(v)`: Return the Euclidean/L2-norm.
+- `vecnpdot(v, w)`: Return the inner product of two vectors without conjugation.
+
+vector space stuff
+- `vecnpadd(*vs)`: Return the sum of vectors.
+- `vecnpsub(v, w)`: Return the difference of two vectors.
+
 ## profiling
 
 For most functions a performance comparison between different approaches has been made. The results can be found in [profiling.ipynb](profiling.ipynb).
@@ -113,7 +165,7 @@ For most functions a performance comparison between different approaches has bee
 ## todo
 
  - [x] docstrings
- - [ ] `numpy` routines
+ - [x] `numpy` routines
 
 ## License (MIT)
 

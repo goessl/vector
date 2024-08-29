@@ -18,6 +18,7 @@ setup(
     py_modules = ['vector'],
     url = 'https://github.com/goessl/vector',
     python_requires = '>=3.12',
+    install_requires = ['numpy'],
     
     classifiers = [
         'Development Status :: 5 - Production/Stable',

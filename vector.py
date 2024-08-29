@@ -16,11 +16,11 @@ def vecbasis(i, c=1):
     """
     return (0,)*i + (c,)
 
-def vecrandom(n):
+def vecrand(n):
     """Return a random vector of `n` uniform coefficients in `[0, 1[`."""
     return tuple(random() for _ in range(n))
 
-def vecgauss(n, normed=True, mu=0, sigma=1):
+def vecrandn(n, normed=True, mu=0, sigma=1):
     """Return a random vector of `n` normal distributed coefficients."""
     v = tuple(gauss(mu=mu, sigma=sigma) for _ in range(n))
     return vectruediv(v, vecabs(v)) if normed else v
@@ -62,10 +62,7 @@ def vecabs(v):
     return vecabsq(v)**0.5
 
 def vecdot(v, w):
-    """Return the real dot product of two vectors.
-    
-    No argument is complex conjugated. All coefficients are used as is.
-    """
+    """Return the inner product of two vectors without conjugation."""
     #unreadable:
     #return sumprod(v[:min(len(v), len(w))], w[:min(len(v), len(w))])
     #return sumprod(*zip(*zip(v, w))) would be more precise, but is bloat
@@ -111,14 +108,14 @@ class Vector:
             self.coef = tuple(coef)
     
     @staticmethod
-    def random(n):
+    def rand(n):
         """Create a random vector of `n` uniform coefficients in `[0, 1[`."""
-        return Vector(vecrandom(n))
+        return Vector(vecrand(n))
     
     @staticmethod
-    def gauss(n, normed=True, mu=0, sigma=1):
+    def randn(n, normed=True, mu=0, sigma=1):
         """Create a random vector of `n` normal distributed coefficients."""
-        return Vector(vecgauss(n, normed=normed, mu=mu, sigma=sigma))
+        return Vector(vecrandn(n, normed=normed, mu=mu, sigma=sigma))
     
     
     #sequence stuff
