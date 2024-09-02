@@ -11,8 +11,8 @@ An infinite-dimensional vector package.
 >>> w = Vector((4, 5, 6))
 >>> v + w
 Vector(5, 7, 6, ...)
->>>
->>> from npvec import vecnpadd
+>>> 
+>>> from vector import vecnpadd
 >>> vecnpadd((1, 2), ((3, 4, 5),
 ...                   (6, 7, 8)))
 array([[4, 6, 5],
@@ -82,6 +82,8 @@ The immutable `Vector` class wraps all the mentioned functions into a tidy packa
 
 Its coefficients are internally stored as a tuple in the `coef` attribute and therefore *zero-indexed*.
 
+Vector operations return the same type (`type(v+w)==type(v)`) so the class can easily be extended (to e.g. a polynomial class).
+
 initialisation stuff
 - `Vector(i)`: Create a new vector with the given coefficients or the `i`-th basis vector if an integer `i` is given.
 - `Vector.rand(n)`: Create a random vector of `n` uniform coefficients in `[0, 1[`.
@@ -120,10 +122,10 @@ vector space stuff
 - `v / a`: Return the scalar true division.
 - `v // a`: Return the scalar floor division.
 
-## `numpy`-routines
+### `numpy`-routines
 
 ```python
->>> from npvec import vecnpadd
+>>> from vector import vecnpadd
 >>> vecnpadd((1, 2), ((3, 4, 5),
 ...                   (6, 7, 8)))
 array([[4, 6, 5],
