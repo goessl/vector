@@ -56,8 +56,8 @@ Padding is done with `int(0)`.
 creation stuff
 - `veczero = ()`: Zero vector.
 - `vecbasis(i, c=1)`: Return the `i`-th basis vector times `c`. The retured value is a tuple with `i` integer zeros followed by `c`.
-- `def vecrand(n)`: Return a random vector of `n` uniform coefficients in `[0, 1[`.
-- `def vecrandn(n, normed=True, mu=0, sigma=1)`: Return a random vector of `n` normal distributed coefficients.
+- `vecrand(n)`: Return a random vector of `n` uniform coefficients in `[0, 1[`.
+- `vecrandn(n, normed=True, mu=0, sigma=1)`: Return a random vector of `n` normal distributed coefficients.
 
 sequence stuff
 - `veceq(v, w)`: Return if two vectors are equal.
