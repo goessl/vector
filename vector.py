@@ -1,6 +1,6 @@
 from math import sqrt, isclose, hypot, sumprod
 from random import random, gauss
-from itertools import starmap, zip_longest, repeat
+from itertools import starmap, zip_longest, repeat, tee
 from operator import add, sub, mul, truediv, floordiv, eq
 
 
@@ -45,11 +45,8 @@ def vecround(v, ndigits=None):
 #Hilbert space stuff
 def vecabsq(v):
     """Return the sum of absolute squares of the coefficients."""
-    #return sumprod(v, v)
-    #avoid abs twice and exponentiation
-    #return sum((avi:=abs(vi))*avi for vi in v)
-    #walruss doesn't save memory, as generators are lazy
-    return sum(avi*avi for avi in (abs(vi) for vi in v))
+    #return sumprod(v, v) #no abs
+    return sumprod(*tee(map(abs, v), 2))
 
 def vecabs(v):
     """Return the Euclidean/L2-norm.
@@ -178,15 +175,15 @@ class Vector:
         else:
             self.coef = tuple(coef)
     
-    @staticmethod
-    def rand(n):
+    @classmethod
+    def rand(cls, n):
         """Create a random vector of `n` uniform coefficients in `[0, 1[`."""
-        return Vector(vecrand(n))
+        return cls(vecrand(n))
     
-    @staticmethod
-    def randn(n, normed=True, mu=0, sigma=1):
+    @classmethod
+    def randn(cls, n, normed=True, mu=0, sigma=1):
         """Create a random vector of `n` normal distributed coefficients."""
-        return Vector(vecrandn(n, normed=normed, mu=mu, sigma=sigma))
+        return cls(vecrandn(n, normed=normed, mu=mu, sigma=sigma))
     
     
     #sequence stuff
