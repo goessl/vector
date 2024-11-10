@@ -6,7 +6,7 @@ long_description = (this_directory / 'README.md').read_text()
 
 setup(
     name = 'vector',
-    version = '1.4',
+    version = '2.0',
     description = 'An infinite dimensional vector module.',
     long_description = long_description,
     long_description_content_type = 'text/markdown',
@@ -15,7 +15,6 @@ setup(
     author_email = 'goessl@student.tugraz.at',
     license = 'MIT',
     
-    py_modules = ['vector'],
     url = 'https://github.com/goessl/vector',
     python_requires = '>=3.12',
     install_requires = ['numpy'],
