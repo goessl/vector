@@ -1,7 +1,7 @@
-from math import sqrt, isclose, hypot, sumprod
+from math import sumprod
 from random import random, gauss
 from itertools import starmap, zip_longest, repeat, tee
-from operator import add, sub, mul, truediv, floordiv, eq
+from operator import sub, mul, truediv, floordiv, eq
 
 
 
@@ -332,7 +332,6 @@ if __name__ == '__main__':
 
 
 import numpy as np
-from itertools import zip_longest
 
 
 
