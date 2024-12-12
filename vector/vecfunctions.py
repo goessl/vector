@@ -33,9 +33,17 @@ def veceq(v, w):
 
 def vectrim(v, tol=1e-9):
     """Remove all trailing near zero (abs(v_i)<=tol) coefficients."""
-    while v and abs(v[-1])<=tol:
-        v = v[:-1]
-    return v
+    #doesn't work for iterators
+    #while v and abs(v[-1])<=tol:
+    #    v = v[:-1]
+    #return v
+    r, t, it = [], [], iter(v)
+    for x in v:
+        t += [x]
+        if abs(x)>tol:
+            r += t
+            t = []
+    return tuple(r)
 
 def vecround(v, ndigits=None):
     """Round all coefficients to the given precision."""
