@@ -21,7 +21,7 @@ def vecnpbasis(i, c=1, d=None):
     or `(i+1,)` otherwise.
     """
     #choose dtype acc to c
-    v = np.zeros(i+1 if d is None else (d, i+1), dtype=np.asarray(c).dtype)
+    v = np.zeros(i+1 if d is None else (d, i+1), dtype=np.dtype(type(c)))
     v[..., -1] = c #maybe scalar, maybe (d,)-array
     return v
 
@@ -56,9 +56,9 @@ def vecnptrim(v, tol=1e-9):
     """Remove all trailing near zero (abs(v_i)<=tol) coefficients."""
     v = np.asarray(v)
     #use np.all, because v[...,-1] maybe a scalar (not iterable)
-    while v.shape[-1]>1 and np.all(abs(v[...,-1])<=tol):
+    while v.shape[-1]>1 and np.all(np.abs(v[...,-1])<=tol):
         v = v[...,:-1]
-    if v.shape[-1]==1 and np.all(abs(v[...,0])<=tol): #leave 'leading' zero
+    if v.shape[-1]==1 and np.all(np.abs(v[...,0])<=tol): #leave 'leading' zero
         v[...,0] = 0
     return v
 
@@ -88,9 +88,11 @@ def vecnpadd(*vs):
     if not vs: #empty sum
         return vecnpzero()
     vs = tuple(np.asarray(v) for v in vs)
-    shape = tuple(reversed(tuple(map(max, zip_longest( \
-            *(reversed(v.shape) for v in vs), fillvalue=0)))))
-    r = np.zeros(shape, dtype=np.result_type(*vs))
+    heights = set().union(*(v.shape[:-1] for v in vs))
+    if len(heights) > 1:
+        raise ValueError
+    r = np.zeros(tuple(heights)+(max(v.shape[-1] for v in vs),),
+            dtype=np.result_type(*vs))
     for v in vs:
         r[...,*map(slice, v.shape)] += v
     return r
@@ -98,9 +100,11 @@ def vecnpadd(*vs):
 def vecnpsub(v, w):
     """Return the difference of two vectors."""
     v, w = np.asarray(v), np.asarray(w)
-    shape = tuple(reversed(tuple(map(max, zip_longest( \
-            reversed(v.shape), reversed(w.shape), fillvalue=0)))))
-    r = np.zeros(shape, dtype=np.result_type(v, w))
+    heights = set(v.shape[:-1] + w.shape[:-1])
+    if len(heights) > 1:
+        raise ValueError
+    r = np.zeros(tuple(heights)+(max(v.shape[-1], w.shape[-1]),),
+            dtype=np.result_type(v, w))
     r[...,*map(slice, v.shape)] += v
     r[...,*map(slice, w.shape)] -= w
     return r

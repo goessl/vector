@@ -1,7 +1,7 @@
-from math import sumprod
+from math import prod, sumprod
 from random import random, gauss
 from itertools import starmap, zip_longest, repeat, tee
-from operator import sub, mul, truediv, floordiv, eq
+from operator import sub, mul, truediv, floordiv, mod, eq
 
 
 
@@ -12,7 +12,7 @@ veczero = ()
 def vecbasis(i, c=1):
     """Return the `i`-th basis vector times `c`.
     
-    The retured value is a tuple with `i` integer zeros followed by `c`.
+    The retured value is a tuple with `i` zeros followed by `c`.
     """
     return (0,)*i + (c,)
 
@@ -22,7 +22,7 @@ def vecrand(n):
 
 def vecrandn(n, normed=True, mu=0, sigma=1):
     """Return a random vector of `n` normal distributed coefficients."""
-    v = tuple(gauss(mu=mu, sigma=sigma) for _ in range(n))
+    v = tuple(gauss(mu, sigma) for _ in range(n))
     return vectruediv(v, vecabs(v)) if normed else v
 
 
@@ -75,6 +75,12 @@ def vecdot(v, w):
 
 
 #vector space stuff
+def vecpos(v):
+    return tuple(map(pos, v))
+
+def vecneg(v):
+    return tuple(map(neg, v))
+
 def vecadd(*vs):
     """Return the sum of vectors."""
     return tuple(map(sum, zip_longest(*vs, fillvalue=0)))
@@ -94,3 +100,12 @@ def vectruediv(v, a):
 def vecfloordiv(v, a):
     """Return the floor division of a vector and a scalar."""
     return tuple(map(floordiv, v, repeat(a)))
+
+def vecmod(v, a):
+    """Return the elementwise mod of a vector and a scalar."""
+    return tuple(map(mod, v, repeat(a)))
+
+
+#additional operations
+def vechadamard(*vs):
+    return tuple(map(prod, zip(*vs)))

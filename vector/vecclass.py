@@ -62,7 +62,7 @@ class Vector:
     def __eq__(self, other):
         """Return if of same type with same coefficients."""
         #maybe check isinstance(other, Vector)?
-        return isinstance(other, type(self)) and veceq(self.coef, other.coef)
+        return isinstance(other, type(self)) and veceq(self, other)
     
     
     def __lshift__(self, other):
@@ -71,7 +71,7 @@ class Vector:
     
     def __rshift__(self, other):
         """Return a vector with coefficients shifted to higher indices."""
-        return type(self)(other*(0,) + self.coef)
+        return type(self)((0,)*other + self.coef)
     
     def trim(self, tol=1e-9):
         """Remove all trailing near zero (abs<=tol) coefficients."""
@@ -104,13 +104,22 @@ class Vector:
     
     #vector space operations like they would be correct on paper:
     #v+w, v-w, av, va, v/a, v//a
+    def __pos__(self):
+        return type(self)(vecpos(self))
+    
+    def __neg__(self):
+        return type(self)(vecneg(self))
+    
     def __add__(self, other):
         """Return the vector sum."""
         return type(self)(vecadd(self, other))
+    __radd__ = __add__
     
     def __sub__(self, other):
         """Return the vector difference."""
         return type(self)(vecsub(self, other))
+    def __rsub__(self, other):
+        return type(self)(vecsub(other, self))
     
     def __mul__(self, other):
         """Return the scalar product."""
@@ -128,7 +137,7 @@ class Vector:
     
     #python stuff
     def __str__(self):
-        return 'Vector(' + ', '.join(map(str, self.coef)) + ', ...)'
+        return 'Vector(' + ', '.join(map(str, self.coef)) + ')'
 
 
 
