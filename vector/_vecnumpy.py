@@ -1,6 +1,13 @@
 import numpy as np
 from itertools import zip_longest
-from vector import veceq
+from ._vecfunctions import veceq
+
+
+
+__all__ = ['vecnpzero', 'vecnpbasis', 'vecnprand', 'vecnprandn',
+        'vecnpeq', 'vecnptrim',
+        'vecnpabsq', 'vecnpabs', 'vecnpdot',
+        'vecnpadd', 'vecnpsub']
 
 
 

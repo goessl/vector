@@ -1,4 +1,8 @@
-from .vecfunctions import *
+from ._vecfunctions import *
+
+
+
+__all__ = ['Vector']
 
 
 

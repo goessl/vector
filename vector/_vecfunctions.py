@@ -5,6 +5,15 @@ from operator import sub, mul, truediv, floordiv, mod, eq
 
 
 
+__all__ = ['veczero', 'vecbasis', 'vecrand', 'vecrandn',
+        'veceq', 'vectrim', 'vecround',
+        'vecabsq', 'vecabs', 'vecdot',
+        'vecpos', 'vecneg',
+        'vecadd', 'vecsub', 'vecmul', 'vectruediv', 'vecfloordiv', 'vecmod',
+        'vechadamard']
+
+
+
 #creation stuff
 veczero = ()
 """Zero vector."""
