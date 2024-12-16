@@ -67,3 +67,24 @@ def test_vectruediv():
 def test_vecfloordiv():
     assert vecfloordiv((), 1) == ()
     assert vecfloordiv((3,), 2) == (1,)
+
+
+def test_vechadamardtruediv():
+    for _ in range(100):
+        v = vecrand(np.random.randint(0, 10))
+        w = vecrand(np.random.randint(0, 10))
+        
+        prediction = vechadamardtruediv(v, w)
+        v, w = np.asarray(v), np.asarray(w)
+        actual = v[:min(v.shape[0], w.shape[0])] / w[:min(v.shape[0], w.shape[0])]
+        assert np.allclose(prediction, actual)
+
+def test_vechadamardmod():
+    for _ in range(100):
+        v = vecrand(np.random.randint(0, 10))
+        w = vecrand(np.random.randint(0, 10))
+        
+        prediction = vechadamardmod(v, w)
+        v, w = np.asarray(v), np.asarray(w)
+        actual = v[:min(v.shape[0], w.shape[0])] % w[:min(v.shape[0], w.shape[0])]
+        assert np.allclose(prediction, actual)

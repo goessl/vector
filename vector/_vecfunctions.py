@@ -10,7 +10,8 @@ __all__ = ['veczero', 'vecbasis', 'vecrand', 'vecrandn',
         'vecabsq', 'vecabs', 'vecdot',
         'vecpos', 'vecneg',
         'vecadd', 'vecsub', 'vecmul', 'vectruediv', 'vecfloordiv', 'vecmod',
-        'vechadamard']
+        'vechadamard', 'vechadamardtruediv',
+        'vechadamardfloordiv', 'vechadamardmod']
 
 
 
@@ -85,9 +86,11 @@ def vecdot(v, w):
 
 #vector space stuff
 def vecpos(v):
+    """Return the vector with the unary positive operator applied."""
     return tuple(map(pos, v))
 
 def vecneg(v):
+    """Return the vector with the unary negative operator applied."""
     return tuple(map(neg, v))
 
 def vecadd(*vs):
@@ -115,6 +118,19 @@ def vecmod(v, a):
     return tuple(map(mod, v, repeat(a)))
 
 
-#additional operations
+#elementwise operations
 def vechadamard(*vs):
+    """Return the elementwise product of vectors."""
     return tuple(map(prod, zip(*vs)))
+
+def vechadamardtruediv(v, w):
+    """Return the elementwise true division of two vectors."""
+    return tuple(map(truediv, v, w))
+
+def vechadamardfloordiv(v, w):
+    """Return the elementwise floor division of two vectors."""
+    return tuple(map(floordiv, v, w))
+
+def vechadamardmod(v, w):
+    """Return the elementwise mod of two vectors."""
+    return tuple(map(mod, v, w))
