@@ -138,6 +138,28 @@ class Vector:
         """Return the scalar floor division."""
         return type(self)(vecfloordiv(self, other))
     
+    def __mod__(self, other):
+        """Return the elementwise mod with a scalar."""
+        return type(self)(vecmod(self, other))
+    
+    
+    #elementwise stuff
+    def hadamard(self, other):
+        """Return the elementwise product with another vector."""
+        return type(self)(vechadamard(self, other))
+    
+    def hadamardtruediv(self, other):
+        """Return the elementwise true division with another vector."""
+        return type(self)(vechadamardtruediv(self, other))
+    
+    def hadamardfloordiv(self, other):
+        """Return the elementwise floor division with another vector."""
+        return type(self)(vechadamardfloordiv(self, other))
+    
+    def hadamardmod(self, other):
+        """Return the elementwise mod with another vector."""
+        return type(self)(vechadamardmod(self, other))
+    
     
     #python stuff
     def __str__(self):

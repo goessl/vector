@@ -70,11 +70,19 @@ Hilbert space stuff
 - `vecdot(v, w)`: Return the inner product of two vectors without conjugation.
 
 vector space stuff
+- `vecpos(v)`: Return the vector with the unary positive operator applied.
+- `vecneg(v)`: Return the vector with the unary negative operator applied.
 - `vecadd(*vs)`: Return the sum of vectors.
 - `vecsub(v, w)`: Return the difference of two vectors.
 - `vecmul(a, v)`: Return the product of a scalar and a vector.
 - `vectruediv(v, a)`: Return the true division of a vector and a scalar.
 - `vecfloordiv(v, a)`: Return the floor division of a vector and a scalar.
+
+elementwise stuff
+- `vechadamard(*vs)`: Return the elementwise product of vectors.
+- `vechadamardtruediv(v, w)`: Return the elementwise true division of two vectors.
+- `vechadamardfloordiv(v, w)`: Return the elementwise floor division of two vectors.
+- `vechadamardmod(v, w)`: Return the elementwise mod of two vectors.
 
 ### Class
 
@@ -121,6 +129,13 @@ vector space stuff
 - `v * a`: Return the scalar product.
 - `v / a`: Return the scalar true division.
 - `v // a`: Return the scalar floor division.
+- `v % a`: Return the elementwise mod with a scalar.
+
+elementwise stuff
+- `v.hadamard(w)`: Return the elementwise product with another vector.
+- `v.hadamardtruediv(w)`: Return the elementwise true division with another vector.
+- `v.hadamardfloordiv(w)`: Return the elementwise floor division with another vector.
+- `v.hadamardmod(w)`: Return the elementwise mod with another vector.
 
 ### `numpy`-routines
 
