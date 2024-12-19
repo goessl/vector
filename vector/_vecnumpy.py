@@ -94,24 +94,33 @@ def vecnpadd(*vs):
     """Return the sum of vectors."""
     if not vs: #empty sum
         return vecnpzero()
-    vs = tuple(np.asarray(v) for v in vs)
-    heights = set().union(*(v.shape[:-1] for v in vs))
-    if len(heights) > 1:
+    
+    vs = tuple(map(np.asarray, vs))
+    if any(v.ndim>2 for v in vs): #all 1D or 2D
         raise ValueError
+    
+    heights = set().union(*(v.shape[:-1] for v in vs))
+    if len(heights) > 1: #all 2D same height
+        raise ValueError
+    
     r = np.zeros(tuple(heights)+(max(v.shape[-1] for v in vs),),
             dtype=np.result_type(*vs))
     for v in vs:
-        r[...,*map(slice, v.shape)] += v
+        r[...,:v.shape[-1]] += v
     return r
 
 def vecnpsub(v, w):
     """Return the difference of two vectors."""
     v, w = np.asarray(v), np.asarray(w)
-    heights = set(v.shape[:-1] + w.shape[:-1])
-    if len(heights) > 1:
+    if v.ndim>2 or w.ndim>2: #1D-1D, 1D-2D, 2D-1D, 2D-2D
         raise ValueError
+    
+    heights = set(v.shape[:-1]) | set(w.shape[:-1])
+    if len(heights) > 1: #both same height if both 2D
+        raise ValueError
+    
     r = np.zeros(tuple(heights)+(max(v.shape[-1], w.shape[-1]),),
             dtype=np.result_type(v, w))
-    r[...,*map(slice, v.shape)] += v
-    r[...,*map(slice, w.shape)] -= w
+    r[...,:v.shape[-1]] += v
+    r[...,:w.shape[-1]] -= w
     return r

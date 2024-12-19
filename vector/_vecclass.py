@@ -65,7 +65,6 @@ class Vector:
     
     def __eq__(self, other):
         """Return if of same type with same coefficients."""
-        #maybe check isinstance(other, Vector)?
         return isinstance(other, type(self)) and veceq(self, other)
     
     
@@ -96,7 +95,7 @@ class Vector:
         
         Return the square root of `vecabsq`.
         """
-        return vecabs(self)
+        return self.absq()**0.5
     
     def __matmul__(self, other):
         """Return the real dot product of two vectors.

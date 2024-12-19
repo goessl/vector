@@ -175,10 +175,6 @@ vector space stuff
 - `vecnpadd(*vs)`: Return the sum of vectors.
 - `vecnpsub(v, w)`: Return the difference of two vectors.
 
-## profiling
-
-For most functions a performance comparison between different approaches has been made. The results can be found in [profiling.ipynb](profiling.ipynb).
-
 ## todo
 
  - [x] docstrings
