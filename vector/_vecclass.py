@@ -76,6 +76,8 @@ class Vector:
         """Return a vector with coefficients shifted to higher indices."""
         return type(self)((0,)*other + self.coef)
     
+    
+    #utility stuff
     def trim(self, tol=1e-9):
         """Remove all trailing near zero (abs<=tol) coefficients."""
         return type(self)(vectrim(self))
