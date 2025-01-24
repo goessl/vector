@@ -36,8 +36,8 @@ def vecrandn(n, normed=True, mu=0, sigma=1):
     return vectruediv(v, vecabs(v)) if normed else v
 
 
-#sequence stuff
 def veceq(v, w):
+#utility stuff
     """Return if two vectors are equal."""
     return all(starmap(eq, zip_longest(v, w, fillvalue=0)))
 

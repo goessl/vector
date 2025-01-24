@@ -28,9 +28,10 @@ pip install git+https://github.com/goessl/vector.git
 ## Usage
 
 This package includes
-- general-purpose *functions*,
-- a clean *class*
-- improved *numpy-routines*
+- general-purpose *functions* (prefixed `vec`),
+- a clean *class* (`Vector`)&
+- improved *numpy-routines* (prefixed `vecnp`)
+
 to handle infinite-dimensional vectors.
 It operates on vectors of different lengths, treating them as infinite-dimensional by assuming that all components after the given ones are *zero*.
 
@@ -45,11 +46,11 @@ It operates on vectors of different lengths, treating them as infinite-dimension
 (7, 7, 9, 3)
 ```
 
-All functions *accept sequences*, most even *single exhaustible iterables*.
+All functions *accept single exhaustible iterables*.
 
 They *return vectors as tuples*.
 
-The functions are *type-independent*. However, the data types used must *support necessary scalar operations*. For instance, for vector addition, components must be addable — this may include operations with padded integer zeros. Empty empty operations return zero vector (e.g. `vecsum()==veczero`) or integer zeros (e.g. `vecdot(veczero, veczero)==int(0)`).
+The functions are *type-independent*. However, the data types used must *support necessary scalar operations*. For instance, for vector addition, components must be addable — this may include operations with padded integer zeros. Empty operations return the zero vector (e.g. `vecadd()==veczero`) or integer zeros (e.g. `vecdot(veczero, veczero)==int(0)`).
 
 Padding is done with `int(0)`.
 
@@ -59,7 +60,7 @@ creation stuff
 - `vecrand(n)`: Return a random vector of `n` uniform coefficients in `[0, 1[`.
 - `vecrandn(n, normed=True, mu=0, sigma=1)`: Return a random vector of `n` normal distributed coefficients.
 
-sequence stuff
+utility stuff
 - `veceq(v, w)`: Return if two vectors are equal.
 - `vectrim(v, tol=1e-9)`: Remove all trailing near zero (<=tol) coefficients.
 - `vecround(v, ndigits=None)`: Round all coefficients to the given precision.
@@ -68,6 +69,7 @@ Hilbert space stuff
 - `vecabsq(v)`: Return the sum of absolute squares of the coefficients.
 - `vecabs(v)`: Return the Euclidean/L2-norm.
 - `vecdot(v, w)`: Return the inner product of two vectors without conjugation.
+- `vecparallel(v, w)`: Return if two vectors are parallel.
 
 vector space stuff
 - `vecpos(v)`: Return the vector with the unary positive operator applied.
@@ -108,13 +110,15 @@ Vector(-0.5613820142699765, -0.028308921297709365, 0.8270724508948077, ...)
 Vector(0, 0, 0, 1, ...)
 ```
 
-container and sequence stuff
+sequence stuff
 - `len(v)`: Return the number of set coefficients.
 - `v[key]`: Return the indexed coefficient or coefficients. Not set coefficients default to 0.
 - `iter(v)`: Return an iterator over the set coefficients.
 - `v == w`: Return if of same type with same coefficients.
 - `v << i`: Return a vector with coefficients shifted to lower indices.
 - `v >> i`: Return a vector with coefficients shifted to higher indices.
+
+utility stuff
 - `v.trim(tol=1e-9)`: Remove all trailing near zero (abs<=tol) coefficients.
 - `v.round(ndigits=None)`: Round all coefficients to the given precision.
 
@@ -147,11 +151,13 @@ array([[4, 6, 5],
        [7, 9, 8]])
 ```
 
-`numpy`-version of the functions are also provided, to many vectors at once. They behave like the ones in `numpy.polynomial.polynomial`, but also work on 2D-arrays and broadcast to multiple dimensions like the usual `numpy` operations (but adjust the shapes accordingly).
+`numpy`-versions of the functions are also provided, to *operate on multiple vectors* at once. They behave like the ones in `numpy.polynomial.polynomial`, but *also work on 2D-arrays* (and *all combinations of 1D & 2D arrays*) and broadcast to multiple dimensions like the usual `numpy` operations (but adjust the shapes accordingly).
 
-`vecnpzero` is `np.array([0])` like `numpy.polynomial.polynomial.polyzero`, not `veczero=()` (empty tuple, no zero coefficient left) like in the functions and class above.
+*`vecnpzero` is `np.array([0])`* like `numpy.polynomial.polynomial.polyzero`, not `veczero=()` (empty tuple, no zero coefficient left) like in the functions and class above.
 
-Padding is done with `numpy.int64` zeros.
+Padding is done with `numpy.int64(0)`.
+
+They return scalars or `numpy.ndarray`s.
 
 Creation routines have a dimension argument `d`. If left to `None`, the returned values are 1D, so a single vector. If given, the routines return a 2D-array representing mutiple vectors in rows.
 
@@ -161,7 +167,7 @@ creation stuff
 - `vecnprand(n, d=None)`: Return `d` random vectors of `n` uniform coefficients in `[0, 1[`. The retured value is a `(d, n)`-array if `d` is not `None` or `(n,)` otherwise.
 - `vecnprandn(n, normed=True, d=None)`: Return `d` random vectors of `n` normal distributed coefficients. The retured value is a `(d, n)`-array if `d` is not `None` or `(n,)` otherwise.
 
-sequence stuff
+utility stuff
 - `vecnpeq(v, w)`: Return if two vectors are equal.
 - `vecnptrim(v, tol=1e-9)`: Remove all trailing near zero (abs(v_i)<=tol) coefficients.
 - (`numpy.round` already exists)
@@ -170,19 +176,62 @@ Hilbert space stuff
 - `vecnpabsq(v)`: Return the sum of absolute squares of the coefficients.
 - `vecnpabs(v)`: Return the Euclidean/L2-norm.
 - `vecnpdot(v, w)`: Return the inner product of two vectors without conjugation.
+- `vecnpparallel(v, w)`: Return if two vectors are parallel.
 
 vector space stuff
 - `vecnpadd(*vs)`: Return the sum of vectors.
 - `vecnpsub(v, w)`: Return the difference of two vectors.
 
+## Design
+
+### Prefix
+
+No prefix? Could use no prefix to be more pure, like `add` instead of `vecadd`, but then you would always have to use `from vec import add as vecadd` if used with other libraries (like `operator`).
+
+Also avoids keyword collisions (`abs` is reserved, `vecabs` isn't).
+
+Do it like `numpy.polynomial.polynomial. ...`.
+
+### `truediv`
+
+Why called `truediv` instead of `div`.
+`div` would be more appropriate for an absolute clean mathematical implementation, that doesn't care about the language used.
+But the package might be used for pure integers/integer arithmetic.
+`truediv`/`floordiv` is unambiguous.
+
+Like Python `operator`s.
+
+### `vecabsq(v)`
+
+Reasons why it exists:
+- Occours in math.
+- Most importantly: type independent because it doesn't use `sqrt`.
+
+### `trim`
+
+cutting of elements that are `abs(vi)<=tol` instead of `abs(vi)<tol` to allow cutting of exactly just zeros by `trim(v, 0)` instead of `trim(v, sys.float_info.min)`.
+
+`tol=1e-9` like in https://peps.python.org/pep-0485/#defaults
+
+### `rand & randn`
+
+Naming like in `numpy` because seems more concise (not `random` & `gauss` as in the stdlib).
+
+### `Vector.__init__()`
+
+By iterable or integer for basis vector?
+- Provide signature like `min` (single argument=iterable or multiple args)? No, because this way a single integer can't be distinguished to mean a single coefficient or a basis vector.
+- Automatically trim on creation? Nah, do nothing without specially being told to do so.
+
 ## todo
 
+ - [ ] `vechadamard` and others correct result for empty argument list 
  - [x] docstrings
  - [x] `numpy` routines
 
 ## License (MIT)
 
-Copyright (c) 2022-2024 Sebastian Gössl
+Copyright (c) 2022-2025 Sebastian Gössl
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -50,7 +50,7 @@ def vecnprandn(n, normed=True, d=None):
     return v/np.linalg.norm(v, axis=-1, keepdims=True) if normed else v
 
 
-#sequence stuff
+#utility stuff
 def vecnpeq(v, w):
     """Return if two vectors are equal."""
     v, w = np.asarray(v), np.asarray(w)
