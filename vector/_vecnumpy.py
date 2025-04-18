@@ -6,7 +6,7 @@ from ._vecfunctions import veceq
 
 __all__ = ['vecnpzero', 'vecnpbasis', 'vecnprand', 'vecnprandn',
         'vecnpeq', 'vecnptrim',
-        'vecnpabsq', 'vecnpabs', 'vecnpdot',
+        'vecnpabsq', 'vecnpabs', 'vecnpdot', 'vecnpparallel',
         'vecnpadd', 'vecnpsub']
 
 
@@ -87,6 +87,10 @@ def vecnpdot(v, w):
     shape = tuple(reversed(tuple(
             map(min, zip(reversed(v.shape), reversed(w.shape))))))
     return np.sum(v[...,*map(slice, shape)]*w[...,*map(slice, shape)], axis=-1)
+
+def vecnpparallel(v, w):
+    v, w = np.asarray(v), np.asarray(w)
+    return vecnpabsq(v)*vecnpabsq(w) == vecnpdot(v, w)**2
 
 
 #vector space stuff

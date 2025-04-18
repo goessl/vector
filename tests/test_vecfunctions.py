@@ -48,6 +48,10 @@ def test_vecdot():
     assert vecdot((1,), ()) == 0
     assert vecdot((1, 2), (3, 4)) == 11
 
+def test_vecparallel():
+    assert vecparallel((1, 2, 3), (3, 4, 5)) == False
+    assert vecparallel((1, 2, 3), (3, 6, 9)) == True
+
 
 def test_vecadd():
     assert vecadd() == ()

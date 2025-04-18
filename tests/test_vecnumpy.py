@@ -67,6 +67,16 @@ def test_vecnpdot():
                                     [3, 4]], [[5, 6,  7],
                                               [8, 9, 10]]), [17, 60])
 
+def test_vecnpparallel():
+    assert vecnpparallel([1, 2, 3], [3, 4, 5]) == False
+    assert vecnpparallel([1, 2, 3], [3, 6, 9]) == True
+    assert np.array_equal(vecnpparallel([1, 2, 3], [[3, 4, 5],
+                                                    [3, 6, 9]]), [False, True])
+    assert np.array_equal(vecnpparallel([[1, 2, 3],
+                                         [4, 5, 6]], [[3, 4, 5],
+                                                      [8, 10, 12]]),
+                                         [False, True])
+
 
 def test_vecnpadd():
     assert vecnpadd() == np.array([0])

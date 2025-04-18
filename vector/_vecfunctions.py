@@ -1,13 +1,13 @@
 from math import prod, sumprod
 from random import random, gauss
 from itertools import starmap, zip_longest, repeat, tee
-from operator import sub, mul, truediv, floordiv, mod, eq
+from operator import pos, neg, sub, mul, truediv, floordiv, mod, eq
 
 
 
 __all__ = ['veczero', 'vecbasis', 'vecrand', 'vecrandn',
         'veceq', 'vectrim', 'vecround',
-        'vecabsq', 'vecabs', 'vecdot',
+        'vecabsq', 'vecabs', 'vecdot', 'vecparallel',
         'vecpos', 'vecneg',
         'vecadd', 'vecsub', 'vecmul', 'vectruediv', 'vecfloordiv', 'vecmod',
         'vechadamard', 'vechadamardtruediv',
@@ -82,6 +82,10 @@ def vecdot(v, w):
     #return sumprod(v[:min(len(v), len(w))], w[:min(len(v), len(w))])
     #return sumprod(*zip(*zip(v, w))) would be more precise, but is bloat
     return sum(map(mul, v, w))
+
+def vecparallel(v, w):
+    """Return if two vectors are parallel."""
+    return vecabsq(v)*vecabsq(w) == abs(vecdot(v, w))**2
 
 
 #vector space stuff
