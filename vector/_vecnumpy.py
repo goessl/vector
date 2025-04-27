@@ -100,10 +100,10 @@ def vecnpadd(*vs):
         return vecnpzero()
     
     vs = tuple(map(np.asarray, vs))
-    if any(v.ndim>2 for v in vs): #all 1D or 2D
+    if not all(v.ndim in {1, 2} for v in vs): #all 1D or 2D
         raise ValueError
     
-    heights = set().union(*(v.shape[:-1] for v in vs))
+    heights = {vdi for v in vs for vdi in v.shape[:-1]}
     if len(heights) > 1: #all 2D same height
         raise ValueError
     
@@ -116,7 +116,7 @@ def vecnpadd(*vs):
 def vecnpsub(v, w):
     """Return the difference of two vectors."""
     v, w = np.asarray(v), np.asarray(w)
-    if v.ndim>2 or w.ndim>2: #1D-1D, 1D-2D, 2D-1D, 2D-2D
+    if v.ndim not in {1, 2} or w.ndim not in {1, 2}: #1D-1D, 1D-2D, 2D-1D, 2D-2D
         raise ValueError
     
     heights = set(v.shape[:-1]) | set(w.shape[:-1])

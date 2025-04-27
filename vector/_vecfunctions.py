@@ -22,7 +22,7 @@ veczero = ()
 def vecbasis(i, c=1):
     """Return the `i`-th basis vector times `c`.
     
-    The retured value is a tuple with `i` zeros followed by `c`.
+    The returned value is a tuple with `i` zeros followed by `c`.
     """
     return (0,)*i + (c,)
 
@@ -47,12 +47,12 @@ def vectrim(v, tol=1e-9):
     #while v and abs(v[-1])<=tol:
     #    v = v[:-1]
     #return v
-    r, t, it = [], [], iter(v)
+    r, t = [], []
     for x in v:
-        t += [x]
+        t.append(x)
         if abs(x)>tol:
-            r += t
-            t = []
+            r.extend(t)
+            t.clear()
     return tuple(r)
 
 def vecround(v, ndigits=None):
