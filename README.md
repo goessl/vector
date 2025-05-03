@@ -85,6 +85,8 @@ elementwise stuff
 - `vechadamardtruediv(v, w)`: Return the elementwise true division of two vectors.
 - `vechadamardfloordiv(v, w)`: Return the elementwise floor division of two vectors.
 - `vechadamardmod(v, w)`: Return the elementwise mod of two vectors.
+- `vechadamardmin(*vs)`: Return the elementwise minimum of vectors.
+- `vechadamardmax(*vs)`: Return the elementwise maximum of vectors.
 
 ### Class
 
@@ -225,7 +227,7 @@ By iterable or integer for basis vector?
 
 ## todo
 
- - [ ] `vechadamard` and others correct result for empty argument list 
+ - [ ] `zip` version between `zip` & `zip_longest`. Yields different sized tuples.
  - [x] docstrings
  - [x] `numpy` routines
 

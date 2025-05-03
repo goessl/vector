@@ -11,7 +11,8 @@ __all__ = ['veczero', 'vecbasis', 'vecrand', 'vecrandn',
         'vecpos', 'vecneg',
         'vecadd', 'vecsub', 'vecmul', 'vectruediv', 'vecfloordiv', 'vecmod',
         'vechadamard', 'vechadamardtruediv',
-        'vechadamardfloordiv', 'vechadamardmod']
+        'vechadamardfloordiv', 'vechadamardmod',
+        'vechadamardmin', 'vechadamardmax']
 
 
 
@@ -138,3 +139,36 @@ def vechadamardfloordiv(v, w):
 def vechadamardmod(v, w):
     """Return the elementwise mod of two vectors."""
     return tuple(map(mod, v, w))
+
+def vechadamardmin(*vs):
+    """Return the elementwise minimum of vectors."""
+    minnan = lambda iterable: min(x for x in iterable if x is not nan)
+    return tuple(map(minnan, zip_longest(*vs)))
+
+def vechadamardmax(*vs):
+    """Return the elementwise maximum of vectors."""
+    maxnan = lambda iterable: max(x for x in iterable if x is not nan)
+    return tuple(map(maxnan, zip_longest(*vs)))
+
+"""
+def zip_all(*iterables):
+    iterators = [iter(it) for it in iterables]
+    while iterators:
+        result, still_alive = [], []
+        for it in iterators:
+            try:
+                result.append(next(it))
+                still_alive.append(it)
+            except StopIteration:
+                pass
+        if not result:
+            return
+        yield tuple(result)
+        iterators = still_alive
+
+def vechadamardmin(*vs):
+    return tuple(map(min, zip_all(*vs)))
+
+def vechadamardmax(*vs):
+    return tuple(map(max, zip_all(*vs)))
+"""

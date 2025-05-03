@@ -74,6 +74,8 @@ def test_vecfloordiv():
 
 
 def test_vechadamardtruediv():
+    assert vechadamardtruediv((), ()) == ()
+    assert vechadamardtruediv((1,), ()) == vechadamardtruediv((), (1,)) == ()
     for _ in range(100):
         v = vecrand(np.random.randint(0, 10))
         w = vecrand(np.random.randint(0, 10))
@@ -84,6 +86,8 @@ def test_vechadamardtruediv():
         assert np.allclose(prediction, actual)
 
 def test_vechadamardmod():
+    assert vechadamardmod((), ()) == ()
+    assert vechadamardmod((1,), ()) == vechadamardmod((), (1,)) == ()
     for _ in range(100):
         v = vecrand(np.random.randint(0, 10))
         w = vecrand(np.random.randint(0, 10))
@@ -92,3 +96,20 @@ def test_vechadamardmod():
         v, w = np.asarray(v), np.asarray(w)
         actual = v[:min(v.shape[0], w.shape[0])] % w[:min(v.shape[0], w.shape[0])]
         assert np.allclose(prediction, actual)
+
+def test_vechadamardmin():
+    u = ( 3, 6, 1)
+    v = (10, 3, 7, 9, 10)
+    w = ( 5, 2, 3, 6,  1, 9)
+    assert vechadamardmin(u, v, w) == (3, 2, 1, 6, 1, 9)
+    assert vechadamardmin(u) == u
+    assert vechadamardmin(()) == vechadamardmin() == ()
+
+
+def test_vechadamardmax():
+    u = ( 3, 6, 1)
+    v = (10, 3, 7, 9, 10)
+    w = ( 5, 2, 3, 6,  1, 9)
+    assert vechadamardmax(u, v, w) == (10, 6, 7, 9, 10, 9)
+    assert vechadamardmax(u) == u
+    assert vechadamardmax(()) == vechadamardmax() == ()
