@@ -142,12 +142,12 @@ def vechadamardmod(v, w):
 
 def vechadamardmin(*vs):
     """Return the elementwise minimum of vectors."""
-    minnan = lambda iterable: min(x for x in iterable if x is not nan)
+    minnan = lambda iterable: min(x for x in iterable if x is not None)
     return tuple(map(minnan, zip_longest(*vs)))
 
 def vechadamardmax(*vs):
     """Return the elementwise maximum of vectors."""
-    maxnan = lambda iterable: max(x for x in iterable if x is not nan)
+    maxnan = lambda iterable: max(x for x in iterable if x is not None)
     return tuple(map(maxnan, zip_longest(*vs)))
 
 """

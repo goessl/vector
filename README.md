@@ -106,7 +106,7 @@ initialisation stuff
 >>> from vector import Vector
 >>> Vector((1, 2, 3))
 Vector(1, 2, 3, ...)
->>> Vector.gauss(3)
+>>> Vector.randn(3)
 Vector(-0.5613820142699765, -0.028308921297709365, 0.8270724508948077, ...)
 >>> Vector(3)
 Vector(0, 0, 0, 1, ...)
@@ -161,13 +161,13 @@ Padding is done with `numpy.int64(0)`.
 
 They return scalars or `numpy.ndarray`s.
 
-Creation routines have a dimension argument `d`. If left to `None`, the returned values are 1D, so a single vector. If given, the routines return a 2D-array representing mutiple vectors in rows.
+Creation routines have a dimension argument `d`. If left to `None`, the returned values are 1D, so a single vector. If given, the routines return a 2D-array representing multiple vectors in rows.
 
 creation stuff
-- `vecnpzero(d=None)`: Return `d` zero vectors. The retured value is a `(d, 1)`-array of zeros if `d` is not `None` or `[0]` otherwise.
-- `vecnpbasis(i, c=1, d=None)`: Return `d` many `i`-th basis vectors times `c`. The retured value is a `(d, i+1)`-array if `d` is not `None` or `(i+1,)` otherwise.
-- `vecnprand(n, d=None)`: Return `d` random vectors of `n` uniform coefficients in `[0, 1[`. The retured value is a `(d, n)`-array if `d` is not `None` or `(n,)` otherwise.
-- `vecnprandn(n, normed=True, d=None)`: Return `d` random vectors of `n` normal distributed coefficients. The retured value is a `(d, n)`-array if `d` is not `None` or `(n,)` otherwise.
+- `vecnpzero(d=None)`: Return `d` zero vectors. The returned value is a `(d, 1)`-array of zeros if `d` is not `None` or `[0]` otherwise.
+- `vecnpbasis(i, c=1, d=None)`: Return `d` many `i`-th basis vectors times `c`. The returned value is a `(d, i+1)`-array if `d` is not `None` or `(i+1,)` otherwise.
+- `vecnprand(n, d=None)`: Return `d` random vectors of `n` uniform coefficients in `[0, 1[`. The returned value is a `(d, n)`-array if `d` is not `None` or `(n,)` otherwise.
+- `vecnprandn(n, normed=True, d=None)`: Return `d` random vectors of `n` normal distributed coefficients. The returned value is a `(d, n)`-array if `d` is not `None` or `(n,)` otherwise.
 
 utility stuff
 - `vecnpeq(v, w)`: Return if two vectors are equal.

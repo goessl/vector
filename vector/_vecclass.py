@@ -11,6 +11,7 @@ class Vector:
     
     Its coefficients are internally stored as a tuple in the `coef` attribute.
     """
+    __slots__ = ['coef']
     
     #construction stuff
     def __init__(self, coef):
@@ -161,8 +162,19 @@ class Vector:
         """Return the elementwise mod with another vector."""
         return type(self)(vechadamardmod(self, other))
     
+    def hadamardmin(self, other):
+        """Return the elementwise minimum with another vector."""
+        return type(self)(vechadamardmin(self, other))
+    
+    def hadamardmax(self, other):
+        """Return the elementwise maximum with another vector."""
+        return type(self)(vechadamardmax(self, other))
+    
     
     #python stuff
+    def __format__(self, format_spec):
+        return 'Vector(' + ', '.join(format(c, format_spec) for c in self.coef) + ')'
+    
     def __str__(self):
         return 'Vector(' + ', '.join(map(str, self.coef)) + ')'
 

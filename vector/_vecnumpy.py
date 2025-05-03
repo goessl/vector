@@ -15,7 +15,7 @@ __all__ = ['vecnpzero', 'vecnpbasis', 'vecnprand', 'vecnprandn',
 def vecnpzero(d=None):
     """Return `d` zero vectors.
     
-    The retured value is a `(d, 1)`-array of zeros if `d` is not `None`
+    The returned value is a `(d, 1)`-array of zeros if `d` is not `None`
     or `[0]` otherwise.
     """
     #same dtype as numpy.polynomial.polynomial.polyzero
@@ -24,7 +24,7 @@ def vecnpzero(d=None):
 def vecnpbasis(i, c=1, d=None):
     """Return `d` many `i`-th basis vectors times `c`.
     
-    The retured value is a `(d, i+1)`-array if `d` is not `None`
+    The returned value is a `(d, i+1)`-array if `d` is not `None`
     or `(i+1,)` otherwise.
     """
     #choose dtype acc to c
@@ -35,7 +35,7 @@ def vecnpbasis(i, c=1, d=None):
 def vecnprand(n, d=None):
     """Return `d` random vectors of `n` uniform coefficients in `[0, 1[`.
     
-    The retured value is a `(d, n)`-array if `d` is not `None`
+    The returned value is a `(d, n)`-array if `d` is not `None`
     or `(n,)` otherwise.
     """
     return np.random.rand(*((n,) if d is None else (d, n)))
@@ -43,7 +43,7 @@ def vecnprand(n, d=None):
 def vecnprandn(n, normed=True, d=None):
     """Return `d` random vectors of `n` normal distributed coefficients.
     
-    The retured value is a `(d, n)`-array if `d` is not `None`
+    The returned value is a `(d, n)`-array if `d` is not `None`
     or `(n,)` otherwise.
     """
     v = np.random.randn(*((n,) if d is None else (d, n)))
