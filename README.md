@@ -79,6 +79,7 @@ vector space stuff
 - `vecmul(a, v)`: Return the product of a scalar and a vector.
 - `vectruediv(v, a)`: Return the true division of a vector and a scalar.
 - `vecfloordiv(v, a)`: Return the floor division of a vector and a scalar.
+- `vecmod(v, a)`: Return the elementwise mod of a vector and a scalar.
 
 elementwise stuff
 - `vechadamard(*vs)`: Return the elementwise product of vectors.

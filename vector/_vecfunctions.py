@@ -1,4 +1,4 @@
-from math import prod, sumprod
+from math import prod, sumprod, inf
 from random import random, gauss
 from itertools import starmap, zip_longest, repeat, tee
 from operator import pos, neg, sub, mul, truediv, floordiv, mod, eq
@@ -142,33 +142,8 @@ def vechadamardmod(v, w):
 
 def vechadamardmin(*vs):
     """Return the elementwise minimum of vectors."""
-    minnan = lambda iterable: min(x for x in iterable if x is not None)
-    return tuple(map(minnan, zip_longest(*vs)))
+    return tuple(map(min, zip_longest(*vs, fillvalue=inf)))
 
 def vechadamardmax(*vs):
     """Return the elementwise maximum of vectors."""
-    maxnan = lambda iterable: max(x for x in iterable if x is not None)
-    return tuple(map(maxnan, zip_longest(*vs)))
-
-"""
-def zip_all(*iterables):
-    iterators = [iter(it) for it in iterables]
-    while iterators:
-        result, still_alive = [], []
-        for it in iterators:
-            try:
-                result.append(next(it))
-                still_alive.append(it)
-            except StopIteration:
-                pass
-        if not result:
-            return
-        yield tuple(result)
-        iterators = still_alive
-
-def vechadamardmin(*vs):
-    return tuple(map(min, zip_all(*vs)))
-
-def vechadamardmax(*vs):
-    return tuple(map(max, zip_all(*vs)))
-"""
+    return tuple(map(max, zip_longest(*vs, fillvalue=-inf)))
