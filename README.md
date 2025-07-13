@@ -28,12 +28,49 @@ pip install git+https://github.com/goessl/vector.git
 ## Usage
 
 This package includes
-- general-purpose *functions* (prefixed `vec`),
-- a clean *class* (`Vector`)&
-- improved *numpy-routines* (prefixed `vecnp`)
+- general-purpose *functions* (prefixed `vec...`) in *pure Python*,
+- a clean *class* (`Vector`) with *easy to use syntax*,
+- improved *numpy-routines* (prefixed `vecnp...`) for *parallelised operations* &
+- *tensor* functions (prefixed `ten...`) for *multiaxis operations*
 
-to handle infinite-dimensional vectors.
+to handle *type-independent, infinite-dimensional* vectors.
 It operates on vectors of different lengths, treating them as infinite-dimensional by assuming that all components after the given ones are *zero*.
+
+| Operation      | Functional            | Object-oriented     | Numpy           | Multidimensional      |
+| -------------- | --------------------- | ------------------- | --------------- | --------------------- |
+|                |                       | **creation**        |                 |                       |
+| zero           | `veczero`             | `Vector.ZERO`       | `vecnpzero`     | tenzero               |
+| basis          | `vecbasis`            | `Vector`            | `vecnpbasis`    | tenbasis              |
+| rand           | `vecrand`             | `Vector.rand`       | `vecnprand`     |                       |
+| randn          | `vecrandn`            | `Vector.randn`      | `vecnprandn`    |                       |
+|                |                       | **utility**         |                 |                       |
+| dimensionality |                       | `len`               | `vecnpdim`      | `tendim`              |
+| number of axes |                       |                     |                 | `tenrank`             |
+| equation       | `veceq`               | `==`                | `vecnpeq`       |                       |
+| trimming       | `vectrim`             | `.trim`             | `vecnptrim`     | `tentrim`             |
+| rounding       | `vecround`            | `.round`            |                 |                       |
+| shifting       |                       | `<<`, `>>`          |                 |                       |
+|                |                       | **Hilbert space**   |                 |                       |
+| norm           | `vecabsq`             | `.absq`             | `vecnpabsq`     |                       |
+| norm squared   | `vecabs`              | `abs`               | `vecnpabs`      |                       |
+| dot            | `vecdot`              | `@`                 | `vecnpdot`      |                       |
+| parallelism    | `vecparallel`         |                     | `vecnpparallel` |                       |
+|                |                       | **vector space**    |                 |                       |
+| positive       | `vecpos`              | `+`                 | `vecnppos`      | `tenpos`              |
+| negative       | `vecneg`              | `-`                 | `vecnpneg`      | `tenneg`              |
+| addition       | `vecadd`              | `+`                 | `vecnpadd`      | `tenadd`              |
+| subtraction    | `vecsub`              | `-`                 | `vecnpsub`      | `tensub`              |
+| multiplication | `vecmul`              | `*`                 | `vecnpmul`      | `tenmul`              |
+| true division  | `vectruediv`          | `/`                 | `vecnptruediv`  | `tentruediv`          |
+| floor division | `vecfloordiv`         | `//`                | `vecnpfloordiv` | `tenfloordiv`         |
+| mod            | `vecmod`              | `%`                 | `vecnpmod`      | `tenmod`              |
+|                |                       | **elementwise**     |                 |                       |
+| multiplication | `vechadamard`         | `.hadamard`         |                 | `tenhadamard`         |
+| true division  | `vechadamardtruediv`  | `.hadamardtruediv`  |                 | `tenhadamardtruediv`  |
+| floor division | `vechadamardfloordiv` | `.hadamardfloordiv` |                 | `tenhadamardfloordiv` |
+| mod            | `vechadamardmod`      | `.hadamardmod`      |                 | `tenhadamardmod`      |
+| min            | `vechadamardmin`      | `.hadamardmin`      |                 |                       |
+| max            | `vechadamardmax`      | `.hadamardmax`      |                 |                       |
 
 ### Functions
 
@@ -143,8 +180,12 @@ elementwise stuff
 - `v.hadamardtruediv(w)`: Return the elementwise true division with another vector.
 - `v.hadamardfloordiv(w)`: Return the elementwise floor division with another vector.
 - `v.hadamardmod(w)`: Return the elementwise mod with another vector.
+- `v.hadamardmin(w)`: Return the elementwise minimum with another vector.
+- `v.hadamardmax(w)`: Return the elementwise maximum with another vector.
 
 ### `numpy`-routines
+
+`numpy`-versions of the functions are also provided, to *operate on multiple vectors* at once. They behave like the ones in `numpy.polynomial.polynomial`, but *also work on 2D-arrays* (and *all combinations of 1D & 2D arrays*) and broadcast to multiple dimensions like the usual `numpy` operations (but adjust the shapes accordingly).
 
 ```python
 >>> from vector import vecnpadd
@@ -153,8 +194,6 @@ elementwise stuff
 array([[4, 6, 5],
        [7, 9, 8]])
 ```
-
-`numpy`-versions of the functions are also provided, to *operate on multiple vectors* at once. They behave like the ones in `numpy.polynomial.polynomial`, but *also work on 2D-arrays* (and *all combinations of 1D & 2D arrays*) and broadcast to multiple dimensions like the usual `numpy` operations (but adjust the shapes accordingly).
 
 *`vecnpzero` is `np.array([0])`* like `numpy.polynomial.polynomial.polyzero`, not `veczero=()` (empty tuple, no zero coefficient left) like in the functions and class above.
 
@@ -182,8 +221,49 @@ Hilbert space stuff
 - `vecnpparallel(v, w)`: Return if two vectors are parallel.
 
 vector space stuff
+- `vecnppos(v)`: Return the vector with the unary positive operator applied.
+- `vecnpneg(v)`: Return the vector with the unary negative operator applied.
 - `vecnpadd(*vs)`: Return the sum of vectors.
 - `vecnpsub(v, w)`: Return the difference of two vectors.
+- `vecnpmul(a, v)`: Return the product of a scalar and a vector.
+- `vecnptruediv(v, a)`: Return the true division of a vector and a scalar.
+- `vecnpfloordiv(v, a)`: Return the floor division of a vector and a scalar.
+- `vecnpmod(v, a)`: Return the elementwise mod of a vector and a scalar.
+
+### tensor
+
+Handle multiaxis vectors, that for example represent multivariate polynomials.
+
+Results are returned as `numpy` arrays.
+
+Broadcasting happens similar to [`numpy`s broadcasting](https://numpy.org/doc/stable/user/basics.broadcasting.html), but the axes are matched in ascending order instead of descending order, and the arrays don't get stretched but rather padded with zeros.
+
+creation stuff
+- `tenzero`: Zero tensor.
+- `tenbasis(i, c=1)`: Return the `i`-th basis tensor times `c`.
+(`np.random.rand`, `np.random.randn`)
+
+utility stuff
+- `tenrank(t)`: Return the rank of the tensor.
+- `tendim(t)`: Return the dimensionalities of the tensor.
+- `tentrim(t, tol=1e-9)`: Remove all trailing near zero (abs(v_i)<=tol) coefficients.
+(`numpy.round`)
+
+vector space stuff
+- `tenpos(t)`: Return the tensor with the unary positive operator applied.
+- `tenneg(t)`: Return the tensor with the unary negative operator applied.
+- `tenadd(*ts)`: Return the sum of tensors.
+- `tensub(s, t)`: Return the difference of two tensors.
+- `tenmul(a, t)`: Return the product of a scalar and a tensor.
+- `tentruediv(t, a)`: Return the true division of a tensor and a scalar.
+- `tenfloordiv(t, a)`: Return the floor division of a tensor and a scalar.
+- `tenmod(t, a)`: Return the elementwise mod of a tensor and a scalar.
+
+elementwise operations
+- `tenhadamard(*ts)`: Return the elementwise product of tensors.
+- `tenhadamardtruediv(s, t)`: Return the elementwise true division of two tensors.
+- `tenhadamardfloordiv(s, t)`: Return the elementwise floor division of two tensors.
+- `tenhadamardmod(s, t)`: Return the elementwise mod of two tensors.
 
 ## Design
 
@@ -207,7 +287,7 @@ Like Python `operator`s.
 ### `vecabsq(v)`
 
 Reasons why it exists:
-- Occours in math.
+- Occurs in math.
 - Most importantly: type independent because it doesn't use `sqrt`.
 
 ### `trim`
@@ -231,6 +311,8 @@ By iterable or integer for basis vector?
  - [x] `zip` version between `zip` & `zip_longest`. Yields different sized tuples. Done: [goessl/zipvar](https://github.com/goessl/zipvar)
  - [x] docstrings
  - [x] `numpy` routines
+ - [x] multiaxis vectors: tensors?
+ - [ ] never use `numpy.int64`, they don't detect overflows
 
 ## License (MIT)
 

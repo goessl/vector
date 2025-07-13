@@ -22,15 +22,15 @@ class Vector:
         else:
             self.coef = tuple(coef)
     
-    @classmethod
-    def rand(cls, n):
+    @staticmethod
+    def rand(n):
         """Create a random vector of `n` uniform coefficients in `[0, 1[`."""
-        return cls(vecrand(n))
+        return Vector(vecrand(n))
     
-    @classmethod
-    def randn(cls, n, normed=True, mu=0, sigma=1):
+    @staticmethod
+    def randn(n, normed=True, mu=0, sigma=1):
         """Create a random vector of `n` normal distributed coefficients."""
-        return cls(vecrandn(n, normed=normed, mu=mu, sigma=sigma))
+        return Vector(vecrandn(n, normed, mu, sigma))
     
     
     #sequence stuff
@@ -109,11 +109,13 @@ class Vector:
     
     
     #vector space operations like they would be correct on paper:
-    #v+w, v-w, av, va, v/a, v//a
+    #+v, -v, v+w, v-w, av, va, v/a, v//a
     def __pos__(self):
+        """Return the unary positive."""
         return type(self)(vecpos(self))
     
     def __neg__(self):
+        """Return the negative."""
         return type(self)(vecneg(self))
     
     def __add__(self, other):

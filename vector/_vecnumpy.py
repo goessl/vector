@@ -5,9 +5,10 @@ from ._vecfunctions import veceq
 
 
 __all__ = ['vecnpzero', 'vecnpbasis', 'vecnprand', 'vecnprandn',
-        'vecnpeq', 'vecnptrim',
+        'vecnpdim', 'vecnpeq', 'vecnptrim',
         'vecnpabsq', 'vecnpabs', 'vecnpdot', 'vecnpparallel',
-        'vecnpadd', 'vecnpsub']
+        'vecnppos', 'vecnpneg', 'vecnpadd', 'vecnpsub',
+        'vecnpmul', 'vecnptruediv', 'vecnpfloordiv', 'vecnpmod']
 
 
 
@@ -19,7 +20,7 @@ def vecnpzero(d=None):
     or `[0]` otherwise.
     """
     #same dtype as numpy.polynomial.polynomial.polyzero
-    return np.zeros(1 if d is None else (d, 1), dtype=np.int64)
+    return np.zeros(1 if d is None else (d, 1), dtype=object)
 
 def vecnpbasis(i, c=1, d=None):
     """Return `d` many `i`-th basis vectors times `c`.
@@ -51,6 +52,10 @@ def vecnprandn(n, normed=True, d=None):
 
 
 #utility stuff
+def vecnpdim(v):
+    """Return the number of allocated dimensions in this vector or vectors."""
+    return np.asarray(v).shape[-1]
+
 def vecnpeq(v, w):
     """Return if two vectors are equal."""
     v, w = np.asarray(v), np.asarray(w)
@@ -89,11 +94,20 @@ def vecnpdot(v, w):
     return np.sum(v[...,*map(slice, shape)]*w[...,*map(slice, shape)], axis=-1)
 
 def vecnpparallel(v, w):
+    """Return if two vectors are parallel."""
     v, w = np.asarray(v), np.asarray(w)
     return vecnpabsq(v)*vecnpabsq(w) == vecnpdot(v, w)**2
 
 
 #vector space stuff
+def vecnppos(v):
+    """Return the vector with the unary positive operator applied."""
+    return +np.asarray(v)
+
+def vecnpneg(v):
+    """Return the vector with the unary negative operator applied."""
+    return -np.asarray(v)
+
 def vecnpadd(*vs):
     """Return the sum of vectors."""
     if not vs: #empty sum
@@ -128,3 +142,19 @@ def vecnpsub(v, w):
     r[...,:v.shape[-1]] += v
     r[...,:w.shape[-1]] -= w
     return r
+
+def vecnpmul(a, v):
+    """Return the product of a scalar and a vector."""
+    return a * np.asarray(v)
+
+def vecnptruediv(v, a):
+    """Return the true division of a vector and a scalar."""
+    return np.asarray(v) / a
+
+def vecnpfloordiv(v, a):
+    """Return the floor division of a vector and a scalar."""
+    return np.asarray(v) // a
+
+def vecnpmod(v, a):
+    """Return the elementwise mod of a vector and a scalar."""
+    return np.asarray(v) % a

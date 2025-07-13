@@ -6,7 +6,7 @@ long_description = (this_directory / 'README.md').read_text()
 
 setup(
     name = 'vector',
-    version = '2.0',
+    version = '3.0',
     description = 'An infinite dimensional vector module.',
     long_description = long_description,
     long_description_content_type = 'text/markdown',
@@ -27,7 +27,7 @@ setup(
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3 :: Only',
-        'Programming Language :: Python :: 3.12',
+        'Programming Language :: Python :: 3.12', #math.sumprod
         'Programming Language :: Python :: 3.13',
         'Programming Language :: Python :: 3.14',
         'Topic :: Scientific/Engineering',
