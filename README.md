@@ -228,7 +228,7 @@ By iterable or integer for basis vector?
 
 ## todo
 
- - [ ] `zip` version between `zip` & `zip_longest`. Yields different sized tuples.
+ - [x] `zip` version between `zip` & `zip_longest`. Yields different sized tuples. Done: [goessl/zipvar](https://github.com/goessl/zipvar)
  - [x] docstrings
  - [x] `numpy` routines
 
