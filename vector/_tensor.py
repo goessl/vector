@@ -23,8 +23,13 @@ def tenbasis(i, c=1):
     t[i] = c #dont unpack i, it might be a scalar
     return t
 
-#tenrand = np.random.rand
-#tenrandn = np.random.randn
+def tenrand(*d):
+    """Wrapper for `numpy.random.rand`."""
+    return np.random.rand(*d)
+
+def tenrandn(*d):
+    """Wrapper for `numpy.random.rand`."""
+    return np.random.randn(*d)
 
 
 #utility stuff
@@ -45,7 +50,9 @@ def tentrim(t, tol=1e-9):
             t = t[(slice(None, None, None),)*d + (slice(0, -1),) + (...,)]
     return t
 
-#tenround = np.round
+def tenround(t, ndigits=0):
+    """Wrapper for `numpy.round`."""
+    return np.round(t, ndigits)
 
 
 #vector space stuff

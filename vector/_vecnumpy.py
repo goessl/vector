@@ -74,7 +74,9 @@ def vecnptrim(v, tol=1e-9):
         v[...,0] = 0
     return v
 
-#vecnpround = np.round
+def vecnpround(v, ndigits=0):
+    """Wrapper for `numpy.round`."""
+    return np.round(np.asarray(v, ndigits=0))
 
 
 #Hilbert space stuff
