@@ -33,6 +33,14 @@ def test_vecround():
     assert vecround(()) == ()
     assert vecround((1.1,)) == (1,)
 
+def test_vecrshift():
+    assert vecrshift((), 2) == (0, 0)
+    assert vecrshift((1, 2, 3), 2) == (0, 0, 1, 2, 3)
+
+def test_veclshift():
+    assert veclshift((), 2) == ()
+    assert veclshift((1, 2, 3, 4), 2) == (3, 4)
+
 
 def test_vecabsq():
     assert vecabsq(()) == 0

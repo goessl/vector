@@ -1,12 +1,12 @@
 from math import prod, sumprod, inf
 from random import random, gauss
-from itertools import starmap, zip_longest, repeat, tee
+from itertools import starmap, zip_longest, repeat, tee, chain, islice
 from operator import pos, neg, sub, mul, truediv, floordiv, mod, eq
 
 
 
 __all__ = ['veczero', 'vecbasis', 'vecrand', 'vecrandn',
-        'veceq', 'vectrim', 'vecround',
+        'veceq', 'vectrim', 'vecround', 'vecrshift', 'veclshift',
         'vecabsq', 'vecabs', 'vecdot', 'vecparallel',
         'vecpos', 'vecneg',
         'vecadd', 'vecsub', 'vecmul', 'vectruediv', 'vecfloordiv', 'vecmod',
@@ -60,6 +60,14 @@ def vecround(v, ndigits=None):
     """Round all coefficients to the given precision."""
     return tuple(round(c, ndigits) for c in v)
 
+def vecrshift(v, n):
+    """Pad `n` many zeros to the beginning of the vector."""
+    return tuple(chain((0,)*n, v))
+
+def veclshift(v, n):
+    """Remove `n` many coefficients at the beginning of the vector."""
+    return tuple(islice(v, n, None))
+
 
 #Hilbert space stuff
 def vecabsq(v):
@@ -70,7 +78,7 @@ def vecabsq(v):
 def vecabs(v):
     """Return the Euclidean/L2-norm.
     
-    Return the square root of `vecabsq`.
+    Returns the square root of `vecabsq`.
     """
     #hypot(*v) doesn't work for complex
     #math.sqrt doesn't work for complex and cmath.sqrt always returns complex

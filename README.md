@@ -36,41 +36,41 @@ This package includes
 to handle *type-independent, infinite-dimensional* vectors.
 It operates on vectors of different lengths, treating them as infinite-dimensional by assuming that all components after the given ones are *zero*.
 
-| Operation      | Functional            | Object-oriented     | Numpy           | Multidimensional      |
-| -------------- | --------------------- | ------------------- | --------------- | --------------------- |
-|                |                       | **creation**        |                 |                       |
-| zero           | `veczero`             | `Vector.ZERO`       | `vecnpzero`     | tenzero               |
-| basis          | `vecbasis`            | `Vector`            | `vecnpbasis`    | tenbasis              |
-| rand           | `vecrand`             | `Vector.rand`       | `vecnprand`     |                       |
-| randn          | `vecrandn`            | `Vector.randn`      | `vecnprandn`    |                       |
-|                |                       | **utility**         |                 |                       |
-| dimensionality |                       | `len`               | `vecnpdim`      | `tendim`              |
-| number of axes |                       |                     |                 | `tenrank`             |
-| equation       | `veceq`               | `==`                | `vecnpeq`       |                       |
-| trimming       | `vectrim`             | `.trim`             | `vecnptrim`     | `tentrim`             |
-| rounding       | `vecround`            | `.round`            |                 |                       |
-| shifting       |                       | `<<`, `>>`          |                 |                       |
-|                |                       | **Hilbert space**   |                 |                       |
-| norm           | `vecabsq`             | `.absq`             | `vecnpabsq`     |                       |
-| norm squared   | `vecabs`              | `abs`               | `vecnpabs`      |                       |
-| dot            | `vecdot`              | `@`                 | `vecnpdot`      |                       |
-| parallelism    | `vecparallel`         |                     | `vecnpparallel` |                       |
-|                |                       | **vector space**    |                 |                       |
-| positive       | `vecpos`              | `+`                 | `vecnppos`      | `tenpos`              |
-| negative       | `vecneg`              | `-`                 | `vecnpneg`      | `tenneg`              |
-| addition       | `vecadd`              | `+`                 | `vecnpadd`      | `tenadd`              |
-| subtraction    | `vecsub`              | `-`                 | `vecnpsub`      | `tensub`              |
-| multiplication | `vecmul`              | `*`                 | `vecnpmul`      | `tenmul`              |
-| true division  | `vectruediv`          | `/`                 | `vecnptruediv`  | `tentruediv`          |
-| floor division | `vecfloordiv`         | `//`                | `vecnpfloordiv` | `tenfloordiv`         |
-| mod            | `vecmod`              | `%`                 | `vecnpmod`      | `tenmod`              |
-|                |                       | **elementwise**     |                 |                       |
-| multiplication | `vechadamard`         | `.hadamard`         |                 | `tenhadamard`         |
-| true division  | `vechadamardtruediv`  | `.hadamardtruediv`  |                 | `tenhadamardtruediv`  |
-| floor division | `vechadamardfloordiv` | `.hadamardfloordiv` |                 | `tenhadamardfloordiv` |
-| mod            | `vechadamardmod`      | `.hadamardmod`      |                 | `tenhadamardmod`      |
-| min            | `vechadamardmin`      | `.hadamardmin`      |                 |                       |
-| max            | `vechadamardmax`      | `.hadamardmax`      |                 |                       |
+| Operation      | Functional               | Object-oriented     | Numpy           | Multidimensional      |
+| -------------- | ------------------------ | ------------------- | --------------- | --------------------- |
+|                |                          | **creation**        |                 |                       |
+| zero           | `veczero`                | `Vector.ZERO`       | `vecnpzero`     | tenzero               |
+| basis          | `vecbasis`               | `Vector`            | `vecnpbasis`    | tenbasis              |
+| rand           | `vecrand`                | `Vector.rand`       | `vecnprand`     |                       |
+| randn          | `vecrandn`               | `Vector.randn`      | `vecnprandn`    |                       |
+|                |                          | **utility**         |                 |                       |
+| dimensionality |                          | `len`               | `vecnpdim`      | `tendim`              |
+| number of axes |                          |                     |                 | `tenrank`             |
+| equation       | `veceq`                  | `==`                | `vecnpeq`       |                       |
+| trimming       | `vectrim`                | `.trim`             | `vecnptrim`     | `tentrim`             |
+| rounding       | `vecround`               | `.round`            |                 |                       |
+| shifting       | `vecrshift`, `veclshift` | `>>`, `<<`          |                 |                       |
+|                |                          | **Hilbert space**   |                 |                       |
+| norm           | `vecabsq`                | `.absq`             | `vecnpabsq`     |                       |
+| norm squared   | `vecabs`                 | `abs`               | `vecnpabs`      |                       |
+| dot            | `vecdot`                 | `@`                 | `vecnpdot`      |                       |
+| parallelism    | `vecparallel`            |                     | `vecnpparallel` |                       |
+|                |                          | **vector space**    |                 |                       |
+| positive       | `vecpos`                 | `+`                 | `vecnppos`      | `tenpos`              |
+| negative       | `vecneg`                 | `-`                 | `vecnpneg`      | `tenneg`              |
+| addition       | `vecadd`                 | `+`                 | `vecnpadd`      | `tenadd`              |
+| subtraction    | `vecsub`                 | `-`                 | `vecnpsub`      | `tensub`              |
+| multiplication | `vecmul`                 | `*`                 | `vecnpmul`      | `tenmul`              |
+| true division  | `vectruediv`             | `/`                 | `vecnptruediv`  | `tentruediv`          |
+| floor division | `vecfloordiv`            | `//`                | `vecnpfloordiv` | `tenfloordiv`         |
+| mod            | `vecmod`                 | `%`                 | `vecnpmod`      | `tenmod`              |
+|                |                          | **elementwise**     |                 |                       |
+| multiplication | `vechadamard`            | `.hadamard`         |                 | `tenhadamard`         |
+| true division  | `vechadamardtruediv`     | `.hadamardtruediv`  |                 | `tenhadamardtruediv`  |
+| floor division | `vechadamardfloordiv`    | `.hadamardfloordiv` |                 | `tenhadamardfloordiv` |
+| mod            | `vechadamardmod`         | `.hadamardmod`      |                 | `tenhadamardmod`      |
+| min            | `vechadamardmin`         | `.hadamardmin`      |                 |                       |
+| max            | `vechadamardmax`         | `.hadamardmax`      |                 |                       |
 
 ### Functions
 
@@ -101,6 +101,8 @@ utility stuff
 - `veceq(v, w)`: Return if two vectors are equal.
 - `vectrim(v, tol=1e-9)`: Remove all trailing near zero (<=tol) coefficients.
 - `vecround(v, ndigits=None)`: Round all coefficients to the given precision.
+- `vecrshift(v, n)`: Pad `n` many zeros to the beginning of the vector.
+- `veclshift(v, n)`: Remove `n` many coefficients at the beginning of the vector.
 
 Hilbert space stuff
 - `vecabsq(v)`: Return the sum of absolute squares of the coefficients.
