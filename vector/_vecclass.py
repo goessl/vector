@@ -81,11 +81,15 @@ class Vector:
     #utility stuff
     def trim(self, tol=1e-9):
         """Remove all trailing near zero (abs<=tol) coefficients."""
-        return type(self)(vectrim(self))
+        return type(self)(vectrim(self, tol))
     
     def round(self, ndigits=None):
         """Round all coefficients to the given precision."""
-        return type(self)(vecround(self))
+        return type(self)(vecround(self, ndigits))
+    
+    def is_parallel(self, other):
+        """Return if the other vector is parallel."""
+        return vecparallel(self, other)
     
     
     #Hilbert space stuff
@@ -117,6 +121,10 @@ class Vector:
     def __neg__(self):
         """Return the negative."""
         return type(self)(vecneg(self))
+    
+    def addc(self, c, i=0):
+        """Return the sum with the `i`-th basis vector times `c`."""
+        return type(self)(vecaddc(self, c, i))
     
     def __add__(self, other):
         """Return the vector sum."""

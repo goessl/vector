@@ -8,8 +8,8 @@ from operator import pos, neg, sub, mul, truediv, floordiv, mod, eq
 __all__ = ['veczero', 'vecbasis', 'vecrand', 'vecrandn',
         'veceq', 'vectrim', 'vecround', 'vecrshift', 'veclshift',
         'vecabsq', 'vecabs', 'vecdot', 'vecparallel',
-        'vecpos', 'vecneg',
-        'vecadd', 'vecsub', 'vecmul', 'vectruediv', 'vecfloordiv', 'vecmod',
+        'vecpos', 'vecneg', 'vecaddc', 'vecadd', 'vecsub',
+        'vecmul', 'vectruediv', 'vecfloordiv', 'vecmod',
         'vechadamard', 'vechadamardtruediv',
         'vechadamardfloordiv', 'vechadamardmod',
         'vechadamardmin', 'vechadamardmax']
@@ -105,6 +105,16 @@ def vecpos(v):
 def vecneg(v):
     """Return the vector with the unary negative operator applied."""
     return tuple(map(neg, v))
+
+def vecaddc(v, c, i=0):
+    """Return `v` with `c` added to the `i`-th coefficient.
+    
+    More efficient than `vecadd(v, vecbasis(i, c)`.
+    """
+    v = list(v)
+    v.extend([0] * (i-len(v)+1))
+    v[i] += c
+    return tuple(v)
 
 def vecadd(*vs):
     """Return the sum of vectors."""

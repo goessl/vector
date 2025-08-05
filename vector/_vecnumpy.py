@@ -5,7 +5,7 @@ from ._vecfunctions import veceq
 
 
 __all__ = ['vecnpzero', 'vecnpbasis', 'vecnprand', 'vecnprandn',
-        'vecnpdim', 'vecnpeq', 'vecnptrim',
+        'vecnpdim', 'vecnpeq', 'vecnptrim', 'vecnpround',
         'vecnpabsq', 'vecnpabs', 'vecnpdot', 'vecnpparallel',
         'vecnppos', 'vecnpneg', 'vecnpadd', 'vecnpsub',
         'vecnpmul', 'vecnptruediv', 'vecnpfloordiv', 'vecnpmod']
@@ -76,7 +76,7 @@ def vecnptrim(v, tol=1e-9):
 
 def vecnpround(v, ndigits=0):
     """Wrapper for `numpy.round`."""
-    return np.round(np.asarray(v, ndigits=0))
+    return np.round(np.asarray(v), ndigits)
 
 
 #Hilbert space stuff

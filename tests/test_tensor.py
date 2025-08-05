@@ -24,6 +24,16 @@ def test_tenneg():
     p = np.random.rand(2, 3)
     assert np.array_equal(-p, tenneg(p))
 
+def test_tenaddc():
+    assert np.array_equal(tenaddc(tenzero, 5, (1, 2, 3)), tenbasis((1, 2, 3), 5))
+    assert np.array_equal(tenaddc([[1, 2, 3],
+                                   [4, 5, 6]], 5, (0, 1, 2)), [[[1, 0, 0],
+                                                                [2, 0, 5],
+                                                                [3, 0, 0]],
+                                                               [[4, 0, 0],
+                                                                [5, 0, 0],
+                                                                [6, 0, 0]]])
+
 def test_tenadd():
     assert tenadd() ==tenzero
     assert np.array_equal(tenadd([[1, 2, 3],

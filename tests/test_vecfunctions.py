@@ -61,6 +61,11 @@ def test_vecparallel():
     assert vecparallel((1, 2, 3), (3, 6, 9)) == True
 
 
+def test_vecaddc():
+    assert vecaddc((), 2, 3) == (0, 0, 0, 2)
+    assert vecaddc((1, 2), 4, 5) == (1, 2, 0, 0, 0, 4)
+    assert vecaddc((1, 2, 3, 4, 5), 5, 2) == (1, 2, 8, 4, 5)
+
 def test_vecadd():
     assert vecadd() == ()
     assert vecadd((1, 2)) == (1, 2)

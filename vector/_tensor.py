@@ -3,10 +3,10 @@ from ._vecfunctions import vechadamardmax
 
 
 
-__all__ = ['tenzero', 'tenbasis',
-        'tenrank', 'tendim',
-        'tenpos', 'tenneg',
-        'tenadd', 'tensub', 'tenmul', 'tentruediv', 'tenfloordiv', 'tenmod',
+__all__ = ['tenzero', 'tenbasis', 'tenrand', 'tenrandn',
+        'tenrank', 'tendim', 'tentrim', 'tenround',
+        'tenpos', 'tenneg', 'tenaddc', 'tenadd', 'tensub', 'tenmul',
+        'tentruediv', 'tenfloordiv', 'tenmod',
         'tenhadamard', 'tenhadamardtruediv',
         'tenhadamardfloordiv', 'tenhadamardmod']
 
@@ -28,7 +28,7 @@ def tenrand(*d):
     return np.random.rand(*d)
 
 def tenrandn(*d):
-    """Wrapper for `numpy.random.rand`."""
+    """Wrapper for `numpy.random.randn`."""
     return np.random.randn(*d)
 
 
@@ -63,6 +63,18 @@ def tenpos(t):
 def tenneg(t):
     """Return the tensor with the unary negative operator applied."""
     return -np.asarray(t)
+
+def tenaddc(t, c, i=(0,)):
+    """Return `t` with `c` added to the `i`-th coefficient.
+    
+    More efficient than `tenadd(v, tenbasis(i, c)`.
+    """
+    t = np.asarray(t)
+    while t.ndim < len(i):
+        t = np.expand_dims(t, axis=-1)
+    t = np.pad(t, tuple((0, max(ii-s+1, 0)) for s, ii in zip(t.shape, i)))
+    t[i + (0,)*(len(i)-t.ndim)] += c
+    return t
 
 def tenadd(*ts):
     """Return the sum of tensors."""
@@ -103,17 +115,19 @@ def tenmod(t, a):
 def tenhadamard(*ts):
     """Return the elementwise product of tensors."""
     ts = tuple(map(np.asarray, ts))
-    shape = map(min, zip(*(t.shape for t in ts)))
+    shape = tuple(map(min, zip(*(t.shape for t in ts))))
     r = np.zeros(shape, dtype=np.result_type(*ts) if ts else object)
-    for t in ts:
+    if ts:
+        r = ts[0][tuple(map(slice, shape)), ...]
+    for t in ts[1:]:
         r *= t[tuple(map(slice, shape)), ...]
     return r
 
 def tenhadamardtruediv(s, t):
     """Return the elementwise true division of two tensors."""
     s, t = np.asarray(s), np.asarray(t)
-    shape = map(min, zip(s.shape, t.shape))
-    r = np.zeros(shape, dtype=np.result_type(s, t) if ts else object)
+    shape = tuple(map(min, zip(s.shape, t.shape)))
+    r = np.zeros(shape, dtype=np.result_type(s, t))
     r = s[tuple(map(slice, shape)), ...]
     r /= t[tuple(map(slice, shape)), ...]
     return r
@@ -121,8 +135,8 @@ def tenhadamardtruediv(s, t):
 def tenhadamardfloordiv(s, t):
     """Return the elementwise floor division of two tensors."""
     s, t = np.asarray(s), np.asarray(t)
-    shape = map(min, zip(s.shape, t.shape))
-    r = np.zeros(shape, dtype=np.result_type(s, t) if ts else object)
+    shape = tuple(map(min, zip(s.shape, t.shape)))
+    r = np.zeros(shape, dtype=np.result_type(s, t))
     r = s[tuple(map(slice, shape)), ...]
     r //= t[tuple(map(slice, shape)), ...]
     return r
@@ -130,8 +144,8 @@ def tenhadamardfloordiv(s, t):
 def tenhadamardmod(s, t):
     """Return the elementwise mod of two tensors."""
     s, t = np.asarray(s), np.asarray(t)
-    shape = map(min, zip(s.shape, t.shape))
-    r = np.zeros(shape, dtype=np.result_type(s, t) if ts else object)
+    shape = tuple(map(min, zip(s.shape, t.shape)))
+    r = np.zeros(shape, dtype=np.result_type(s, t))
     r = s[tuple(map(slice, shape)), ...]
     r %= t[tuple(map(slice, shape)), ...]
     return r

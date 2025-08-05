@@ -46,7 +46,7 @@ It operates on vectors of different lengths, treating them as infinite-dimension
 | **utility**       |                          |                     |                 |                       |
 | dimensionality    |                          | `len`               | `vecnpdim`      | `tendim`              |
 | rank              |                          |                     |                 | `tenrank`             |
-| equation          | `veceq`                  | `==`                | `vecnpeq`       |                       |
+| comparison        | `veceq`                  | `==`                | `vecnpeq`       |                       |
 | trimming          | `vectrim`                | `.trim`             | `vecnptrim`     | `tentrim`             |
 | rounding          | `vecround`               | `.round`            | `vecnpround`    | `tenround`            |
 | shifting          | `vecrshift`, `veclshift` | `>>`, `<<`          |                 |                       |
@@ -54,11 +54,12 @@ It operates on vectors of different lengths, treating them as infinite-dimension
 | norm              | `vecabsq`                | `.absq`             | `vecnpabsq`     |                       |
 | norm squared      | `vecabs`                 | `abs`               | `vecnpabs`      |                       |
 | dot               | `vecdot`                 | `@`                 | `vecnpdot`      |                       |
-| parallelism       | `vecparallel`            |                     | `vecnpparallel` |                       |
+| parallelism       | `vecparallel`            | `.is_parallel`      | `vecnpparallel` |                       |
 | **vector space**  |                          |                     |                 |                       |
 | positive          | `vecpos`                 | `+`                 | `vecnppos`      | `tenpos`              |
 | negative          | `vecneg`                 | `-`                 | `vecnpneg`      | `tenneg`              |
 | addition          | `vecadd`                 | `+`                 | `vecnpadd`      | `tenadd`              |
+| basis addition    | `vecaddc`                | `.addc`             |                 | `tenaddc`             |
 | subtraction       | `vecsub`                 | `-`                 | `vecnpsub`      | `tensub`              |
 | multiplication    | `vecmul`                 | `*`                 | `vecnpmul`      | `tenmul`              |
 | true division     | `vectruediv`             | `/`                 | `vecnptruediv`  | `tentruediv`          |
@@ -113,6 +114,7 @@ Hilbert space stuff
 vector space stuff
 - `vecpos(v)`: Return the vector with the unary positive operator applied.
 - `vecneg(v)`: Return the vector with the unary negative operator applied.
+- `vecaddc(v, c, i=0)`: Return `v` with `c` added to the `i`-th coefficient. More efficient than `vecadd(v, vecbasis(i, c)`.
 - `vecadd(*vs)`: Return the sum of vectors.
 - `vecsub(v, w)`: Return the difference of two vectors.
 - `vecmul(a, v)`: Return the product of a scalar and a vector.
@@ -163,6 +165,7 @@ sequence stuff
 utility stuff
 - `v.trim(tol=1e-9)`: Remove all trailing near zero (abs<=tol) coefficients.
 - `v.round(ndigits=None)`: Round all coefficients to the given precision.
+- `v.is_parallel(other)`: Return if the other vector is parallel.
 
 Hilbert space stuff
 - `v.absq()`: Return the sum of absolute squares of the coefficients.
@@ -170,6 +173,9 @@ Hilbert space stuff
 - `v @ w`: Return the inner product of two vectors without conjugation.
 
 vector space stuff
+- `+v`: Return the unary positive.
+- `-v`: Return the negative.
+- `.addc(c, i=0)`: Return the sum with the `i`-th basis vector times `c`.
 - `v + w`: Return the vector sum.
 - `v - w`: Return the vector difference.
 - `v * a`: Return the scalar product.
@@ -244,7 +250,7 @@ creation stuff
 - `tenzero`: Zero tensor.
 - `tenbasis(i, c=1)`: Return the `i`-th basis tensor times `c`.
 - `tenrand(*d)`: Wrapper for `numpy.random.rand`.
-- `tenrandn(*d)`: Wrapper for `numpy.random.rand`.
+- `tenrandn(*d)`: Wrapper for `numpy.random.randn`.
 
 utility stuff
 - `tenrank(t)`: Return the rank of the tensor.
@@ -255,6 +261,7 @@ utility stuff
 vector space stuff
 - `tenpos(t)`: Return the tensor with the unary positive operator applied.
 - `tenneg(t)`: Return the tensor with the unary negative operator applied.
+- `tenaddc(t, c, i=(0,))`: Return `t` with `c` added to the `i`-th coefficient. More efficient than `tenadd(v, tenbasis(i, c)`.
 - `tenadd(*ts)`: Return the sum of tensors.
 - `tensub(s, t)`: Return the difference of two tensors.
 - `tenmul(a, t)`: Return the product of a scalar and a tensor.
