@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="An infinite-dimensional vector Python package." /><meta name="author" content="Sebastian Gössl" /><link rel="canonical" href="https://goessl.github.io/vector/" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>vector</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Home";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = "/vector/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".">
+          <img src="logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Home</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#todo">todo</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#license-mit">License (MIT)</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="functional/">Functional</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="objectoriented/">Object-oriented</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="parallelised/">Parallelised</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="multiaxis/">Multiaxis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="design/">Design</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">vector</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Home</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/goessl/vector/edit/master/docs/index.md">Edit on goessl/vector</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="vector">vector</h1>
+<p>An infinite-dimensional vector Python package.</p>
+<pre><code class="language-python">&gt;&gt;&gt; from vector import vecadd
+&gt;&gt;&gt; vecadd((1, 2), (4, 5, 6))
+(5, 7, 6)
+&gt;&gt;&gt; 
+&gt;&gt;&gt; from vector import Vector
+&gt;&gt;&gt; v = Vector((1, 2))
+&gt;&gt;&gt; w = Vector((4, 5, 6))
+&gt;&gt;&gt; v + w
+Vector(5, 7, 6, ...)
+&gt;&gt;&gt; 
+&gt;&gt;&gt; from vector import vecnpadd
+&gt;&gt;&gt; vecnpadd((1, 2), ((3, 4, 5),
+...                   (6, 7, 8)))
+array([[4, 6, 5],
+       [7, 9, 8]])
+</code></pre>
+<h2 id="installation">Installation</h2>
+<pre><code class="language-console">pip install git+https://github.com/goessl/vector.git
+</code></pre>
+<h2 id="usage">Usage</h2>
+<p>This package includes</p>
+<ul>
+<li>
+<p>general-purpose <em>functions</em> (prefixed <code>vec...</code>) in <em>pure Python</em>,</p>
+</li>
+<li>
+<p>a clean <em>class</em> (<code>Vector</code>) with <em>easy to use syntax</em>,</p>
+</li>
+<li>
+<p>improved <em>numpy-routines</em> (prefixed <code>vecnp...</code>) for <em>parallelised operations</em> &amp;</p>
+</li>
+<li>
+<p><em>tensor</em> functions (prefixed <code>ten...</code>) for <em>multiaxis operations</em></p>
+</li>
+</ul>
+<p>to handle <em>type-independent, infinite-dimensional</em> vectors.
+It operates on vectors of different lengths, treating them as infinite-dimensional by assuming that all components after the given ones are <em>zero</em>.</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Functional</th>
+<th>Object-oriented</th>
+<th>Parallelised</th>
+<th>Multidimensional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>creation</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>zero</td>
+<td><code>veczero</code></td>
+<td><code>Vector.ZERO</code></td>
+<td><code>vecnpzero</code></td>
+<td><code>tenzero</code></td>
+</tr>
+<tr>
+<td>basis</td>
+<td><code>vecbasis</code></td>
+<td><code>Vector</code></td>
+<td><code>vecnpbasis</code></td>
+<td><code>tenbasis</code></td>
+</tr>
+<tr>
+<td>rand</td>
+<td><code>vecrand</code></td>
+<td><code>Vector.rand</code></td>
+<td><code>vecnprand</code></td>
+<td><code>tenrand</code></td>
+</tr>
+<tr>
+<td>randn</td>
+<td><code>vecrandn</code></td>
+<td><code>Vector.randn</code></td>
+<td><code>vecnprandn</code></td>
+<td><code>tenrandn</code></td>
+</tr>
+<tr>
+<td><strong>utility</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dimensionality</td>
+<td></td>
+<td><code>len</code></td>
+<td><code>vecnpdim</code></td>
+<td><code>tendim</code></td>
+</tr>
+<tr>
+<td>rank</td>
+<td></td>
+<td></td>
+<td></td>
+<td><code>tenrank</code></td>
+</tr>
+<tr>
+<td>comparison</td>
+<td><code>veceq</code></td>
+<td><code>==</code></td>
+<td><code>vecnpeq</code></td>
+<td></td>
+</tr>
+<tr>
+<td>trimming</td>
+<td><code>vectrim</code></td>
+<td><code>.trim</code></td>
+<td><code>vecnptrim</code></td>
+<td><code>tentrim</code></td>
+</tr>
+<tr>
+<td>rounding</td>
+<td><code>vecround</code></td>
+<td><code>.round</code></td>
+<td><code>vecnpround</code></td>
+<td><code>tenround</code></td>
+</tr>
+<tr>
+<td>shifting</td>
+<td><code>vecrshift</code>, <code>veclshift</code></td>
+<td><code>&gt;&gt;</code>, <code>&lt;&lt;</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Hilbert space</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>norm</td>
+<td><code>vecabsq</code></td>
+<td><code>.absq</code></td>
+<td><code>vecnpabsq</code></td>
+<td></td>
+</tr>
+<tr>
+<td>norm squared</td>
+<td><code>vecabs</code></td>
+<td><code>abs</code></td>
+<td><code>vecnpabs</code></td>
+<td></td>
+</tr>
+<tr>
+<td>dot</td>
+<td><code>vecdot</code></td>
+<td><code>@</code></td>
+<td><code>vecnpdot</code></td>
+<td></td>
+</tr>
+<tr>
+<td>parallelism</td>
+<td><code>vecparallel</code></td>
+<td><code>.is_parallel</code></td>
+<td><code>vecnpparallel</code></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>vector space</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>positive</td>
+<td><code>vecpos</code></td>
+<td><code>+</code></td>
+<td><code>vecnppos</code></td>
+<td><code>tenpos</code></td>
+</tr>
+<tr>
+<td>negative</td>
+<td><code>vecneg</code></td>
+<td><code>-</code></td>
+<td><code>vecnpneg</code></td>
+<td><code>tenneg</code></td>
+</tr>
+<tr>
+<td>addition</td>
+<td><code>vecadd</code></td>
+<td><code>+</code></td>
+<td><code>vecnpadd</code></td>
+<td><code>tenadd</code></td>
+</tr>
+<tr>
+<td>basis addition</td>
+<td><code>vecaddc</code></td>
+<td><code>.addc</code></td>
+<td></td>
+<td><code>tenaddc</code></td>
+</tr>
+<tr>
+<td>subtraction</td>
+<td><code>vecsub</code></td>
+<td><code>-</code></td>
+<td><code>vecnpsub</code></td>
+<td><code>tensub</code></td>
+</tr>
+<tr>
+<td>multiplication</td>
+<td><code>vecmul</code></td>
+<td><code>*</code></td>
+<td><code>vecnpmul</code></td>
+<td><code>tenmul</code></td>
+</tr>
+<tr>
+<td>true division</td>
+<td><code>vectruediv</code></td>
+<td><code>/</code></td>
+<td><code>vecnptruediv</code></td>
+<td><code>tentruediv</code></td>
+</tr>
+<tr>
+<td>floor division</td>
+<td><code>vecfloordiv</code></td>
+<td><code>//</code></td>
+<td><code>vecnpfloordiv</code></td>
+<td><code>tenfloordiv</code></td>
+</tr>
+<tr>
+<td>mod</td>
+<td><code>vecmod</code></td>
+<td><code>%</code></td>
+<td><code>vecnpmod</code></td>
+<td><code>tenmod</code></td>
+</tr>
+<tr>
+<td><strong>elementwise</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>multiplication</td>
+<td><code>vechadamard</code></td>
+<td><code>.hadamard</code></td>
+<td></td>
+<td><code>tenhadamard</code></td>
+</tr>
+<tr>
+<td>true division</td>
+<td><code>vechadamardtruediv</code></td>
+<td><code>.hadamardtruediv</code></td>
+<td></td>
+<td><code>tenhadamardtruediv</code></td>
+</tr>
+<tr>
+<td>floor division</td>
+<td><code>vechadamardfloordiv</code></td>
+<td><code>.hadamardfloordiv</code></td>
+<td></td>
+<td><code>tenhadamardfloordiv</code></td>
+</tr>
+<tr>
+<td>mod</td>
+<td><code>vechadamardmod</code></td>
+<td><code>.hadamardmod</code></td>
+<td></td>
+<td><code>tenhadamardmod</code></td>
+</tr>
+<tr>
+<td>min</td>
+<td><code>vechadamardmin</code></td>
+<td><code>.hadamardmin</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>max</td>
+<td><code>vechadamardmax</code></td>
+<td><code>.hadamardmax</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="todo">todo</h2>
+<ul>
+<li>[x] <code>zip</code> version between <code>zip</code> &amp; <code>zip_longest</code>. Yields different sized tuples. Done: <a href="https://github.com/goessl/zipvar">goessl/zipvar</a></li>
+<li>[x] docstrings</li>
+<li>[x] <code>numpy</code> routines</li>
+<li>[x] multiaxis vectors: tensors?</li>
+<li>[ ] never use <code>numpy.int64</code>, they don't detect overflows</li>
+<li>[ ] sparse vectors (<code>dict</code>s)</li>
+</ul>
+<h2 id="license-mit">License (MIT)</h2>
+<p>Copyright (c) 2022-2025 Sebastian Gössl</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="functional/" class="btn btn-neutral float-right" title="Functional">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2022 - 2025 Sebastian Gössl</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/goessl/vector" class="fa fa-code-fork" style="color: #fcfcfc"> goessl/vector</a>
+        </span>
+    
+    
+    
+      <span><a href="functional/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.6.1
+Build Date UTC : 2025-08-07 21:14:56.107667+00:00
+-->
