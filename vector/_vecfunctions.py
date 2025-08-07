@@ -16,7 +16,7 @@ __all__ = ['veczero', 'vecbasis', 'vecrand', 'vecrandn',
 
 
 
-#creation stuff
+#creation
 veczero = ()
 """Zero vector."""
 
@@ -37,7 +37,7 @@ def vecrandn(n, normed=True, mu=0, sigma=1):
     return vectruediv(v, vecabs(v)) if normed else v
 
 
-#utility stuff
+#utility
 def veceq(v, w):
     """Return if two vectors are equal."""
     return all(starmap(eq, zip_longest(v, w, fillvalue=0)))
@@ -69,7 +69,7 @@ def veclshift(v, n):
     return tuple(islice(v, n, None))
 
 
-#Hilbert space stuff
+#Hilbert space
 def vecabsq(v):
     """Return the sum of absolute squares of the coefficients."""
     #return sumprod(v, v) #no abs
@@ -97,7 +97,7 @@ def vecparallel(v, w):
     return vecabsq(v)*vecabsq(w) == abs(vecdot(v, w))**2
 
 
-#vector space stuff
+#vector space
 def vecpos(v):
     """Return the vector with the unary positive operator applied."""
     return tuple(map(pos, v))
@@ -141,7 +141,7 @@ def vecmod(v, a):
     return tuple(map(mod, v, repeat(a)))
 
 
-#elementwise operations
+#elementwise
 def vechadamard(*vs):
     """Return the elementwise product of vectors."""
     return tuple(map(prod, zip(*vs)))

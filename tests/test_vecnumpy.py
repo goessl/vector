@@ -4,6 +4,7 @@ from numpy.polynomial.polynomial import polyadd, polysub
 
 
 
+#creation
 def test_vecnpzero():
     assert np.array_equal(vecnpzero(), [0])
     assert np.array_equal(vecnpzero(1), [[0]])
@@ -25,6 +26,7 @@ def test_vecnprandn():
     assert np.allclose(np.linalg.norm(vecnprandn(2, d=3), axis=1), [1, 1, 1])
 
 
+#utility
 def test_vecnpeq():
     assert vecnpeq([1, 2], [1, 2, 0])
     assert not vecnpeq([1, 2], [1, 2, 1])
@@ -46,7 +48,12 @@ def test_vecnptrim():
                                      [5, 6, 7    , 8e-13]]), [[1, 2, 3e-10],
                                                               [5, 6, 7]])
 
+def test_vecnpround():
+    assert np.array_equal(vecnpround([1.1, 2.2]), [1, 2])
+    assert np.array_equal(vecnpround([1.12, 2.23], 1), [1.1, 2.2])
 
+
+#Hilbert space
 def test_vecnpabsq():
     assert vecnpabsq([1, 2]) == 5
     assert np.array_equal(vecnpabsq([[1, 2],
@@ -77,6 +84,13 @@ def test_vecnpparallel():
                                                       [8, 10, 12]]),
                                          [False, True])
 
+
+#vector space
+def test_vecnppos():
+    assert np.array_equal(vecnppos([+1, -2, +3]), [+1, -2, +3])
+
+def test_vecnpneg():
+    assert np.array_equal(vecnpneg([+1, -2, +3]), [-1, +2, -3])
 
 def test_vecnpadd():
     assert vecnpadd() == np.array([0])
@@ -128,3 +142,21 @@ def test_vecnpsub():
         w = np.random.normal(size=(v.shape[0], np.random.randint(1, 20)))
         assert np.allclose(vecnpsub(v, w),
                 [polysub(vi, wi) for vi, wi in zip(v, w)])
+
+def test_vecnpmul():
+    assert np.array_equal(vecnpmul(5, [1, 2, 3]), [5, 10, 15])
+
+def test_vecnptruediv():
+    assert np.array_equal(vecnptruediv([[1, 10, 16],
+                                        [6, 22, 39]], 5), [[1/5, 10/5, 16/5],
+                                                           [6/5, 22/5, 39/5]])
+
+def test_vecnpfloordiv():
+    assert np.array_equal(vecnpfloordiv([[1, 10, 16],
+                                         [6, 22, 39]], 5), [[0, 2, 3],
+                                                            [1, 4, 7]])
+
+def test_vecnpmod():
+    assert np.array_equal(vecnpmod([[1, 10, 16],
+                                    [6, 22, 39]], 5), [[1, 0, 1],
+                                                       [1, 2, 4]])

@@ -3,11 +3,23 @@ import numpy as np
 
 
 
+#creation
+def test_tenzero():
+    assert np.array_equal(tenzero, 0)
+
 def test_tenbasis():
     assert np.array_equal(tenbasis((2, 3), c=5), np.array([[0, 0, 0, 0],
                                                            [0, 0, 0, 0],
                                                            [0, 0, 0, 5]]))
 
+def test_tenrand():
+    assert tenrand(1, 2, 3).shape == (1, 2, 3)
+
+def test_tenrandn():
+    assert tenrandn(1, 2, 3).shape == (1, 2, 3)
+
+
+#utility
 def test_tenrank():
     assert tenrank([[[]]]) == 3
 
@@ -16,6 +28,22 @@ def test_tendim():
                    [0, 0, 0, 0],
                    [0, 0, 0, 5]]) == (3, 4)
 
+def test_tentrim():
+    assert np.array_equal(tentrim([[1, 2, 0, 0],
+                                   [0, 3, 0, 0],
+                                   [0, 0, 0, 0]]), [[1, 2],
+                                                    [0, 3]])
+    assert np.array_equal(tentrim([[1, 0, 0, 0],
+                                   [2, 0, 0, 0],
+                                   [0, 0, 0, 0]]), [1, 2])
+    assert np.array_equal(tentrim(tenzero), 0)
+
+def test_tentrim():
+    assert np.array_equal(tenround([1.1, 2.2]), [1, 2])
+    assert np.array_equal(tenround([1.12, 2.23], 1), [1.1, 2.2])
+
+
+#vector space
 def test_tenpos():
     p = np.random.rand(2, 3)
     assert np.array_equal(p, tenpos(p))
@@ -68,3 +96,23 @@ def test_tensub():
     assert np.array_equal(tensub(tenzero, [[1, 2, 3],
                                            [4, 5, 6]]), [[-1, -2, -3],
                                                          [-4, -5, -6]])
+
+def test_tenmul():
+    assert np.array_equal(tenmul(5, [[1, 2, 3],
+                                     [4, 5, 6]]), [[ 5, 10, 15],
+                                                   [20, 25, 30]])
+
+def test_tentruediv():
+    assert np.array_equal(tentruediv([[1, 10, 16],
+                                      [6, 22, 39]], 5), [[1/5, 10/5, 16/5],
+                                                         [6/5, 22/5, 39/5]])
+
+def test_tenfloordiv():
+    assert np.array_equal(tenfloordiv([[1, 10, 16],
+                                       [6, 22, 39]], 5), [[0, 2, 3],
+                                                          [1, 4, 7]])
+
+def test_tenmod():
+    assert np.array_equal(tenmod([[1, 10, 16],
+                                  [6, 22, 39]], 5), [[1, 0, 1],
+                                                     [1, 2, 4]])

@@ -13,7 +13,7 @@ class Vector:
     """
     __slots__ = ['coef']
     
-    #construction stuff
+    #creation
     def __init__(self, coef):
         """Create a new vector with the given coefficients
         or the `i`-th basis vector if an integer `i` is given."""
@@ -33,7 +33,7 @@ class Vector:
         return Vector(vecrandn(n, normed, mu, sigma))
     
     
-    #sequence stuff
+    #sequence
     def __len__(self):
         """Return the number of set coefficients."""
         return len(self.coef)
@@ -78,7 +78,7 @@ class Vector:
         return type(self)((0,)*other + self.coef)
     
     
-    #utility stuff
+    #utility
     def trim(self, tol=1e-9):
         """Remove all trailing near zero (abs<=tol) coefficients."""
         return type(self)(vectrim(self, tol))
@@ -92,7 +92,7 @@ class Vector:
         return vecparallel(self, other)
     
     
-    #Hilbert space stuff
+    #Hilbert space
     def absq(self):
         """Return the sum of absolute squares of the coefficients."""
         return vecabsq(self)
@@ -155,7 +155,7 @@ class Vector:
         return type(self)(vecmod(self, other))
     
     
-    #elementwise stuff
+    #elementwise
     def hadamard(self, other):
         """Return the elementwise product with another vector."""
         return type(self)(vechadamard(self, other))

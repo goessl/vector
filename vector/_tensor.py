@@ -32,7 +32,7 @@ def tenrandn(*d):
     return np.random.randn(*d)
 
 
-#utility stuff
+#utility
 def tenrank(t):
     """Return the rank of the tensor."""
     return np.asarray(t).ndim
@@ -44,10 +44,12 @@ def tendim(t):
 def tentrim(t, tol=1e-9):
     """Remove all trailing near zero (abs(v_i)<=tol) coefficients."""
     t = np.asarray(t)
-    for d in range(t.ndim):
+    for d in range(t.ndim): #reduce dimension
         i = (slice(None, None, None),)*d + (-1,) + (...,)
         while t.shape[d]>0 and np.all(np.abs(t[*i])<=tol):
             t = t[(slice(None, None, None),)*d + (slice(0, -1),) + (...,)]
+    while t.shape and t.shape[-1] == 1: #reduce rank
+        t = t[..., 0]
     return t
 
 def tenround(t, ndigits=0):
@@ -55,7 +57,7 @@ def tenround(t, ndigits=0):
     return np.round(t, ndigits)
 
 
-#vector space stuff
+#vector space
 def tenpos(t):
     """Return the tensor with the unary positive operator applied."""
     return +np.asarray(t)
@@ -111,7 +113,7 @@ def tenmod(t, a):
     return np.asarray(t) % a
 
 
-#elementwise operations
+#elementwise
 def tenhadamard(*ts):
     """Return the elementwise product of tensors."""
     ts = tuple(map(np.asarray, ts))

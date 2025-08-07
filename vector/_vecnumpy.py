@@ -12,7 +12,7 @@ __all__ = ['vecnpzero', 'vecnpbasis', 'vecnprand', 'vecnprandn',
 
 
 
-#creation stuff
+#creation
 def vecnpzero(d=None):
     """Return `d` zero vectors.
     
@@ -51,7 +51,7 @@ def vecnprandn(n, normed=True, d=None):
     return v/np.linalg.norm(v, axis=-1, keepdims=True) if normed else v
 
 
-#utility stuff
+#utility
 def vecnpdim(v):
     """Return the number of allocated dimensions in this vector or vectors."""
     return np.asarray(v).shape[-1]
@@ -79,7 +79,7 @@ def vecnpround(v, ndigits=0):
     return np.round(np.asarray(v), ndigits)
 
 
-#Hilbert space stuff
+#Hilbert space
 def vecnpabsq(v):
     """Return the sum of absolute squares of the coefficients."""
     return np.sum(np.abs(v)**2, axis=-1)
@@ -101,7 +101,7 @@ def vecnpparallel(v, w):
     return vecnpabsq(v)*vecnpabsq(w) == vecnpdot(v, w)**2
 
 
-#vector space stuff
+#vector space
 def vecnppos(v):
     """Return the vector with the unary positive operator applied."""
     return +np.asarray(v)
