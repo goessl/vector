@@ -119,13 +119,19 @@ But the package might be used for pure integers/integer arithmetic.
 - Most importantly: type independent because it doesn't use <code>sqrt</code>.</p>
 <h2 id="trim"><code>trim</code></h2>
 <p>cutting of elements that are <code>abs(vi)&lt;=tol</code> instead of <code>abs(vi)&lt;tol</code> to allow cutting of exactly just zeros by <code>trim(v, 0)</code> instead of <code>trim(v, sys.float_info.min)</code>.</p>
-<p><code>tol=1e-9</code> like in https://peps.python.org/pep-0485/#defaults</p>
+<p><code>tol=1e-9</code> like in <a href="https://peps.python.org/pep-0485/#defaults">PEP 485</a>.</p>
 <h2 id="rand-randn"><code>rand &amp; randn</code></h2>
 <p>Naming like in <code>numpy</code> because seems more concise (not <code>random</code> &amp; <code>gauss</code> as in the stdlib).</p>
 <h2 id="vector__init__"><code>Vector.__init__()</code></h2>
-<p>By iterable or integer for basis vector?
-- Provide signature like <code>min</code> (single argument=iterable or multiple args)? No, because this way a single integer can't be distinguished to mean a single coefficient or a basis vector.
-- Automatically trim on creation? Nah, do nothing without specially being told to do so.</p>
+<p>By iterable or integer for basis vector?</p>
+<ul>
+<li>
+<p>Provide signature like <code>min</code> (single argument=iterable or multiple args)? No, because this way a single integer can't be distinguished to mean a single coefficient or a basis vector.</p>
+</li>
+<li>
+<p>Automatically trim on creation? Nah, do nothing without specially being told to do so.</p>
+</li>
+</ul>
               
             </div>
           </div><footer>

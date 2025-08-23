@@ -111,8 +111,8 @@
 <p>Prefixed by <code>vec...</code> (vector).</p>
 <p>All functions <em>accept single exhaustible iterables</em>.</p>
 <p>They <em>return vectors as tuples</em>.</p>
-<p>The functions are <em>type-independent</em>. However, the data types used must <em>support necessary scalar operations</em>. For instance, for vector addition, components must be addable — this may include operations with padded integer zeros. Empty operations return the zero vector (e.g. <code>vecadd()==veczero</code>) or integer zeros (e.g. <code>vecdot(veczero, veczero)==int(0)</code>).</p>
 <p>Padding is done with <code>int(0)</code>.</p>
+<p>The functions are <em>type-independent</em>. However, the data types used must <em>support necessary scalar operations</em>. For instance, for vector addition, components must be addable — this may include operations with padded integer zeros. Empty operations return the zero vector (e.g. <code>vecadd()==veczero</code>) or integer zeros (e.g. <code>vecdot(veczero, veczero)==int(0)</code>).</p>
 <h2 id="creation">creation</h2>
 <ul>
 <li>
