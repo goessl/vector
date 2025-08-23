@@ -6,8 +6,8 @@ long_description = (this_directory / 'README.md').read_text()
 
 setup(
     name = 'vector',
-    version = '3.1',
-    description = 'An infinite dimensional vector module.',
+    version = '3.1.1',
+    description = 'An infinite-dimensional vector Python package.',
     long_description = long_description,
     long_description_content_type = 'text/markdown',
     

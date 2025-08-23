@@ -1,6 +1,6 @@
 import numpy as np
 from itertools import zip_longest
-from ._vecfunctions import veceq
+from .functional import veceq
 
 
 

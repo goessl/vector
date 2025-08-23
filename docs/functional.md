@@ -15,9 +15,9 @@ All functions *accept single exhaustible iterables*.
 
 They *return vectors as tuples*.
 
-The functions are *type-independent*. However, the data types used must *support necessary scalar operations*. For instance, for vector addition, components must be addable — this may include operations with padded integer zeros. Empty operations return the zero vector (e.g. `vecadd()==veczero`) or integer zeros (e.g. `vecdot(veczero, veczero)==int(0)`).
-
 Padding is done with `int(0)`.
+
+The functions are *type-independent*. However, the data types used must *support necessary scalar operations*. For instance, for vector addition, components must be addable — this may include operations with padded integer zeros. Empty operations return the zero vector (e.g. `vecadd()==veczero`) or integer zeros (e.g. `vecdot(veczero, veczero)==int(0)`).
 
 ## creation
 
@@ -37,7 +37,7 @@ Padding is done with `int(0)`.
 
 - `vecround(v, ndigits=None)`: Round all coefficients to the given precision.
 
-- `vecrshift(v, n)`: Pad `n` many zeros to the beginning of the vector.
+- `vecrshift(v, n, fill=0)`: Pad `n` many `fill`s to the beginning of the vector.
 
 - `veclshift(v, n)`: Remove `n` many coefficients at the beginning of the vector.
 
@@ -49,7 +49,7 @@ Padding is done with `int(0)`.
 
 - `vecdot(v, w)`: Return the inner product of two vectors without conjugation.
 
-- `vecparallel(v, w)`: Return if two vectors are parallel.
+- `vecparallel(v, w)`: Return if two vectors are parallel. `v` and `w` must be sequences, not exhaustible iterables.
 
 ## vector space
 

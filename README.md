@@ -27,7 +27,7 @@ pip install git+https://github.com/goessl/vector.git
 
 ## Usage
 
-Read the [documentation page](https://goessl.github.io/vector) or read the [raw markdown](docs/index.md)
+Read the [documentation webpage](https://goessl.github.io/vector) or read the [raw markdown](docs/index.md).
 
 ## todo
 
@@ -38,6 +38,7 @@ Read the [documentation page](https://goessl.github.io/vector) or read the [raw 
  - [ ] never use `numpy.int64`, they don't detect overflows
  - [ ] sparse vectors (`dict`s)
  - [ ] C, C++ & Java version
+ - [ ] complexity analysis
 
 ## Checklist
 

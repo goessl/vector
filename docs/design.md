@@ -27,7 +27,7 @@ Reasons why it exists:
 
 cutting of elements that are `abs(vi)<=tol` instead of `abs(vi)<tol` to allow cutting of exactly just zeros by `trim(v, 0)` instead of `trim(v, sys.float_info.min)`.
 
-`tol=1e-9` like in https://peps.python.org/pep-0485/#defaults
+`tol=1e-9` like in [PEP 485](https://peps.python.org/pep-0485/#defaults).
 
 ## `rand & randn`
 
@@ -36,5 +36,7 @@ Naming like in `numpy` because seems more concise (not `random` & `gauss` as in 
 ## `Vector.__init__()`
 
 By iterable or integer for basis vector?
+
 - Provide signature like `min` (single argument=iterable or multiple args)? No, because this way a single integer can't be distinguished to mean a single coefficient or a basis vector.
+
 - Automatically trim on creation? Nah, do nothing without specially being told to do so.

@@ -60,9 +60,9 @@ def vecround(v, ndigits=None):
     """Round all coefficients to the given precision."""
     return tuple(round(c, ndigits) for c in v)
 
-def vecrshift(v, n):
-    """Pad `n` many zeros to the beginning of the vector."""
-    return tuple(chain((0,)*n, v))
+def vecrshift(v, n, fill=0):
+    """Pad `n` many `fill`s to the beginning of the vector."""
+    return tuple(chain((fill,)*n, v))
 
 def veclshift(v, n):
     """Remove `n` many coefficients at the beginning of the vector."""
@@ -87,13 +87,17 @@ def vecabs(v):
 
 def vecdot(v, w):
     """Return the inner product of two vectors without conjugation."""
-    #unreadable:
+    #unreadable and doesn't work for generators
     #return sumprod(v[:min(len(v), len(w))], w[:min(len(v), len(w))])
-    #return sumprod(*zip(*zip(v, w))) would be more precise, but is bloat
+    #return sumprod(*zip(*zip(v, w))) #would be more precise, but is bloat
     return sum(map(mul, v, w))
 
 def vecparallel(v, w):
-    """Return if two vectors are parallel."""
+    """Return if two vectors are parallel.
+    
+    `v` and `w` must be sequences, not exhaustible iterables.
+    """
+    #TODO: work for exhaustible iterables
     return vecabsq(v)*vecabsq(w) == abs(vecdot(v, w))**2
 
 
@@ -140,6 +144,9 @@ def vecmod(v, a):
     """Return the elementwise mod of a vector and a scalar."""
     return tuple(map(mod, v, repeat(a)))
 
+def vecdivmod(v, a):
+    pass
+
 
 #elementwise
 def vechadamard(*vs):
@@ -165,3 +172,6 @@ def vechadamardmin(*vs):
 def vechadamardmax(*vs):
     """Return the elementwise maximum of vectors."""
     return tuple(map(max, zip_longest(*vs, fillvalue=-inf)))
+
+def vechadamardminmax(*vs):
+    pass

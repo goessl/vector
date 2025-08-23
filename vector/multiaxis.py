@@ -1,5 +1,5 @@
 import numpy as np
-from ._vecfunctions import vechadamardmax
+from .functional import vechadamardmax
 
 
 

@@ -1,4 +1,4 @@
-from ._vecfunctions import *
+from .functional import *
 
 
 

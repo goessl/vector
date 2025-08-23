@@ -8,9 +8,6 @@ repo_url: https://github.com/goessl/vector
 
 copyright: Copyright &copy; 2022 - 2025 Sebastian Gössl
 
-theme:
-  logo: logo.png
-
 nav:
   - Home: index.md
   - Functional: functional.md
@@ -18,7 +15,7 @@ nav:
   - Parallelised: parallelised.md
   - Multiaxis: multiaxis.md
   - Design: design.md
+
 theme:
   name: readthedocs
   logo: logo.png
-  prev_next_buttons_location: bottom

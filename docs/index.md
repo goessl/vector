@@ -83,6 +83,7 @@ It operates on vectors of different lengths, treating them as infinite-dimension
  - [x] docstrings
  - [x] `numpy` routines
  - [x] multiaxis vectors: tensors?
+ - [ ] `vecdivmod`, `vechadamardminmax`
  - [ ] never use `numpy.int64`, they don't detect overflows
  - [ ] sparse vectors (`dict`s)
 
