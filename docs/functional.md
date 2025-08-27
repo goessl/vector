@@ -57,7 +57,7 @@ The functions are *type-independent*. However, the data types used must *support
 
 - `vecneg(v)`: Return the vector with the unary negative operator applied.
 
-- `vecaddc(v, c, i=0)`: Return `v` with `c` added to the `i`-th coefficient. More efficient than `vecadd(v, vecbasis(i, c)`.
+- `vecaddc(v, c, i=0)`: Return `v` with `c` added to the `i`-th coefficient. More efficient than `vecadd(v, vecbasis(i, c))`.
 
 - `vecadd(*vs)`: Return the sum of vectors.
 
@@ -70,6 +70,8 @@ The functions are *type-independent*. However, the data types used must *support
 - `vecfloordiv(v, a)`: Return the floor division of a vector and a scalar.
 
 - `vecmod(v, a)`: Return the elementwise mod of a vector and a scalar.
+
+- `vecdivmod(v, a)`: Return the elementwise divmods of a vector and a scalar.
 
 ## elementwise
 

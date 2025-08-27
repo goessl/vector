@@ -9,7 +9,7 @@ __all__ = ['veczero', 'vecbasis', 'vecrand', 'vecrandn',
         'veceq', 'vectrim', 'vecround', 'vecrshift', 'veclshift',
         'vecabsq', 'vecabs', 'vecdot', 'vecparallel',
         'vecpos', 'vecneg', 'vecaddc', 'vecadd', 'vecsub',
-        'vecmul', 'vectruediv', 'vecfloordiv', 'vecmod',
+        'vecmul', 'vectruediv', 'vecfloordiv', 'vecmod', 'vecdivmod',
         'vechadamard', 'vechadamardtruediv',
         'vechadamardfloordiv', 'vechadamardmod',
         'vechadamardmin', 'vechadamardmax']
@@ -113,7 +113,7 @@ def vecneg(v):
 def vecaddc(v, c, i=0):
     """Return `v` with `c` added to the `i`-th coefficient.
     
-    More efficient than `vecadd(v, vecbasis(i, c)`.
+    More efficient than `vecadd(v, vecbasis(i, c))`.
     """
     v = list(v)
     v.extend([0] * (i-len(v)+1))
@@ -145,7 +145,13 @@ def vecmod(v, a):
     return tuple(map(mod, v, repeat(a)))
 
 def vecdivmod(v, a):
-    pass
+    """Return the elementwise divmod of a vector and a scalar."""
+    q, r = [], []
+    for vi in v:
+        qi, ri = divmod(vi, a)
+        q.append(qi)
+        r.append(ri)
+    return tuple(q), tuple(r)
 
 
 #elementwise

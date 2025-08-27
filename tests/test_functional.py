@@ -108,6 +108,10 @@ def test_vecmod():
     assert vecmod((), 2) == ()
     assert vecmod((3,), 2) == (1,)
 
+def test_vecdivmod():
+    v, a = (1., 2., 3.), 2.
+    vecdivmod(v, a) == (vectruediv(v, a), vecmod(v, a))
+
 
 #elementwise
 def test_vechadamard():

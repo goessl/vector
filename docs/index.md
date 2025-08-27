@@ -69,6 +69,7 @@ It operates on vectors of different lengths, treating them as infinite-dimension
 | true division     | `vectruediv`             | `/`                 | `vecnptruediv`  | `tentruediv`          |
 | floor division    | `vecfloordiv`            | `//`                | `vecnpfloordiv` | `tenfloordiv`         |
 | mod               | `vecmod`                 | `%`                 | `vecnpmod`      | `tenmod`              |
+| divmod            | `vecdivmod`              |                     |                 |                       |
 | **elementwise**   |                          |                     |                 |                       |
 | multiplication    | `vechadamard`            | `.hadamard`         |                 | `tenhadamard`         |
 | true division     | `vechadamardtruediv`     | `.hadamardtruediv`  |                 | `tenhadamardtruediv`  |
@@ -83,9 +84,11 @@ It operates on vectors of different lengths, treating them as infinite-dimension
  - [x] docstrings
  - [x] `numpy` routines
  - [x] multiaxis vectors: tensors?
+ - [ ] Complexity notes. Perfect complexity
  - [ ] `vecdivmod`, `vechadamardminmax`
  - [ ] never use `numpy.int64`, they don't detect overflows
  - [ ] sparse vectors (`dict`s)
+ - [ ] C++ & Java version
 
 ## License (MIT)
 
