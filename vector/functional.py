@@ -161,15 +161,15 @@ def vechadamard(*vs):
 
 def vechadamardtruediv(v, w):
     """Return the elementwise true division of two vectors."""
-    return tuple(map(truediv, v, w))
+    return tuple(map(truediv, v, chain(w, repeat(0))))
 
 def vechadamardfloordiv(v, w):
     """Return the elementwise floor division of two vectors."""
-    return tuple(map(floordiv, v, w))
+    return tuple(map(floordiv, v, chain(w, repeat(0))))
 
 def vechadamardmod(v, w):
     """Return the elementwise mod of two vectors."""
-    return tuple(map(mod, v, w))
+    return tuple(map(mod, v, chain(w, repeat(0))))
 
 def vechadamardmin(*vs):
     """Return the elementwise minimum of vectors."""

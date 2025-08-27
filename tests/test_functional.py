@@ -122,21 +122,18 @@ def test_vechadamard():
 
 def test_vechadamardtruediv():
     assert vechadamardtruediv((), ()) == ()
-    assert vechadamardtruediv((1,), ()) == ()
     assert vechadamardtruediv((), (1,)) == ()
-    assert vechadamardtruediv((1, 2, 3), (4, 5)) == (1/4, 2/5)
+    assert vechadamardtruediv((1, 2, 3), (4, 5, 6, 7)) == (1/4, 2/5, 3/6)
 
 def test_vechadamardfloordiv():
     assert vechadamardfloordiv((), ()) == ()
-    assert vechadamardfloordiv((1,), ()) == ()
     assert vechadamardfloordiv((), (1,)) == ()
-    assert vechadamardfloordiv((1, 5, 3), (4, 2)) == (0, 2)
+    assert vechadamardfloordiv((1, 5, 3), (4, 2, 6)) == (0, 2, 0)
 
 def test_vechadamardmod():
     assert vechadamardmod((), ()) == ()
-    assert vechadamardmod((1,), ()) == ()
     assert vechadamardmod((), (1,)) == ()
-    assert vechadamardmod((1, 2, 3), (4, 5)) == (1, 2)
+    assert vechadamardmod((1, 2, 3), (4, 5, 6)) == (1, 2, 3)
 
 def test_vechadamardmin():
     u = ( 3, 6, 1)
