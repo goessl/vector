@@ -43,7 +43,7 @@ def veceq(v, w):
     return all(starmap(eq, zip_longest(v, w, fillvalue=0)))
 
 def vectrim(v, tol=1e-9):
-    """Remove all trailing near zero (abs(v_i)<=tol) coefficients."""
+    """Remove all trailing near zero (`abs(v_i)<=tol`) coefficients."""
     #doesn't work for iterators
     #while v and abs(v[-1])<=tol:
     #    v = v[:-1]
@@ -93,12 +93,17 @@ def vecdot(v, w):
     return sum(map(mul, v, w))
 
 def vecparallel(v, w):
-    """Return if two vectors are parallel.
-    
-    `v` and `w` must be sequences, not exhaustible iterables.
-    """
-    #TODO: work for exhaustible iterables
-    return vecabsq(v)*vecabsq(w) == abs(vecdot(v, w))**2
+    """Return if two vectors are parallel."""
+    #doesn't work for exhaustible iterables
+    #return vecabsq(v)*vecabsq(w) == abs(vecdot(v, w))**2
+    v2, w2, vw = 0, 0, 0
+    for vi, wi in zip_longest(v, w, fillvalue=0):
+        via, wia = abs(vi), abs(wi)
+        v2 += via * via
+        w2 += wia * wia
+        vw += vi * wi
+    vw = abs(vw)
+    return v2 * w2 == vw * vw
 
 
 #vector space

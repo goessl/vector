@@ -42,7 +42,7 @@ def tendim(t):
     return np.asarray(t).shape
 
 def tentrim(t, tol=1e-9):
-    """Remove all trailing near zero (abs(v_i)<=tol) coefficients."""
+    """Remove all trailing near zero (`abs(v_i)<=tol`) coefficients."""
     t = np.asarray(t)
     for d in range(t.ndim): #reduce dimension
         i = (slice(None, None, None),)*d + (-1,) + (...,)
@@ -69,7 +69,7 @@ def tenneg(t):
 def tenaddc(t, c, i=(0,)):
     """Return `t` with `c` added to the `i`-th coefficient.
     
-    More efficient than `tenadd(v, tenbasis(i, c)`.
+    More efficient than `tenadd(v, tenbasis(i, c))`.
     """
     t = np.asarray(t)
     while t.ndim < len(i):
