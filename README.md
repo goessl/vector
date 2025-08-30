@@ -1,5 +1,3 @@
-<img src="docs/logo.png" alt="goessl vector logo" width="200"/>
-
 An infinite-dimensional vector Python package.
 ```python
 >>> from vector import vecadd
