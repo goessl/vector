@@ -494,18 +494,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#vector.functional.vecaddc" class="md-nav__link">
+  <a href="#vector.functional.vecadd" class="md-nav__link">
     <span class="md-ellipsis">
-      vecaddc
+      vecadd
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#vector.functional.vecadd" class="md-nav__link">
+  <a href="#vector.functional.vecaddc" class="md-nav__link">
     <span class="md-ellipsis">
-      vecadd
+      vecaddc
     </span>
   </a>
   
@@ -952,18 +952,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#vector.functional.vecaddc" class="md-nav__link">
+  <a href="#vector.functional.vecadd" class="md-nav__link">
     <span class="md-ellipsis">
-      vecaddc
+      vecadd
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#vector.functional.vecadd" class="md-nav__link">
+  <a href="#vector.functional.vecaddc" class="md-nav__link">
     <span class="md-ellipsis">
-      vecadd
+      vecaddc
     </span>
   </a>
   
@@ -1170,6 +1170,9 @@
     <div class="doc doc-contents ">
 
         <p>Zero vector.</p>
+<div class="arithmatex">\[
+    \vec{0}
+\]</div>
 
     </div>
 
@@ -1190,18 +1193,29 @@
     <div class="doc doc-contents ">
 
         <p>Return the <code>i</code>-th basis vector times <code>c</code>.</p>
+<div class="arithmatex">\[
+    c\vec{e}_i
+\]</div>
 <p>The returned value is a tuple with <code>i</code> zeros followed by <code>c</code>.</p>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecbasis</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the `i`-th basis vector times `c`.</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecbasis</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the `i`-th basis vector times `c`.</span>
+
+<span class="sd">    $$</span>
+<span class="sd">        c\vec{e}_i</span>
+<span class="sd">    $$</span>
 
 <span class="sd">    The returned value is a tuple with `i` zeros followed by `c`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1224,14 +1238,27 @@
     <div class="doc doc-contents ">
 
         <p>Return a random vector of <code>n</code> uniform coefficients in <code>[0, 1[</code>.</p>
+<div class="arithmatex">\[
+    \vec{v} \sim \mathcal{U}^n([0, 1[)
+\]</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecrand</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a random vector of `n` uniform coefficients in `[0, 1[`.&quot;&quot;&quot;</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecrand</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return a random vector of `n` uniform coefficients in `[0, 1[`.</span>
+
+<span class="sd">    $$</span>
+<span class="sd">        \vec{v} \sim \mathcal{U}^n([0, 1[)</span>
+<span class="sd">    $$</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">random</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1251,15 +1278,28 @@
     <div class="doc doc-contents ">
 
         <p>Return a random vector of <code>n</code> normal distributed coefficients.</p>
+<div class="arithmatex">\[
+    \vec{v} \sim \mathcal{N}^n(\mu, \sigma)
+\]</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecrandn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a random vector of `n` normal distributed coefficients.&quot;&quot;&quot;</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecrandn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return a random vector of `n` normal distributed coefficients.</span>
+
+<span class="sd">    $$</span>
+<span class="sd">        \vec{v} \sim \mathcal{N}^n(\mu, \sigma)</span>
+<span class="sd">    $$</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">v</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">gauss</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">vectruediv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">vecabs</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="k">if</span> <span class="n">normed</span> <span class="k">else</span> <span class="n">v</span>
 </code></pre></div></td></tr></table></div>
@@ -1316,14 +1356,27 @@
     <div class="doc doc-contents ">
 
         <p>Return if two vectors are equal.</p>
+<div class="arithmatex">\[
+    \vec{v} = \vec{w}
+\]</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veceq</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return if two vectors are equal.&quot;&quot;&quot;</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veceq</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return if two vectors are equal.</span>
+
+<span class="sd">    $$</span>
+<span class="sd">        \vec{v} = \vec{w}</span>
+<span class="sd">    $$</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="n">starmap</span><span class="p">(</span><span class="n">eq</span><span class="p">,</span> <span class="n">zip_longest</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">fillvalue</span><span class="o">=</span><span class="mi">0</span><span class="p">)))</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1347,19 +1400,19 @@
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vectrim</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vectrim</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove all trailing near zero (`abs(v_i)&lt;=tol`) coefficients.&quot;&quot;&quot;</span>
     <span class="c1">#doesn&#39;t work for iterators</span>
     <span class="c1">#while v and abs(v[-1])&lt;=tol:</span>
@@ -1390,14 +1443,27 @@
     <div class="doc doc-contents ">
 
         <p>Round all coefficients to the given precision.</p>
+<div class="arithmatex">\[
+    (\text{round}_\text{ndigits}(v_i))_i
+\]</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecround</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">ndigits</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Round all coefficients to the given precision.&quot;&quot;&quot;</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span>
+<span class="normal">93</span>
+<span class="normal">94</span>
+<span class="normal">95</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecround</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">ndigits</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Round all coefficients to the given precision.</span>
+
+<span class="sd">    $$</span>
+<span class="sd">        (\text{round}_\text{ndigits}(v_i))_i</span>
+<span class="sd">    $$</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">ndigits</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">v</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1417,14 +1483,48 @@
     <div class="doc doc-contents ">
 
         <p>Pad <code>n</code> many <code>fill</code>s to the beginning of the vector.</p>
+<div class="arithmatex">\[
+    (v_{i-n})_i \qquad \begin{pmatrix}
+        0 \\
+        \vdots \\
+        0 \\
+        v_0 \\
+        v_1 \\
+        \vdots
+    \end{pmatrix}
+\]</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecrshift</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Pad `n` many `fill`s to the beginning of the vector.&quot;&quot;&quot;</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecrshift</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Pad `n` many `fill`s to the beginning of the vector.</span>
+
+<span class="sd">    $$</span>
+<span class="sd">        (v_{i-n})_i \qquad \begin{pmatrix}</span>
+<span class="sd">            0 \\</span>
+<span class="sd">            \vdots \\</span>
+<span class="sd">            0 \\</span>
+<span class="sd">            v_0 \\</span>
+<span class="sd">            v_1 \\</span>
+<span class="sd">            \vdots</span>
+<span class="sd">        \end{pmatrix}</span>
+<span class="sd">    $$</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">chain</span><span class="p">((</span><span class="n">fill</span><span class="p">,)</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1444,14 +1544,39 @@
     <div class="doc doc-contents ">
 
         <p>Remove <code>n</code> many coefficients at the beginning of the vector.</p>
+<div class="arithmatex">\[
+    (v_{i+n})_i \qquad \begin{pmatrix}
+        v_n \\
+        v_{n+1} \\
+        \vdots
+    \end{pmatrix}
+\]</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclshift</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove `n` many coefficients at the beginning of the vector.&quot;&quot;&quot;</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclshift</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Remove `n` many coefficients at the beginning of the vector.</span>
+
+<span class="sd">    $$</span>
+<span class="sd">        (v_{i+n})_i \qquad \begin{pmatrix}</span>
+<span class="sd">            v_n \\</span>
+<span class="sd">            v_{n+1} \\</span>
+<span class="sd">            \vdots</span>
+<span class="sd">        \end{pmatrix}</span>
+<span class="sd">    $$</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">islice</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1507,15 +1632,43 @@
     <div class="doc doc-contents ">
 
         <p>Return the sum of absolute squares of the coefficients.</p>
+<div class="arithmatex">\[
+    ||\vec{v}||_{L_2}^2 = \sum_i|v_i|^2
+\]</div>
 
+
+<details class="references" open>
+  <summary>References</summary>
+  <ul>
+<li><a href="https://docs.python.org/3/library/itertools.html#itertools-recipes">https://docs.python.org/3/library/itertools.html#itertools-recipes</a>: <code>sum_of_squares</code></li>
+</ul>
+</details>
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">73</span>
-<span class="normal">74</span>
-<span class="normal">75</span>
-<span class="normal">76</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecabsq</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the sum of absolute squares of the coefficients.&quot;&quot;&quot;</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecabsq</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the sum of absolute squares of the coefficients.</span>
+
+<span class="sd">    $$</span>
+<span class="sd">        ||\vec{v}||_{L_2}^2 = \sum_i|v_i|^2</span>
+<span class="sd">    $$</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    - &lt;https://docs.python.org/3/library/itertools.html#itertools-recipes&gt;: `sum_of_squares`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1">#return sumprod(v, v) #no abs</span>
     <span class="k">return</span> <span class="n">sumprod</span><span class="p">(</span><span class="o">*</span><span class="n">tee</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">abs</span><span class="p">,</span> <span class="n">v</span><span class="p">),</span> <span class="mi">2</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
@@ -1536,23 +1689,34 @@
     <div class="doc doc-contents ">
 
         <p>Return the Euclidean/L2-norm.</p>
-<p>Returns the square root of <code>vecabsq</code>.</p>
+<div class="arithmatex">\[
+    ||\vec{v}||_{L_2} = \sqrt{\sum_i|v_i|^2}
+\]</div>
+<p>Returns the square root of <a class="autorefs autorefs-internal" title="            vecabsq(v)" href="#vector.functional.vecabsq"><code>vecabsq</code></a>.</p>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">78</span>
-<span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span>
-<span class="normal">86</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecabs</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the Euclidean/L2-norm.</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecabs</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the Euclidean/L2-norm.</span>
 
-<span class="sd">    Returns the square root of `vecabsq`.</span>
+<span class="sd">    $$</span>
+<span class="sd">        ||\vec{v}||_{L_2} = \sqrt{\sum_i|v_i|^2}</span>
+<span class="sd">    $$</span>
+
+<span class="sd">    Returns the square root of [`vecabsq`][vector.functional.vecabsq].</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1">#hypot(*v) doesn&#39;t work for complex</span>
     <span class="c1">#math.sqrt doesn&#39;t work for complex and cmath.sqrt always returns complex</span>
@@ -1576,17 +1740,30 @@
     <div class="doc doc-contents ">
 
         <p>Return the inner product of two vectors without conjugation.</p>
+<div class="arithmatex">\[
+    \vec{v}\cdot\vec{w} = \sum_iv_iw_i
+\]</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">88</span>
-<span class="normal">89</span>
-<span class="normal">90</span>
-<span class="normal">91</span>
-<span class="normal">92</span>
-<span class="normal">93</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecdot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the inner product of two vectors without conjugation.&quot;&quot;&quot;</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecdot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the inner product of two vectors without conjugation.</span>
+
+<span class="sd">    $$</span>
+<span class="sd">        \vec{v}\cdot\vec{w} = \sum_iv_iw_i</span>
+<span class="sd">    $$</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1">#unreadable and doesn&#39;t work for generators</span>
     <span class="c1">#return sumprod(v[:min(len(v), len(w))], w[:min(len(v), len(w))])</span>
     <span class="c1">#return sumprod(*zip(*zip(v, w))) #would be more precise, but is bloat</span>
@@ -1609,23 +1786,36 @@
     <div class="doc doc-contents ">
 
         <p>Return if two vectors are parallel.</p>
+<div class="arithmatex">\[
+    \vec{v}\parallel\vec{w} \qquad ||\vec{v}||||\vec{w}|| \overset{?}{=} |\vec{v}\vec{w}|^2
+\]</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 95</span>
-<span class="normal"> 96</span>
-<span class="normal"> 97</span>
-<span class="normal"> 98</span>
-<span class="normal"> 99</span>
-<span class="normal">100</span>
-<span class="normal">101</span>
-<span class="normal">102</span>
-<span class="normal">103</span>
-<span class="normal">104</span>
-<span class="normal">105</span>
-<span class="normal">106</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecparallel</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return if two vectors are parallel.&quot;&quot;&quot;</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecparallel</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return if two vectors are parallel.</span>
+
+<span class="sd">    $$</span>
+<span class="sd">        \vec{v}\parallel\vec{w} \qquad ||\vec{v}||||\vec{w}|| \overset{?}{=} |\vec{v}\vec{w}|^2</span>
+<span class="sd">    $$</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1">#doesn&#39;t work for exhaustible iterables</span>
     <span class="c1">#return vecabsq(v)*vecabsq(w) == abs(vecdot(v, w))**2</span>
     <span class="n">v2</span><span class="p">,</span> <span class="n">w2</span><span class="p">,</span> <span class="n">vw</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
@@ -1690,14 +1880,27 @@
     <div class="doc doc-contents ">
 
         <p>Return the vector with the unary positive operator applied.</p>
+<div class="arithmatex">\[
+    +\vec{v}
+\]</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">110</span>
-<span class="normal">111</span>
-<span class="normal">112</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecpos</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the vector with the unary positive operator applied.&quot;&quot;&quot;</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecpos</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the vector with the unary positive operator applied.</span>
+
+<span class="sd">    $$</span>
+<span class="sd">        +\vec{v}</span>
+<span class="sd">    $$</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1717,55 +1920,28 @@
     <div class="doc doc-contents ">
 
         <p>Return the vector with the unary negative operator applied.</p>
+<div class="arithmatex">\[
+    -\vec{v}
+\]</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">114</span>
-<span class="normal">115</span>
-<span class="normal">116</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecneg</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the vector with the unary negative operator applied.&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">neg</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
-</code></pre></div></td></tr></table></div>
-            </details>
-    </div>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecneg</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the vector with the unary negative operator applied.</span>
 
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h3 id="vector.functional.vecaddc" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vecaddc</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
-
-</h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Return <code>v</code> with <code>c</code> added to the <code>i</code>-th coefficient.</p>
-<p>More efficient than <code>vecadd(v, vecbasis(i, c))</code>.</p>
-
-
-            <details class="quote">
-              <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">118</span>
-<span class="normal">119</span>
-<span class="normal">120</span>
-<span class="normal">121</span>
-<span class="normal">122</span>
-<span class="normal">123</span>
-<span class="normal">124</span>
-<span class="normal">125</span>
-<span class="normal">126</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecaddc</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return `v` with `c` added to the `i`-th coefficient.</span>
-
-<span class="sd">    More efficient than `vecadd(v, vecbasis(i, c))`.</span>
+<span class="sd">    $$</span>
+<span class="sd">        -\vec{v}</span>
+<span class="sd">    $$</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">v</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-    <span class="n">v</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">c</span>
-    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">neg</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -1784,15 +1960,79 @@
     <div class="doc doc-contents ">
 
         <p>Return the sum of vectors.</p>
+<div class="arithmatex">\[
+    \vec{v}_0 + \vec{v}_1 + \cdots
+\]</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">128</span>
-<span class="normal">129</span>
-<span class="normal">130</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecadd</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the sum of vectors.&quot;&quot;&quot;</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecadd</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the sum of vectors.</span>
+
+<span class="sd">    $$</span>
+<span class="sd">        \vec{v}_0 + \vec{v}_1 + \cdots</span>
+<span class="sd">    $$</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="n">zip_longest</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">,</span> <span class="n">fillvalue</span><span class="o">=</span><span class="mi">0</span><span class="p">)))</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="vector.functional.vecaddc" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vecaddc</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return <code>v</code> with <code>c</code> added to the <code>i</code>-th coefficient.</p>
+<div class="arithmatex">\[
+    \vec{v} + c\vec{e}_i
+\]</div>
+<p>More efficient than <code>vecadd(v, vecbasis(i, c))</code>.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>vector\functional.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecaddc</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return `v` with `c` added to the `i`-th coefficient.</span>
+
+<span class="sd">    $$</span>
+<span class="sd">        \vec{v} + c\vec{e}_i</span>
+<span class="sd">    $$</span>
+
+<span class="sd">    More efficient than `vecadd(v, vecbasis(i, c))`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="n">v</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">c</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -1811,14 +2051,27 @@
     <div class="doc doc-contents ">
 
         <p>Return the difference of two vectors.</p>
+<div class="arithmatex">\[
+    \vec{v} - \vec{w}
+\]</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">132</span>
-<span class="normal">133</span>
-<span class="normal">134</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecsub</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the difference of two vectors.&quot;&quot;&quot;</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecsub</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the difference of two vectors.</span>
+
+<span class="sd">    $$</span>
+<span class="sd">        \vec{v} - \vec{w}</span>
+<span class="sd">    $$</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">starmap</span><span class="p">(</span><span class="n">sub</span><span class="p">,</span> <span class="n">zip_longest</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">fillvalue</span><span class="o">=</span><span class="mi">0</span><span class="p">)))</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1838,14 +2091,27 @@
     <div class="doc doc-contents ">
 
         <p>Return the product of a scalar and a vector.</p>
+<div class="arithmatex">\[
+    a\vec{v}
+\]</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">136</span>
-<span class="normal">137</span>
-<span class="normal">138</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the product of a scalar and a vector.&quot;&quot;&quot;</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the product of a scalar and a vector.</span>
+
+<span class="sd">    $$</span>
+<span class="sd">        a\vec{v}</span>
+<span class="sd">    $$</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">mul</span><span class="p">,</span> <span class="n">repeat</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">v</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1865,14 +2131,27 @@
     <div class="doc doc-contents ">
 
         <p>Return the true division of a vector and a scalar.</p>
+<div class="arithmatex">\[
+    \frac{\vec{v}}{a}
+\]</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">140</span>
-<span class="normal">141</span>
-<span class="normal">142</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vectruediv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the true division of a vector and a scalar.&quot;&quot;&quot;</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vectruediv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the true division of a vector and a scalar.</span>
+
+<span class="sd">    $$</span>
+<span class="sd">        \frac{\vec{v}}{a}</span>
+<span class="sd">    $$</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">truediv</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">repeat</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1892,14 +2171,27 @@
     <div class="doc doc-contents ">
 
         <p>Return the floor division of a vector and a scalar.</p>
+<div class="arithmatex">\[
+    \left(\left\lfloor\frac{v_i}{a}\right\rfloor\right)_i
+\]</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">144</span>
-<span class="normal">145</span>
-<span class="normal">146</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecfloordiv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the floor division of a vector and a scalar.&quot;&quot;&quot;</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecfloordiv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the floor division of a vector and a scalar.</span>
+
+<span class="sd">    $$</span>
+<span class="sd">        \left(\left\lfloor\frac{v_i}{a}\right\rfloor\right)_i</span>
+<span class="sd">    $$</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">floordiv</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">repeat</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1919,14 +2211,27 @@
     <div class="doc doc-contents ">
 
         <p>Return the elementwise mod of a vector and a scalar.</p>
+<div class="arithmatex">\[
+    \left(v_i \mod a\right)_i
+\]</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">148</span>
-<span class="normal">149</span>
-<span class="normal">150</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the elementwise mod of a vector and a scalar.&quot;&quot;&quot;</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise mod of a vector and a scalar.</span>
+
+<span class="sd">    $$</span>
+<span class="sd">        \left(v_i \mod a\right)_i</span>
+<span class="sd">    $$</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">repeat</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1946,19 +2251,32 @@
     <div class="doc doc-contents ">
 
         <p>Return the elementwise divmod of a vector and a scalar.</p>
+<div class="arithmatex">\[
+    \left(\lfloor v_i \mod a\rfloor\right)_i, \ \left(v_i \mod a\right)_i
+\]</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">152</span>
-<span class="normal">153</span>
-<span class="normal">154</span>
-<span class="normal">155</span>
-<span class="normal">156</span>
-<span class="normal">157</span>
-<span class="normal">158</span>
-<span class="normal">159</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecdivmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the elementwise divmod of a vector and a scalar.&quot;&quot;&quot;</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecdivmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise divmod of a vector and a scalar.</span>
+
+<span class="sd">    $$</span>
+<span class="sd">        \left(\lfloor v_i \mod a\rfloor\right)_i, \ \left(v_i \mod a\right)_i</span>
+<span class="sd">    $$</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">q</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">vi</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>
         <span class="n">qi</span><span class="p">,</span> <span class="n">ri</span> <span class="o">=</span> <span class="nb">divmod</span><span class="p">(</span><span class="n">vi</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
@@ -2019,14 +2337,27 @@
     <div class="doc doc-contents ">
 
         <p>Return the elementwise product of vectors.</p>
+<div class="arithmatex">\[
+    \left((\vec{v}_0)_i \cdot (\vec{v}_1)_i \cdot \cdots\right)_i
+\]</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">163</span>
-<span class="normal">164</span>
-<span class="normal">165</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamard</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the elementwise product of vectors.&quot;&quot;&quot;</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamard</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise product of vectors.</span>
+
+<span class="sd">    $$</span>
+<span class="sd">        \left((\vec{v}_0)_i \cdot (\vec{v}_1)_i \cdot \cdots\right)_i</span>
+<span class="sd">    $$</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">prod</span><span class="p">,</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">)))</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -2046,14 +2377,27 @@
     <div class="doc doc-contents ">
 
         <p>Return the elementwise true division of two vectors.</p>
+<div class="arithmatex">\[
+    \left(\frac{v_i}{w_i}\right)_i
+\]</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">167</span>
-<span class="normal">168</span>
-<span class="normal">169</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardtruediv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the elementwise true division of two vectors.&quot;&quot;&quot;</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardtruediv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise true division of two vectors.</span>
+
+<span class="sd">    $$</span>
+<span class="sd">        \left(\frac{v_i}{w_i}\right)_i</span>
+<span class="sd">    $$</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">truediv</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">chain</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">repeat</span><span class="p">(</span><span class="mi">0</span><span class="p">))))</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -2073,14 +2417,27 @@
     <div class="doc doc-contents ">
 
         <p>Return the elementwise floor division of two vectors.</p>
+<div class="arithmatex">\[
+    \left(\left\lfloor\frac{v_i}{w_i}\right\rfloor\right)_i
+\]</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">171</span>
-<span class="normal">172</span>
-<span class="normal">173</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardfloordiv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the elementwise floor division of two vectors.&quot;&quot;&quot;</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardfloordiv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise floor division of two vectors.</span>
+
+<span class="sd">    $$</span>
+<span class="sd">        \left(\left\lfloor\frac{v_i}{w_i}\right\rfloor\right)_i</span>
+<span class="sd">    $$</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">floordiv</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">chain</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">repeat</span><span class="p">(</span><span class="mi">0</span><span class="p">))))</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -2100,14 +2457,27 @@
     <div class="doc doc-contents ">
 
         <p>Return the elementwise mod of two vectors.</p>
+<div class="arithmatex">\[
+    \left(v_i \mod w_i\right)_i
+\]</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">175</span>
-<span class="normal">176</span>
-<span class="normal">177</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the elementwise mod of two vectors.&quot;&quot;&quot;</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">317</span>
+<span class="normal">318</span>
+<span class="normal">319</span>
+<span class="normal">320</span>
+<span class="normal">321</span>
+<span class="normal">322</span>
+<span class="normal">323</span>
+<span class="normal">324</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise mod of two vectors.</span>
+
+<span class="sd">    $$</span>
+<span class="sd">        \left(v_i \mod w_i\right)_i</span>
+<span class="sd">    $$</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">chain</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">repeat</span><span class="p">(</span><span class="mi">0</span><span class="p">))))</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -2127,14 +2497,27 @@
     <div class="doc doc-contents ">
 
         <p>Return the elementwise minimum of vectors.</p>
+<div class="arithmatex">\[
+    \left(\min((\vec{v}_0)_i, (\vec{v}_1)_i, \cdots)\right)_i
+\]</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">179</span>
-<span class="normal">180</span>
-<span class="normal">181</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardmin</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the elementwise minimum of vectors.&quot;&quot;&quot;</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">326</span>
+<span class="normal">327</span>
+<span class="normal">328</span>
+<span class="normal">329</span>
+<span class="normal">330</span>
+<span class="normal">331</span>
+<span class="normal">332</span>
+<span class="normal">333</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardmin</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise minimum of vectors.</span>
+
+<span class="sd">    $$</span>
+<span class="sd">        \left(\min((\vec{v}_0)_i, (\vec{v}_1)_i, \cdots)\right)_i</span>
+<span class="sd">    $$</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">min</span><span class="p">,</span> <span class="n">zip_longest</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">,</span> <span class="n">fillvalue</span><span class="o">=</span><span class="n">inf</span><span class="p">)))</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -2154,14 +2537,27 @@
     <div class="doc doc-contents ">
 
         <p>Return the elementwise maximum of vectors.</p>
+<div class="arithmatex">\[
+    \left(\max((\vec{v}_0)_i, (\vec{v}_1)_i, \cdots)\right)_i
+\]</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">183</span>
-<span class="normal">184</span>
-<span class="normal">185</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardmax</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the elementwise maximum of vectors.&quot;&quot;&quot;</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">335</span>
+<span class="normal">336</span>
+<span class="normal">337</span>
+<span class="normal">338</span>
+<span class="normal">339</span>
+<span class="normal">340</span>
+<span class="normal">341</span>
+<span class="normal">342</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardmax</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise maximum of vectors.</span>
+
+<span class="sd">    $$</span>
+<span class="sd">        \left(\max((\vec{v}_0)_i, (\vec{v}_1)_i, \cdots)\right)_i</span>
+<span class="sd">    $$</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">max</span><span class="p">,</span> <span class="n">zip_longest</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">,</span> <span class="n">fillvalue</span><span class="o">=-</span><span class="n">inf</span><span class="p">)))</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -2293,6 +2689,10 @@
     
     
       <script src="../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+        <script src="../mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

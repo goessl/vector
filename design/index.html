@@ -562,9 +562,11 @@ But the package might be used for pure integers/integer arithmetic.
 <code>truediv</code>/<code>floordiv</code> is unambiguous.</p>
 <p>Like Python <code>operator</code>s.</p>
 <h2 id="vecabsqv"><code>vecabsq(v)</code></h2>
-<p>Reasons why it exists:
-- Occurs in math.
-- Most importantly: type independent because it doesn't use <code>sqrt</code>.</p>
+<p>Reasons why it exists:</p>
+<ul>
+<li>Occurs in math.</li>
+<li>Most importantly: type independent because it doesn't use <code>sqrt</code>.</li>
+</ul>
 <h2 id="trim"><code>trim</code></h2>
 <p>cutting of elements that are <code>abs(vi)&lt;=tol</code> instead of <code>abs(vi)&lt;tol</code> to allow cutting of exactly just zeros by <code>trim(v, 0)</code> instead of <code>trim(v, sys.float_info.min)</code>.</p>
 <p><code>tol=1e-9</code> like in <a href="https://peps.python.org/pep-0485/#defaults">PEP 485</a>.</p>
@@ -681,6 +683,10 @@ But the package might be used for pure integers/integer arithmetic.
     
     
       <script src="../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+        <script src="../mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>
