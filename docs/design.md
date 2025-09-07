@@ -20,6 +20,7 @@ Like Python `operator`s.
 ## `vecabsq(v)`
 
 Reasons why it exists:
+
 - Occurs in math.
 - Most importantly: type independent because it doesn't use `sqrt`.
 

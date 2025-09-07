@@ -59,8 +59,8 @@ The functions are *type-independent*. However, the data types used must *support
       members:
         - vecpos
         - vecneg
-        - vecaddc
         - vecadd
+        - vecaddc
         - vecsub
         - vecmul
         - vectruediv

@@ -55,9 +55,16 @@ plugins:
           show_labels: false
           show_root_toc_entry: false
           show_symbol_type_heading: true
+          docstring_style: numpy
 
-markdown_extensions: #only for material, not for readthedocs
+markdown_extensions:
   - pymdownx.highlight
   - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
   - pymdownx.tasklist:
       custom_checkbox: true
+
+extra_javascript:
+  - mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js

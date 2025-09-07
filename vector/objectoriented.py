@@ -2,7 +2,7 @@ from .functional import *
 
 
 
-__all__ = ['Vector']
+__all__ = ('Vector',)
 
 
 
@@ -11,7 +11,6 @@ class Vector:
     
     Its coefficients are internally stored as a tuple in the `coef` attribute.
     """
-    __slots__ = ['coef']
     
     #creation
     def __init__(self, coef):

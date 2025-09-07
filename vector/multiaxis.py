@@ -3,12 +3,12 @@ from .functional import vechadamardmax
 
 
 
-__all__ = ['tenzero', 'tenbasis', 'tenrand', 'tenrandn',
-        'tenrank', 'tendim', 'tentrim', 'tenround',
-        'tenpos', 'tenneg', 'tenaddc', 'tenadd', 'tensub', 'tenmul',
-        'tentruediv', 'tenfloordiv', 'tenmod',
-        'tenhadamard', 'tenhadamardtruediv',
-        'tenhadamardfloordiv', 'tenhadamardmod']
+__all__ = ('tenzero', 'tenbasis', 'tenrand', 'tenrandn',
+           'tenrank', 'tendim', 'tentrim', 'tenround',
+           'tenpos', 'tenneg', 'tenaddc', 'tenadd', 'tensub', 'tenmul',
+           'tentruediv', 'tenfloordiv', 'tenmod',
+           'tenhadamard', 'tenhadamardtruediv',
+           'tenhadamardfloordiv', 'tenhadamardmod')
 
 
 

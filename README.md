@@ -25,7 +25,7 @@ pip install git+https://github.com/goessl/vector.git
 
 ## Usage
 
-Read the [documentation webpage](https://goessl.github.io/vector) or read the [raw markdown](docs/index.md).
+**Enjoy the [documentation webpage](https://goessl.github.io/vector).**
 
 ## todo
 
@@ -42,10 +42,9 @@ Read the [documentation webpage](https://goessl.github.io/vector) or read the [r
 
 - all modules imported in `__init__.py`?
 - all functions and classes exposed in `__all__` of every module?
-- all docstrings copied to `README.md`?
-- `README.md` and `docs` synchronised?
 - all tests written?
 - all tests passed?
+- website deployed?
 
 ## License (MIT)
 

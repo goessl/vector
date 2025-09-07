@@ -5,41 +5,70 @@ from operator import pos, neg, sub, mul, truediv, floordiv, mod, eq
 
 
 
-__all__ = ['veczero', 'vecbasis', 'vecrand', 'vecrandn',
-        'veceq', 'vectrim', 'vecround', 'vecrshift', 'veclshift',
-        'vecabsq', 'vecabs', 'vecdot', 'vecparallel',
-        'vecpos', 'vecneg', 'vecaddc', 'vecadd', 'vecsub',
-        'vecmul', 'vectruediv', 'vecfloordiv', 'vecmod', 'vecdivmod',
-        'vechadamard', 'vechadamardtruediv',
-        'vechadamardfloordiv', 'vechadamardmod',
-        'vechadamardmin', 'vechadamardmax']
+__all__ = (#creation
+           'veczero', 'vecbasis', 'vecrand', 'vecrandn',
+           #utility
+           'veceq', 'vectrim', 'vecround', 'vecrshift', 'veclshift',
+           #Hilbert space
+           'vecabsq',  'vecabs',  'vecdot', 'vecparallel',
+           #vector space
+           'vecpos', 'vecneg', 'vecadd', 'vecaddc', 'vecsub',
+           'vecmul', 'vectruediv', 'vecfloordiv', 'vecmod', 'vecdivmod',
+           #elementwise
+           'vechadamard', 'vechadamardtruediv',
+           'vechadamardfloordiv', 'vechadamardmod',
+           'vechadamardmin', 'vechadamardmax')
 
 
 
 #creation
 veczero = ()
-"""Zero vector."""
+r"""Zero vector.
+
+$$
+    \vec{0}
+$$
+"""
 
 def vecbasis(i, c=1):
-    """Return the `i`-th basis vector times `c`.
+    r"""Return the `i`-th basis vector times `c`.
+    
+    $$
+        c\vec{e}_i
+    $$
     
     The returned value is a tuple with `i` zeros followed by `c`.
     """
     return (0,)*i + (c,)
 
 def vecrand(n):
-    """Return a random vector of `n` uniform coefficients in `[0, 1[`."""
+    r"""Return a random vector of `n` uniform coefficients in `[0, 1[`.
+    
+    $$
+        \vec{v} \sim \mathcal{U}^n([0, 1[)
+    $$
+    """
     return tuple(random() for _ in range(n))
 
 def vecrandn(n, normed=True, mu=0, sigma=1):
-    """Return a random vector of `n` normal distributed coefficients."""
+    r"""Return a random vector of `n` normal distributed coefficients.
+    
+    $$
+        \vec{v} \sim \mathcal{N}^n(\mu, \sigma)
+    $$
+    """
     v = tuple(gauss(mu, sigma) for _ in range(n))
     return vectruediv(v, vecabs(v)) if normed else v
 
 
 #utility
 def veceq(v, w):
-    """Return if two vectors are equal."""
+    r"""Return if two vectors are equal.
+    
+    $$
+        \vec{v} = \vec{w}
+    $$
+    """
     return all(starmap(eq, zip_longest(v, w, fillvalue=0)))
 
 def vectrim(v, tol=1e-9):
@@ -57,28 +86,67 @@ def vectrim(v, tol=1e-9):
     return tuple(r)
 
 def vecround(v, ndigits=None):
-    """Round all coefficients to the given precision."""
+    r"""Round all coefficients to the given precision.
+    
+    $$
+        (\text{round}_\text{ndigits}(v_i))_i
+    $$
+    """
     return tuple(round(c, ndigits) for c in v)
 
 def vecrshift(v, n, fill=0):
-    """Pad `n` many `fill`s to the beginning of the vector."""
+    r"""Pad `n` many `fill`s to the beginning of the vector.
+    
+    $$
+        (v_{i-n})_i \qquad \begin{pmatrix}
+            0 \\
+            \vdots \\
+            0 \\
+            v_0 \\
+            v_1 \\
+            \vdots
+        \end{pmatrix}
+    $$
+    """
     return tuple(chain((fill,)*n, v))
 
 def veclshift(v, n):
-    """Remove `n` many coefficients at the beginning of the vector."""
+    r"""Remove `n` many coefficients at the beginning of the vector.
+    
+    $$
+        (v_{i+n})_i \qquad \begin{pmatrix}
+            v_n \\
+            v_{n+1} \\
+            \vdots
+        \end{pmatrix}
+    $$
+    """
     return tuple(islice(v, n, None))
 
 
 #Hilbert space
 def vecabsq(v):
-    """Return the sum of absolute squares of the coefficients."""
+    r"""Return the sum of absolute squares of the coefficients.
+    
+    $$
+        ||\vec{v}||_{L_2}^2 = \sum_i|v_i|^2
+    $$
+    
+    References
+    ----------
+    - <https://docs.python.org/3/library/itertools.html#itertools-recipes>: `sum_of_squares`
+    """
     #return sumprod(v, v) #no abs
     return sumprod(*tee(map(abs, v), 2))
 
 def vecabs(v):
-    """Return the Euclidean/L2-norm.
+    r"""Return the Euclidean/L2-norm.
     
-    Returns the square root of `vecabsq`.
+    $$
+        ||\vec{v}||_{L_2} = \sqrt{\sum_i|v_i|^2}
+    $$
+    
+    Returns the square root of [`vecabsq`][vector.functional.vecabsq].
     """
     #hypot(*v) doesn't work for complex
     #math.sqrt doesn't work for complex and cmath.sqrt always returns complex
@@ -86,14 +154,24 @@ def vecabs(v):
     return vecabsq(v)**0.5
 
 def vecdot(v, w):
-    """Return the inner product of two vectors without conjugation."""
+    r"""Return the inner product of two vectors without conjugation.
+    
+    $$
+        \vec{v}\cdot\vec{w} = \sum_iv_iw_i
+    $$
+    """
     #unreadable and doesn't work for generators
     #return sumprod(v[:min(len(v), len(w))], w[:min(len(v), len(w))])
     #return sumprod(*zip(*zip(v, w))) #would be more precise, but is bloat
     return sum(map(mul, v, w))
 
 def vecparallel(v, w):
-    """Return if two vectors are parallel."""
+    r"""Return if two vectors are parallel.
+    
+    $$
+        \vec{v}\parallel\vec{w} \qquad ||\vec{v}||||\vec{w}|| \overset{?}{=} |\vec{v}\vec{w}|^2
+    $$
+    """
     #doesn't work for exhaustible iterables
     #return vecabsq(v)*vecabsq(w) == abs(vecdot(v, w))**2
     v2, w2, vw = 0, 0, 0
@@ -108,15 +186,38 @@ def vecparallel(v, w):
 
 #vector space
 def vecpos(v):
-    """Return the vector with the unary positive operator applied."""
+    r"""Return the vector with the unary positive operator applied.
+    
+    $$
+        +\vec{v}
+    $$
+    """
     return tuple(map(pos, v))
 
 def vecneg(v):
-    """Return the vector with the unary negative operator applied."""
+    r"""Return the vector with the unary negative operator applied.
+    
+    $$
+        -\vec{v}
+    $$
+    """
     return tuple(map(neg, v))
 
+def vecadd(*vs):
+    r"""Return the sum of vectors.
+    
+    $$
+        \vec{v}_0 + \vec{v}_1 + \cdots
+    $$
+    """
+    return tuple(map(sum, zip_longest(*vs, fillvalue=0)))
+
 def vecaddc(v, c, i=0):
-    """Return `v` with `c` added to the `i`-th coefficient.
+    r"""Return `v` with `c` added to the `i`-th coefficient.
+    
+    $$
+        \vec{v} + c\vec{e}_i
+    $$
     
     More efficient than `vecadd(v, vecbasis(i, c))`.
     """
@@ -125,32 +226,58 @@ def vecaddc(v, c, i=0):
     v[i] += c
     return tuple(v)
 
-def vecadd(*vs):
-    """Return the sum of vectors."""
-    return tuple(map(sum, zip_longest(*vs, fillvalue=0)))
-
 def vecsub(v, w):
-    """Return the difference of two vectors."""
+    r"""Return the difference of two vectors.
+    
+    $$
+        \vec{v} - \vec{w}
+    $$
+    """
     return tuple(starmap(sub, zip_longest(v, w, fillvalue=0)))
 
 def vecmul(a, v):
-    """Return the product of a scalar and a vector."""
+    r"""Return the product of a scalar and a vector.
+    
+    $$
+        a\vec{v}
+    $$
+    """
     return tuple(map(mul, repeat(a), v))
 
 def vectruediv(v, a):
-    """Return the true division of a vector and a scalar."""
+    r"""Return the true division of a vector and a scalar.
+    
+    $$
+        \frac{\vec{v}}{a}
+    $$
+    """
     return tuple(map(truediv, v, repeat(a)))
 
 def vecfloordiv(v, a):
-    """Return the floor division of a vector and a scalar."""
+    r"""Return the floor division of a vector and a scalar.
+    
+    $$
+        \left(\left\lfloor\frac{v_i}{a}\right\rfloor\right)_i
+    $$
+    """
     return tuple(map(floordiv, v, repeat(a)))
 
 def vecmod(v, a):
-    """Return the elementwise mod of a vector and a scalar."""
+    r"""Return the elementwise mod of a vector and a scalar.
+    
+    $$
+        \left(v_i \mod a\right)_i
+    $$
+    """
     return tuple(map(mod, v, repeat(a)))
 
 def vecdivmod(v, a):
-    """Return the elementwise divmod of a vector and a scalar."""
+    r"""Return the elementwise divmod of a vector and a scalar.
+    
+    $$
+        \left(\lfloor v_i \mod a\rfloor\right)_i, \ \left(v_i \mod a\right)_i
+    $$
+    """
     q, r = [], []
     for vi in v:
         qi, ri = divmod(vi, a)
@@ -161,27 +288,57 @@ def vecdivmod(v, a):
 
 #elementwise
 def vechadamard(*vs):
-    """Return the elementwise product of vectors."""
+    r"""Return the elementwise product of vectors.
+    
+    $$
+        \left((\vec{v}_0)_i \cdot (\vec{v}_1)_i \cdot \cdots\right)_i
+    $$
+    """
     return tuple(map(prod, zip(*vs)))
 
 def vechadamardtruediv(v, w):
-    """Return the elementwise true division of two vectors."""
+    r"""Return the elementwise true division of two vectors.
+    
+    $$
+        \left(\frac{v_i}{w_i}\right)_i
+    $$
+    """
     return tuple(map(truediv, v, chain(w, repeat(0))))
 
 def vechadamardfloordiv(v, w):
-    """Return the elementwise floor division of two vectors."""
+    r"""Return the elementwise floor division of two vectors.
+    
+    $$
+        \left(\left\lfloor\frac{v_i}{w_i}\right\rfloor\right)_i
+    $$
+    """
     return tuple(map(floordiv, v, chain(w, repeat(0))))
 
 def vechadamardmod(v, w):
-    """Return the elementwise mod of two vectors."""
+    r"""Return the elementwise mod of two vectors.
+    
+    $$
+        \left(v_i \mod w_i\right)_i
+    $$
+    """
     return tuple(map(mod, v, chain(w, repeat(0))))
 
 def vechadamardmin(*vs):
-    """Return the elementwise minimum of vectors."""
+    r"""Return the elementwise minimum of vectors.
+    
+    $$
+        \left(\min((\vec{v}_0)_i, (\vec{v}_1)_i, \cdots)\right)_i
+    $$
+    """
     return tuple(map(min, zip_longest(*vs, fillvalue=inf)))
 
 def vechadamardmax(*vs):
-    """Return the elementwise maximum of vectors."""
+    r"""Return the elementwise maximum of vectors.
+    
+    $$
+        \left(\max((\vec{v}_0)_i, (\vec{v}_1)_i, \cdots)\right)_i
+    $$
+    """
     return tuple(map(max, zip_longest(*vs, fillvalue=-inf)))
 
 def vechadamardminmax(*vs):

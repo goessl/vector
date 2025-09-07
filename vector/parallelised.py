@@ -4,11 +4,11 @@ from .functional import veceq
 
 
 
-__all__ = ['vecnpzero', 'vecnpbasis', 'vecnprand', 'vecnprandn',
-        'vecnpdim', 'vecnpeq', 'vecnptrim', 'vecnpround',
-        'vecnpabsq', 'vecnpabs', 'vecnpdot', 'vecnpparallel',
-        'vecnppos', 'vecnpneg', 'vecnpadd', 'vecnpsub',
-        'vecnpmul', 'vecnptruediv', 'vecnpfloordiv', 'vecnpmod']
+__all__ = ('vecnpzero', 'vecnpbasis', 'vecnprand', 'vecnprandn',
+           'vecnpdim', 'vecnpeq', 'vecnptrim', 'vecnpround',
+           'vecnpabsq', 'vecnpabs', 'vecnpdot', 'vecnpparallel',
+           'vecnppos', 'vecnpneg', 'vecnpadd', 'vecnpsub',
+           'vecnpmul', 'vecnptruediv', 'vecnpfloordiv', 'vecnpmod')
 
 
 
