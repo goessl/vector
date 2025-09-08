@@ -1,12 +1,15 @@
 import numpy as np
-from itertools import zip_longest
 from .functional import veceq
 
 
 
-__all__ = ('vecnpzero', 'vecnpbasis', 'vecnprand', 'vecnprandn',
+__all__ = (#creation
+           'vecnpzero', 'vecnpbasis', 'vecnprand', 'vecnprandn',
+           #utility
            'vecnpdim', 'vecnpeq', 'vecnptrim', 'vecnpround',
+           #Hilbert space
            'vecnpabsq', 'vecnpabs', 'vecnpdot', 'vecnpparallel',
+           #vector space
            'vecnppos', 'vecnpneg', 'vecnpadd', 'vecnpsub',
            'vecnpmul', 'vecnptruediv', 'vecnpfloordiv', 'vecnpmod')
 
@@ -14,7 +17,13 @@ __all__ = ('vecnpzero', 'vecnpbasis', 'vecnprand', 'vecnprandn',
 
 #creation
 def vecnpzero(d=None):
-    """Return `d` zero vectors.
+    r"""Return `d` zero vectors.
+    
+    $$
+        0^{d\times 0} \qquad \text{or} \qquad \begin{pmatrix}
+            0
+        \end{pmatrix} 
+    $$
     
     The returned value is a `(d, 1)`-array of zeros if `d` is not `None`
     or `[0]` otherwise.

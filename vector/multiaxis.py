@@ -3,10 +3,14 @@ from .functional import vechadamardmax
 
 
 
-__all__ = ('tenzero', 'tenbasis', 'tenrand', 'tenrandn',
+__all__ = (#creation
+           'tenzero', 'tenbasis', 'tenrand', 'tenrandn',
+           #utility
            'tenrank', 'tendim', 'tentrim', 'tenround',
-           'tenpos', 'tenneg', 'tenaddc', 'tenadd', 'tensub', 'tenmul',
-           'tentruediv', 'tenfloordiv', 'tenmod',
+           #vector space
+           'tenpos', 'tenneg', 'tenadd', 'tenaddc', 'tensub',
+           'tenmul', 'tentruediv', 'tenfloordiv', 'tenmod', 'tendivmod',
+           #elementwise
            'tenhadamard', 'tenhadamardtruediv',
            'tenhadamardfloordiv', 'tenhadamardmod')
 
@@ -14,35 +18,103 @@ __all__ = ('tenzero', 'tenbasis', 'tenrand', 'tenrandn',
 
 #creation
 tenzero = np.zeros((), dtype=object)
-"""Zero tensor."""
+"""Zero tensor.
+
+$$
+    0
+$$
+
+See also
+--------
+[`veczero`][vector.functional.veczero]
+"""
 tenzero.flags.writeable = False
 
 def tenbasis(i, c=1):
-    """Return the `i`-th basis tensor times `c`."""
+    """Return the `i`-th basis tensor times `c`.
+    
+    $$
+        ce_i
+    $$
+    
+    Returns a `numpy.ndarray` with `i+1` zeros in each direction and a `c` in
+    the outer corner.
+    
+    See also
+    --------
+    [`vecbasis`][vector.functional.vecbasis]
+    """
     t = np.zeros(np.add(i, 1), dtype=np.result_type(c))
     t[i] = c #dont unpack i, it might be a scalar
     return t
 
 def tenrand(*d):
-    """Wrapper for `numpy.random.rand`."""
+    r"""Return a random tensor of `d` uniform coefficients in `[0, 1[`.
+    
+    $$
+        t \sim \mathcal{U}^d([0, 1[)
+    $$
+    
+    `d` may be multiple dimensions.
+    
+    See also
+    --------
+    [`numpy.random.rand`](https://numpy.org/doc/stable/reference/generated/numpy.random.rand.html),
+    [`vecrand`][vector.functional.vecrand]
+    """
     return np.random.rand(*d)
 
 def tenrandn(*d):
-    """Wrapper for `numpy.random.randn`."""
+    r"""Return a random tensor of `d` normal distributed coefficients.
+    
+    $$
+        t \sim \mathcal{N}^d
+    $$
+    
+    `d` may be multiple dimensions.
+    
+    See also
+    --------
+    [`numpy.random.randn`](https://numpy.org/doc/stable/reference/generated/numpy.random.randn.html),
+    [`vecrandn`][vector.functional.vecrandn]
+    """
     return np.random.randn(*d)
 
 
 #utility
 def tenrank(t):
-    """Return the rank of the tensor."""
+    r"""Return the rank of a tensor.
+    
+    $$
+        \text{rank}\,t
+    $$
+    
+    See also
+    --------
+    [`numpy.ndarray.ndim`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.ndim.html)
+    """
     return np.asarray(t).ndim
 
 def tendim(t):
-    """Return the dimensionalities of the tensor."""
+    r"""Return the dimensionalities of a tensor.
+    
+    $$
+        \dim t
+    $$
+    
+    See also
+    --------
+    [`numpy.ndarray.shape`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.shape.html)
+    """
     return np.asarray(t).shape
 
 def tentrim(t, tol=1e-9):
-    """Remove all trailing near zero (`abs(v_i)<=tol`) coefficients."""
+    """Remove all trailing near zero (`abs(v_i)<=tol`) coefficients.
+    
+    See also
+    --------
+    [`vectrim`][vector.functional.vectrim]
+    """
     t = np.asarray(t)
     for d in range(t.ndim): #reduce dimension
         i = (slice(None, None, None),)*d + (-1,) + (...,)
@@ -53,23 +125,75 @@ def tentrim(t, tol=1e-9):
     return t
 
 def tenround(t, ndigits=0):
-    """Wrapper for `numpy.round`."""
+    r"""Round all coefficients to the given precision.
+    
+    $$
+        (\text{round}_\text{ndigits}(v_i))_i
+    $$
+    
+    See also
+    --------
+    [`numpy.round`](https://numpy.org/doc/stable/reference/generated/numpy.round.html),
+    [`vecround`][vector.functional.vecround]
+    """
     return np.round(t, ndigits)
 
 
 #vector space
 def tenpos(t):
-    """Return the tensor with the unary positive operator applied."""
+    """Return the tensor with the unary positive operator applied.
+    
+    $$
+        +t
+    $$
+    
+    See also
+    --------
+    [`numpy.ndarray.__pos__`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.__pos__.html),
+    [`vecpos`][vector.functional.vecpos]
+    """
     return +np.asarray(t)
 
 def tenneg(t):
-    """Return the tensor with the unary negative operator applied."""
+    """Return the tensor with the unary negative operator applied.
+    
+    $$
+        -t
+    $$
+    
+    See also
+    --------
+    [`numpy.ndarray.__neg__`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.__neg__.html),
+    [`vecneg`][vector.functional.vecneg]
+    """
     return -np.asarray(t)
 
-def tenaddc(t, c, i=(0,)):
-    """Return `t` with `c` added to the `i`-th coefficient.
+def tenadd(*ts):
+    r"""Return the sum of tensors.
     
-    More efficient than `tenadd(v, tenbasis(i, c))`.
+    $$
+        t_0 + t_1 + \cdots
+    $$
+    
+    See also
+    --------
+    [`vecadd`][vector.functional.vecadd]
+    """
+    ts = tuple(map(np.asarray, ts))
+    shape = vechadamardmax(*(t.shape for t in ts))
+    r = np.zeros(shape, dtype=np.result_type(*ts) if ts else object)
+    for t in ts:
+        r[tuple(map(slice, t.shape)) + (0,)*(r.ndim-t.ndim)] += t
+    return r
+
+def tenaddc(t, c, i=(0,)):
+    r"""Return `t` with `c` added to the `i`-th coefficient.
+    
+    More efficient than `tenadd(t, tenbasis(i, c))`.
+    
+    See also
+    --------
+    [`vecaddc`][vector.functional.vecaddc]
     """
     t = np.asarray(t)
     while t.ndim < len(i):
@@ -78,17 +202,17 @@ def tenaddc(t, c, i=(0,)):
     t[i + (0,)*(len(i)-t.ndim)] += c
     return t
 
-def tenadd(*ts):
-    """Return the sum of tensors."""
-    ts = tuple(map(np.asarray, ts))
-    shape = vechadamardmax(*(t.shape for t in ts))
-    r = np.zeros(shape, dtype=np.result_type(*ts) if ts else object)
-    for t in ts:
-        r[tuple(map(slice, t.shape)) + (0,)*(r.ndim-t.ndim)] += t
-    return r
-
 def tensub(s, t):
-    """Return the difference of two tensors."""
+    """Return the difference of two tensors.
+    
+    $$
+        s - t
+    $$
+    
+    See also
+    --------
+    [`vecsub`][vector.functional.vecsub]
+    """
     s, t = np.asarray(s), np.asarray(t)
     shape = vechadamardmax(s.shape, t.shape)
     r = np.zeros(shape, dtype=np.result_type(s, t))
@@ -97,25 +221,88 @@ def tensub(s, t):
     return r
 
 def tenmul(a, t):
-    """Return the product of a scalar and a tensor."""
+    """Return the product of a scalar and a tensor.
+    
+    $$
+        a t
+    $$
+    
+    See also
+    --------
+    [`numpy.ndarray.__mul__`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.__mul__.html),
+    [`vecmul`][vector.functional.vecmul]
+    """
     return a * np.asarray(t)
 
 def tentruediv(t, a):
-    """Return the true division of a tensor and a scalar."""
+    r"""Return the true division of a tensor and a scalar.
+    
+    $$
+        \frac{t}{a}
+    $$
+    
+    See also
+    --------
+    [`numpy.ndarray.__truediv__`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.__truediv__.html),
+    [`vectruediv`][vector.functional.vectruediv]
+    """
     return np.asarray(t) / a
 
 def tenfloordiv(t, a):
-    """Return the floor division of a tensor and a scalar."""
+    r"""Return the floor division of a tensor and a scalar.
+    
+    $$
+        \left(\left\lfloor\frac{t_i}{a}\right\rfloor\right)_i
+    $$
+    
+    See also
+    --------
+    [`numpy.ndarray.__floordiv__`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.__floordiv__.html),
+    [`vecfloordiv`][vector.functional.vecfloordiv]
+    """
     return np.asarray(t) // a
 
 def tenmod(t, a):
-    """Return the elementwise mod of a tensor and a scalar."""
+    r"""Return the elementwise mod of a tensor and a scalar.
+    
+    $$
+        \left(t_i \mod a\right)_i
+    $$
+    
+    See also
+    --------
+    [`numpy.ndarray.__mod__`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.__mod__.html),
+    [`vecmod`][vector.functional.vecmod]
+    """
     return np.asarray(t) % a
+
+def tendivmod(t, a):
+    r"""Return the elementwise divmod of a tensor and a scalar.
+    
+    $$
+        \left(\left\lfloor\frac{t_i}{a}\right\rfloor\right)_i, \ \left(t_i \mod a\right)_i
+    $$
+    
+    See also
+    --------
+    [`numpy.ndarray.__divmod__`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.__divmod__.html),
+    [`vecdivmod`][vector.functional.vecdivmod]
+    """
+    return divmod(np.asarray(t), a)
 
 
 #elementwise
 def tenhadamard(*ts):
-    """Return the elementwise product of tensors."""
+    r"""Return the elementwise product of tensors.
+    
+    $$
+        \left((t_0)_i \cdot (t_1)_i \cdot \cdots\right)_i
+    $$
+    
+    See also
+    --------
+    [`vechadamard`][vector.functional.vechadamard]
+    """
     ts = tuple(map(np.asarray, ts))
     shape = tuple(map(min, zip(*(t.shape for t in ts))))
     r = np.zeros(shape, dtype=np.result_type(*ts) if ts else object)
@@ -126,28 +313,52 @@ def tenhadamard(*ts):
     return r
 
 def tenhadamardtruediv(s, t):
-    """Return the elementwise true division of two tensors."""
+    r"""Return the elementwise true division of two tensors.
+    
+    $$
+        \left(\frac{s_i}{t_i}\right)_i
+    $$
+    
+    See also
+    --------
+    [`vechadamardtruediv`][vector.functional.vechadamardtruediv]
+    """
     s, t = np.asarray(s), np.asarray(t)
-    shape = tuple(map(min, zip(s.shape, t.shape)))
-    r = np.zeros(shape, dtype=np.result_type(s, t))
-    r = s[tuple(map(slice, shape)), ...]
-    r /= t[tuple(map(slice, shape)), ...]
+    r = np.zeros(s.shape, dtype=np.result_type(s, t))
+    r = s[tuple(map(slice, r.shape)), ...]
+    r /= t[tuple(map(slice, r.shape)), ...]
     return r
 
 def tenhadamardfloordiv(s, t):
-    """Return the elementwise floor division of two tensors."""
+    r"""Return the elementwise floor division of two tensors.
+    
+    $$
+        \left(\left\lfloor\frac{s_i}{t_i}\right\rfloor\right)_i
+    $$
+    
+    See also
+    --------
+    [`vechadamardfloordiv`][vector.functional.vechadamardfloordiv]
+    """
     s, t = np.asarray(s), np.asarray(t)
-    shape = tuple(map(min, zip(s.shape, t.shape)))
-    r = np.zeros(shape, dtype=np.result_type(s, t))
-    r = s[tuple(map(slice, shape)), ...]
-    r //= t[tuple(map(slice, shape)), ...]
+    r = np.zeros(s.shape, dtype=np.result_type(s, t))
+    r = s[tuple(map(slice, r.shape)), ...]
+    r //= t[tuple(map(slice, r.shape)), ...]
     return r
 
 def tenhadamardmod(s, t):
-    """Return the elementwise mod of two tensors."""
+    r"""Return the elementwise mod of two tensors.
+    
+    $$
+        \left(s_i \mod t_i\right)_i
+    $$
+    
+    See also
+    --------
+    [`vechadamardmod`][vector.functional.vechadamardmod]
+    """
     s, t = np.asarray(s), np.asarray(t)
-    shape = tuple(map(min, zip(s.shape, t.shape)))
-    r = np.zeros(shape, dtype=np.result_type(s, t))
-    r = s[tuple(map(slice, shape)), ...]
-    r %= t[tuple(map(slice, shape)), ...]
+    r = np.zeros(s.shape, dtype=np.result_type(s, t))
+    r = s[tuple(map(slice, r.shape)), ...]
+    r %= t[tuple(map(slice, r.shape)), ...]
     return r

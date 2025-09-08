@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "vector"
-version = "3.3.2"
+version = "3.3.3"
 description = "An infinite-dimensional vector Python package."
 readme = "README.md"
 requires-python = ">=3.12"

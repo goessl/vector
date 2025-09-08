@@ -37,7 +37,7 @@ def vecbasis(i, c=1):
         c\vec{e}_i
     $$
     
-    The returned value is a tuple with `i` zeros followed by `c`.
+    Returns a tuple with `i` zeros followed by `c`.
     """
     return (0,)*i + (c,)
 
@@ -275,7 +275,7 @@ def vecdivmod(v, a):
     r"""Return the elementwise divmod of a vector and a scalar.
     
     $$
-        \left(\lfloor v_i \mod a\rfloor\right)_i, \ \left(v_i \mod a\right)_i
+        \left(\left\lfloor\frac{v_i}{a}\right\rfloor\right)_i, \ \left(v_i \mod a\right)_i
     $$
     """
     q, r = [], []

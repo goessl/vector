@@ -38,7 +38,7 @@ def test_tentrim():
                                    [0, 0, 0, 0]]), [1, 2])
     assert np.array_equal(tentrim(tenzero), 0)
 
-def test_tentrim():
+def test_tenround():
     assert np.array_equal(tenround([1.1, 2.2]), [1, 2])
     assert np.array_equal(tenround([1.12, 2.23], 1), [1.1, 2.2])
 

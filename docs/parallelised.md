@@ -37,6 +37,7 @@ Creation routines have a dimension argument `d`. If left to `None`, the returned
 ::: vector.parallelised
     options:
       members:
+        - vecnpdim
         - vecnpeq
         - vecnptrim
         - vecnpround

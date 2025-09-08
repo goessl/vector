@@ -12,6 +12,9 @@ class Vector:
     Its coefficients are internally stored as a tuple in the `coef` attribute.
     """
     
+    ZERO: 'Vector'
+    """Zero vector."""
+    
     #creation
     def __init__(self, coef):
         """Create a new vector with the given coefficients
@@ -121,14 +124,14 @@ class Vector:
         """Return the negative."""
         return type(self)(vecneg(self))
     
-    def addc(self, c, i=0):
-        """Return the sum with the `i`-th basis vector times `c`."""
-        return type(self)(vecaddc(self, c, i))
-    
     def __add__(self, other):
         """Return the vector sum."""
         return type(self)(vecadd(self, other))
     __radd__ = __add__
+    
+    def addc(self, c, i=0):
+        """Return the sum with the `i`-th basis vector times `c`."""
+        return type(self)(vecaddc(self, c, i))
     
     def __sub__(self, other):
         """Return the vector difference."""
@@ -152,6 +155,11 @@ class Vector:
     def __mod__(self, other):
         """Return the elementwise mod with a scalar."""
         return type(self)(vecmod(self, other))
+    
+    def __divmod__(self, other):
+        """Return the elementwise divmod with a scalar."""
+        q, r = vecdivmod(self, other)
+        return type(self)(q), type(self)(r)
     
     
     #elementwise
@@ -190,4 +198,3 @@ class Vector:
 
 
 Vector.ZERO = Vector(veczero)
-"""Zero vector."""
