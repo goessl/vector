@@ -409,6 +409,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#vector.parallelised.vecnpdim" class="md-nav__link">
+    <span class="md-ellipsis">
+      vecnpdim
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#vector.parallelised.vecnpeq" class="md-nav__link">
     <span class="md-ellipsis">
       vecnpeq
@@ -718,6 +727,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#vector.parallelised.vecnpdim" class="md-nav__link">
+    <span class="md-ellipsis">
+      vecnpdim
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#vector.parallelised.vecnpeq" class="md-nav__link">
     <span class="md-ellipsis">
       vecnpeq
@@ -962,21 +980,38 @@
     <div class="doc doc-contents ">
 
         <p>Return <code>d</code> zero vectors.</p>
+<div class="arithmatex">\[
+    0^{d\times 0} \qquad \text{or} \qquad \begin{pmatrix}
+        0
+    \end{pmatrix} 
+\]</div>
 <p>The returned value is a <code>(d, 1)</code>-array of zeros if <code>d</code> is not <code>None</code>
 or <code>[0]</code> otherwise.</p>
 
 
             <details class="quote">
-              <summary>Source code in <code>vector\parallelised.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
+              <summary>Source code in <code>vector/parallelised.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">19</span>
 <span class="normal">20</span>
 <span class="normal">21</span>
 <span class="normal">22</span>
-<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnpzero</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return `d` zero vectors.</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnpzero</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return `d` zero vectors.</span>
+
+<span class="sd">    $$</span>
+<span class="sd">        0^{d\times 0} \qquad \text{or} \qquad \begin{pmatrix}</span>
+<span class="sd">            0</span>
+<span class="sd">        \end{pmatrix} </span>
+<span class="sd">    $$</span>
 
 <span class="sd">    The returned value is a `(d, 1)`-array of zeros if `d` is not `None`</span>
 <span class="sd">    or `[0]` otherwise.</span>
@@ -1006,17 +1041,17 @@ or <code>(i+1,)</code> otherwise.</p>
 
 
             <details class="quote">
-              <summary>Source code in <code>vector\parallelised.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnpbasis</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+              <summary>Source code in <code>vector/parallelised.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnpbasis</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return `d` many `i`-th basis vectors times `c`.</span>
 
 <span class="sd">    The returned value is a `(d, i+1)`-array if `d` is not `None`</span>
@@ -1049,14 +1084,14 @@ or <code>(n,)</code> otherwise.</p>
 
 
             <details class="quote">
-              <summary>Source code in <code>vector\parallelised.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnprand</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+              <summary>Source code in <code>vector/parallelised.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnprand</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return `d` random vectors of `n` uniform coefficients in `[0, 1[`.</span>
 
 <span class="sd">    The returned value is a `(d, n)`-array if `d` is not `None`</span>
@@ -1086,15 +1121,15 @@ or <code>(n,)</code> otherwise.</p>
 
 
             <details class="quote">
-              <summary>Source code in <code>vector\parallelised.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnprandn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+              <summary>Source code in <code>vector/parallelised.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnprandn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return `d` random vectors of `n` normal distributed coefficients.</span>
 
 <span class="sd">    The returned value is a `(d, n)`-array if `d` is not `None`</span>
@@ -1147,6 +1182,33 @@ or <code>(n,)</code> otherwise.</p>
 <div class="doc doc-object doc-function">
 
 
+<h3 id="vector.parallelised.vecnpdim" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vecnpdim</span><span class="p">(</span><span class="n">v</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return the number of allocated dimensions in this vector or vectors.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>vector/parallelised.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnpdim</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the number of allocated dimensions in this vector or vectors.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
 <h3 id="vector.parallelised.vecnpeq" class="doc doc-heading">
 <code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vecnpeq</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span></code>
 
@@ -1159,14 +1221,14 @@ or <code>(n,)</code> otherwise.</p>
 
 
             <details class="quote">
-              <summary>Source code in <code>vector\parallelised.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnpeq</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+              <summary>Source code in <code>vector/parallelised.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnpeq</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return if two vectors are equal.&quot;&quot;&quot;</span>
     <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="n">w</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -1194,16 +1256,16 @@ or <code>(n,)</code> otherwise.</p>
 
 
             <details class="quote">
-              <summary>Source code in <code>vector\parallelised.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span>
-<span class="normal">73</span>
-<span class="normal">74</span>
-<span class="normal">75</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnptrim</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">):</span>
+              <summary>Source code in <code>vector/parallelised.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnptrim</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove all trailing near zero (abs(v_i)&lt;=tol) coefficients.&quot;&quot;&quot;</span>
     <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
     <span class="c1">#use np.all, because v[...,-1] maybe a scalar (not iterable)</span>
@@ -1233,10 +1295,10 @@ or <code>(n,)</code> otherwise.</p>
 
 
             <details class="quote">
-              <summary>Source code in <code>vector\parallelised.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">77</span>
-<span class="normal">78</span>
-<span class="normal">79</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnpround</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">ndigits</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+              <summary>Source code in <code>vector/parallelised.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnpround</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">ndigits</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Wrapper for `numpy.round`.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">ndigits</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -1296,10 +1358,10 @@ or <code>(n,)</code> otherwise.</p>
 
 
             <details class="quote">
-              <summary>Source code in <code>vector\parallelised.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnpabsq</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+              <summary>Source code in <code>vector/parallelised.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">92</span>
+<span class="normal">93</span>
+<span class="normal">94</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnpabsq</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the sum of absolute squares of the coefficients.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -1323,10 +1385,10 @@ or <code>(n,)</code> otherwise.</p>
 
 
             <details class="quote">
-              <summary>Source code in <code>vector\parallelised.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">87</span>
-<span class="normal">88</span>
-<span class="normal">89</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnpabs</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+              <summary>Source code in <code>vector/parallelised.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">96</span>
+<span class="normal">97</span>
+<span class="normal">98</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnpabs</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the Euclidean/L2-norm.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -1350,13 +1412,13 @@ or <code>(n,)</code> otherwise.</p>
 
 
             <details class="quote">
-              <summary>Source code in <code>vector\parallelised.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">91</span>
-<span class="normal">92</span>
-<span class="normal">93</span>
-<span class="normal">94</span>
-<span class="normal">95</span>
-<span class="normal">96</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnpdot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+              <summary>Source code in <code>vector/parallelised.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnpdot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the inner product of two vectors without conjugation.&quot;&quot;&quot;</span>
     <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
     <span class="n">shape</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span>
@@ -1383,11 +1445,11 @@ or <code>(n,)</code> otherwise.</p>
 
 
             <details class="quote">
-              <summary>Source code in <code>vector\parallelised.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 98</span>
-<span class="normal"> 99</span>
-<span class="normal">100</span>
-<span class="normal">101</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnpparallel</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+              <summary>Source code in <code>vector/parallelised.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnpparallel</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return if two vectors are parallel.&quot;&quot;&quot;</span>
     <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">vecnpabsq</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="n">vecnpabsq</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">==</span> <span class="n">vecnpdot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
@@ -1448,10 +1510,10 @@ or <code>(n,)</code> otherwise.</p>
 
 
             <details class="quote">
-              <summary>Source code in <code>vector\parallelised.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">105</span>
-<span class="normal">106</span>
-<span class="normal">107</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnppos</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+              <summary>Source code in <code>vector/parallelised.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnppos</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the vector with the unary positive operator applied.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -1475,10 +1537,10 @@ or <code>(n,)</code> otherwise.</p>
 
 
             <details class="quote">
-              <summary>Source code in <code>vector\parallelised.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">109</span>
-<span class="normal">110</span>
-<span class="normal">111</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnpneg</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+              <summary>Source code in <code>vector/parallelised.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnpneg</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the vector with the unary negative operator applied.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -1502,17 +1564,8 @@ or <code>(n,)</code> otherwise.</p>
 
 
             <details class="quote">
-              <summary>Source code in <code>vector\parallelised.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">113</span>
-<span class="normal">114</span>
-<span class="normal">115</span>
-<span class="normal">116</span>
-<span class="normal">117</span>
-<span class="normal">118</span>
-<span class="normal">119</span>
-<span class="normal">120</span>
-<span class="normal">121</span>
-<span class="normal">122</span>
+              <summary>Source code in <code>vector/parallelised.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">122</span>
 <span class="normal">123</span>
 <span class="normal">124</span>
 <span class="normal">125</span>
@@ -1520,7 +1573,16 @@ or <code>(n,)</code> otherwise.</p>
 <span class="normal">127</span>
 <span class="normal">128</span>
 <span class="normal">129</span>
-<span class="normal">130</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnpadd</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">):</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnpadd</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the sum of vectors.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">vs</span><span class="p">:</span> <span class="c1">#empty sum</span>
         <span class="k">return</span> <span class="n">vecnpzero</span><span class="p">()</span>
@@ -1559,22 +1621,22 @@ or <code>(n,)</code> otherwise.</p>
 
 
             <details class="quote">
-              <summary>Source code in <code>vector\parallelised.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">132</span>
-<span class="normal">133</span>
-<span class="normal">134</span>
-<span class="normal">135</span>
-<span class="normal">136</span>
-<span class="normal">137</span>
-<span class="normal">138</span>
-<span class="normal">139</span>
-<span class="normal">140</span>
-<span class="normal">141</span>
+              <summary>Source code in <code>vector/parallelised.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">141</span>
 <span class="normal">142</span>
 <span class="normal">143</span>
 <span class="normal">144</span>
 <span class="normal">145</span>
-<span class="normal">146</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnpsub</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnpsub</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the difference of two vectors.&quot;&quot;&quot;</span>
     <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">ndim</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">}</span> <span class="ow">or</span> <span class="n">w</span><span class="o">.</span><span class="n">ndim</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">}:</span> <span class="c1">#1D-1D, 1D-2D, 2D-1D, 2D-2D</span>
@@ -1610,10 +1672,10 @@ or <code>(n,)</code> otherwise.</p>
 
 
             <details class="quote">
-              <summary>Source code in <code>vector\parallelised.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">148</span>
-<span class="normal">149</span>
-<span class="normal">150</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnpmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+              <summary>Source code in <code>vector/parallelised.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnpmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the product of a scalar and a vector.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -1637,10 +1699,10 @@ or <code>(n,)</code> otherwise.</p>
 
 
             <details class="quote">
-              <summary>Source code in <code>vector\parallelised.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">152</span>
-<span class="normal">153</span>
-<span class="normal">154</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnptruediv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+              <summary>Source code in <code>vector/parallelised.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnptruediv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the true division of a vector and a scalar.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">/</span> <span class="n">a</span>
 </code></pre></div></td></tr></table></div>
@@ -1664,10 +1726,10 @@ or <code>(n,)</code> otherwise.</p>
 
 
             <details class="quote">
-              <summary>Source code in <code>vector\parallelised.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">156</span>
-<span class="normal">157</span>
-<span class="normal">158</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnpfloordiv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+              <summary>Source code in <code>vector/parallelised.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnpfloordiv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the floor division of a vector and a scalar.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">//</span> <span class="n">a</span>
 </code></pre></div></td></tr></table></div>
@@ -1691,10 +1753,10 @@ or <code>(n,)</code> otherwise.</p>
 
 
             <details class="quote">
-              <summary>Source code in <code>vector\parallelised.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">160</span>
-<span class="normal">161</span>
-<span class="normal">162</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnpmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+              <summary>Source code in <code>vector/parallelised.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecnpmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the elementwise mod of a vector and a scalar.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">%</span> <span class="n">a</span>
 </code></pre></div></td></tr></table></div>

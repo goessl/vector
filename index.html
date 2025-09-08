@@ -298,9 +298,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#todo" class="md-nav__link">
+  <a href="#roadmap" class="md-nav__link">
     <span class="md-ellipsis">
-      todo
+      Roadmap
     </span>
   </a>
   
@@ -478,9 +478,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#todo" class="md-nav__link">
+  <a href="#roadmap" class="md-nav__link">
     <span class="md-ellipsis">
-      todo
+      Roadmap
     </span>
   </a>
   
@@ -538,113 +538,127 @@
 <h2 id="usage">Usage</h2>
 <p>This package includes</p>
 <ul>
-<li>
-<p>general-purpose <em>functions</em> (prefixed <code>vec...</code>) in <em>pure Python</em>,</p>
-</li>
-<li>
-<p>a clean <em>class</em> (<code>Vector</code>) with <em>easy to use syntax</em>,</p>
-</li>
-<li>
-<p>improved <em>numpy-routines</em> (prefixed <code>vecnp...</code>) for <em>parallelised operations</em> &amp;</p>
-</li>
-<li>
-<p><em>tensor</em> functions (prefixed <code>ten...</code>) for <em>multiaxis operations</em></p>
-</li>
+<li>general-purpose <strong>functions</strong> (prefixed <code>vec...</code>) in <em>pure Python</em>,</li>
+<li>a clean <strong>class</strong> (<code>Vector</code>) with <em>easy to use syntax</em>,</li>
+<li>improved <em>numpy-routines</em> (prefixed <code>vecnp...</code>) for <strong>parallelised
+operations</strong> &amp;</li>
+<li><em>tensor</em> functions (prefixed <code>ten...</code>) for <strong>multiaxis operations</strong></li>
 </ul>
-<p>to handle <em>type-independent, infinite-dimensional</em> vectors.
-It operates on vectors of different lengths, treating them as infinite-dimensional by assuming that all components after the given ones are <em>zero</em>.</p>
+<p>to handle <strong>type-independent, infinite-dimensional</strong> vectors.
+It operates on vectors of different lengths, treating them as
+infinite-dimensional by assuming that all components after the given ones are
+<em>zero</em>.</p>
 <table>
 <thead>
 <tr>
 <th>Operation</th>
-<th>Functional</th>
-<th>Object-oriented</th>
-<th>Parallelised</th>
-<th>Multidimensional</th>
+<th><a href="functional/">Functional</a></th>
+<th><a href="objectoriented/">Object-oriented</a></th>
+<th><a href="parallelised/">Parallelised</a></th>
+<th><a href="multiaxis/">Multiaxis</a></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>creation</strong></td>
+<td><strong>Creation</strong></td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>zero</td>
-<td><code>veczero</code></td>
-<td><code>Vector.ZERO</code></td>
-<td><code>vecnpzero</code></td>
-<td><code>tenzero</code></td>
+<td>Zero constant</td>
+<td><a class="autorefs autorefs-internal" title="            veczero = ()" href="functional/#vector.functional.veczero"><code>veczero</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            ZERO
+
+  
+      instance-attribute
+  " href="objectoriented/#vector.objectoriented.Vector.ZERO"><code>Vector.ZERO</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecnpzero(d=None)" href="parallelised/#vector.parallelised.vecnpzero"><code>vecnpzero</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tenzero = np.zeros((), dtype=object)" href="multiaxis/#vector.multiaxis.tenzero"><code>tenzero</code></a></td>
 </tr>
 <tr>
-<td>basis</td>
-<td><code>vecbasis</code></td>
-<td><code>Vector</code></td>
-<td><code>vecnpbasis</code></td>
-<td><code>tenbasis</code></td>
+<td>Basis</td>
+<td><a class="autorefs autorefs-internal" title="            vecbasis(i, c=1)" href="functional/#vector.functional.vecbasis"><code>vecbasis</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            Vector" href="objectoriented/#vector.objectoriented.Vector"><code>Vector</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecnpbasis(i, c=1, d=None)" href="parallelised/#vector.parallelised.vecnpbasis"><code>vecnpbasis</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tenbasis(i, c=1)" href="multiaxis/#vector.multiaxis.tenbasis"><code>tenbasis</code></a></td>
 </tr>
 <tr>
-<td>rand</td>
-<td><code>vecrand</code></td>
-<td><code>Vector.rand</code></td>
-<td><code>vecnprand</code></td>
-<td><code>tenrand</code></td>
+<td>Random uniform</td>
+<td><a class="autorefs autorefs-internal" title="            vecrand(n)" href="functional/#vector.functional.vecrand"><code>vecrand</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            rand(n)
+
+  
+      staticmethod
+  " href="objectoriented/#vector.objectoriented.Vector.rand"><code>Vector.rand</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecnprand(n, d=None)" href="parallelised/#vector.parallelised.vecnprand"><code>vecnprand</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tenrand(*d)" href="multiaxis/#vector.multiaxis.tenrand"><code>tenrand</code></a></td>
 </tr>
 <tr>
-<td>randn</td>
-<td><code>vecrandn</code></td>
-<td><code>Vector.randn</code></td>
-<td><code>vecnprandn</code></td>
-<td><code>tenrandn</code></td>
+<td>Random normal</td>
+<td><a class="autorefs autorefs-internal" title="            vecrandn(n, normed=True, mu=0, sigma=1)" href="functional/#vector.functional.vecrandn"><code>vecrandn</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            randn(n, normed=True, mu=0, sigma=1)
+
+  
+      staticmethod
+  " href="objectoriented/#vector.objectoriented.Vector.randn"><code>Vector.randn</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecnprandn(n, normed=True, d=None)" href="parallelised/#vector.parallelised.vecnprandn"><code>vecnprandn</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tenrandn(*d)" href="multiaxis/#vector.multiaxis.tenrandn"><code>tenrandn</code></a></td>
 </tr>
 <tr>
-<td><strong>utility</strong></td>
+<td><strong>Utility</strong></td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>dimensionality</td>
+<td>Dimensionality</td>
 <td></td>
-<td><code>len</code></td>
-<td><code>vecnpdim</code></td>
-<td><code>tendim</code></td>
+<td><a class="autorefs autorefs-internal" title="            __len__()" href="objectoriented/#vector.objectoriented.Vector.__len__"><code>len</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecnpdim(v)" href="parallelised/#vector.parallelised.vecnpdim"><code>vecnpdim</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tendim(t)" href="multiaxis/#vector.multiaxis.tendim"><code>tendim</code></a></td>
 </tr>
 <tr>
-<td>rank</td>
+<td>Rank</td>
 <td></td>
 <td></td>
 <td></td>
-<td><code>tenrank</code></td>
+<td><a class="autorefs autorefs-internal" title="            tenrank(t)" href="multiaxis/#vector.multiaxis.tenrank"><code>tenrank</code></a></td>
 </tr>
 <tr>
-<td>comparison</td>
-<td><code>veceq</code></td>
-<td><code>==</code></td>
-<td><code>vecnpeq</code></td>
+<td>Trimming</td>
+<td><a class="autorefs autorefs-internal" title="            vectrim(v, tol=1e-09)" href="functional/#vector.functional.vectrim"><code>vectrim</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            trim(tol=1e-09)" href="objectoriented/#vector.objectoriented.Vector.trim"><code>.trim</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecnptrim(v, tol=1e-09)" href="parallelised/#vector.parallelised.vecnptrim"><code>vecnptrim</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tentrim(t, tol=1e-09)" href="multiaxis/#vector.multiaxis.tentrim"><code>tentrim</code></a></td>
+</tr>
+<tr>
+<td>Comparison</td>
+<td><a class="autorefs autorefs-internal" title="            veceq(v, w)" href="functional/#vector.functional.veceq"><code>veceq</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            __eq__(other)" href="objectoriented/#vector.objectoriented.Vector.__eq__"><code>==</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecnpeq(v, w)" href="parallelised/#vector.parallelised.vecnpeq"><code>vecnpeq</code></a></td>
 <td></td>
 </tr>
 <tr>
-<td>trimming</td>
-<td><code>vectrim</code></td>
-<td><code>.trim</code></td>
-<td><code>vecnptrim</code></td>
-<td><code>tentrim</code></td>
+<td>Rounding</td>
+<td><a class="autorefs autorefs-internal" title="            vecround(v, ndigits=None)" href="functional/#vector.functional.vecround"><code>vecround</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            round(ndigits=None)" href="objectoriented/#vector.objectoriented.Vector.round"><code>.round</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecnpround(v, ndigits=0)" href="parallelised/#vector.parallelised.vecnpround"><code>vecnpround</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tenround(t, ndigits=0)" href="multiaxis/#vector.multiaxis.tenround"><code>tenround</code></a></td>
 </tr>
 <tr>
-<td>rounding</td>
-<td><code>vecround</code></td>
-<td><code>.round</code></td>
-<td><code>vecnpround</code></td>
-<td><code>tenround</code></td>
+<td>Right shift</td>
+<td><a class="autorefs autorefs-internal" title="            vecrshift(v, n, fill=0)" href="functional/#vector.functional.vecrshift"><code>vecrshift</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            __rshift__(other)" href="objectoriented/#vector.objectoriented.Vector.__rshift__"><code>&gt;&gt;</code></a></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td>shifting</td>
-<td><code>vecrshift</code>, <code>veclshift</code></td>
-<td><code>&gt;&gt;</code>, <code>&lt;&lt;</code></td>
+<td>Left shift</td>
+<td><a class="autorefs autorefs-internal" title="            veclshift(v, n)" href="functional/#vector.functional.veclshift"><code>veclshift</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            __lshift__(other)" href="objectoriented/#vector.objectoriented.Vector.__lshift__"><code>&lt;&lt;</code></a></td>
 <td></td>
 <td></td>
 </tr>
@@ -656,169 +670,171 @@ It operates on vectors of different lengths, treating them as infinite-dimension
 <td></td>
 </tr>
 <tr>
-<td>norm</td>
-<td><code>vecabsq</code></td>
-<td><code>.absq</code></td>
-<td><code>vecnpabsq</code></td>
+<td>Norm</td>
+<td><a class="autorefs autorefs-internal" title="            vecabs(v)" href="functional/#vector.functional.vecabs"><code>vecabs</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            __abs__()" href="objectoriented/#vector.objectoriented.Vector.__abs__"><code>abs</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecnpabs(v)" href="parallelised/#vector.parallelised.vecnpabs"><code>vecnpabs</code></a></td>
 <td></td>
 </tr>
 <tr>
-<td>norm squared</td>
-<td><code>vecabs</code></td>
-<td><code>abs</code></td>
-<td><code>vecnpabs</code></td>
+<td>Norm squared</td>
+<td><a class="autorefs autorefs-internal" title="            vecabsq(v)" href="functional/#vector.functional.vecabsq"><code>vecabsq</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            absq()" href="objectoriented/#vector.objectoriented.Vector.absq"><code>.absq</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecnpabsq(v)" href="parallelised/#vector.parallelised.vecnpabsq"><code>vecnpabsq</code></a></td>
 <td></td>
 </tr>
 <tr>
-<td>dot</td>
-<td><code>vecdot</code></td>
-<td><code>@</code></td>
-<td><code>vecnpdot</code></td>
+<td>Inner product</td>
+<td><a class="autorefs autorefs-internal" title="            vecdot(v, w)" href="functional/#vector.functional.vecdot"><code>vecdot</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            __matmul__(other)" href="objectoriented/#vector.objectoriented.Vector.__matmul__"><code>@</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecnpdot(v, w)" href="parallelised/#vector.parallelised.vecnpdot"><code>vecnpdot</code></a></td>
 <td></td>
 </tr>
 <tr>
-<td>parallelism</td>
-<td><code>vecparallel</code></td>
-<td><code>.is_parallel</code></td>
-<td><code>vecnpparallel</code></td>
+<td>Parallelism</td>
+<td><a class="autorefs autorefs-internal" title="            vecparallel(v, w)" href="functional/#vector.functional.vecparallel"><code>vecparallel</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            is_parallel(other)" href="objectoriented/#vector.objectoriented.Vector.is_parallel"><code>.is_parallel</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecnpparallel(v, w)" href="parallelised/#vector.parallelised.vecnpparallel"><code>vecnpparallel</code></a></td>
 <td></td>
 </tr>
 <tr>
-<td><strong>vector space</strong></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>positive</td>
-<td><code>vecpos</code></td>
-<td><code>+</code></td>
-<td><code>vecnppos</code></td>
-<td><code>tenpos</code></td>
-</tr>
-<tr>
-<td>negative</td>
-<td><code>vecneg</code></td>
-<td><code>-</code></td>
-<td><code>vecnpneg</code></td>
-<td><code>tenneg</code></td>
-</tr>
-<tr>
-<td>addition</td>
-<td><code>vecadd</code></td>
-<td><code>+</code></td>
-<td><code>vecnpadd</code></td>
-<td><code>tenadd</code></td>
-</tr>
-<tr>
-<td>basis addition</td>
-<td><code>vecaddc</code></td>
-<td><code>.addc</code></td>
-<td></td>
-<td><code>tenaddc</code></td>
-</tr>
-<tr>
-<td>subtraction</td>
-<td><code>vecsub</code></td>
-<td><code>-</code></td>
-<td><code>vecnpsub</code></td>
-<td><code>tensub</code></td>
-</tr>
-<tr>
-<td>multiplication</td>
-<td><code>vecmul</code></td>
-<td><code>*</code></td>
-<td><code>vecnpmul</code></td>
-<td><code>tenmul</code></td>
-</tr>
-<tr>
-<td>true division</td>
-<td><code>vectruediv</code></td>
-<td><code>/</code></td>
-<td><code>vecnptruediv</code></td>
-<td><code>tentruediv</code></td>
-</tr>
-<tr>
-<td>floor division</td>
-<td><code>vecfloordiv</code></td>
-<td><code>//</code></td>
-<td><code>vecnpfloordiv</code></td>
-<td><code>tenfloordiv</code></td>
-</tr>
-<tr>
-<td>mod</td>
-<td><code>vecmod</code></td>
-<td><code>%</code></td>
-<td><code>vecnpmod</code></td>
-<td><code>tenmod</code></td>
-</tr>
-<tr>
-<td>divmod</td>
-<td><code>vecdivmod</code></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>elementwise</strong></td>
+<td><strong>Vector space</strong></td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>multiplication</td>
-<td><code>vechadamard</code></td>
-<td><code>.hadamard</code></td>
-<td></td>
-<td><code>tenhadamard</code></td>
+<td>Positive</td>
+<td><a class="autorefs autorefs-internal" title="            vecpos(v)" href="functional/#vector.functional.vecpos"><code>vecpos</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            __neg__()" href="objectoriented/#vector.objectoriented.Vector.__neg__"><code>+</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecnppos(v)" href="parallelised/#vector.parallelised.vecnppos"><code>vecnppos</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tenpos(t)" href="multiaxis/#vector.multiaxis.tenpos"><code>tenpos</code></a></td>
 </tr>
 <tr>
-<td>true division</td>
-<td><code>vechadamardtruediv</code></td>
-<td><code>.hadamardtruediv</code></td>
-<td></td>
-<td><code>tenhadamardtruediv</code></td>
+<td>Negative</td>
+<td><a class="autorefs autorefs-internal" title="            vecneg(v)" href="functional/#vector.functional.vecneg"><code>vecneg</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            __pos__()" href="objectoriented/#vector.objectoriented.Vector.__pos__"><code>-</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecnpneg(v)" href="parallelised/#vector.parallelised.vecnpneg"><code>vecnpneg</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tenneg(t)" href="multiaxis/#vector.multiaxis.tenneg"><code>tenneg</code></a></td>
 </tr>
 <tr>
-<td>floor division</td>
-<td><code>vechadamardfloordiv</code></td>
-<td><code>.hadamardfloordiv</code></td>
-<td></td>
-<td><code>tenhadamardfloordiv</code></td>
+<td>Addition</td>
+<td><a class="autorefs autorefs-internal" title="            vecadd(*vs)" href="functional/#vector.functional.vecadd"><code>vecadd</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            __add__(other)" href="objectoriented/#vector.objectoriented.Vector.__add__"><code>+</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecnpadd(*vs)" href="parallelised/#vector.parallelised.vecnpadd"><code>vecnpadd</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tenadd(*ts)" href="multiaxis/#vector.multiaxis.tenadd"><code>tenadd</code></a></td>
 </tr>
 <tr>
-<td>mod</td>
-<td><code>vechadamardmod</code></td>
-<td><code>.hadamardmod</code></td>
+<td>Basis addition</td>
+<td><a class="autorefs autorefs-internal" title="            vecaddc(v, c, i=0)" href="functional/#vector.functional.vecaddc"><code>vecaddc</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            addc(c, i=0)" href="objectoriented/#vector.objectoriented.Vector.addc"><code>.addc</code></a></td>
 <td></td>
-<td><code>tenhadamardmod</code></td>
+<td><a class="autorefs autorefs-internal" title="            tenaddc(t, c, i=(0,))" href="multiaxis/#vector.multiaxis.tenaddc"><code>tenaddc</code></a></td>
 </tr>
 <tr>
-<td>min</td>
-<td><code>vechadamardmin</code></td>
-<td><code>.hadamardmin</code></td>
+<td>Subtraction</td>
+<td><a class="autorefs autorefs-internal" title="            vecsub(v, w)" href="functional/#vector.functional.vecsub"><code>vecsub</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            __sub__(other)" href="objectoriented/#vector.objectoriented.Vector.__sub__"><code>-</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecnpsub(v, w)" href="parallelised/#vector.parallelised.vecnpsub"><code>vecnpsub</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tensub(s, t)" href="multiaxis/#vector.multiaxis.tensub"><code>tensub</code></a></td>
+</tr>
+<tr>
+<td>Multiplication</td>
+<td><a class="autorefs autorefs-internal" title="            vecmul(a, v)" href="functional/#vector.functional.vecmul"><code>vecmul</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            __mul__(other)" href="objectoriented/#vector.objectoriented.Vector.__mul__"><code>*</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecnpmul(a, v)" href="parallelised/#vector.parallelised.vecnpmul"><code>vecnpmul</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tenmul(a, t)" href="multiaxis/#vector.multiaxis.tenmul"><code>tenmul</code></a></td>
+</tr>
+<tr>
+<td>True division</td>
+<td><a class="autorefs autorefs-internal" title="            vectruediv(v, a)" href="functional/#vector.functional.vectruediv"><code>vectruediv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            __truediv__(other)" href="objectoriented/#vector.objectoriented.Vector.__truediv__"><code>/</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecnptruediv(v, a)" href="parallelised/#vector.parallelised.vecnptruediv"><code>vecnptruediv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tentruediv(t, a)" href="multiaxis/#vector.multiaxis.tentruediv"><code>tentruediv</code></a></td>
+</tr>
+<tr>
+<td>Floor division</td>
+<td><a class="autorefs autorefs-internal" title="            vecfloordiv(v, a)" href="functional/#vector.functional.vecfloordiv"><code>vecfloordiv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            __floordiv__(other)" href="objectoriented/#vector.objectoriented.Vector.__floordiv__"><code>//</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecnpfloordiv(v, a)" href="parallelised/#vector.parallelised.vecnpfloordiv"><code>vecnpfloordiv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tenfloordiv(t, a)" href="multiaxis/#vector.multiaxis.tenfloordiv"><code>tenfloordiv</code></a></td>
+</tr>
+<tr>
+<td>Mod</td>
+<td><a class="autorefs autorefs-internal" title="            vecmod(v, a)" href="functional/#vector.functional.vecmod"><code>vecmod</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            __mod__(other)" href="objectoriented/#vector.objectoriented.Vector.__mod__"><code>%</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecnpmod(v, a)" href="parallelised/#vector.parallelised.vecnpmod"><code>vecnpmod</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tenmod(t, a)" href="multiaxis/#vector.multiaxis.tenmod"><code>tenmod</code></a></td>
+</tr>
+<tr>
+<td>Divmod</td>
+<td><a class="autorefs autorefs-internal" title="            vecdivmod(v, a)" href="functional/#vector.functional.vecdivmod"><code>vecdivmod</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            __divmod__(other)" href="objectoriented/#vector.objectoriented.Vector.__divmod__"><code>divmod</code></a></td>
+<td></td>
+<td><a class="autorefs autorefs-internal" title="            tendivmod(t, a)" href="multiaxis/#vector.multiaxis.tendivmod"><code>tendivmod</code></a></td>
+</tr>
+<tr>
+<td><strong>Elementwise</strong></td>
+<td></td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>max</td>
-<td><code>vechadamardmax</code></td>
-<td><code>.hadamardmax</code></td>
+<td>Multiplication</td>
+<td><a class="autorefs autorefs-internal" title="            vechadamard(*vs)" href="functional/#vector.functional.vechadamard"><code>vechadamard</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            hadamard(other)" href="objectoriented/#vector.objectoriented.Vector.hadamard"><code>.hadamard</code></a></td>
+<td></td>
+<td><a class="autorefs autorefs-internal" title="            tenhadamard(*ts)" href="multiaxis/#vector.multiaxis.tenhadamard"><code>tenhadamard</code></a></td>
+</tr>
+<tr>
+<td>True division</td>
+<td><a class="autorefs autorefs-internal" title="            vechadamardtruediv(v, w)" href="functional/#vector.functional.vechadamardtruediv"><code>vechadamardtruediv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            hadamardtruediv(other)" href="objectoriented/#vector.objectoriented.Vector.hadamardtruediv"><code>.hadamardtruediv</code></a></td>
+<td></td>
+<td><a class="autorefs autorefs-internal" title="            tenhadamardtruediv(s, t)" href="multiaxis/#vector.multiaxis.tenhadamardtruediv"><code>tenhadamardtruediv</code></a></td>
+</tr>
+<tr>
+<td>Floor division</td>
+<td><a class="autorefs autorefs-internal" title="            vechadamardfloordiv(v, w)" href="functional/#vector.functional.vechadamardfloordiv"><code>vechadamardfloordiv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            hadamardfloordiv(other)" href="objectoriented/#vector.objectoriented.Vector.hadamardfloordiv"><code>.hadamardfloordiv</code></a></td>
+<td></td>
+<td><a class="autorefs autorefs-internal" title="            tenhadamardfloordiv(s, t)" href="multiaxis/#vector.multiaxis.tenhadamardfloordiv"><code>tenhadamardfloordiv</code></a></td>
+</tr>
+<tr>
+<td>Mod</td>
+<td><a class="autorefs autorefs-internal" title="            vechadamardmod(v, w)" href="functional/#vector.functional.vechadamardmod"><code>vechadamardmod</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            hadamardmod(other)" href="objectoriented/#vector.objectoriented.Vector.hadamardmod"><code>.hadamardmod</code></a></td>
+<td></td>
+<td><a class="autorefs autorefs-internal" title="            tenhadamardmod(s, t)" href="multiaxis/#vector.multiaxis.tenhadamardmod"><code>tenhadamardmod</code></a></td>
+</tr>
+<tr>
+<td>Min</td>
+<td><a class="autorefs autorefs-internal" title="            vechadamardmin(*vs)" href="functional/#vector.functional.vechadamardmin"><code>vechadamardmin</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            hadamardmin(other)" href="objectoriented/#vector.objectoriented.Vector.hadamardmin"><code>.hadamardmin</code></a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Max</td>
+<td><a class="autorefs autorefs-internal" title="            vechadamardmax(*vs)" href="functional/#vector.functional.vechadamardmax"><code>vechadamardmax</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            hadamardmax(other)" href="objectoriented/#vector.objectoriented.Vector.hadamardmax"><code>.hadamardmax</code></a></td>
 <td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<h2 id="todo">todo</h2>
+<h2 id="roadmap">Roadmap</h2>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <code>zip</code> version between <code>zip</code> &amp; <code>zip_longest</code>. Yields different sized tuples. Done: <a href="https://github.com/goessl/zipvar">goessl/zipvar</a></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <code>zip</code> version between <code>zip</code> &amp; <code>zip_longest</code>. Yields different sized
+tuples. Done: <a href="https://github.com/goessl/zipvar">goessl/zipvar</a></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <code>vecdivmod</code></li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> docstrings</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <code>numpy</code> routines</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> multiaxis vectors: tensors?</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Complexity notes. Perfect complexity</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>vecdivmod</code>, <code>vechadamardminmax</code></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>vechadamardminmax</code></li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> never use <code>numpy.int64</code>, they don't detect overflows</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> sparse vectors (<code>dict</code>s)</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> C++ &amp; Java version</li>
