@@ -4,9 +4,11 @@ Prefixed by `ten...` (tensor).
 
 Handle multiaxis vectors, that for example represent multivariate polynomials.
 
-Results are returned as `numpy` arrays.
+Tensors are returned as `numpy.ndarray`s.
 
-Broadcasting happens similar to [`numpy`s broadcasting](https://numpy.org/doc/stable/user/basics.broadcasting.html), but the axes are matched in ascending order instead of descending order, and the arrays don't get stretched but rather padded with zeros.
+Broadcasting happens similar to [`numpy`s broadcasting](https://numpy.org/doc/stable/user/basics.broadcasting.html),
+but the axes are matched in ascending order instead of descending order, and
+the arrays don't get stretched but rather padded with zeros.
 
 ---
 
@@ -44,6 +46,7 @@ Broadcasting happens similar to [`numpy`s broadcasting](https://numpy.org/doc/st
         - tentruediv
         - tenfloordiv
         - tenmod
+        - tendivmod
 
 ## Elementwise
 

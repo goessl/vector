@@ -59,7 +59,7 @@ def test_vecnpabsq():
     assert np.array_equal(vecnpabsq([[1, 2],
                                      [3, 4]]), [5, 25])
 
-def test_vecabs():
+def test_vecnpabs():
     assert vecnpabs([3, 4]) == 5
     assert np.array_equal(vecnpabs([[3,  4],
                                     [5, 12]]), [5, 13])

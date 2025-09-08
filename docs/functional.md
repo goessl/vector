@@ -11,13 +11,17 @@
 
 Prefixed by `vec...` (vector).
 
-All functions *accept single exhaustible iterables*.
+All functions accept vectors as **single exhaustible iterables**.
 
-They *return vectors as tuples*.
+They **return vectors as tuples**.
 
-Padding is done with `int(0)`.
+Padding is done with **`int(0)`**.
 
-The functions are *type-independent*. However, the data types used must *support necessary scalar operations*. For instance, for vector addition, components must be addable — this may include operations with padded integer zeros. Empty operations return the zero vector (e.g. `vecadd()==veczero`) or integer zeros (e.g. `vecdot(veczero, veczero)==int(0)`).
+The functions are **type-independent**. However, the data types used must
+*support necessary scalar operations*. For instance, for vector addition,
+coefficients must be addable — this may include operations with padded integer
+zeros. Empty operations return the zero vector (e.g. `vecadd()==veczero`) or
+integer zeros (e.g. `vecdot(veczero, veczero)==int(0)`).
 
 ---
 
