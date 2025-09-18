@@ -295,6 +295,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prefix-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prefix Design
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -411,28 +426,6 @@
   
 
     
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="design/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Design
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
   </ul>
 </nav>
                   </div>
@@ -474,6 +467,21 @@
       Usage
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prefix-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prefix Design
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -825,6 +833,12 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 </tbody>
 </table>
+<h3 id="prefix-design">Prefix Design</h3>
+<p>Could use no prefix to be more mathematically pure, like <code>add</code> instead of
+<code>vecadd</code>, but then you would always have to use <code>from vec import add as vecadd</code>
+if used with other libraries (like <code>operator</code>).</p>
+<p>Also avoids keyword collisions (<code>abs</code> is reserved, <code>vecabs</code> isn't).</p>
+<p>Do it like <code>numpy.polynomial.polynomial. ...</code>.</p>
 <h2 id="roadmap">Roadmap</h2>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <code>zip</code> version between <code>zip</code> &amp; <code>zip_longest</code>. Yields different sized
