@@ -47,6 +47,11 @@ def vecrand(n):
     $$
         \vec{v} \sim \mathcal{U}^n([0, 1[)
     $$
+    
+    Notes
+    -----
+    Naming like in `numpy.random`, because seems more concise
+    (not `random` & `gauss` as in the stdlib).
     """
     return tuple(random() for _ in range(n))
 
@@ -56,6 +61,11 @@ def vecrandn(n, normed=True, mu=0, sigma=1):
     $$
         \vec{v} \sim \mathcal{N}^n(\mu, \sigma)
     $$
+    
+    Notes
+    -----
+    Naming like in `numpy.random`, because seems more concise
+    (not `random` & `gauss` as in the stdlib).
     """
     v = tuple(gauss(mu, sigma) for _ in range(n))
     return vectruediv(v, vecabs(v)) if normed else v
@@ -72,7 +82,15 @@ def veceq(v, w):
     return all(starmap(eq, zip_longest(v, w, fillvalue=0)))
 
 def vectrim(v, tol=1e-9):
-    """Remove all trailing near zero (`abs(v_i)<=tol`) coefficients."""
+    """Remove all trailing near zero (`abs(v_i)<=tol`) coefficients.
+    
+    Notes
+    -----
+    - Cutting of elements that are `abs(vi)<=tol` instead of `abs(vi)<tol` to
+    allow cutting of elements that are exactly zero by `trim(v, 0)` instead
+    of `trim(v, sys.float_info.min)`.
+    - `tol=1e-9` like in [PEP 485](https://peps.python.org/pep-0485/#defaults).
+    """
     #doesn't work for iterators
     #while v and abs(v[-1])<=tol:
     #    v = v[:-1]
@@ -131,6 +149,12 @@ def vecabsq(v):
     $$
         ||\vec{v}||_{L_2}^2 = \sum_i|v_i|^2
     $$
+    
+    Notes
+    -----
+    Reasons why it exists:
+    - Occurs in math.
+    - Most importantly: type independent because it doesn't use `sqrt`.
     
     References
     ----------
@@ -250,6 +274,17 @@ def vectruediv(v, a):
     $$
         \frac{\vec{v}}{a}
     $$
+    
+    Notes
+    -----
+    Why called `truediv` instead of `div`?
+    
+    - `div` would be more appropriate for an absolute clean mathematical
+    implementation, that doesn't care about the language used. But the package
+    might be used for pure integers/integer arithmetic, so both, `truediv`
+    and `floordiv` operations have to be provided, and none should be
+    privileged over the other by getting the universal `div` name.
+    - `truediv`/`floordiv` is unambiguous, like Python `operator`s.
     """
     return tuple(map(truediv, v, repeat(a)))
 

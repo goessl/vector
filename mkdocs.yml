@@ -14,7 +14,6 @@ nav:
   - Object-oriented: objectoriented.md
   - Parallelised: parallelised.md
   - Multiaxis: multiaxis.md
-  - Design: design.md
 
 theme:
   name: material
