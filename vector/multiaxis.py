@@ -24,6 +24,14 @@ $$
     0
 $$
 
+Notes
+-----
+Why shape `(0,)` (=one dimensional, zero length) instead of `()` (zero dimensional)?
+
+Shape `()` would be size one (empty product) and a scalar that could have any nonzero value.
+
+Dimensionality of one isn't perfect, but at least its size is then zero and it couln't be any arbitrary value.
+
 See also
 --------
 [`veczero`][vector.functional.veczero]

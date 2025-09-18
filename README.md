@@ -1,3 +1,5 @@
+# vector
+
 An infinite-dimensional vector Python package.
 ```python
 >>> from vector import vecadd
@@ -27,24 +29,20 @@ pip install git+https://github.com/goessl/vector.git
 
 **Enjoy the [documentation webpage](https://goessl.github.io/vector).**
 
-## todo
+## Roadmap
 
- - [x] `zip` version between `zip` & `zip_longest`. Yields different sized tuples. Done: [goessl/zipvar](https://github.com/goessl/zipvar)
- - [x] docstrings
- - [x] `numpy` routines
- - [x] multiaxis vectors: tensors?
- - [ ] never use `numpy.int64`, they don't detect overflows
- - [ ] sparse vectors (`dict`s)
- - [ ] C, C++ & Java version
- - [ ] complexity analysis
-
-## Checklist
-
-- all modules imported in `__init__.py`?
-- all functions and classes exposed in `__all__` of every module?
-- all tests written?
-- all tests passed?
-- website deployed?
+- [x] `zip` version between `zip` & `zip_longest`. Yields different sized
+tuples. Done: [goessl/zipvar](https://github.com/goessl/zipvar)
+- [x] `vecdivmod`
+- [x] docstrings
+- [x] `numpy` routines
+- [x] multiaxis vectors: tensors?
+- [ ] Complexity analysis. Perfect complexity
+- [ ] dimensionality signature (e.g. `vecadd`: $\mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^{\max{m, n}}$)
+- [ ] `vechadamardminmax`
+- [ ] never use `numpy.int64`, they don't detect overflows
+- [ ] sparse vectors (`dict`s)
+- [ ] C++ & Java version
 
 ## License (MIT)
 

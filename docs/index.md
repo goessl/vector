@@ -79,6 +79,16 @@ infinite-dimensional by assuming that all components after the given ones are
 | Min               | [`vechadamardmin`][vector.functional.vechadamardmin]           | [`.hadamardmin`][vector.objectoriented.Vector.hadamardmin]           |                                                      |                                                               |
 | Max               | [`vechadamardmax`][vector.functional.vechadamardmax]           | [`.hadamardmax`][vector.objectoriented.Vector.hadamardmax]           |                                                      |                                                               |
 
+### Prefix Design
+
+Could use no prefix to be more mathematically pure, like `add` instead of
+`vecadd`, but then you would always have to use `from vec import add as vecadd`
+if used with other libraries (like `operator`).
+
+Also avoids keyword collisions (`abs` is reserved, `vecabs` isn't).
+
+Do it like `numpy.polynomial.polynomial. ...`.
+
 ## Roadmap
 
 - [x] `zip` version between `zip` & `zip_longest`. Yields different sized
@@ -87,7 +97,8 @@ tuples. Done: [goessl/zipvar](https://github.com/goessl/zipvar)
 - [x] docstrings
 - [x] `numpy` routines
 - [x] multiaxis vectors: tensors?
-- [ ] Complexity notes. Perfect complexity
+- [ ] Complexity analysis. Perfect complexity
+- [ ] dimensionality signature (e.g. `vecadd`: $\mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^{\max{m, n}}$)
 - [ ] `vechadamardminmax`
 - [ ] never use `numpy.int64`, they don't detect overflows
 - [ ] sparse vectors (`dict`s)
