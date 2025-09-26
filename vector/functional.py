@@ -153,6 +153,7 @@ def vecabsq(v):
     Notes
     -----
     Reasons why it exists:
+    
     - Occurs in math.
     - Most importantly: type independent because it doesn't use `sqrt`.
     
