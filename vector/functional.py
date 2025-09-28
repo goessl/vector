@@ -1,12 +1,12 @@
 from math import prod, sumprod, inf
 from random import random, gauss
-from itertools import starmap, zip_longest, repeat, tee, chain, islice
+from itertools import count, starmap, zip_longest, repeat, tee, chain, islice
 from operator import pos, neg, sub, mul, truediv, floordiv, mod, eq
 
 
 
 __all__ = (#creation
-           'veczero', 'vecbasis', 'vecrand', 'vecrandn',
+           'veczero', 'vecbasis', 'vecbasisgen', 'vecrand', 'vecrandn',
            #utility
            'veceq', 'vectrim', 'vecround', 'vecrshift', 'veclshift',
            #Hilbert space
@@ -40,6 +40,20 @@ def vecbasis(i, c=1):
     Returns a tuple with `i` zeros followed by `c`.
     """
     return (0,)*i + (c,)
+
+def vecbasisgen():
+    r"""Yield all basis vectors.
+    
+    $$
+        \left(\vec{e}_n\right)_\mathbb{n\in\mathbb{N_0}} = \left(\vec{e}_0, \vec{e}_1, \vec{e}_2, \dots \right)
+    $$
+    
+    See also
+    --------
+    - for single basis vector: [`vecbasis`][vector.functional.vecbasis]
+    """
+    for i in count():
+        yield vecbasis(i)
 
 def vecrand(n):
     r"""Return a random vector of `n` uniform `float` coefficients in `[0, 1[`.

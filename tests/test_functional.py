@@ -2,6 +2,7 @@ from vector import *
 import numpy as np
 from math import isclose, sqrt
 from random import random
+from itertools import islice
 
 
 
@@ -11,6 +12,10 @@ def test_veczero():
 
 def test_vecbasis():
     assert vecbasis(2, c=5) == (0, 0, 5)
+
+def test_vecbasisgen():
+    for i, vi in enumerate(islice(vecbasisgen(), 10)):
+        assert vi == vecbasis(i)
 
 def test_vecrand():
     v = vecrand(2)
