@@ -40,6 +40,8 @@ It operates on vectors of different lengths, treating them as
 infinite-dimensional by assuming that all components after the given ones are
 *zero*.
 
+All vectors are **zero-indexed**.
+
 | Operation         | [Functional](functional.md)                                    | [Object-oriented](objectoriented.md)                                 | [Parallelised](parallelised.md)                      | [Multiaxis](multiaxis.md)                                     |
 | ----------------- | -------------------------------------------------------------- | -------------------------------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------------- |
 | **Creation**      |                                                                |                                                                      |                                                      |                                                               |
