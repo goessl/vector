@@ -114,8 +114,8 @@ def test_vecmod():
     assert vecmod((3,), 2) == (1,)
 
 def test_vecdivmod():
-    v, a = (1., 2., 3.), 2.
-    vecdivmod(v, a) == (vectruediv(v, a), vecmod(v, a))
+    v, a = (1, 2, 3), 2
+    assert vecdivmod(v, a) == (vecfloordiv(v, a), vecmod(v, a))
 
 
 #elementwise
