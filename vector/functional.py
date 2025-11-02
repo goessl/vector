@@ -6,7 +6,7 @@ from operator import pos, neg, sub, mul, truediv, floordiv, mod, eq
 
 
 __all__ = (#creation
-           'veczero', 'vecbasis', 'vecbasisgen', 'vecrand', 'vecrandn',
+           'veczero', 'vecbasis', 'vecbases', 'vecrand', 'vecrandn',
            #utility
            'veceq', 'vectrim', 'vecround', 'vecrshift', 'veclshift',
            #Hilbert space
@@ -41,7 +41,7 @@ def vecbasis(i, c=1):
     """
     return (0,)*i + (c,)
 
-def vecbasisgen():
+def vecbases():
     r"""Yield all basis vectors.
     
     $$
@@ -165,6 +165,15 @@ def veclshift(v, n):
 
 
 #Hilbert space
+def try_conjugate(x):
+    #try:
+    #    return x.conjugate()
+    #except AttributeError:
+    #    return x
+    #could throw an AttibuteError from somewhere deeper
+    conj = getattr(x, "conjugate", None)
+    return conj() if callable(conj) else x
+
 def vecabsq(v):
     r"""Return the sum of absolute squares of the coefficients.
     
@@ -184,7 +193,10 @@ def vecabsq(v):
     - <https://docs.python.org/3/library/itertools.html#itertools-recipes>: `sum_of_squares`
     """
     #return sumprod(v, v) #no abs
-    return sumprod(*tee(map(abs, v), 2))
+    #return sumprod(*tee(map(abs, v), 2)) #first abs then multiply could introduce floats
+    #for example 1+1j: |1+1j|^2=sqrt(2)^2 - - - (1-1j)(1+1j)=2
+    vc, v = tee(v, 2)
+    return sumprod(map(try_conjugate, vc), v)
 
 def vecabs(v):
     r"""Return the Euclidean/L2-norm.
@@ -201,7 +213,7 @@ def vecabs(v):
     return vecabsq(v)**0.5
 
 def vecdot(v, w):
-    r"""Return the inner product of two vectors without conjugation.
+    r"""Return the inner product of two vectors with conjugation.
     
     $$
         \left<\vec{v}\mid\vec{w}\right>_{\ell_{\mathbb{N}_0}^2}=\sum_iv_iw_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}
@@ -210,7 +222,7 @@ def vecdot(v, w):
     #unreadable and doesn't work for generators
     #return sumprod(v[:min(len(v), len(w))], w[:min(len(v), len(w))])
     #return sumprod(*zip(*zip(v, w))) #would be more precise, but is bloat
-    return sum(map(mul, v, w))
+    return sum(map(mul, map(try_conjugate, v), w))
 
 def vecparallel(v, w):
     r"""Return if two vectors are parallel.
@@ -223,10 +235,10 @@ def vecparallel(v, w):
     #return vecabsq(v)*vecabsq(w) == abs(vecdot(v, w))**2
     v2, w2, vw = 0, 0, 0
     for vi, wi in zip_longest(v, w, fillvalue=0):
-        via, wia = abs(vi), abs(wi)
-        v2 += via * via
-        w2 += wia * wia
-        vw += vi * wi
+        vc, wc = try_conjugate(vi), try_conjugate(wi)
+        v2 += vc * vi
+        w2 += wc * wi
+        vw += vc * wi
     vw = abs(vw)
     return v2 * w2 == vw * vw
 

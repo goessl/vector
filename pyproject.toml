@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "vector"
-version = "3.4"
+version = "3.5"
 description = "An infinite-dimensional vector Python package."
 readme = "README.md"
 requires-python = ">=3.12"
@@ -34,6 +34,10 @@ classifiers = [
 
 [tool.hatch.build.targets.wheel]
 packages = ["vector"]
+include = ["LICENSE", "README.md"]
 
 [tool.hatch.build.targets.sdist]
-include = ["vector", "README.md", "LICENSE"]
+include = ["vector", "tests",
+    "pyproject.toml",
+    "README.md", "mkdocs.yml", "docs",
+    "LICENSE"]

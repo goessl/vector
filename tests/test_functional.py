@@ -13,8 +13,8 @@ def test_veczero():
 def test_vecbasis():
     assert vecbasis(2, c=5) == (0, 0, 5)
 
-def test_vecbasisgen():
-    for i, vi in enumerate(islice(vecbasisgen(), 10)):
+def test_vecbases():
+    for i, vi in enumerate(islice(vecbases(), 10)):
         assert vi == vecbasis(i)
 
 def test_vecrand():

@@ -32,7 +32,7 @@ integer zeros (e.g. `vecdot(veczero, veczero)==int(0)`).
       members:
         - veczero
         - vecbasis
-        - vecbasisgen
+        - vecbases
         - vecrand
         - vecrandn
 
