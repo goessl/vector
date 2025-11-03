@@ -4,14 +4,15 @@ build-backend = "hatchling.build"
 
 [project]
 name = "vector"
-version = "3.5"
+version = "3.6"
 description = "An infinite-dimensional vector Python package."
 readme = "README.md"
 requires-python = ">=3.12"
 authors = [
     {name="Sebastian Gössl", email="goessl@student.tugraz.at"}
 ]
-license = {file="LICENSE"}
+license = "MIT"
+license-files = ["LICENSE"]
 dependencies = ["numpy"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -30,7 +31,8 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/goessl/vector"
+Documentation = "https://goessl.github.io/vector"
+Repository = "https://github.com/goessl/vector.git"
 
 [tool.hatch.build.targets.wheel]
 packages = ["vector"]
@@ -38,6 +40,5 @@ include = ["LICENSE", "README.md"]
 
 [tool.hatch.build.targets.sdist]
 include = ["vector", "tests",
-    "pyproject.toml",
-    "README.md", "mkdocs.yml", "docs",
-    "LICENSE"]
+    "mkdocs.yml", "docs",
+    "pyproject.toml", "README.md", "LICENSE"]

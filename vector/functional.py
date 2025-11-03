@@ -69,7 +69,7 @@ def vecrand(n):
     """
     return tuple(random() for _ in range(n))
 
-def vecrandn(n, normed=True, mu=0, sigma=1):
+def vecrandn(n, normed=True, mu=0, sigma=1, weights=None):
     r"""Return a random vector of `n` normal distributed `float` coefficients.
     
     $$
@@ -82,7 +82,7 @@ def vecrandn(n, normed=True, mu=0, sigma=1):
     (not `random` & `gauss` as in the stdlib).
     """
     v = tuple(gauss(mu, sigma) for _ in range(n))
-    return vectruediv(v, vecabs(v)) if normed else v
+    return vectruediv(v, vecabs(v, weights)) if normed else v
 
 
 #utility
@@ -174,11 +174,11 @@ def try_conjugate(x):
     conj = getattr(x, "conjugate", None)
     return conj() if callable(conj) else x
 
-def vecabsq(v):
+def vecabsq(v, weights=None):
     r"""Return the sum of absolute squares of the coefficients.
     
     $$
-        ||\vec{v}||_{\ell_{\mathbb{N}_0}^2}^2=\sum_i|v_i|^2 \qquad \mathbb{K}^n\to\mathbb{K}_0^+
+        ||\vec{v}||_{\ell_{\mathbb{N}_0}^2}^2=\sum_i v_i^*v_i\omega_i \qquad \mathbb{K}^n\to\mathbb{K}_0^+
     $$
     
     Notes
@@ -196,13 +196,16 @@ def vecabsq(v):
     #return sumprod(*tee(map(abs, v), 2)) #first abs then multiply could introduce floats
     #for example 1+1j: |1+1j|^2=sqrt(2)^2 - - - (1-1j)(1+1j)=2
     vc, v = tee(v, 2)
-    return sumprod(map(try_conjugate, vc), v)
+    if weights is None:
+        return sumprod(map(try_conjugate, vc), v)
+    else:
+        return sum(map(prod, zip(map(try_conjugate, vc), v, weights)))
 
-def vecabs(v):
+def vecabs(v, weights=None):
     r"""Return the Euclidean/L2-norm.
     
     $$
-        ||\vec{v}||_{\ell_{\mathbb{N}_0}^2}=\sqrt{\sum_i|v_i|^2} \qquad \mathbb{K}^n\to\mathbb{K}_0^+
+        ||\vec{v}||_{\ell_{\mathbb{N}_0}^2}=\sqrt{\sum_iv_i^*v_i\omega_i} \qquad \mathbb{K}^n\to\mathbb{K}_0^+
     $$
     
     Returns the square root of [`vecabsq`][vector.functional.vecabsq].
@@ -210,21 +213,24 @@ def vecabs(v):
     #hypot(*v) doesn't work for complex
     #math.sqrt doesn't work for complex and cmath.sqrt always returns complex
     #therefore use **0.5 instead of sqrt because it is type conserving
-    return vecabsq(v)**0.5
+    return vecabsq(v, weights=weights)**0.5
 
-def vecdot(v, w):
+def vecdot(v, w, weights=None):
     r"""Return the inner product of two vectors with conjugation.
     
     $$
-        \left<\vec{v}\mid\vec{w}\right>_{\ell_{\mathbb{N}_0}^2}=\sum_iv_iw_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}
+        \left<\vec{v}\mid\vec{w}\right>_{\ell_{\mathbb{N}_0}^2}=\sum_iv_i^*w_i\omega_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}
     $$
     """
     #unreadable and doesn't work for generators
     #return sumprod(v[:min(len(v), len(w))], w[:min(len(v), len(w))])
     #return sumprod(*zip(*zip(v, w))) #would be more precise, but is bloat
-    return sum(map(mul, map(try_conjugate, v), w))
+    if weights is None:
+        return sum(map(mul, map(try_conjugate, v), w))
+    else:
+        return sum(map(prod, zip(map(try_conjugate, v), w, weights)))
 
-def vecparallel(v, w):
+def vecparallel(v, w, weights=None):
     r"""Return if two vectors are parallel.
     
     $$
@@ -234,11 +240,18 @@ def vecparallel(v, w):
     #doesn't work for exhaustible iterables
     #return vecabsq(v)*vecabsq(w) == abs(vecdot(v, w))**2
     v2, w2, vw = 0, 0, 0
-    for vi, wi in zip_longest(v, w, fillvalue=0):
-        vc, wc = try_conjugate(vi), try_conjugate(wi)
-        v2 += vc * vi
-        w2 += wc * wi
-        vw += vc * wi
+    if weights is None:
+        for vi, wi in zip_longest(v, w, fillvalue=0):
+            vc, wc = try_conjugate(vi), try_conjugate(wi)
+            v2 += vc * vi
+            w2 += wc * wi
+            vw += vc * wi
+    else:
+        for vi, wi, o in zip_longest(v, w, weights, fillvalue=0):
+            vco, wco = try_conjugate(vi)*o, try_conjugate(wi)*o
+            v2 += vco * vi
+            w2 += wco * wi
+            vw += vco * wi
     vw = abs(vw)
     return v2 * w2 == vw * vw
 
