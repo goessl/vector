@@ -10,9 +10,9 @@ __all__ = (#creation
            #utility
            'veceq', 'vectrim', 'vecround', 'vecrshift', 'veclshift',
            #Hilbert space
-           'vecabsq',  'vecabs',  'vecdot', 'vecparallel',
+           'vecconj', 'vecabsq',  'vecabs',  'vecdot', 'vecparallel',
            #vector space
-           'vecpos', 'vecneg', 'vecadd', 'vecaddc', 'vecsub',
+           'vecpos', 'vecneg', 'vecadd', 'vecaddc', 'vecsub', 'vecsubc',
            'vecmul', 'vectruediv', 'vecfloordiv', 'vecmod', 'vecdivmod',
            #elementwise
            'vechadamard', 'vechadamardtruediv',
@@ -171,14 +171,29 @@ def try_conjugate(x):
     #except AttributeError:
     #    return x
     #could throw an AttibuteError from somewhere deeper
-    conj = getattr(x, "conjugate", None)
+    conj = getattr(x, 'conjugate', None)
     return conj() if callable(conj) else x
 
-def vecabsq(v, weights=None):
+def vecconj(v):
+    r"""Return the elementwise complex conjugate.
+    
+    $$
+        \vec{v}^* \qquad \mathbb{K}^n\to\mathbb{K}^n
+    $$
+    
+    Trys to call a method `conjugate` on each element.
+    If not found, simply keeps the element as is.
+    """
+    return tuple(_vecconj(v))
+
+def _vecconj(v):
+    return map(try_conjugate, v)
+
+def vecabsq(v, weights=None, conjugate=False):
     r"""Return the sum of absolute squares of the coefficients.
     
     $$
-        ||\vec{v}||_{\ell_{\mathbb{N}_0}^2}^2=\sum_i v_i^*v_i\omega_i \qquad \mathbb{K}^n\to\mathbb{K}_0^+
+        ||\vec{v}||_{\ell_{\mathbb{N}_0}^2}^2=\sum_iv_i^{(*)}v_i\omega_i \qquad \mathbb{K}^n\to\mathbb{K}_0^+
     $$
     
     Notes
@@ -196,16 +211,19 @@ def vecabsq(v, weights=None):
     #return sumprod(*tee(map(abs, v), 2)) #first abs then multiply could introduce floats
     #for example 1+1j: |1+1j|^2=sqrt(2)^2 - - - (1-1j)(1+1j)=2
     vc, v = tee(v, 2)
+    if conjugate:
+        vc = _vecconj(vc)
+    
     if weights is None:
-        return sumprod(map(try_conjugate, vc), v)
+        return sumprod(vc, v)
     else:
-        return sum(map(prod, zip(map(try_conjugate, vc), v, weights)))
+        return sum(map(prod, zip(vc, v, weights)))
 
-def vecabs(v, weights=None):
+def vecabs(v, weights=None, conjugate=False):
     r"""Return the Euclidean/L2-norm.
     
     $$
-        ||\vec{v}||_{\ell_{\mathbb{N}_0}^2}=\sqrt{\sum_iv_i^*v_i\omega_i} \qquad \mathbb{K}^n\to\mathbb{K}_0^+
+        ||\vec{v}||_{\ell_{\mathbb{N}_0}^2}=\sqrt{\sum_iv_i^{(*)}v_i\omega_i} \qquad \mathbb{K}^n\to\mathbb{K}_0^+
     $$
     
     Returns the square root of [`vecabsq`][vector.functional.vecabsq].
@@ -213,24 +231,27 @@ def vecabs(v, weights=None):
     #hypot(*v) doesn't work for complex
     #math.sqrt doesn't work for complex and cmath.sqrt always returns complex
     #therefore use **0.5 instead of sqrt because it is type conserving
-    return vecabsq(v, weights=weights)**0.5
+    return vecabsq(v, weights=weights, conjugate=conjugate)**0.5
 
-def vecdot(v, w, weights=None):
-    r"""Return the inner product of two vectors with conjugation.
+def vecdot(v, w, weights=None, conjugate=False):
+    r"""Return the inner product of two vectors.
     
     $$
-        \left<\vec{v}\mid\vec{w}\right>_{\ell_{\mathbb{N}_0}^2}=\sum_iv_i^*w_i\omega_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}
+        \left<\vec{v}\mid\vec{w}\right>_{\ell_{\mathbb{N}_0}^2}=\sum_iv_i^{(*)}w_i\omega_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}
     $$
     """
     #unreadable and doesn't work for generators
     #return sumprod(v[:min(len(v), len(w))], w[:min(len(v), len(w))])
     #return sumprod(*zip(*zip(v, w))) #would be more precise, but is bloat
+    if conjugate:
+        v = _vecconj(v)
+    
     if weights is None:
-        return sum(map(mul, map(try_conjugate, v), w))
+        return sum(map(mul, v, w))
     else:
-        return sum(map(prod, zip(map(try_conjugate, v), w, weights)))
+        return sum(map(prod, zip(v, w, weights)))
 
-def vecparallel(v, w, weights=None):
+def vecparallel(v, w, weights=None, conjugate=False):
     r"""Return if two vectors are parallel.
     
     $$
@@ -242,16 +263,16 @@ def vecparallel(v, w, weights=None):
     v2, w2, vw = 0, 0, 0
     if weights is None:
         for vi, wi in zip_longest(v, w, fillvalue=0):
-            vc, wc = try_conjugate(vi), try_conjugate(wi)
-            v2 += vc * vi
-            w2 += wc * wi
-            vw += vc * wi
+            vic, wic = (try_conjugate(vi), try_conjugate(wi)) if conjugate else (vi, wi)
+            v2 += vic * vi
+            w2 += wic * wi
+            vw += vic * wi
     else:
         for vi, wi, o in zip_longest(v, w, weights, fillvalue=0):
-            vco, wco = try_conjugate(vi)*o, try_conjugate(wi)*o
-            v2 += vco * vi
-            w2 += wco * wi
-            vw += vco * wi
+            vic, wic = (try_conjugate(vi), try_conjugate(wi)) if conjugate else (vi, wi)
+            v2 += vic * vi * o
+            w2 += wic * wi * o
+            vw += vic * wi * o
     vw = abs(vw)
     return v2 * w2 == vw * vw
 
@@ -306,6 +327,20 @@ def vecsub(v, w):
     $$
     """
     return tuple(starmap(sub, zip_longest(v, w, fillvalue=0)))
+
+def vecsubc(v, c, i=0):
+    r"""Return `v` with `c` added to the `i`-th coefficient.
+    
+    $$
+        \vec{v}-c\vec{e}_i \qquad \mathbb{K}^n\to\mathbb{K}^{\max\{n, i\}}
+    $$
+    
+    More efficient than `vecsub(v, vecbasis(i, c))`.
+    """
+    v = list(v)
+    v.extend([0] * (i-len(v)+1))
+    v[i] -= c
+    return tuple(v)
 
 def vecmul(a, v):
     r"""Return the product of a scalar and a vector.

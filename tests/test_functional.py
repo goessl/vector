@@ -55,9 +55,14 @@ def test_veclshift():
 
 
 #Hilbert space
+def test_vecconj():
+    assert vecconj((1, 2, 3)) == (1, 2, 3)
+    assert vecconj((1, 2j, 3)) == (1, -2j, 3)
+    assert vecconj((1, 4+2j, 3.5)) == (1, 4-2j, 3.5)
+
 def test_vecabsq():
     assert vecabsq(()) == 0
-    assert vecabsq((1j, 2, 3j)) == 14
+    assert vecabsq((1j, 2, 3j), conjugate=True) == 14
 
 def test_vecabs():
     assert vecabs(()) == 0
@@ -81,21 +86,26 @@ def test_vecpos():
 def test_vecneg():
     assert vecneg((+1, -2, +3)) == (-1, +2, -3)
 
-def test_vecaddc():
-    assert vecaddc((), 2, 3) == (0, 0, 0, 2)
-    assert vecaddc((1, 2), 4, 5) == (1, 2, 0, 0, 0, 4)
-    assert vecaddc((1, 2, 3, 4, 5), 5, 2) == (1, 2, 8, 4, 5)
-
 def test_vecadd():
     assert vecadd() == ()
     assert vecadd((1, 2)) == (1, 2)
     assert vecadd((1, 2, 3), (4, 5)) == (5, 7, 3)
+
+def test_vecaddc():
+    assert vecaddc((), 2, 3) == (0, 0, 0, 2)
+    assert vecaddc((1, 2), 4, 5) == (1, 2, 0, 0, 0, 4)
+    assert vecaddc((1, 2, 3, 4, 5), 5, 2) == (1, 2, 8, 4, 5)
 
 def test_vecsub():
     assert vecsub((), ()) == ()
     assert vecsub((1,), ()) == (1,)
     assert vecsub((), (1,)) == (-1,)
     assert vecsub((1, 2, 3), (4, 5)) == (-3, -3, 3)
+
+def test_vecsubc():
+    assert vecsubc((), 2, 3) == (0, 0, 0, -2)
+    assert vecsubc((1, 2), 4, 5) == (1, 2, 0, 0, 0, -4)
+    assert vecsubc((1, 2, 3, 4, 5), 5, 2) == (1, 2, -2, 4, 5)
 
 def test_vecmul():
     assert vecmul(5, veczero) == veczero

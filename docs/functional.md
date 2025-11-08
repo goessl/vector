@@ -52,6 +52,7 @@ integer zeros (e.g. `vecdot(veczero, veczero)==int(0)`).
 ::: vector.functional
     options:
       members:
+        - vecconj
         - vecabsq
         - vecabs
         - vecdot
@@ -67,6 +68,7 @@ integer zeros (e.g. `vecdot(veczero, veczero)==int(0)`).
         - vecadd
         - vecaddc
         - vecsub
+        - vecsubc
         - vecmul
         - vectruediv
         - vecfloordiv
