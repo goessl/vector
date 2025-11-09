@@ -10,10 +10,11 @@ copyright: Copyright &copy; 2022 - 2025 Sebastian Gössl
 
 nav:
   - Home: index.md
-  - Functional: functional.md
-  - Object-oriented: objectoriented.md
-  - Parallelised: parallelised.md
-  - Multiaxis: multiaxis.md
+  - functional.md
+  - lazy.md
+  - objectoriented.md
+  - parallelised.md
+  - multiaxis.md
 
 theme:
   name: material

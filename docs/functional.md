@@ -1,4 +1,4 @@
-# Functions
+# Functional
 
 ```python
 >>> from vector import vecadd
@@ -53,8 +53,8 @@ integer zeros (e.g. `vecdot(veczero, veczero)==int(0)`).
     options:
       members:
         - vecconj
-        - vecabsq
         - vecabs
+        - vecabsq
         - vecdot
         - vecparallel
 
