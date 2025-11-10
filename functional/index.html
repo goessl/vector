@@ -1245,7 +1245,7 @@ integer zeros (e.g. <code>vecdot(veczero, veczero)==int(0)</code>).</p>
 
 
 <h3 id="vector.functional.vecbasis" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vecbasis</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vecbasis</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
 
 </h3>
 
@@ -1256,7 +1256,7 @@ integer zeros (e.g. <code>vecdot(veczero, veczero)==int(0)</code>).</p>
 <div class="arithmatex">\[
     c\vec{e}_i \qquad \mathbb{K}^{i+1}
 \]</div>
-<p>Returns a tuple with <code>i</code> zeros followed by <code>c</code>.</p>
+<p>Returns a tuple with <code>i</code> many <code>zero</code>s followed by <code>c</code>.</p>
 
 
             <details class="quote">
@@ -1270,16 +1270,16 @@ integer zeros (e.g. <code>vecdot(veczero, veczero)==int(0)</code>).</p>
 <span class="normal">42</span>
 <span class="normal">43</span>
 <span class="normal">44</span>
-<span class="normal">45</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecbasis</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="normal">45</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecbasis</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the `i`-th basis vector times `c`.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        c\vec{e}_i \qquad \mathbb{K}^{i+1}</span>
 <span class="sd">    $$</span>
 
-<span class="sd">    Returns a tuple with `i` zeros followed by `c`.</span>
+<span class="sd">    Returns a tuple with `i` many `zero`s followed by `c`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="p">(</span><span class="mi">0</span><span class="p">,)</span><span class="o">*</span><span class="n">i</span> <span class="o">+</span> <span class="p">(</span><span class="n">c</span><span class="p">,)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">zero</span><span class="p">,)</span><span class="o">*</span><span class="n">i</span> <span class="o">+</span> <span class="p">(</span><span class="n">c</span><span class="p">,)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -1295,7 +1295,7 @@ integer zeros (e.g. <code>vecdot(veczero, veczero)==int(0)</code>).</p>
 
 
 <h3 id="vector.functional.vecbases" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vecbases</span><span class="p">()</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vecbases</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
 
 </h3>
 
@@ -1311,7 +1311,7 @@ integer zeros (e.g. <code>vecdot(veczero, veczero)==int(0)</code>).</p>
 <details class="see-also" open>
   <summary>See also</summary>
   <ul>
-<li>for single basis vector: <a class="autorefs autorefs-internal" title="            vecbasis(i, c=1)" href="#vector.functional.vecbasis"><code>vecbasis</code></a></li>
+<li>for single basis vector: <a class="autorefs autorefs-internal" title="            vecbasis(i, c=1, zero=0)" href="#vector.functional.vecbasis"><code>vecbasis</code></a></li>
 </ul>
 </details>
 
@@ -1329,7 +1329,7 @@ integer zeros (e.g. <code>vecdot(veczero, veczero)==int(0)</code>).</p>
 <span class="normal">56</span>
 <span class="normal">57</span>
 <span class="normal">58</span>
-<span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecbases</span><span class="p">():</span>
+<span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecbases</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Yield all basis vectors.</span>
 
 <span class="sd">    $$</span>
@@ -1340,8 +1340,8 @@ integer zeros (e.g. <code>vecdot(veczero, veczero)==int(0)</code>).</p>
 <span class="sd">    --------</span>
 <span class="sd">    - for single basis vector: [`vecbasis`][vector.functional.vecbasis]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">count</span><span class="p">():</span>
-        <span class="k">yield</span> <span class="n">vecbasis</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">count</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">vecbasis</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="n">zero</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -1510,7 +1510,7 @@ integer zeros (e.g. <code>vecdot(veczero, veczero)==int(0)</code>).</p>
 
 
 <h3 id="vector.functional.veceq" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">veceq</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">veceq</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
 
 </h3>
 
@@ -1532,14 +1532,14 @@ integer zeros (e.g. <code>vecdot(veczero, veczero)==int(0)</code>).</p>
 <span class="normal">96</span>
 <span class="normal">97</span>
 <span class="normal">98</span>
-<span class="normal">99</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veceq</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+<span class="normal">99</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veceq</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return if two vectors are equal.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \vec{v}=\vec{w} \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{B}</span>
 <span class="sd">    $$</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="n">starmap</span><span class="p">(</span><span class="n">eq</span><span class="p">,</span> <span class="n">zip_longest</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">fillvalue</span><span class="o">=</span><span class="mi">0</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="n">starmap</span><span class="p">(</span><span class="n">eq</span><span class="p">,</span> <span class="n">zip_longest</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">fillvalue</span><span class="o">=</span><span class="n">zero</span><span class="p">)))</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -1701,14 +1701,14 @@ of <code>trim(v, sys.float_info.min)</code>.</li>
 
 
 <h3 id="vector.functional.vecrshift" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vecrshift</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vecrshift</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
 
 </h3>
 
 
     <div class="doc doc-contents ">
 
-        <p>Pad <code>n</code> many <code>fill</code>s to the beginning of the vector.</p>
+        <p>Pad <code>n</code> many <code>zero</code>s to the beginning of the vector.</p>
 <div class="arithmatex">\[
     (v_{i-n})_i \qquad \begin{pmatrix}
         0 \\
@@ -1737,8 +1737,8 @@ of <code>trim(v, sys.float_info.min)</code>.</li>
 <span class="normal">151</span>
 <span class="normal">152</span>
 <span class="normal">153</span>
-<span class="normal">154</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecrshift</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Pad `n` many `fill`s to the beginning of the vector.</span>
+<span class="normal">154</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecrshift</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Pad `n` many `zero`s to the beginning of the vector.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        (v_{i-n})_i \qquad \begin{pmatrix}</span>
@@ -1751,7 +1751,7 @@ of <code>trim(v, sys.float_info.min)</code>.</li>
 <span class="sd">        \end{pmatrix} \qquad \mathbb{K}^m\to\mathbb{K}^{m+n}</span>
 <span class="sd">    $$</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclrshift</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">fill</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclrshift</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="n">zero</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -1906,7 +1906,7 @@ If not found, simply keeps the element as is.</p>
 
 
 <h3 id="vector.functional.vecabs" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vecabs</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conjugate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vecabs</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conjugate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
 
 </h3>
 
@@ -1917,7 +1917,7 @@ If not found, simply keeps the element as is.</p>
 <div class="arithmatex">\[
     ||\vec{v}||_{\ell_{\mathbb{N}_0}^2}=\sqrt{\sum_iv_i^{(*)}v_i\omega_i} \qquad \mathbb{K}^n\to\mathbb{K}_0^+
 \]</div>
-<p>Returns the square root of <a class="autorefs autorefs-internal" title="            vecabsq(v, weights=None, conjugate=False)" href="#vector.functional.vecabsq"><code>vecabsq</code></a>.</p>
+<p>Returns the square root of <a class="autorefs autorefs-internal" title="            vecabsq(v, weights=None, conjugate=False, zero=0)" href="#vector.functional.vecabsq"><code>vecabsq</code></a>.</p>
 
 
             <details class="quote">
@@ -1934,7 +1934,7 @@ If not found, simply keeps the element as is.</p>
 <span class="normal">192</span>
 <span class="normal">193</span>
 <span class="normal">194</span>
-<span class="normal">195</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecabs</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conjugate</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="normal">195</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecabs</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conjugate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the Euclidean/L2-norm.</span>
 
 <span class="sd">    $$</span>
@@ -1946,7 +1946,7 @@ If not found, simply keeps the element as is.</p>
     <span class="c1">#hypot(*v) doesn&#39;t work for complex</span>
     <span class="c1">#math.sqrt doesn&#39;t work for complex and cmath.sqrt always returns complex</span>
     <span class="c1">#therefore use **0.5 instead of sqrt because it is type conserving</span>
-    <span class="k">return</span> <span class="n">vecabsq</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">,</span> <span class="n">conjugate</span><span class="o">=</span><span class="n">conjugate</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>
+    <span class="k">return</span> <span class="n">vecabsq</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">,</span> <span class="n">conjugate</span><span class="o">=</span><span class="n">conjugate</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="n">zero</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -1962,7 +1962,7 @@ If not found, simply keeps the element as is.</p>
 
 
 <h3 id="vector.functional.vecabsq" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vecabsq</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conjugate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vecabsq</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conjugate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
 
 </h3>
 
@@ -2018,10 +2018,7 @@ If not found, simply keeps the element as is.</p>
 <span class="normal">219</span>
 <span class="normal">220</span>
 <span class="normal">221</span>
-<span class="normal">222</span>
-<span class="normal">223</span>
-<span class="normal">224</span>
-<span class="normal">225</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecabsq</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conjugate</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="normal">222</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecabsq</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conjugate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the sum of absolute squares of the coefficients.</span>
 
 <span class="sd">    $$</span>
@@ -2039,17 +2036,14 @@ If not found, simply keeps the element as is.</p>
 <span class="sd">    ----------</span>
 <span class="sd">    - &lt;https://docs.python.org/3/library/itertools.html#itertools-recipes&gt;: `sum_of_squares`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1">#return sumprod(v, v) #no abs</span>
-    <span class="c1">#return sumprod(*tee(map(abs, v), 2)) #first abs then multiply could introduce floats</span>
-    <span class="c1">#for example 1+1j: |1+1j|^2=sqrt(2)^2 - - - (1-1j)(1+1j)=2</span>
     <span class="n">vc</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">tee</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">conjugate</span><span class="p">:</span>
         <span class="n">vc</span> <span class="o">=</span> <span class="n">veclconj</span><span class="p">(</span><span class="n">vc</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">weights</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">sumprod</span><span class="p">(</span><span class="n">vc</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">mul</span><span class="p">,</span> <span class="n">vc</span><span class="p">,</span> <span class="n">v</span><span class="p">),</span> <span class="n">start</span><span class="o">=</span><span class="n">zero</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">prod</span><span class="p">,</span> <span class="nb">zip</span><span class="p">(</span><span class="n">vc</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">weights</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">mul</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">mul</span><span class="p">,</span> <span class="n">vc</span><span class="p">,</span> <span class="n">v</span><span class="p">),</span> <span class="n">weights</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">zero</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -2065,7 +2059,7 @@ If not found, simply keeps the element as is.</p>
 
 
 <h3 id="vector.functional.vecdot" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vecdot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conjugate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vecdot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conjugate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
 
 </h3>
 
@@ -2080,7 +2074,10 @@ If not found, simply keeps the element as is.</p>
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">227</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
 <span class="normal">228</span>
 <span class="normal">229</span>
 <span class="normal">230</span>
@@ -2090,29 +2087,20 @@ If not found, simply keeps the element as is.</p>
 <span class="normal">234</span>
 <span class="normal">235</span>
 <span class="normal">236</span>
-<span class="normal">237</span>
-<span class="normal">238</span>
-<span class="normal">239</span>
-<span class="normal">240</span>
-<span class="normal">241</span>
-<span class="normal">242</span>
-<span class="normal">243</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecdot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conjugate</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="normal">237</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecdot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conjugate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the inner product of two vectors.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \left&lt;\vec{v}\mid\vec{w}\right&gt;_{\ell_{\mathbb{N}_0}^2}=\sum_iv_i^{(*)}w_i\omega_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}</span>
 <span class="sd">    $$</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1">#unreadable and doesn&#39;t work for generators</span>
-    <span class="c1">#return sumprod(v[:min(len(v), len(w))], w[:min(len(v), len(w))])</span>
-    <span class="c1">#return sumprod(*zip(*zip(v, w))) #would be more precise, but is bloat</span>
     <span class="k">if</span> <span class="n">conjugate</span><span class="p">:</span>
         <span class="n">v</span> <span class="o">=</span> <span class="n">veclconj</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">weights</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">mul</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">))</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">mul</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">),</span> <span class="n">start</span><span class="o">=</span><span class="n">zero</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">prod</span><span class="p">,</span> <span class="nb">zip</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">weights</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">mul</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">mul</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">),</span> <span class="n">weights</span><span class="p">),</span> <span class="n">start</span><span class="o">=</span><span class="n">zero</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -2128,7 +2116,7 @@ If not found, simply keeps the element as is.</p>
 
 
 <h3 id="vector.functional.vecparallel" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vecparallel</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conjugate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vecparallel</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conjugate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
 
 </h3>
 
@@ -2143,7 +2131,13 @@ If not found, simply keeps the element as is.</p>
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">245</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
 <span class="normal">246</span>
 <span class="normal">247</span>
 <span class="normal">248</span>
@@ -2159,13 +2153,7 @@ If not found, simply keeps the element as is.</p>
 <span class="normal">258</span>
 <span class="normal">259</span>
 <span class="normal">260</span>
-<span class="normal">261</span>
-<span class="normal">262</span>
-<span class="normal">263</span>
-<span class="normal">264</span>
-<span class="normal">265</span>
-<span class="normal">266</span>
-<span class="normal">267</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecparallel</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conjugate</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="normal">261</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecparallel</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conjugate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return if two vectors are parallel.</span>
 
 <span class="sd">    $$</span>
@@ -2174,15 +2162,15 @@ If not found, simply keeps the element as is.</p>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1">#doesn&#39;t work for exhaustible iterables</span>
     <span class="c1">#return vecabsq(v)*vecabsq(w) == abs(vecdot(v, w))**2</span>
-    <span class="n">v2</span><span class="p">,</span> <span class="n">w2</span><span class="p">,</span> <span class="n">vw</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="n">v2</span><span class="p">,</span> <span class="n">w2</span><span class="p">,</span> <span class="n">vw</span> <span class="o">=</span> <span class="n">zero</span><span class="p">,</span> <span class="n">zero</span><span class="p">,</span> <span class="n">zero</span>
     <span class="k">if</span> <span class="n">weights</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">vi</span><span class="p">,</span> <span class="n">wi</span> <span class="ow">in</span> <span class="n">zip_longest</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">fillvalue</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">vi</span><span class="p">,</span> <span class="n">wi</span> <span class="ow">in</span> <span class="n">zip_longest</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">fillvalue</span><span class="o">=</span><span class="n">zero</span><span class="p">):</span>
             <span class="n">vic</span><span class="p">,</span> <span class="n">wic</span> <span class="o">=</span> <span class="p">(</span><span class="n">try_conjugate</span><span class="p">(</span><span class="n">vi</span><span class="p">),</span> <span class="n">try_conjugate</span><span class="p">(</span><span class="n">wi</span><span class="p">))</span> <span class="k">if</span> <span class="n">conjugate</span> <span class="k">else</span> <span class="p">(</span><span class="n">vi</span><span class="p">,</span> <span class="n">wi</span><span class="p">)</span>
             <span class="n">v2</span> <span class="o">+=</span> <span class="n">vic</span> <span class="o">*</span> <span class="n">vi</span>
             <span class="n">w2</span> <span class="o">+=</span> <span class="n">wic</span> <span class="o">*</span> <span class="n">wi</span>
             <span class="n">vw</span> <span class="o">+=</span> <span class="n">vic</span> <span class="o">*</span> <span class="n">wi</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">vi</span><span class="p">,</span> <span class="n">wi</span><span class="p">,</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">zip_longest</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">fillvalue</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">vi</span><span class="p">,</span> <span class="n">wi</span><span class="p">,</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">zip_longest</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">fillvalue</span><span class="o">=</span><span class="n">zero</span><span class="p">):</span>
             <span class="n">vic</span><span class="p">,</span> <span class="n">wic</span> <span class="o">=</span> <span class="p">(</span><span class="n">try_conjugate</span><span class="p">(</span><span class="n">vi</span><span class="p">),</span> <span class="n">try_conjugate</span><span class="p">(</span><span class="n">wi</span><span class="p">))</span> <span class="k">if</span> <span class="n">conjugate</span> <span class="k">else</span> <span class="p">(</span><span class="n">vi</span><span class="p">,</span> <span class="n">wi</span><span class="p">)</span>
             <span class="n">v2</span> <span class="o">+=</span> <span class="n">vic</span> <span class="o">*</span> <span class="n">vi</span> <span class="o">*</span> <span class="n">o</span>
             <span class="n">w2</span> <span class="o">+=</span> <span class="n">wic</span> <span class="o">*</span> <span class="n">wi</span> <span class="o">*</span> <span class="n">o</span>
@@ -2247,14 +2235,14 @@ If not found, simply keeps the element as is.</p>
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">271</span>
-<span class="normal">272</span>
-<span class="normal">273</span>
-<span class="normal">274</span>
-<span class="normal">275</span>
-<span class="normal">276</span>
-<span class="normal">277</span>
-<span class="normal">278</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecpos</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecpos</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the vector with the unary positive operator applied.</span>
 
 <span class="sd">    $$</span>
@@ -2292,14 +2280,14 @@ If not found, simply keeps the element as is.</p>
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">280</span>
-<span class="normal">281</span>
-<span class="normal">282</span>
-<span class="normal">283</span>
-<span class="normal">284</span>
-<span class="normal">285</span>
-<span class="normal">286</span>
-<span class="normal">287</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecneg</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecneg</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the vector with the unary negative operator applied.</span>
 
 <span class="sd">    $$</span>
@@ -2322,7 +2310,7 @@ If not found, simply keeps the element as is.</p>
 
 
 <h3 id="vector.functional.vecadd" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vecadd</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vecadd</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
 
 </h3>
 
@@ -2337,21 +2325,21 @@ If not found, simply keeps the element as is.</p>
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">289</span>
-<span class="normal">290</span>
-<span class="normal">291</span>
-<span class="normal">292</span>
-<span class="normal">293</span>
-<span class="normal">294</span>
-<span class="normal">295</span>
-<span class="normal">296</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecadd</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecadd</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the sum of vectors.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \vec{v}_0+\vec{v}_1+\cdots \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}</span>
 <span class="sd">    $$</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">vecladd</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">vecladd</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="n">zero</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -2367,7 +2355,7 @@ If not found, simply keeps the element as is.</p>
 
 
 <h3 id="vector.functional.vecaddc" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vecaddc</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vecaddc</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
 
 </h3>
 
@@ -2383,19 +2371,16 @@ If not found, simply keeps the element as is.</p>
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">298</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span>
 <span class="normal">299</span>
 <span class="normal">300</span>
-<span class="normal">301</span>
-<span class="normal">302</span>
-<span class="normal">303</span>
-<span class="normal">304</span>
-<span class="normal">305</span>
-<span class="normal">306</span>
-<span class="normal">307</span>
-<span class="normal">308</span>
-<span class="normal">309</span>
-<span class="normal">310</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecaddc</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="normal">301</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecaddc</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return `v` with `c` added to the `i`-th coefficient.</span>
 
 <span class="sd">    $$</span>
@@ -2404,10 +2389,7 @@ If not found, simply keeps the element as is.</p>
 
 <span class="sd">    More efficient than `vecadd(v, vecbasis(i, c))`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">v</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-    <span class="n">v</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">c</span>
-    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">vecladdc</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="n">zero</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -2423,7 +2405,7 @@ If not found, simply keeps the element as is.</p>
 
 
 <h3 id="vector.functional.vecsub" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vecsub</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vecsub</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
 
 </h3>
 
@@ -2438,21 +2420,21 @@ If not found, simply keeps the element as is.</p>
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">312</span>
-<span class="normal">313</span>
-<span class="normal">314</span>
-<span class="normal">315</span>
-<span class="normal">316</span>
-<span class="normal">317</span>
-<span class="normal">318</span>
-<span class="normal">319</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecsub</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecsub</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the difference of two vectors.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \vec{v}-\vec{w} \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^{\max\{m, n\}}</span>
 <span class="sd">    $$</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclsub</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclsub</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="n">zero</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -2468,7 +2450,7 @@ If not found, simply keeps the element as is.</p>
 
 
 <h3 id="vector.functional.vecsubc" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vecsubc</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vecsubc</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
 
 </h3>
 
@@ -2484,19 +2466,16 @@ If not found, simply keeps the element as is.</p>
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">321</span>
-<span class="normal">322</span>
-<span class="normal">323</span>
-<span class="normal">324</span>
-<span class="normal">325</span>
-<span class="normal">326</span>
-<span class="normal">327</span>
-<span class="normal">328</span>
-<span class="normal">329</span>
-<span class="normal">330</span>
-<span class="normal">331</span>
-<span class="normal">332</span>
-<span class="normal">333</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecsubc</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span>
+<span class="normal">319</span>
+<span class="normal">320</span>
+<span class="normal">321</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecsubc</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return `v` with `c` added to the `i`-th coefficient.</span>
 
 <span class="sd">    $$</span>
@@ -2505,10 +2484,7 @@ If not found, simply keeps the element as is.</p>
 
 <span class="sd">    More efficient than `vecsub(v, vecbasis(i, c))`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">v</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-    <span class="n">v</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-=</span> <span class="n">c</span>
-    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclsubc</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="n">zero</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -2539,14 +2515,14 @@ If not found, simply keeps the element as is.</p>
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">335</span>
-<span class="normal">336</span>
-<span class="normal">337</span>
-<span class="normal">338</span>
-<span class="normal">339</span>
-<span class="normal">340</span>
-<span class="normal">341</span>
-<span class="normal">342</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">323</span>
+<span class="normal">324</span>
+<span class="normal">325</span>
+<span class="normal">326</span>
+<span class="normal">327</span>
+<span class="normal">328</span>
+<span class="normal">329</span>
+<span class="normal">330</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the product of a scalar and a vector.</span>
 
 <span class="sd">    $$</span>
@@ -2597,25 +2573,25 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">344</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">332</span>
+<span class="normal">333</span>
+<span class="normal">334</span>
+<span class="normal">335</span>
+<span class="normal">336</span>
+<span class="normal">337</span>
+<span class="normal">338</span>
+<span class="normal">339</span>
+<span class="normal">340</span>
+<span class="normal">341</span>
+<span class="normal">342</span>
+<span class="normal">343</span>
+<span class="normal">344</span>
 <span class="normal">345</span>
 <span class="normal">346</span>
 <span class="normal">347</span>
 <span class="normal">348</span>
 <span class="normal">349</span>
-<span class="normal">350</span>
-<span class="normal">351</span>
-<span class="normal">352</span>
-<span class="normal">353</span>
-<span class="normal">354</span>
-<span class="normal">355</span>
-<span class="normal">356</span>
-<span class="normal">357</span>
-<span class="normal">358</span>
-<span class="normal">359</span>
-<span class="normal">360</span>
-<span class="normal">361</span>
-<span class="normal">362</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vectruediv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="normal">350</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vectruediv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the true division of a vector and a scalar.</span>
 
 <span class="sd">    $$</span>
@@ -2664,14 +2640,14 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">364</span>
-<span class="normal">365</span>
-<span class="normal">366</span>
-<span class="normal">367</span>
-<span class="normal">368</span>
-<span class="normal">369</span>
-<span class="normal">370</span>
-<span class="normal">371</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecfloordiv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">352</span>
+<span class="normal">353</span>
+<span class="normal">354</span>
+<span class="normal">355</span>
+<span class="normal">356</span>
+<span class="normal">357</span>
+<span class="normal">358</span>
+<span class="normal">359</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecfloordiv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the floor division of a vector and a scalar.</span>
 
 <span class="sd">    $$</span>
@@ -2709,14 +2685,14 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">373</span>
-<span class="normal">374</span>
-<span class="normal">375</span>
-<span class="normal">376</span>
-<span class="normal">377</span>
-<span class="normal">378</span>
-<span class="normal">379</span>
-<span class="normal">380</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">361</span>
+<span class="normal">362</span>
+<span class="normal">363</span>
+<span class="normal">364</span>
+<span class="normal">365</span>
+<span class="normal">366</span>
+<span class="normal">367</span>
+<span class="normal">368</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise mod of a vector and a scalar.</span>
 
 <span class="sd">    $$</span>
@@ -2754,19 +2730,19 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">382</span>
-<span class="normal">383</span>
-<span class="normal">384</span>
-<span class="normal">385</span>
-<span class="normal">386</span>
-<span class="normal">387</span>
-<span class="normal">388</span>
-<span class="normal">389</span>
-<span class="normal">390</span>
-<span class="normal">391</span>
-<span class="normal">392</span>
-<span class="normal">393</span>
-<span class="normal">394</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecdivmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">370</span>
+<span class="normal">371</span>
+<span class="normal">372</span>
+<span class="normal">373</span>
+<span class="normal">374</span>
+<span class="normal">375</span>
+<span class="normal">376</span>
+<span class="normal">377</span>
+<span class="normal">378</span>
+<span class="normal">379</span>
+<span class="normal">380</span>
+<span class="normal">381</span>
+<span class="normal">382</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecdivmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise divmod of a vector and a scalar.</span>
 
 <span class="sd">    $$</span>
@@ -2823,7 +2799,7 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
 
 <h3 id="vector.functional.vechadamard" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vechadamard</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vechadamard</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">,</span> <span class="n">one</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></code>
 
 </h3>
 
@@ -2838,21 +2814,21 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">398</span>
-<span class="normal">399</span>
-<span class="normal">400</span>
-<span class="normal">401</span>
-<span class="normal">402</span>
-<span class="normal">403</span>
-<span class="normal">404</span>
-<span class="normal">405</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamard</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">386</span>
+<span class="normal">387</span>
+<span class="normal">388</span>
+<span class="normal">389</span>
+<span class="normal">390</span>
+<span class="normal">391</span>
+<span class="normal">392</span>
+<span class="normal">393</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamard</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">,</span> <span class="n">one</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise product of vectors.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \left((\vec{v}_0)_i\cdot(\vec{v}_1)_i\cdot\cdots\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\min_i n_i}</span>
 <span class="sd">    $$</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclhadamard</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclhadamard</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">,</span> <span class="n">one</span><span class="o">=</span><span class="n">one</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -2868,7 +2844,7 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
 
 <h3 id="vector.functional.vechadamardtruediv" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vechadamardtruediv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vechadamardtruediv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
 
 </h3>
 
@@ -2883,21 +2859,21 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">407</span>
-<span class="normal">408</span>
-<span class="normal">409</span>
-<span class="normal">410</span>
-<span class="normal">411</span>
-<span class="normal">412</span>
-<span class="normal">413</span>
-<span class="normal">414</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardtruediv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">395</span>
+<span class="normal">396</span>
+<span class="normal">397</span>
+<span class="normal">398</span>
+<span class="normal">399</span>
+<span class="normal">400</span>
+<span class="normal">401</span>
+<span class="normal">402</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardtruediv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise true division of two vectors.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \left(\frac{v_i}{w_i}\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m</span>
 <span class="sd">    $$</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclhadamardtruediv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclhadamardtruediv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="n">zero</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -2913,7 +2889,7 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
 
 <h3 id="vector.functional.vechadamardfloordiv" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vechadamardfloordiv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vechadamardfloordiv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
 
 </h3>
 
@@ -2928,21 +2904,21 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">416</span>
-<span class="normal">417</span>
-<span class="normal">418</span>
-<span class="normal">419</span>
-<span class="normal">420</span>
-<span class="normal">421</span>
-<span class="normal">422</span>
-<span class="normal">423</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardfloordiv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">404</span>
+<span class="normal">405</span>
+<span class="normal">406</span>
+<span class="normal">407</span>
+<span class="normal">408</span>
+<span class="normal">409</span>
+<span class="normal">410</span>
+<span class="normal">411</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardfloordiv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise floor division of two vectors.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \left(\left\lfloor\frac{v_i}{w_i}\right\rfloor\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m</span>
 <span class="sd">    $$</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclhadamardfloordiv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclhadamardfloordiv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="n">zero</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -2958,7 +2934,7 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
 
 <h3 id="vector.functional.vechadamardmod" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vechadamardmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vechadamardmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
 
 </h3>
 
@@ -2973,21 +2949,21 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">425</span>
-<span class="normal">426</span>
-<span class="normal">427</span>
-<span class="normal">428</span>
-<span class="normal">429</span>
-<span class="normal">430</span>
-<span class="normal">431</span>
-<span class="normal">432</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">413</span>
+<span class="normal">414</span>
+<span class="normal">415</span>
+<span class="normal">416</span>
+<span class="normal">417</span>
+<span class="normal">418</span>
+<span class="normal">419</span>
+<span class="normal">420</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise mod of two vectors.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \left(v_i \mod w_i\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m</span>
 <span class="sd">    $$</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclhadamardmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclhadamardmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="n">zero</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -3003,7 +2979,7 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
 
 <h3 id="vector.functional.vechadamardmin" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vechadamardmin</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vechadamardmin</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">,</span> <span class="n">pinf</span><span class="o">=+</span><span class="n">inf</span><span class="p">)</span></code>
 
 </h3>
 
@@ -3018,21 +2994,21 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">434</span>
-<span class="normal">435</span>
-<span class="normal">436</span>
-<span class="normal">437</span>
-<span class="normal">438</span>
-<span class="normal">439</span>
-<span class="normal">440</span>
-<span class="normal">441</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardmin</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">422</span>
+<span class="normal">423</span>
+<span class="normal">424</span>
+<span class="normal">425</span>
+<span class="normal">426</span>
+<span class="normal">427</span>
+<span class="normal">428</span>
+<span class="normal">429</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardmin</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">,</span> <span class="n">pinf</span><span class="o">=+</span><span class="n">inf</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise minimum of vectors.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \left(\min((\vec{v}_0)_i,(\vec{v}_1)_i,\cdots)\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}</span>
 <span class="sd">    $$</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclhadamardmin</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclhadamardmin</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">,</span> <span class="n">pinf</span><span class="o">=</span><span class="n">pinf</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -3048,7 +3024,7 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
 
 <h3 id="vector.functional.vechadamardmax" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vechadamardmax</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vechadamardmax</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">,</span> <span class="n">ninf</span><span class="o">=-</span><span class="n">inf</span><span class="p">)</span></code>
 
 </h3>
 
@@ -3063,21 +3039,21 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
             <details class="quote">
               <summary>Source code in <code>vector\functional.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">443</span>
-<span class="normal">444</span>
-<span class="normal">445</span>
-<span class="normal">446</span>
-<span class="normal">447</span>
-<span class="normal">448</span>
-<span class="normal">449</span>
-<span class="normal">450</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardmax</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">431</span>
+<span class="normal">432</span>
+<span class="normal">433</span>
+<span class="normal">434</span>
+<span class="normal">435</span>
+<span class="normal">436</span>
+<span class="normal">437</span>
+<span class="normal">438</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardmax</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">,</span> <span class="n">ninf</span><span class="o">=-</span><span class="n">inf</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise maximum of vectors.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \left(\max((\vec{v}_0)_i,(\vec{v}_1)_i,\cdots)\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}</span>
 <span class="sd">    $$</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclhadamardmax</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclhadamardmax</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">,</span> <span class="n">ninf</span><span class="o">=-</span><span class="n">inf</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>

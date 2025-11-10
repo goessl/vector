@@ -299,11 +299,26 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#design-choices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Design choices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Design choices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#prefix-design" class="md-nav__link">
     <span class="md-ellipsis">
       Prefix Design
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -494,11 +509,26 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#design-choices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Design choices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Design choices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#prefix-design" class="md-nav__link">
     <span class="md-ellipsis">
       Prefix Design
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -614,8 +644,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Basis</td>
-<td><a class="autorefs autorefs-internal" title="            vecbasis(i, c=1)" href="functional/#vector.functional.vecbasis"><code>vecbasis</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            veclbasis(i, c=1)" href="lazy/#vector.lazy.veclbasis"><code>veclbasis</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecbasis(i, c=1, zero=0)" href="functional/#vector.functional.vecbasis"><code>vecbasis</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            veclbasis(i, c=1, zero=0)" href="lazy/#vector.lazy.veclbasis"><code>veclbasis</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            Vector" href="objectoriented/#vector.objectoriented.Vector"><code>Vector</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecnpbasis(i, c=1, d=None)" href="parallelised/#vector.parallelised.vecnpbasis"><code>vecnpbasis</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenbasis(i, c=1)" href="multiaxis/#vector.multiaxis.tenbasis"><code>tenbasis</code></a></td>
@@ -670,7 +700,7 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Comparison</td>
-<td><a class="autorefs autorefs-internal" title="            veceq(v, w)" href="functional/#vector.functional.veceq"><code>veceq</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            veceq(v, w, zero=0)" href="functional/#vector.functional.veceq"><code>veceq</code></a></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            __eq__(other)" href="objectoriented/#vector.objectoriented.Vector.__eq__"><code>==</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecnpeq(v, w)" href="parallelised/#vector.parallelised.vecnpeq"><code>vecnpeq</code></a></td>
@@ -694,8 +724,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Right shift</td>
-<td><a class="autorefs autorefs-internal" title="            vecrshift(v, n, fill=0)" href="functional/#vector.functional.vecrshift"><code>vecrshift</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            veclrshift(v, n, fill=0)" href="lazy/#vector.lazy.veclrshift"><code>veclrshift</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecrshift(v, n, zero=0)" href="functional/#vector.functional.vecrshift"><code>vecrshift</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            veclrshift(v, n, zero=0)" href="lazy/#vector.lazy.veclrshift"><code>veclrshift</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            __rshift__(other)" href="objectoriented/#vector.objectoriented.Vector.__rshift__"><code>&gt;&gt;</code></a></td>
 <td></td>
 <td></td>
@@ -726,7 +756,7 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Norm</td>
-<td><a class="autorefs autorefs-internal" title="            vecabs(v, weights=None, conjugate=False)" href="functional/#vector.functional.vecabs"><code>vecabs</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecabs(v, weights=None, conjugate=False, zero=0)" href="functional/#vector.functional.vecabs"><code>vecabs</code></a></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            __abs__()" href="objectoriented/#vector.objectoriented.Vector.__abs__"><code>abs</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecnpabs(v)" href="parallelised/#vector.parallelised.vecnpabs"><code>vecnpabs</code></a></td>
@@ -734,7 +764,7 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Norm squared</td>
-<td><a class="autorefs autorefs-internal" title="            vecabsq(v, weights=None, conjugate=False)" href="functional/#vector.functional.vecabsq"><code>vecabsq</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecabsq(v, weights=None, conjugate=False, zero=0)" href="functional/#vector.functional.vecabsq"><code>vecabsq</code></a></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            absq()" href="objectoriented/#vector.objectoriented.Vector.absq"><code>.absq</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecnpabsq(v)" href="parallelised/#vector.parallelised.vecnpabsq"><code>vecnpabsq</code></a></td>
@@ -742,7 +772,7 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Inner product</td>
-<td><a class="autorefs autorefs-internal" title="            vecdot(v, w, weights=None, conjugate=False)" href="functional/#vector.functional.vecdot"><code>vecdot</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecdot(v, w, weights=None, conjugate=False, zero=0)" href="functional/#vector.functional.vecdot"><code>vecdot</code></a></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            __matmul__(other)" href="objectoriented/#vector.objectoriented.Vector.__matmul__"><code>@</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecnpdot(v, w)" href="parallelised/#vector.parallelised.vecnpdot"><code>vecnpdot</code></a></td>
@@ -750,7 +780,7 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Parallelism</td>
-<td><a class="autorefs autorefs-internal" title="            vecparallel(v, w, weights=None, conjugate=False)" href="functional/#vector.functional.vecparallel"><code>vecparallel</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecparallel(v, w, weights=None, conjugate=False, zero=0)" href="functional/#vector.functional.vecparallel"><code>vecparallel</code></a></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            is_parallel(other)" href="objectoriented/#vector.objectoriented.Vector.is_parallel"><code>.is_parallel</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecnpparallel(v, w)" href="parallelised/#vector.parallelised.vecnpparallel"><code>vecnpparallel</code></a></td>
@@ -782,32 +812,32 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Addition</td>
-<td><a class="autorefs autorefs-internal" title="            vecadd(*vs)" href="functional/#vector.functional.vecadd"><code>vecadd</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            vecladd(*vs)" href="lazy/#vector.lazy.vecladd"><code>vecladd</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecadd(*vs, zero=0)" href="functional/#vector.functional.vecadd"><code>vecadd</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecladd(*vs, zero=0)" href="lazy/#vector.lazy.vecladd"><code>vecladd</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            __add__(other)" href="objectoriented/#vector.objectoriented.Vector.__add__"><code>+</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecnpadd(*vs)" href="parallelised/#vector.parallelised.vecnpadd"><code>vecnpadd</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenadd(*ts)" href="multiaxis/#vector.multiaxis.tenadd"><code>tenadd</code></a></td>
 </tr>
 <tr>
 <td>Basis addition</td>
-<td><a class="autorefs autorefs-internal" title="            vecaddc(v, c, i=0)" href="functional/#vector.functional.vecaddc"><code>vecaddc</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            vecladdc(v, c, i=0)" href="lazy/#vector.lazy.vecladdc"><code>vecladdc</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecaddc(v, c, i=0, zero=0)" href="functional/#vector.functional.vecaddc"><code>vecaddc</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecladdc(v, c, i=0, zero=0)" href="lazy/#vector.lazy.vecladdc"><code>vecladdc</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            addc(c, i=0)" href="objectoriented/#vector.objectoriented.Vector.addc"><code>.addc</code></a></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            tenaddc(t, c, i=(0,))" href="multiaxis/#vector.multiaxis.tenaddc"><code>tenaddc</code></a></td>
 </tr>
 <tr>
 <td>Subtraction</td>
-<td><a class="autorefs autorefs-internal" title="            vecsub(v, w)" href="functional/#vector.functional.vecsub"><code>vecsub</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            veclsub(v, w)" href="lazy/#vector.lazy.veclsub"><code>veclsub</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsub(v, w, zero=0)" href="functional/#vector.functional.vecsub"><code>vecsub</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            veclsub(v, w, zero=0)" href="lazy/#vector.lazy.veclsub"><code>veclsub</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            __sub__(other)" href="objectoriented/#vector.objectoriented.Vector.__sub__"><code>-</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecnpsub(v, w)" href="parallelised/#vector.parallelised.vecnpsub"><code>vecnpsub</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tensub(s, t)" href="multiaxis/#vector.multiaxis.tensub"><code>tensub</code></a></td>
 </tr>
 <tr>
 <td>Basis subtraction</td>
-<td><a class="autorefs autorefs-internal" title="            vecsubc(v, c, i=0)" href="functional/#vector.functional.vecsubc"><code>vecsubc</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            veclsubc(v, c, i=0)" href="lazy/#vector.lazy.veclsubc"><code>veclsubc</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsubc(v, c, i=0, zero=0)" href="functional/#vector.functional.vecsubc"><code>vecsubc</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            veclsubc(v, c, i=0, zero=0)" href="lazy/#vector.lazy.veclsubc"><code>veclsubc</code></a></td>
 <td></td>
 <td></td>
 <td></td>
@@ -862,55 +892,64 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Multiplication</td>
-<td><a class="autorefs autorefs-internal" title="            vechadamard(*vs)" href="functional/#vector.functional.vechadamard"><code>vechadamard</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            veclhadamard(*vs)" href="lazy/#vector.lazy.veclhadamard"><code>veclhadamard</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vechadamard(*vs, one=1)" href="functional/#vector.functional.vechadamard"><code>vechadamard</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            veclhadamard(*vs, one=1)" href="lazy/#vector.lazy.veclhadamard"><code>veclhadamard</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            hadamard(other)" href="objectoriented/#vector.objectoriented.Vector.hadamard"><code>.hadamard</code></a></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            tenhadamard(*ts)" href="multiaxis/#vector.multiaxis.tenhadamard"><code>tenhadamard</code></a></td>
 </tr>
 <tr>
 <td>True division</td>
-<td><a class="autorefs autorefs-internal" title="            vechadamardtruediv(v, w)" href="functional/#vector.functional.vechadamardtruediv"><code>vechadamardtruediv</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            veclhadamardtruediv(v, w)" href="lazy/#vector.lazy.veclhadamardtruediv"><code>veclhadamardtruediv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vechadamardtruediv(v, w, zero=0)" href="functional/#vector.functional.vechadamardtruediv"><code>vechadamardtruediv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            veclhadamardtruediv(v, w, zero=0)" href="lazy/#vector.lazy.veclhadamardtruediv"><code>veclhadamardtruediv</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            hadamardtruediv(other)" href="objectoriented/#vector.objectoriented.Vector.hadamardtruediv"><code>.hadamardtruediv</code></a></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            tenhadamardtruediv(s, t)" href="multiaxis/#vector.multiaxis.tenhadamardtruediv"><code>tenhadamardtruediv</code></a></td>
 </tr>
 <tr>
 <td>Floor division</td>
-<td><a class="autorefs autorefs-internal" title="            vechadamardfloordiv(v, w)" href="functional/#vector.functional.vechadamardfloordiv"><code>vechadamardfloordiv</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            veclhadamardfloordiv(v, w)" href="lazy/#vector.lazy.veclhadamardfloordiv"><code>veclhadamardfloordiv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vechadamardfloordiv(v, w, zero=0)" href="functional/#vector.functional.vechadamardfloordiv"><code>vechadamardfloordiv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            veclhadamardfloordiv(v, w, zero=0)" href="lazy/#vector.lazy.veclhadamardfloordiv"><code>veclhadamardfloordiv</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            hadamardfloordiv(other)" href="objectoriented/#vector.objectoriented.Vector.hadamardfloordiv"><code>.hadamardfloordiv</code></a></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            tenhadamardfloordiv(s, t)" href="multiaxis/#vector.multiaxis.tenhadamardfloordiv"><code>tenhadamardfloordiv</code></a></td>
 </tr>
 <tr>
 <td>Mod</td>
-<td><a class="autorefs autorefs-internal" title="            vechadamardmod(v, w)" href="functional/#vector.functional.vechadamardmod"><code>vechadamardmod</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            veclhadamardmod(v, w)" href="lazy/#vector.lazy.veclhadamardmod"><code>veclhadamardmod</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vechadamardmod(v, w, zero=0)" href="functional/#vector.functional.vechadamardmod"><code>vechadamardmod</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            veclhadamardmod(v, w, zero=0)" href="lazy/#vector.lazy.veclhadamardmod"><code>veclhadamardmod</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            hadamardmod(other)" href="objectoriented/#vector.objectoriented.Vector.hadamardmod"><code>.hadamardmod</code></a></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            tenhadamardmod(s, t)" href="multiaxis/#vector.multiaxis.tenhadamardmod"><code>tenhadamardmod</code></a></td>
 </tr>
 <tr>
 <td>Min</td>
-<td><a class="autorefs autorefs-internal" title="            vechadamardmin(*vs)" href="functional/#vector.functional.vechadamardmin"><code>vechadamardmin</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            veclhadamardmin(*vs)" href="lazy/#vector.lazy.veclhadamardmin"><code>veclhadamardmin</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vechadamardmin(*vs, pinf=+inf)" href="functional/#vector.functional.vechadamardmin"><code>vechadamardmin</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            veclhadamardmin(*vs, pinf=+inf)" href="lazy/#vector.lazy.veclhadamardmin"><code>veclhadamardmin</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            hadamardmin(other)" href="objectoriented/#vector.objectoriented.Vector.hadamardmin"><code>.hadamardmin</code></a></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>Max</td>
-<td><a class="autorefs autorefs-internal" title="            vechadamardmax(*vs)" href="functional/#vector.functional.vechadamardmax"><code>vechadamardmax</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            veclhadamardmax(*vs)" href="lazy/#vector.lazy.veclhadamardmax"><code>veclhadamardmax</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vechadamardmax(*vs, ninf=-inf)" href="functional/#vector.functional.vechadamardmax"><code>vechadamardmax</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            veclhadamardmax(*vs, ninf=-inf)" href="lazy/#vector.lazy.veclhadamardmax"><code>veclhadamardmax</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            hadamardmax(other)" href="objectoriented/#vector.objectoriented.Vector.hadamardmax"><code>.hadamardmax</code></a></td>
 <td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<h3 id="prefix-design">Prefix Design</h3>
+<h3 id="design-choices">Design choices</h3>
+<ol>
+<li>Integers are the best.
+   As many functions as possible should work with pure integer arithmetic.</li>
+<li>Floats are necessary. (Also let's don't forget about complex numbers.)
+   When possible, extended precision intermediates are used (<code>sum</code>, <code>sumprod</code>, ...)</li>
+<li>Python allows operator overloading.
+   Exclusive type arithmetic should be possible (<code>zero</code>, <code>one</code> &amp; <code>inf</code> arguments; ...)</li>
+</ol>
+<h4 id="prefix-design">Prefix Design</h4>
 <p>Could use no prefix to be more mathematically pure, like <code>add</code> instead of
 <code>vecadd</code>, but then you would always have to use <code>from vec import add as vecadd</code>
 if used with other libraries (like <code>operator</code>).</p>
@@ -924,12 +963,15 @@ tuples. Done: <a href="https://github.com/goessl/zipvar">goessl/zipvar</a></li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> docstrings</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <code>numpy</code> routines</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> multiaxis vectors: tensors?</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Absolute type safety.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Complexity analysis. Perfect complexity</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> dimensionality signature (e.g. <code>vecadd</code>: <span class="arithmatex">\(\mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^{\max{m, n}}\)</span>)</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>vechadamardminmax</code></li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> never use <code>numpy.int64</code>, they don't detect overflows</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> sparse vectors (<code>dict</code>s)</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> C++ &amp; Java version</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Ballin</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Fields medal</li>
 </ul>
 <h2 id="license-mit">License (MIT)</h2>
 <p>Copyright (c) 2022-2025 Sebastian Gössl</p>
