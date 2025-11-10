@@ -1,8 +1,10 @@
-from math import prod, sumprod, inf
+from math import prod, sumprod
 from random import random, gauss
-from itertools import count, starmap, zip_longest, repeat, tee, chain, islice
-from operator import pos, neg, sub, mul, truediv, floordiv, mod, eq
-from .lazy import try_conjugate, veclconj
+from itertools import count, starmap, zip_longest, tee
+from operator import mul, eq
+from .lazy import veclround, veclrshift, vecllshift
+from .lazy import try_conjugate, veclconj, veclpos, veclneg, vecladd, veclsub, veclmul, vecltruediv, veclfloordiv, veclmod
+from .lazy import veclhadamard, veclhadamardtruediv, veclhadamardfloordiv, veclhadamardmod, veclhadamardmin, veclhadamardmax
 
 
 
@@ -133,7 +135,7 @@ def vecround(v, ndigits=None):
         (\text{round}_\text{ndigits}(v_i))_i \qquad \mathbb{K}^n\to\mathbb{K}^n
     $$
     """
-    return tuple(round(c, ndigits) for c in v)
+    return tuple(veclround(v, ndigits=ndigits))
 
 def vecrshift(v, n, fill=0):
     r"""Pad `n` many `fill`s to the beginning of the vector.
@@ -149,7 +151,7 @@ def vecrshift(v, n, fill=0):
         \end{pmatrix} \qquad \mathbb{K}^m\to\mathbb{K}^{m+n}
     $$
     """
-    return tuple(chain((fill,)*n, v))
+    return tuple(veclrshift(v, n, fill=fill))
 
 def veclshift(v, n):
     r"""Remove `n` many coefficients at the beginning of the vector.
@@ -162,7 +164,7 @@ def veclshift(v, n):
         \end{pmatrix} \qquad \mathbb{K}^m\to\mathbb{K}^{\max\{m-n, 0\}}
     $$
     """
-    return tuple(islice(v, n, None))
+    return tuple(vecllshift(v, n))
 
 
 #Hilbert space
@@ -262,8 +264,7 @@ def vecparallel(v, w, weights=None, conjugate=False):
             v2 += vic * vi * o
             w2 += wic * wi * o
             vw += vic * wi * o
-    vw = abs(vw)
-    return v2 * w2 == vw * vw
+    return v2 * w2 == try_conjugate(vw) * vw
 
 
 #vector space
@@ -274,7 +275,7 @@ def vecpos(v):
         +\vec{v} \qquad \mathbb{K}^n\to\mathbb{K}^n
     $$
     """
-    return tuple(map(pos, v))
+    return tuple(veclpos(v))
 
 def vecneg(v):
     r"""Return the vector with the unary negative operator applied.
@@ -283,7 +284,7 @@ def vecneg(v):
         -\vec{v} \qquad \mathbb{K}^n\to\mathbb{K}^n
     $$
     """
-    return tuple(map(neg, v))
+    return tuple(veclneg(v))
 
 def vecadd(*vs):
     r"""Return the sum of vectors.
@@ -292,7 +293,7 @@ def vecadd(*vs):
         \vec{v}_0+\vec{v}_1+\cdots \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}
     $$
     """
-    return tuple(map(sum, zip_longest(*vs, fillvalue=0)))
+    return tuple(vecladd(*vs))
 
 def vecaddc(v, c, i=0):
     r"""Return `v` with `c` added to the `i`-th coefficient.
@@ -315,7 +316,7 @@ def vecsub(v, w):
         \vec{v}-\vec{w} \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^{\max\{m, n\}}
     $$
     """
-    return tuple(starmap(sub, zip_longest(v, w, fillvalue=0)))
+    return tuple(veclsub(v, w))
 
 def vecsubc(v, c, i=0):
     r"""Return `v` with `c` added to the `i`-th coefficient.
@@ -338,7 +339,7 @@ def vecmul(a, v):
         a\vec{v} \qquad \mathbb{K}\times\mathbb{K}^n\to\mathbb{K}^n
     $$
     """
-    return tuple(map(mul, repeat(a), v))
+    return tuple(veclmul(a, v))
 
 def vectruediv(v, a):
     r"""Return the true division of a vector and a scalar.
@@ -358,7 +359,7 @@ def vectruediv(v, a):
     privileged over the other by getting the universal `div` name.
     - `truediv`/`floordiv` is unambiguous, like Python `operator`s.
     """
-    return tuple(map(truediv, v, repeat(a)))
+    return tuple(vecltruediv(v, a))
 
 def vecfloordiv(v, a):
     r"""Return the floor division of a vector and a scalar.
@@ -367,7 +368,7 @@ def vecfloordiv(v, a):
         \left(\left\lfloor\frac{v_i}{a}\right\rfloor\right)_i \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n
     $$
     """
-    return tuple(map(floordiv, v, repeat(a)))
+    return tuple(veclfloordiv(v, a))
 
 def vecmod(v, a):
     r"""Return the elementwise mod of a vector and a scalar.
@@ -376,7 +377,7 @@ def vecmod(v, a):
         \left(v_i \mod a\right)_i \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n
     $$
     """
-    return tuple(map(mod, v, repeat(a)))
+    return tuple(veclmod(v, a))
 
 def vecdivmod(v, a):
     r"""Return the elementwise divmod of a vector and a scalar.
@@ -401,7 +402,7 @@ def vechadamard(*vs):
         \left((\vec{v}_0)_i\cdot(\vec{v}_1)_i\cdot\cdots\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\min_i n_i}
     $$
     """
-    return tuple(map(prod, zip(*vs)))
+    return tuple(veclhadamard(*vs))
 
 def vechadamardtruediv(v, w):
     r"""Return the elementwise true division of two vectors.
@@ -410,7 +411,7 @@ def vechadamardtruediv(v, w):
         \left(\frac{v_i}{w_i}\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m
     $$
     """
-    return tuple(map(truediv, v, chain(w, repeat(0))))
+    return tuple(veclhadamardtruediv(v, w))
 
 def vechadamardfloordiv(v, w):
     r"""Return the elementwise floor division of two vectors.
@@ -419,7 +420,7 @@ def vechadamardfloordiv(v, w):
         \left(\left\lfloor\frac{v_i}{w_i}\right\rfloor\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m
     $$
     """
-    return tuple(map(floordiv, v, chain(w, repeat(0))))
+    return tuple(veclhadamardfloordiv(v, w))
 
 def vechadamardmod(v, w):
     r"""Return the elementwise mod of two vectors.
@@ -428,7 +429,7 @@ def vechadamardmod(v, w):
         \left(v_i \mod w_i\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m
     $$
     """
-    return tuple(map(mod, v, chain(w, repeat(0))))
+    return tuple(veclhadamardmod(v, w))
 
 def vechadamardmin(*vs):
     r"""Return the elementwise minimum of vectors.
@@ -437,7 +438,7 @@ def vechadamardmin(*vs):
         \left(\min((\vec{v}_0)_i,(\vec{v}_1)_i,\cdots)\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}
     $$
     """
-    return tuple(map(min, zip_longest(*vs, fillvalue=inf)))
+    return tuple(veclhadamardmin(*vs))
 
 def vechadamardmax(*vs):
     r"""Return the elementwise maximum of vectors.
@@ -446,7 +447,7 @@ def vechadamardmax(*vs):
         \left(\max((\vec{v}_0)_i,(\vec{v}_1)_i,\cdots)\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}
     $$
     """
-    return tuple(map(max, zip_longest(*vs, fillvalue=-inf)))
+    return tuple(veclhadamardmax(*vs))
 
 def vechadamardminmax(*vs):
     pass

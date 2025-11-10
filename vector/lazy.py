@@ -10,7 +10,7 @@ __all__ = (#creation
            #utility
            'vecltrim', 'veclround', 'veclrshift', 'vecllshift', #'vecleq', 
            #Hilbert space
-           'veclconj', #'veclabsq',  'veclabs',  'vecldot', 'veclparallel',
+           'try_conjugate', 'veclconj', #'veclabsq',  'veclabs',  'vecldot', 'veclparallel',
            #vector space
            'veclpos', 'veclneg', 'vecladd', 'vecladdc', 'veclsub', 'veclsubc',
            'veclmul', 'vecltruediv', 'veclfloordiv', 'veclmod', 'vecldivmod',
