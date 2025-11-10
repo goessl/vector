@@ -1,9 +1,9 @@
-from math import prod, sumprod
+from math import inf
 from random import random, gauss
 from itertools import count, starmap, zip_longest, tee
 from operator import mul, eq
 from .lazy import veclround, veclrshift, vecllshift
-from .lazy import try_conjugate, veclconj, veclpos, veclneg, vecladd, veclsub, veclmul, vecltruediv, veclfloordiv, veclmod
+from .lazy import try_conjugate, veclconj, veclpos, veclneg, vecladd, vecladdc, veclsub, veclsubc, veclmul, vecltruediv, veclfloordiv, veclmod
 from .lazy import veclhadamard, veclhadamardtruediv, veclhadamardfloordiv, veclhadamardmod, veclhadamardmin, veclhadamardmax
 
 
@@ -33,18 +33,18 @@ $$
 $$
 """
 
-def vecbasis(i, c=1):
+def vecbasis(i, c=1, zero=0):
     r"""Return the `i`-th basis vector times `c`.
     
     $$
         c\vec{e}_i \qquad \mathbb{K}^{i+1}
     $$
     
-    Returns a tuple with `i` zeros followed by `c`.
+    Returns a tuple with `i` many `zero`s followed by `c`.
     """
-    return (0,)*i + (c,)
+    return (zero,)*i + (c,)
 
-def vecbases():
+def vecbases(start=0, c=1, zero=0):
     r"""Yield all basis vectors.
     
     $$
@@ -55,8 +55,8 @@ def vecbases():
     --------
     - for single basis vector: [`vecbasis`][vector.functional.vecbasis]
     """
-    for i in count():
-        yield vecbasis(i)
+    for i in count(start=start):
+        yield vecbasis(i, c=c, zero=zero)
 
 def vecrand(n):
     r"""Return a random vector of `n` uniform `float` coefficients in `[0, 1[`.
@@ -89,14 +89,14 @@ def vecrandn(n, normed=True, mu=0, sigma=1, weights=None):
 
 
 #utility
-def veceq(v, w):
+def veceq(v, w, zero=0):
     r"""Return if two vectors are equal.
     
     $$
         \vec{v}=\vec{w} \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{B}
     $$
     """
-    return all(starmap(eq, zip_longest(v, w, fillvalue=0)))
+    return all(starmap(eq, zip_longest(v, w, fillvalue=zero)))
 
 def vectrim(v, tol=1e-9):
     r"""Remove all trailing near zero (`abs(v_i)<=tol`) coefficients.
@@ -137,8 +137,8 @@ def vecround(v, ndigits=None):
     """
     return tuple(veclround(v, ndigits=ndigits))
 
-def vecrshift(v, n, fill=0):
-    r"""Pad `n` many `fill`s to the beginning of the vector.
+def vecrshift(v, n, zero=0):
+    r"""Pad `n` many `zero`s to the beginning of the vector.
     
     $$
         (v_{i-n})_i \qquad \begin{pmatrix}
@@ -151,7 +151,7 @@ def vecrshift(v, n, fill=0):
         \end{pmatrix} \qquad \mathbb{K}^m\to\mathbb{K}^{m+n}
     $$
     """
-    return tuple(veclrshift(v, n, fill=fill))
+    return tuple(veclrshift(v, n, zero=zero))
 
 def veclshift(v, n):
     r"""Remove `n` many coefficients at the beginning of the vector.
@@ -180,7 +180,7 @@ def vecconj(v):
     """
     return tuple(veclconj(v))
 
-def vecabs(v, weights=None, conjugate=False):
+def vecabs(v, weights=None, conjugate=False, zero=0):
     r"""Return the Euclidean/L2-norm.
     
     $$
@@ -192,9 +192,9 @@ def vecabs(v, weights=None, conjugate=False):
     #hypot(*v) doesn't work for complex
     #math.sqrt doesn't work for complex and cmath.sqrt always returns complex
     #therefore use **0.5 instead of sqrt because it is type conserving
-    return vecabsq(v, weights=weights, conjugate=conjugate)**0.5
+    return vecabsq(v, weights=weights, conjugate=conjugate, zero=zero)**0.5
 
-def vecabsq(v, weights=None, conjugate=False):
+def vecabsq(v, weights=None, conjugate=False, zero=0):
     r"""Return the sum of absolute squares of the coefficients.
     
     $$
@@ -212,37 +212,31 @@ def vecabsq(v, weights=None, conjugate=False):
     ----------
     - <https://docs.python.org/3/library/itertools.html#itertools-recipes>: `sum_of_squares`
     """
-    #return sumprod(v, v) #no abs
-    #return sumprod(*tee(map(abs, v), 2)) #first abs then multiply could introduce floats
-    #for example 1+1j: |1+1j|^2=sqrt(2)^2 - - - (1-1j)(1+1j)=2
     vc, v = tee(v, 2)
     if conjugate:
         vc = veclconj(vc)
     
     if weights is None:
-        return sumprod(vc, v)
+        return sum(map(mul, vc, v), start=zero)
     else:
-        return sum(map(prod, zip(vc, v, weights)))
+        return sum(mul, map(mul, vc, v), weights, start=zero)
 
-def vecdot(v, w, weights=None, conjugate=False):
+def vecdot(v, w, weights=None, conjugate=False, zero=0):
     r"""Return the inner product of two vectors.
     
     $$
         \left<\vec{v}\mid\vec{w}\right>_{\ell_{\mathbb{N}_0}^2}=\sum_iv_i^{(*)}w_i\omega_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}
     $$
     """
-    #unreadable and doesn't work for generators
-    #return sumprod(v[:min(len(v), len(w))], w[:min(len(v), len(w))])
-    #return sumprod(*zip(*zip(v, w))) #would be more precise, but is bloat
     if conjugate:
         v = veclconj(v)
     
     if weights is None:
-        return sum(map(mul, v, w))
+        return sum(map(mul, v, w), start=zero)
     else:
-        return sum(map(prod, zip(v, w, weights)))
+        return sum(map(mul, map(mul, v, w), weights), start=zero)
 
-def vecparallel(v, w, weights=None, conjugate=False):
+def vecparallel(v, w, weights=None, conjugate=False, zero=0):
     r"""Return if two vectors are parallel.
     
     $$
@@ -251,15 +245,15 @@ def vecparallel(v, w, weights=None, conjugate=False):
     """
     #doesn't work for exhaustible iterables
     #return vecabsq(v)*vecabsq(w) == abs(vecdot(v, w))**2
-    v2, w2, vw = 0, 0, 0
+    v2, w2, vw = zero, zero, zero
     if weights is None:
-        for vi, wi in zip_longest(v, w, fillvalue=0):
+        for vi, wi in zip_longest(v, w, fillvalue=zero):
             vic, wic = (try_conjugate(vi), try_conjugate(wi)) if conjugate else (vi, wi)
             v2 += vic * vi
             w2 += wic * wi
             vw += vic * wi
     else:
-        for vi, wi, o in zip_longest(v, w, weights, fillvalue=0):
+        for vi, wi, o in zip_longest(v, w, weights, fillvalue=zero):
             vic, wic = (try_conjugate(vi), try_conjugate(wi)) if conjugate else (vi, wi)
             v2 += vic * vi * o
             w2 += wic * wi * o
@@ -286,16 +280,16 @@ def vecneg(v):
     """
     return tuple(veclneg(v))
 
-def vecadd(*vs):
+def vecadd(*vs, zero=0):
     r"""Return the sum of vectors.
     
     $$
         \vec{v}_0+\vec{v}_1+\cdots \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}
     $$
     """
-    return tuple(vecladd(*vs))
+    return tuple(vecladd(*vs, zero=zero))
 
-def vecaddc(v, c, i=0):
+def vecaddc(v, c, i=0, zero=0):
     r"""Return `v` with `c` added to the `i`-th coefficient.
     
     $$
@@ -304,21 +298,18 @@ def vecaddc(v, c, i=0):
     
     More efficient than `vecadd(v, vecbasis(i, c))`.
     """
-    v = list(v)
-    v.extend([0] * (i-len(v)+1))
-    v[i] += c
-    return tuple(v)
+    return tuple(vecladdc(v, c, i=i, zero=zero))
 
-def vecsub(v, w):
+def vecsub(v, w, zero=0):
     r"""Return the difference of two vectors.
     
     $$
         \vec{v}-\vec{w} \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^{\max\{m, n\}}
     $$
     """
-    return tuple(veclsub(v, w))
+    return tuple(veclsub(v, w, zero=zero))
 
-def vecsubc(v, c, i=0):
+def vecsubc(v, c, i=0, zero=0):
     r"""Return `v` with `c` added to the `i`-th coefficient.
     
     $$
@@ -327,10 +318,7 @@ def vecsubc(v, c, i=0):
     
     More efficient than `vecsub(v, vecbasis(i, c))`.
     """
-    v = list(v)
-    v.extend([0] * (i-len(v)+1))
-    v[i] -= c
-    return tuple(v)
+    return tuple(veclsubc(v, c, i=i, zero=zero))
 
 def vecmul(a, v):
     r"""Return the product of a scalar and a vector.
@@ -395,59 +383,59 @@ def vecdivmod(v, a):
 
 
 #elementwise
-def vechadamard(*vs):
+def vechadamard(*vs, one=1):
     r"""Return the elementwise product of vectors.
     
     $$
         \left((\vec{v}_0)_i\cdot(\vec{v}_1)_i\cdot\cdots\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\min_i n_i}
     $$
     """
-    return tuple(veclhadamard(*vs))
+    return tuple(veclhadamard(*vs, one=one))
 
-def vechadamardtruediv(v, w):
+def vechadamardtruediv(v, w, zero=0):
     r"""Return the elementwise true division of two vectors.
     
     $$
         \left(\frac{v_i}{w_i}\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m
     $$
     """
-    return tuple(veclhadamardtruediv(v, w))
+    return tuple(veclhadamardtruediv(v, w, zero=zero))
 
-def vechadamardfloordiv(v, w):
+def vechadamardfloordiv(v, w, zero=0):
     r"""Return the elementwise floor division of two vectors.
     
     $$
         \left(\left\lfloor\frac{v_i}{w_i}\right\rfloor\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m
     $$
     """
-    return tuple(veclhadamardfloordiv(v, w))
+    return tuple(veclhadamardfloordiv(v, w, zero=zero))
 
-def vechadamardmod(v, w):
+def vechadamardmod(v, w, zero=0):
     r"""Return the elementwise mod of two vectors.
     
     $$
         \left(v_i \mod w_i\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m
     $$
     """
-    return tuple(veclhadamardmod(v, w))
+    return tuple(veclhadamardmod(v, w, zero=zero))
 
-def vechadamardmin(*vs):
+def vechadamardmin(*vs, pinf=+inf):
     r"""Return the elementwise minimum of vectors.
     
     $$
         \left(\min((\vec{v}_0)_i,(\vec{v}_1)_i,\cdots)\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}
     $$
     """
-    return tuple(veclhadamardmin(*vs))
+    return tuple(veclhadamardmin(*vs, pinf=pinf))
 
-def vechadamardmax(*vs):
+def vechadamardmax(*vs, ninf=-inf):
     r"""Return the elementwise maximum of vectors.
     
     $$
         \left(\max((\vec{v}_0)_i,(\vec{v}_1)_i,\cdots)\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}
     $$
     """
-    return tuple(veclhadamardmax(*vs))
+    return tuple(veclhadamardmax(*vs, ninf=-inf))
 
 def vechadamardminmax(*vs):
     pass

@@ -31,7 +31,7 @@ def veclzero():
     """
     yield from ()
 
-def veclbasis(i, c=1):
+def veclbasis(i, c=1, zero=0):
     r"""Return the `i`-th basis vector times `c`.
     
     $$
@@ -40,9 +40,9 @@ def veclbasis(i, c=1):
     
     Returns a tuple with `i` zeros followed by `c`.
     """
-    yield from chain(repeat(0, i), (c,))
+    yield from chain(repeat(zero, i), (c,))
 
-def veclbases():
+def veclbases(start=0, c=1, zero=0):
     r"""Yield all basis vectors.
     
     $$
@@ -53,8 +53,8 @@ def veclbases():
     --------
     - for single basis vector: [`vecbasis`][vector.functional.vecbasis]
     """
-    for i in count():
-        yield veclbasis(i)
+    for i in count(start=start):
+        yield veclbasis(i, c=c, zero=zero)
 
 def veclrand(n):
     r"""Return a random vector of `n` uniform `float` coefficients in `[0, 1[`.
@@ -124,8 +124,8 @@ def veclround(v, ndigits=None):
     """
     yield from (round(c, ndigits) for c in v)
 
-def veclrshift(v, n, fill=0):
-    r"""Pad `n` many `fill`s to the beginning of the vector.
+def veclrshift(v, n, zero=0):
+    r"""Pad `n` many `zero`s to the beginning of the vector.
     
     $$
         (v_{i-n})_i \qquad \begin{pmatrix}
@@ -138,7 +138,7 @@ def veclrshift(v, n, fill=0):
         \end{pmatrix} \qquad \mathbb{K}^m\to\mathbb{K}^{m+n}
     $$
     """
-    yield from chain((fill,)*n, v)
+    yield from chain((zero,)*n, v)
 
 def vecllshift(v, n):
     r"""Remove `n` many coefficients at the beginning of the vector.
@@ -210,16 +210,16 @@ def veclneg(v):
     """
     yield from map(neg, v)
 
-def vecladd(*vs):
+def vecladd(*vs, zero=0):
     r"""Return the sum of vectors.
     
     $$
         \vec{v}_0+\vec{v}_1+\cdots \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}
     $$
     """
-    yield from map(sum, zip_longest(*vs, fillvalue=0))
+    yield from map(lambda vis: sum(vis, start=zero), zip_longest(*vs, fillvalue=zero))
 
-def vecladdc(v, c, i=0):
+def vecladdc(v, c, i=0, zero=0):
     r"""Return `v` with `c` added to the `i`-th coefficient.
     
     $$
@@ -229,20 +229,20 @@ def vecladdc(v, c, i=0):
     More efficient than `vecladd(v, veclbasis(i, c))`.
     """
     v = iter(v)
-    yield from islice(chain(v, repeat(0)), i)
-    yield next(v, 0) + c #i-th element
+    yield from islice(chain(v, repeat(zero)), i)
+    yield next(v, zero) + c #i-th element
     yield from v
 
-def veclsub(v, w):
+def veclsub(v, w, zero=0):
     r"""Return the difference of two vectors.
     
     $$
         \vec{v}-\vec{w} \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^{\max\{m, n\}}
     $$
     """
-    yield from starmap(sub, zip_longest(v, w, fillvalue=0))
+    yield from starmap(sub, zip_longest(v, w, fillvalue=zero))
 
-def veclsubc(v, c, i=0):
+def veclsubc(v, c, i=0, zero=0):
     r"""Return `v` with `c` added to the `i`-th coefficient.
     
     $$
@@ -252,8 +252,8 @@ def veclsubc(v, c, i=0):
     More efficient than `veclsub(v, veclbasis(i, c))`.
     """
     v = iter(v)
-    yield from islice(chain(v, repeat(0)), i)
-    yield next(v, 0) - c #i-th element
+    yield from islice(chain(v, repeat(zero)), i)
+    yield next(v, zero) - c #i-th element
     yield from v
 
 def veclmul(a, v):
@@ -315,59 +315,59 @@ def vecldivmod(v, a):
 
 
 #elementwise
-def veclhadamard(*vs):
+def veclhadamard(*vs, one=1):
     r"""Return the elementwise product of vectors.
     
     $$
         \left((\vec{v}_0)_i\cdot(\vec{v}_1)_i\cdot\cdots\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\min_i n_i}
     $$
     """
-    yield from map(prod, zip(*vs))
+    yield from map(lambda vis: prod(vis, start=one), zip(*vs))
 
-def veclhadamardtruediv(v, w):
+def veclhadamardtruediv(v, w, zero=0):
     r"""Return the elementwise true division of two vectors.
     
     $$
         \left(\frac{v_i}{w_i}\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m
     $$
     """
-    yield from map(truediv, v, chain(w, repeat(0)))
+    yield from map(truediv, v, chain(w, repeat(zero)))
 
-def veclhadamardfloordiv(v, w):
+def veclhadamardfloordiv(v, w, zero=0):
     r"""Return the elementwise floor division of two vectors.
     
     $$
         \left(\left\lfloor\frac{v_i}{w_i}\right\rfloor\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m
     $$
     """
-    yield from map(floordiv, v, chain(w, repeat(0)))
+    yield from map(floordiv, v, chain(w, repeat(zero)))
 
-def veclhadamardmod(v, w):
+def veclhadamardmod(v, w, zero=0):
     r"""Return the elementwise mod of two vectors.
     
     $$
         \left(v_i \mod w_i\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m
     $$
     """
-    yield from map(mod, v, chain(w, repeat(0)))
+    yield from map(mod, v, chain(w, repeat(zero)))
 
-def veclhadamardmin(*vs):
+def veclhadamardmin(*vs, pinf=+inf):
     r"""Return the elementwise minimum of vectors.
     
     $$
         \left(\min((\vec{v}_0)_i,(\vec{v}_1)_i,\cdots)\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}
     $$
     """
-    yield from map(min, zip_longest(*vs, fillvalue=inf))
+    yield from map(min, zip_longest(*vs, fillvalue=pinf))
 
-def veclhadamardmax(*vs):
+def veclhadamardmax(*vs, ninf=-inf):
     r"""Return the elementwise maximum of vectors.
     
     $$
         \left(\max((\vec{v}_0)_i,(\vec{v}_1)_i,\cdots)\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}
     $$
     """
-    yield from map(max, zip_longest(*vs, fillvalue=-inf))
+    yield from map(max, zip_longest(*vs, fillvalue=ninf))
 
 def vechadamardminmax(*vs):
     pass

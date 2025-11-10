@@ -84,7 +84,16 @@ All vectors are **zero-indexed**.
 | Min               | [`vechadamardmin`][vector.functional.vechadamardmin]           | [`veclhadamardmin`][vector.lazy.veclhadamardmin]           | [`.hadamardmin`][vector.objectoriented.Vector.hadamardmin]           |                                                      |                                                               |
 | Max               | [`vechadamardmax`][vector.functional.vechadamardmax]           | [`veclhadamardmax`][vector.lazy.veclhadamardmax]           | [`.hadamardmax`][vector.objectoriented.Vector.hadamardmax]           |                                                      |                                                               |
 
-### Prefix Design
+### Design choices
+
+1. Integers are the best.
+   As many functions as possible should work with pure integer arithmetic.
+2. Floats are necessary. (Also let's don't forget about complex numbers.)
+   When possible, extended precision intermediates are used (`sum`, `sumprod`, ...)
+3. Python allows operator overloading.
+   Exclusive type arithmetic should be possible (`zero`, `one` & `inf` arguments; ...)
+
+#### Prefix Design
 
 Could use no prefix to be more mathematically pure, like `add` instead of
 `vecadd`, but then you would always have to use `from vec import add as vecadd`
@@ -102,12 +111,15 @@ tuples. Done: [goessl/zipvar](https://github.com/goessl/zipvar)
 - [x] docstrings
 - [x] `numpy` routines
 - [x] multiaxis vectors: tensors?
+- [x] Absolute type safety.
 - [ ] Complexity analysis. Perfect complexity
 - [ ] dimensionality signature (e.g. `vecadd`: $\mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^{\max{m, n}}$)
 - [ ] `vechadamardminmax`
 - [ ] never use `numpy.int64`, they don't detect overflows
 - [ ] sparse vectors (`dict`s)
 - [ ] C++ & Java version
+- [ ] Ballin
+- [ ] Fields medal
 
 ## License (MIT)
 
