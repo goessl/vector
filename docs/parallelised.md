@@ -26,6 +26,7 @@ Creation routines have a dimension argument `d`. If left to `None`, the returned
 
 ::: vector.parallelised
     options:
+      heading_level: 3
       members:
         - vecnpzero
         - vecnpbasis
@@ -36,6 +37,7 @@ Creation routines have a dimension argument `d`. If left to `None`, the returned
 
 ::: vector.parallelised
     options:
+      heading_level: 3
       members:
         - vecnpdim
         - vecnpeq
@@ -46,6 +48,7 @@ Creation routines have a dimension argument `d`. If left to `None`, the returned
 
 ::: vector.parallelised
     options:
+      heading_level: 3
       members:
         - vecnpabsq
         - vecnpabs
@@ -56,6 +59,7 @@ Creation routines have a dimension argument `d`. If left to `None`, the returned
 
 ::: vector.parallelised
     options:
+      heading_level: 3
       members:
         - vecnppos
         - vecnpneg

@@ -51,7 +51,6 @@ plugins:
     handlers:
       python:
         options:
-          heading_level: 3
           members_order: source
           show_labels: false
           show_root_toc_entry: false

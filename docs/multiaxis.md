@@ -16,6 +16,7 @@ the arrays don't get stretched but rather padded with zeros.
 
 ::: vector.multiaxis
     options:
+      heading_level: 3
       members:
         - tenzero
         - tenbasis
@@ -26,6 +27,7 @@ the arrays don't get stretched but rather padded with zeros.
 
 ::: vector.multiaxis
     options:
+      heading_level: 3
       members:
         - tenrank
         - tendim
@@ -36,6 +38,7 @@ the arrays don't get stretched but rather padded with zeros.
 
 ::: vector.multiaxis
     options:
+      heading_level: 3
       members:
         - tenpos
         - tenneg
@@ -52,6 +55,7 @@ the arrays don't get stretched but rather padded with zeros.
 
 ::: vector.multiaxis
     options:
+      heading_level: 3
       members:
         - tenhadamard
         - tenhadamardtruediv
