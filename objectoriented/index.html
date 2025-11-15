@@ -1051,6 +1051,16 @@
 
 
 <h1 id="object-oriented">Object-oriented</h1>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+
+    <div class="doc doc-contents first">
+
+        <p>Vector class.</p>
 <div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">vector</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vector</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">Vector</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 <span class="n">Vector</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
@@ -1062,15 +1072,6 @@
 <p>The immutable <code>Vector</code> class wraps all the mentioned functions into a tidy package, making them easier to use by enabling interaction through operators.</p>
 <p>Its coefficients are internally stored as a tuple in the <code>coef</code> attribute and therefore <em>zero-indexed</em>.</p>
 <p>Vector operations return the same type (<code>type(v+w)==type(v)</code>) so the class can easily be extended (to e.g. a polynomial class).</p>
-<hr />
-
-
-<div class="doc doc-object doc-module">
-
-
-
-
-    <div class="doc doc-contents first">
 
 
 
@@ -1247,26 +1248,7 @@
 
               <details class="quote">
                 <summary>Source code in <code>vector\objectoriented.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">  9</span>
-<span class="normal"> 10</span>
-<span class="normal"> 11</span>
-<span class="normal"> 12</span>
-<span class="normal"> 13</span>
-<span class="normal"> 14</span>
-<span class="normal"> 15</span>
-<span class="normal"> 16</span>
-<span class="normal"> 17</span>
-<span class="normal"> 18</span>
-<span class="normal"> 19</span>
-<span class="normal"> 20</span>
-<span class="normal"> 21</span>
-<span class="normal"> 22</span>
-<span class="normal"> 23</span>
-<span class="normal"> 24</span>
-<span class="normal"> 25</span>
-<span class="normal"> 26</span>
-<span class="normal"> 27</span>
-<span class="normal"> 28</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 28</span>
 <span class="normal"> 29</span>
 <span class="normal"> 30</span>
 <span class="normal"> 31</span>
@@ -1581,7 +1563,26 @@
 <span class="normal">340</span>
 <span class="normal">341</span>
 <span class="normal">342</span>
-<span class="normal">343</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Vector</span><span class="p">:</span>
+<span class="normal">343</span>
+<span class="normal">344</span>
+<span class="normal">345</span>
+<span class="normal">346</span>
+<span class="normal">347</span>
+<span class="normal">348</span>
+<span class="normal">349</span>
+<span class="normal">350</span>
+<span class="normal">351</span>
+<span class="normal">352</span>
+<span class="normal">353</span>
+<span class="normal">354</span>
+<span class="normal">355</span>
+<span class="normal">356</span>
+<span class="normal">357</span>
+<span class="normal">358</span>
+<span class="normal">359</span>
+<span class="normal">360</span>
+<span class="normal">361</span>
+<span class="normal">362</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Vector</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;An infinite-dimensional vector class.</span>
 
 <span class="sd">    Its coefficients are internally stored as a tuple in the `coef` attribute.</span>
@@ -1936,10 +1937,6 @@
 <h3 id="vector.objectoriented.Vector.ZERO" class="doc doc-heading">
 <code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">ZERO</span></code>
 
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
 </h3>
 
 
@@ -1950,7 +1947,7 @@
 
 <details class="see-also" open>
   <summary>See also</summary>
-  <p><a class="autorefs autorefs-internal" title="            veczero = ()" href="../functional/#vector.functional.veczero"><code>veczero</code></a></p>
+  <p><a class="autorefs autorefs-internal" title="            veczero = ()" href="../functional/#vector.functional.creation.veczero"><code>veczero</code></a></p>
 </details>
     </div>
 
@@ -1989,22 +1986,22 @@ Nah, other functions also don't do that.</li>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coef</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coef</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a new vector with the given coefficients</span>
 <span class="sd">    or the `i`-th basis vector if an integer `i` is given.</span>
 
@@ -2037,10 +2034,6 @@ Nah, other functions also don't do that.</li>
 <h3 id="vector.objectoriented.Vector.rand" class="doc doc-heading">
 <code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">)</span></code>
 
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
-  </span>
-
 </h3>
 
 
@@ -2051,20 +2044,20 @@ Nah, other functions also don't do that.</li>
 
 <details class="see-also" open>
   <summary>See also</summary>
-  <p><a class="autorefs autorefs-internal" title="            vecrand(n)" href="../functional/#vector.functional.vecrand"><code>vecrand</code></a></p>
+  <p><a class="autorefs autorefs-internal" title="            vecrand(n)" href="../functional/#vector.functional.creation.vecrand"><code>vecrand</code></a></p>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">rand</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a random vector of `n` uniform coefficients in `[0, 1[`.</span>
 
@@ -2090,10 +2083,6 @@ Nah, other functions also don't do that.</li>
 <h3 id="vector.objectoriented.Vector.randn" class="doc doc-heading">
 <code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></code>
 
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
-  </span>
-
 </h3>
 
 
@@ -2104,20 +2093,20 @@ Nah, other functions also don't do that.</li>
 
 <details class="see-also" open>
   <summary>See also</summary>
-  <p><a class="autorefs autorefs-internal" title="            vecrandn(n, normed=True, mu=0, sigma=1, weights=None)" href="../functional/#vector.functional.vecrandn"><code>vecrandn</code></a></p>
+  <p><a class="autorefs autorefs-internal" title="            vecrandn(n, normed=True, mu=0, sigma=1, weights=None)" href="../functional/#vector.functional.creation.vecrandn"><code>vecrandn</code></a></p>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a random vector of `n` normal distributed coefficients.</span>
 
@@ -2153,9 +2142,9 @@ Nah, other functions also don't do that.</li>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the number of set coefficients.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coef</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -2186,27 +2175,27 @@ Nah, other functions also don't do that.</li>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span>
-<span class="normal">73</span>
-<span class="normal">74</span>
-<span class="normal">75</span>
-<span class="normal">76</span>
-<span class="normal">77</span>
-<span class="normal">78</span>
-<span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span>
-<span class="normal">86</span>
-<span class="normal">87</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the indexed coefficient or coefficients.</span>
 
 <span class="sd">    Not set coefficients default to 0.</span>
@@ -2254,9 +2243,9 @@ Nah, other functions also don't do that.</li>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">89</span>
-<span class="normal">90</span>
-<span class="normal">91</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return an iterator over the set coefficients.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coef</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -2286,19 +2275,19 @@ Nah, other functions also don't do that.</li>
 
 <details class="see-also" open>
   <summary>See also</summary>
-  <p><a class="autorefs autorefs-internal" title="            veceq(v, w, zero=0)" href="../functional/#vector.functional.veceq"><code>veceq</code></a></p>
+  <p><a class="autorefs autorefs-internal" title="            veceq(v, w, zero=0)" href="../functional/#vector.functional.utility.veceq"><code>veceq</code></a></p>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 93</span>
-<span class="normal"> 94</span>
-<span class="normal"> 95</span>
-<span class="normal"> 96</span>
-<span class="normal"> 97</span>
-<span class="normal"> 98</span>
-<span class="normal"> 99</span>
-<span class="normal">100</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return if of same type with same coefficients.</span>
 
 <span class="sd">    See also</span>
@@ -2333,19 +2322,19 @@ Nah, other functions also don't do that.</li>
 
 <details class="see-also" open>
   <summary>See also</summary>
-  <p><a class="autorefs autorefs-internal" title="            veclshift(v, n)" href="../functional/#vector.functional.veclshift"><code>veclshift</code></a></p>
+  <p><a class="autorefs autorefs-internal" title="            veclshift(v, n)" href="../functional/#vector.functional.utility.veclshift"><code>veclshift</code></a></p>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">103</span>
-<span class="normal">104</span>
-<span class="normal">105</span>
-<span class="normal">106</span>
-<span class="normal">107</span>
-<span class="normal">108</span>
-<span class="normal">109</span>
-<span class="normal">110</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__lshift__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__lshift__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a vector with coefficients shifted to lower indices.</span>
 
 <span class="sd">    See also</span>
@@ -2380,19 +2369,19 @@ Nah, other functions also don't do that.</li>
 
 <details class="see-also" open>
   <summary>See also</summary>
-  <p><a class="autorefs autorefs-internal" title="            vecrshift(v, n, zero=0)" href="../functional/#vector.functional.vecrshift"><code>vecrshift</code></a></p>
+  <p><a class="autorefs autorefs-internal" title="            vecrshift(v, n, zero=0)" href="../functional/#vector.functional.utility.vecrshift"><code>vecrshift</code></a></p>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">112</span>
-<span class="normal">113</span>
-<span class="normal">114</span>
-<span class="normal">115</span>
-<span class="normal">116</span>
-<span class="normal">117</span>
-<span class="normal">118</span>
-<span class="normal">119</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__rshift__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__rshift__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a vector with coefficients shifted to higher indices.</span>
 
 <span class="sd">    See also</span>
@@ -2427,19 +2416,19 @@ Nah, other functions also don't do that.</li>
 
 <details class="see-also" open>
   <summary>See also</summary>
-  <p><a class="autorefs autorefs-internal" title="            vectrim(v, tol=1e-09)" href="../functional/#vector.functional.vectrim"><code>vectrim</code></a></p>
+  <p><a class="autorefs autorefs-internal" title="            vectrim(v, tol=1e-09)" href="../functional/#vector.functional.utility.vectrim"><code>vectrim</code></a></p>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">123</span>
-<span class="normal">124</span>
-<span class="normal">125</span>
-<span class="normal">126</span>
-<span class="normal">127</span>
-<span class="normal">128</span>
-<span class="normal">129</span>
-<span class="normal">130</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">trim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">trim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove all trailing near zero (abs&lt;=tol) coefficients.</span>
 
 <span class="sd">    See also</span>
@@ -2474,19 +2463,19 @@ Nah, other functions also don't do that.</li>
 
 <details class="see-also" open>
   <summary>See also</summary>
-  <p><a class="autorefs autorefs-internal" title="            vecround(v, ndigits=None)" href="../functional/#vector.functional.vecround"><code>vecround</code></a></p>
+  <p><a class="autorefs autorefs-internal" title="            vecround(v, ndigits=None)" href="../functional/#vector.functional.utility.vecround"><code>vecround</code></a></p>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">132</span>
-<span class="normal">133</span>
-<span class="normal">134</span>
-<span class="normal">135</span>
-<span class="normal">136</span>
-<span class="normal">137</span>
-<span class="normal">138</span>
-<span class="normal">139</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ndigits</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ndigits</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Round all coefficients to the given precision.</span>
 
 <span class="sd">    See also</span>
@@ -2521,19 +2510,19 @@ Nah, other functions also don't do that.</li>
 
 <details class="see-also" open>
   <summary>See also</summary>
-  <p><a class="autorefs autorefs-internal" title="            vecparallel(v, w, weights=None, conjugate=False, zero=0)" href="../functional/#vector.functional.vecparallel"><code>vecparallel</code></a></p>
+  <p><a class="autorefs autorefs-internal" title="            vecparallel(v, w, weights=None, conjugate=False, zero=0)" href="../functional/#vector.functional.hilbert_space.vecparallel"><code>vecparallel</code></a></p>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">141</span>
-<span class="normal">142</span>
-<span class="normal">143</span>
-<span class="normal">144</span>
-<span class="normal">145</span>
-<span class="normal">146</span>
-<span class="normal">147</span>
-<span class="normal">148</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">is_parallel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">is_parallel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return if the other vector is parallel.</span>
 
 <span class="sd">    See also</span>
@@ -2568,19 +2557,19 @@ Nah, other functions also don't do that.</li>
 
 <details class="see-also" open>
   <summary>See also</summary>
-  <p><a class="autorefs autorefs-internal" title="            vecabsq(v, weights=None, conjugate=False, zero=0)" href="../functional/#vector.functional.vecabsq"><code>vecabsq</code></a></p>
+  <p><a class="autorefs autorefs-internal" title="            vecabsq(v, weights=None, conjugate=False, zero=0)" href="../functional/#vector.functional.hilbert_space.vecabsq"><code>vecabsq</code></a></p>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">152</span>
-<span class="normal">153</span>
-<span class="normal">154</span>
-<span class="normal">155</span>
-<span class="normal">156</span>
-<span class="normal">157</span>
-<span class="normal">158</span>
-<span class="normal">159</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">absq</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">absq</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the sum of absolute squares of the coefficients.</span>
 
 <span class="sd">    See also</span>
@@ -2616,21 +2605,21 @@ Nah, other functions also don't do that.</li>
 
 <details class="see-also" open>
   <summary>See also</summary>
-  <p><a class="autorefs autorefs-internal" title="            vecabs(v, weights=None, conjugate=False, zero=0)" href="../functional/#vector.functional.vecabs"><code>vecabs</code></a></p>
+  <p><a class="autorefs autorefs-internal" title="            vecabs(v, weights=None, conjugate=False, zero=0)" href="../functional/#vector.functional.hilbert_space.vecabs"><code>vecabs</code></a></p>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">161</span>
-<span class="normal">162</span>
-<span class="normal">163</span>
-<span class="normal">164</span>
-<span class="normal">165</span>
-<span class="normal">166</span>
-<span class="normal">167</span>
-<span class="normal">168</span>
-<span class="normal">169</span>
-<span class="normal">170</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__abs__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__abs__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the Euclidean/L2-norm.</span>
 
 <span class="sd">    Return the square root of `vecabsq`.</span>
@@ -2668,21 +2657,21 @@ Nah, other functions also don't do that.</li>
 
 <details class="see-also" open>
   <summary>See also</summary>
-  <p><a class="autorefs autorefs-internal" title="            vecdot(v, w, weights=None, conjugate=False, zero=0)" href="../functional/#vector.functional.vecdot"><code>vecdot</code></a></p>
+  <p><a class="autorefs autorefs-internal" title="            vecdot(v, w, weights=None, conjugate=False, zero=0)" href="../functional/#vector.functional.hilbert_space.vecdot"><code>vecdot</code></a></p>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">172</span>
-<span class="normal">173</span>
-<span class="normal">174</span>
-<span class="normal">175</span>
-<span class="normal">176</span>
-<span class="normal">177</span>
-<span class="normal">178</span>
-<span class="normal">179</span>
-<span class="normal">180</span>
-<span class="normal">181</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__matmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__matmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the real dot product of two vectors.</span>
 
 <span class="sd">    No argument is complex conjugated. All coefficients are used as is.</span>
@@ -2719,19 +2708,19 @@ Nah, other functions also don't do that.</li>
 
 <details class="see-also" open>
   <summary>See also</summary>
-  <p><a class="autorefs autorefs-internal" title="            vecpos(v)" href="../functional/#vector.functional.vecpos"><code>vecpos</code></a></p>
+  <p><a class="autorefs autorefs-internal" title="            vecpos(v)" href="../functional/#vector.functional.vector_space.vecpos"><code>vecpos</code></a></p>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">186</span>
-<span class="normal">187</span>
-<span class="normal">188</span>
-<span class="normal">189</span>
-<span class="normal">190</span>
-<span class="normal">191</span>
-<span class="normal">192</span>
-<span class="normal">193</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__pos__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__pos__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the unary positive.</span>
 
 <span class="sd">    See also</span>
@@ -2766,19 +2755,19 @@ Nah, other functions also don't do that.</li>
 
 <details class="see-also" open>
   <summary>See also</summary>
-  <p><a class="autorefs autorefs-internal" title="            vecneg(v)" href="../functional/#vector.functional.vecneg"><code>vecneg</code></a></p>
+  <p><a class="autorefs autorefs-internal" title="            vecneg(v)" href="../functional/#vector.functional.vector_space.vecneg"><code>vecneg</code></a></p>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">195</span>
-<span class="normal">196</span>
-<span class="normal">197</span>
-<span class="normal">198</span>
-<span class="normal">199</span>
-<span class="normal">200</span>
-<span class="normal">201</span>
-<span class="normal">202</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__neg__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__neg__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the negative.</span>
 
 <span class="sd">    See also</span>
@@ -2813,19 +2802,19 @@ Nah, other functions also don't do that.</li>
 
 <details class="see-also" open>
   <summary>See also</summary>
-  <p><a class="autorefs autorefs-internal" title="            vecadd(*vs)" href="../functional/#vector.functional.vecadd"><code>vecadd</code></a></p>
+  <p><a class="autorefs autorefs-internal" title="            vecadd(*vs)" href="../functional/#vector.functional.vector_space.vecadd"><code>vecadd</code></a></p>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">204</span>
-<span class="normal">205</span>
-<span class="normal">206</span>
-<span class="normal">207</span>
-<span class="normal">208</span>
-<span class="normal">209</span>
-<span class="normal">210</span>
-<span class="normal">211</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the vector sum.</span>
 
 <span class="sd">    See also</span>
@@ -2860,19 +2849,19 @@ Nah, other functions also don't do that.</li>
 
 <details class="see-also" open>
   <summary>See also</summary>
-  <p><a class="autorefs autorefs-internal" title="            vecaddc(v, c, i=0, zero=0)" href="../functional/#vector.functional.vecaddc"><code>vecaddc</code></a></p>
+  <p><a class="autorefs autorefs-internal" title="            vecaddc(v, c, i=0, zero=0)" href="../functional/#vector.functional.vector_space.vecaddc"><code>vecaddc</code></a></p>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">214</span>
-<span class="normal">215</span>
-<span class="normal">216</span>
-<span class="normal">217</span>
-<span class="normal">218</span>
-<span class="normal">219</span>
-<span class="normal">220</span>
-<span class="normal">221</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">addc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">addc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the sum with the `i`-th basis vector times `c`.</span>
 
 <span class="sd">    See also</span>
@@ -2907,19 +2896,19 @@ Nah, other functions also don't do that.</li>
 
 <details class="see-also" open>
   <summary>See also</summary>
-  <p><a class="autorefs autorefs-internal" title="            vecsub(v, w)" href="../functional/#vector.functional.vecsub"><code>vecsub</code></a></p>
+  <p><a class="autorefs autorefs-internal" title="            vecsub(v, w)" href="../functional/#vector.functional.vector_space.vecsub"><code>vecsub</code></a></p>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">223</span>
-<span class="normal">224</span>
-<span class="normal">225</span>
-<span class="normal">226</span>
-<span class="normal">227</span>
-<span class="normal">228</span>
-<span class="normal">229</span>
-<span class="normal">230</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the vector difference.</span>
 
 <span class="sd">    See also</span>
@@ -2954,19 +2943,19 @@ Nah, other functions also don't do that.</li>
 
 <details class="see-also" open>
   <summary>See also</summary>
-  <p><a class="autorefs autorefs-internal" title="            vecmul(a, v)" href="../functional/#vector.functional.vecmul"><code>vecmul</code></a></p>
+  <p><a class="autorefs autorefs-internal" title="            vecmul(a, v)" href="../functional/#vector.functional.vector_space.vecmul"><code>vecmul</code></a></p>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">234</span>
-<span class="normal">235</span>
-<span class="normal">236</span>
-<span class="normal">237</span>
-<span class="normal">238</span>
-<span class="normal">239</span>
-<span class="normal">240</span>
-<span class="normal">241</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the scalar product.</span>
 
 <span class="sd">    See also</span>
@@ -3001,19 +2990,19 @@ Nah, other functions also don't do that.</li>
 
 <details class="see-also" open>
   <summary>See also</summary>
-  <p><a class="autorefs autorefs-internal" title="            vectruediv(v, a)" href="../functional/#vector.functional.vectruediv"><code>vectruediv</code></a></p>
+  <p><a class="autorefs autorefs-internal" title="            vectruediv(v, a)" href="../functional/#vector.functional.vector_space.vectruediv"><code>vectruediv</code></a></p>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">244</span>
-<span class="normal">245</span>
-<span class="normal">246</span>
-<span class="normal">247</span>
-<span class="normal">248</span>
-<span class="normal">249</span>
-<span class="normal">250</span>
-<span class="normal">251</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__truediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__truediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the scalar true division.</span>
 
 <span class="sd">    See also</span>
@@ -3048,19 +3037,19 @@ Nah, other functions also don't do that.</li>
 
 <details class="see-also" open>
   <summary>See also</summary>
-  <p><a class="autorefs autorefs-internal" title="            vecfloordiv(v, a)" href="../functional/#vector.functional.vecfloordiv"><code>vecfloordiv</code></a></p>
+  <p><a class="autorefs autorefs-internal" title="            vecfloordiv(v, a)" href="../functional/#vector.functional.vector_space.vecfloordiv"><code>vecfloordiv</code></a></p>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">253</span>
-<span class="normal">254</span>
-<span class="normal">255</span>
-<span class="normal">256</span>
-<span class="normal">257</span>
-<span class="normal">258</span>
-<span class="normal">259</span>
-<span class="normal">260</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__floordiv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__floordiv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the scalar floor division.</span>
 
 <span class="sd">    See also</span>
@@ -3095,19 +3084,19 @@ Nah, other functions also don't do that.</li>
 
 <details class="see-also" open>
   <summary>See also</summary>
-  <p><a class="autorefs autorefs-internal" title="            vecmod(v, a)" href="../functional/#vector.functional.vecmod"><code>vecmod</code></a></p>
+  <p><a class="autorefs autorefs-internal" title="            vecmod(v, a)" href="../functional/#vector.functional.vector_space.vecmod"><code>vecmod</code></a></p>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">262</span>
-<span class="normal">263</span>
-<span class="normal">264</span>
-<span class="normal">265</span>
-<span class="normal">266</span>
-<span class="normal">267</span>
-<span class="normal">268</span>
-<span class="normal">269</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__mod__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__mod__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the elementwise mod with a scalar.</span>
 
 <span class="sd">    See also</span>
@@ -3142,20 +3131,20 @@ Nah, other functions also don't do that.</li>
 
 <details class="see-also" open>
   <summary>See also</summary>
-  <p><a class="autorefs autorefs-internal" title="            vecdivmod(v, a)" href="../functional/#vector.functional.vecdivmod"><code>vecdivmod</code></a></p>
+  <p><a class="autorefs autorefs-internal" title="            vecdivmod(v, a)" href="../functional/#vector.functional.vector_space.vecdivmod"><code>vecdivmod</code></a></p>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">271</span>
-<span class="normal">272</span>
-<span class="normal">273</span>
-<span class="normal">274</span>
-<span class="normal">275</span>
-<span class="normal">276</span>
-<span class="normal">277</span>
-<span class="normal">278</span>
-<span class="normal">279</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__divmod__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__divmod__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the elementwise divmod with a scalar.</span>
 
 <span class="sd">    See also</span>
@@ -3191,19 +3180,19 @@ Nah, other functions also don't do that.</li>
 
 <details class="see-also" open>
   <summary>See also</summary>
-  <p><a class="autorefs autorefs-internal" title="            vechadamard(*vs)" href="../functional/#vector.functional.vechadamard"><code>vechadamard</code></a></p>
+  <p><a class="autorefs autorefs-internal" title="            vechadamard(*vs)" href="../functional/#vector.functional.elementwise.vechadamard"><code>vechadamard</code></a></p>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">283</span>
-<span class="normal">284</span>
-<span class="normal">285</span>
-<span class="normal">286</span>
-<span class="normal">287</span>
-<span class="normal">288</span>
-<span class="normal">289</span>
-<span class="normal">290</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">hadamard</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">hadamard</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the elementwise product with another vector.</span>
 
 <span class="sd">    See also</span>
@@ -3238,19 +3227,19 @@ Nah, other functions also don't do that.</li>
 
 <details class="see-also" open>
   <summary>See also</summary>
-  <p><a class="autorefs autorefs-internal" title="            vechadamardtruediv(v, w)" href="../functional/#vector.functional.vechadamardtruediv"><code>vechadamardtruediv</code></a></p>
+  <p><a class="autorefs autorefs-internal" title="            vechadamardtruediv(v, w)" href="../functional/#vector.functional.elementwise.vechadamardtruediv"><code>vechadamardtruediv</code></a></p>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">292</span>
-<span class="normal">293</span>
-<span class="normal">294</span>
-<span class="normal">295</span>
-<span class="normal">296</span>
-<span class="normal">297</span>
-<span class="normal">298</span>
-<span class="normal">299</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">hadamardtruediv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">hadamardtruediv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the elementwise true division with another vector.</span>
 
 <span class="sd">    See also</span>
@@ -3285,19 +3274,19 @@ Nah, other functions also don't do that.</li>
 
 <details class="see-also" open>
   <summary>See also</summary>
-  <p><a class="autorefs autorefs-internal" title="            vechadamardfloordiv(v, w)" href="../functional/#vector.functional.vechadamardfloordiv"><code>vechadamardfloordiv</code></a></p>
+  <p><a class="autorefs autorefs-internal" title="            vechadamardfloordiv(v, w)" href="../functional/#vector.functional.elementwise.vechadamardfloordiv"><code>vechadamardfloordiv</code></a></p>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">301</span>
-<span class="normal">302</span>
-<span class="normal">303</span>
-<span class="normal">304</span>
-<span class="normal">305</span>
-<span class="normal">306</span>
-<span class="normal">307</span>
-<span class="normal">308</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">hadamardfloordiv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">320</span>
+<span class="normal">321</span>
+<span class="normal">322</span>
+<span class="normal">323</span>
+<span class="normal">324</span>
+<span class="normal">325</span>
+<span class="normal">326</span>
+<span class="normal">327</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">hadamardfloordiv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the elementwise floor division with another vector.</span>
 
 <span class="sd">    See also</span>
@@ -3332,19 +3321,19 @@ Nah, other functions also don't do that.</li>
 
 <details class="see-also" open>
   <summary>See also</summary>
-  <p><a class="autorefs autorefs-internal" title="            vechadamardmod(v, w)" href="../functional/#vector.functional.vechadamardmod"><code>vechadamardmod</code></a></p>
+  <p><a class="autorefs autorefs-internal" title="            vechadamardmod(v, w)" href="../functional/#vector.functional.elementwise.vechadamardmod"><code>vechadamardmod</code></a></p>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">310</span>
-<span class="normal">311</span>
-<span class="normal">312</span>
-<span class="normal">313</span>
-<span class="normal">314</span>
-<span class="normal">315</span>
-<span class="normal">316</span>
-<span class="normal">317</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">hadamardmod</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">329</span>
+<span class="normal">330</span>
+<span class="normal">331</span>
+<span class="normal">332</span>
+<span class="normal">333</span>
+<span class="normal">334</span>
+<span class="normal">335</span>
+<span class="normal">336</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">hadamardmod</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the elementwise mod with another vector.</span>
 
 <span class="sd">    See also</span>
@@ -3379,19 +3368,19 @@ Nah, other functions also don't do that.</li>
 
 <details class="see-also" open>
   <summary>See also</summary>
-  <p><a class="autorefs autorefs-internal" title="            vechadamardmin(*vs, key=None)" href="../functional/#vector.functional.vechadamardmin"><code>vechadamardmin</code></a></p>
+  <p><a class="autorefs autorefs-internal" title="            vechadamardmin(*vs, key=None)" href="../functional/#vector.functional.elementwise.vechadamardmin"><code>vechadamardmin</code></a></p>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">319</span>
-<span class="normal">320</span>
-<span class="normal">321</span>
-<span class="normal">322</span>
-<span class="normal">323</span>
-<span class="normal">324</span>
-<span class="normal">325</span>
-<span class="normal">326</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">hadamardmin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">338</span>
+<span class="normal">339</span>
+<span class="normal">340</span>
+<span class="normal">341</span>
+<span class="normal">342</span>
+<span class="normal">343</span>
+<span class="normal">344</span>
+<span class="normal">345</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">hadamardmin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the elementwise minimum with another vector.</span>
 
 <span class="sd">    See also</span>
@@ -3426,19 +3415,19 @@ Nah, other functions also don't do that.</li>
 
 <details class="see-also" open>
   <summary>See also</summary>
-  <p><a class="autorefs autorefs-internal" title="            vechadamardmax(*vs, key=None)" href="../functional/#vector.functional.vechadamardmax"><code>vechadamardmax</code></a></p>
+  <p><a class="autorefs autorefs-internal" title="            vechadamardmax(*vs, key=None)" href="../functional/#vector.functional.elementwise.vechadamardmax"><code>vechadamardmax</code></a></p>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\objectoriented.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">328</span>
-<span class="normal">329</span>
-<span class="normal">330</span>
-<span class="normal">331</span>
-<span class="normal">332</span>
-<span class="normal">333</span>
-<span class="normal">334</span>
-<span class="normal">335</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">hadamardmax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">347</span>
+<span class="normal">348</span>
+<span class="normal">349</span>
+<span class="normal">350</span>
+<span class="normal">351</span>
+<span class="normal">352</span>
+<span class="normal">353</span>
+<span class="normal">354</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">hadamardmax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the elementwise maximum with another vector.</span>
 
 <span class="sd">    See also</span>
