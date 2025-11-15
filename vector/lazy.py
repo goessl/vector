@@ -1,22 +1,23 @@
-from math import prod, inf
 from random import random, gauss
-from itertools import count, starmap, zip_longest, repeat, chain, islice
-from operator import pos, neg, sub, mul, truediv, floordiv, mod
+from itertools import count, zip_longest, repeat, chain, islice, tee
+from functools import partial
+from operator import pos, neg, mul, truediv, floordiv, mod
+from operationcounter import MISSING, exception_generator, group_ordinal, sum_default, prod_default
 
 
 
 __all__ = (#creation
            'veclzero', 'veclbasis', 'veclbases', 'veclrand', 'veclrandn',
            #utility
-           'vecltrim', 'veclround', 'veclrshift', 'vecllshift', #'vecleq', 
+           'vecleq', 'vecltrim', 'veclround', 'veclrshift', 'vecllshift',
            #Hilbert space
-           'try_conjugate', 'veclconj', #'veclabsq',  'veclabs',  'vecldot', 'veclparallel',
+           'try_conjugate', 'veclconj', #'veclabs', 'veclabsq', 'vecldot', 'veclparallel',
            #vector space
            'veclpos', 'veclneg', 'vecladd', 'vecladdc', 'veclsub', 'veclsubc',
            'veclmul', 'vecltruediv', 'veclfloordiv', 'veclmod', 'vecldivmod',
            #elementwise
            'veclhadamard', 'veclhadamardtruediv',
-           'veclhadamardfloordiv', 'veclhadamardmod',
+           'veclhadamardfloordiv', 'veclhadamardmod', 'veclhadamarddivmod',
            'veclhadamardmin', 'veclhadamardmax')
 
 
@@ -88,7 +89,21 @@ def veclrandn(n, mu=0, sigma=1):
 
 
 #utility
-#veceq
+def vecleq(v, w):
+    r"""Return if two vectors are equal.
+    
+    $$
+        \vec{v}=\vec{w} \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{B}
+    $$
+    """
+    sentinel = object()
+    for vi, wi in zip_longest(v, w, fillvalue=sentinel):
+        if wi is sentinel:
+            yield not bool(vi)
+        elif vi is sentinel:
+            yield not bool(wi)
+        else:
+            yield vi == wi
 
 def vecltrim(v, tol=1e-9):
     r"""Remove all trailing near zero (`abs(v_i)<=tol`) coefficients.
@@ -138,7 +153,7 @@ def veclrshift(v, n, zero=0):
         \end{pmatrix} \qquad \mathbb{K}^m\to\mathbb{K}^{m+n}
     $$
     """
-    yield from chain((zero,)*n, v)
+    yield from chain(repeat(zero, n), v)
 
 def vecllshift(v, n):
     r"""Remove `n` many coefficients at the beginning of the vector.
@@ -185,8 +200,8 @@ def veclconj(v):
     """
     yield from map(try_conjugate, v)
 
-#vecabsq
 #vecabs
+#vecabsq
 #vecdot
 #vecparallel
 
@@ -210,14 +225,14 @@ def veclneg(v):
     """
     yield from map(neg, v)
 
-def vecladd(*vs, zero=0):
+def vecladd(*vs):
     r"""Return the sum of vectors.
     
     $$
         \vec{v}_0+\vec{v}_1+\cdots \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}
     $$
     """
-    yield from map(lambda vis: sum(vis, start=zero), zip_longest(*vs, fillvalue=zero))
+    yield from map(partial(sum_default, default=MISSING), group_ordinal(*vs))
 
 def vecladdc(v, c, i=0, zero=0):
     r"""Return `v` with `c` added to the `i`-th coefficient.
@@ -230,17 +245,27 @@ def vecladdc(v, c, i=0, zero=0):
     """
     v = iter(v)
     yield from islice(chain(v, repeat(zero)), i)
-    yield next(v, zero) + c #i-th element
+    try:
+        yield next(v) + c
+    except StopIteration:
+        yield +c
     yield from v
 
-def veclsub(v, w, zero=0):
+def veclsub(v, w):
     r"""Return the difference of two vectors.
     
     $$
         \vec{v}-\vec{w} \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^{\max\{m, n\}}
     $$
     """
-    yield from starmap(sub, zip_longest(v, w, fillvalue=zero))
+    sentinel = object()
+    for vi, wi in zip_longest(v, w, fillvalue=sentinel):
+        if wi is sentinel:
+            yield vi
+        elif vi is sentinel:
+            yield -wi
+        else:
+            yield vi - wi
 
 def veclsubc(v, c, i=0, zero=0):
     r"""Return `v` with `c` added to the `i`-th coefficient.
@@ -253,7 +278,10 @@ def veclsubc(v, c, i=0, zero=0):
     """
     v = iter(v)
     yield from islice(chain(v, repeat(zero)), i)
-    yield next(v, zero) - c #i-th element
+    try:
+        yield next(v) - c
+    except StopIteration:
+        yield -c
     yield from v
 
 def veclmul(a, v):
@@ -315,59 +343,68 @@ def vecldivmod(v, a):
 
 
 #elementwise
-def veclhadamard(*vs, one=1):
+def veclhadamard(*vs):
     r"""Return the elementwise product of vectors.
     
     $$
         \left((\vec{v}_0)_i\cdot(\vec{v}_1)_i\cdot\cdots\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\min_i n_i}
     $$
     """
-    yield from map(lambda vis: prod(vis, start=one), zip(*vs))
+    yield from map(partial(prod_default, default=MISSING), zip(*vs))
 
-def veclhadamardtruediv(v, w, zero=0):
+def veclhadamardtruediv(v, w):
     r"""Return the elementwise true division of two vectors.
     
     $$
         \left(\frac{v_i}{w_i}\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m
     $$
     """
-    yield from map(truediv, v, chain(w, repeat(zero)))
+    yield from map(truediv, v, chain(w, exception_generator(ZeroDivisionError)))
 
-def veclhadamardfloordiv(v, w, zero=0):
+def veclhadamardfloordiv(v, w):
     r"""Return the elementwise floor division of two vectors.
     
     $$
         \left(\left\lfloor\frac{v_i}{w_i}\right\rfloor\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m
     $$
     """
-    yield from map(floordiv, v, chain(w, repeat(zero)))
+    yield from map(floordiv, v, chain(w, exception_generator(ZeroDivisionError)))
 
-def veclhadamardmod(v, w, zero=0):
+def veclhadamardmod(v, w):
     r"""Return the elementwise mod of two vectors.
     
     $$
         \left(v_i \mod w_i\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m
     $$
     """
-    yield from map(mod, v, chain(w, repeat(zero)))
+    yield from map(mod, v, chain(w, exception_generator(ZeroDivisionError)))
 
-def veclhadamardmin(*vs, pinf=+inf):
+def veclhadamarddivmod(v, w):
+    r"""Return the elementwise divmod of two vectors.
+    
+    $$
+        \left(\left\lfloor\frac{v_i}{w_i}\right\rfloor\right)_i, \ \left(v_i \mod w_i\right)_i \qquad \mathbb{K}^n\times\mathbb{K}^m\to\mathbb{K}^n\times\mathbb{K}^n
+    $$
+    """
+    yield from map(divmod, v, chain(w, exception_generator(ZeroDivisionError)))
+
+def veclhadamardmin(*vs, key=None):
     r"""Return the elementwise minimum of vectors.
     
     $$
         \left(\min((\vec{v}_0)_i,(\vec{v}_1)_i,\cdots)\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}
     $$
     """
-    yield from map(min, zip_longest(*vs, fillvalue=pinf))
+    yield from map(partial(min, key=key), group_ordinal(*vs))
 
-def veclhadamardmax(*vs, ninf=-inf):
+def veclhadamardmax(*vs, key=None):
     r"""Return the elementwise maximum of vectors.
     
     $$
         \left(\max((\vec{v}_0)_i,(\vec{v}_1)_i,\cdots)\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}
     $$
     """
-    yield from map(max, zip_longest(*vs, fillvalue=ninf))
+    yield from map(partial(max, key=key), group_ordinal(*vs))
 
 def vechadamardminmax(*vs):
     pass

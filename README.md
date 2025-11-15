@@ -38,7 +38,7 @@ tuples. Done: [goessl/zipvar](https://github.com/goessl/zipvar)
 - [x] `numpy` routines
 - [x] multiaxis vectors: tensors?
 - [x] Absolute type safety.
-- [ ] Complexity analysis. Perfect complexity
+- [x] Complexity analysis. Perfect complexity
 - [ ] dimensionality signature (e.g. `vecadd`: $\mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^{\max{m, n}}$)
 - [ ] `vechadamardminmax`
 - [ ] never use `numpy.int64`, they don't detect overflows

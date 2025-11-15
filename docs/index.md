@@ -29,7 +29,7 @@ pip install git+https://github.com/goessl/vector.git
 
 This package includes
 
-- general-purpose **functions** (prefixed `vec...`) in *pure Python*,
+- general-purpose **functions** (prefixed `vec...`) in *pure Python* with **perfect complexity**,
 - lazy **generators** (prefixed `vecl...`),
 - a clean **class** (`Vector`) with *easy to use syntax*,
 - improved *numpy-routines* (prefixed `vecnp...`) for **parallelised
@@ -53,7 +53,7 @@ All vectors are **zero-indexed**.
 | **Utility**       |                                                                |                                                            |                                                                      |                                                      |                                                               |
 | Dimensionality    |                                                                |                                                            | [`len`][vector.objectoriented.Vector.__len__]                        | [`vecnpdim`][vector.parallelised.vecnpdim]           | [`tendim`][vector.multiaxis.tendim]                           |
 | Rank              |                                                                |                                                            |                                                                      |                                                      | [`tenrank`][vector.multiaxis.tenrank]                         |
-| Comparison        | [`veceq`][vector.functional.veceq]                             |                                                            | [`==`][vector.objectoriented.Vector.__eq__]                          | [`vecnpeq`][vector.parallelised.vecnpeq]             |                                                               |
+| Comparison        | [`veceq`][vector.functional.veceq]                             | [`vecleq`][vector.lazy.vecleq]                             | [`==`][vector.objectoriented.Vector.__eq__]                          | [`vecnpeq`][vector.parallelised.vecnpeq]             |                                                               |
 | Trimming          | [`vectrim`][vector.functional.vectrim]                         | [`vecltrim`][vector.lazy.vecltrim]                         | [`.trim`][vector.objectoriented.Vector.trim]                         | [`vecnptrim`][vector.parallelised.vecnptrim]         | [`tentrim`][vector.multiaxis.tentrim]                         |
 | Rounding          | [`vecround`][vector.functional.vecround]                       | [`veclround`][vector.lazy.veclround]                       | [`.round`][vector.objectoriented.Vector.round]                       | [`vecnpround`][vector.parallelised.vecnpround]       | [`tenround`][vector.multiaxis.tenround]                       |
 | Right shift       | [`vecrshift`][vector.functional.vecrshift]                     | [`veclrshift`][vector.lazy.veclrshift]                     | [`>>`][vector.objectoriented.Vector.__rshift__]                      |                                                      |                                                               |
@@ -81,6 +81,7 @@ All vectors are **zero-indexed**.
 | True division     | [`vechadamardtruediv`][vector.functional.vechadamardtruediv]   | [`veclhadamardtruediv`][vector.lazy.veclhadamardtruediv]   | [`.hadamardtruediv`][vector.objectoriented.Vector.hadamardtruediv]   |                                                      | [`tenhadamardtruediv`][vector.multiaxis.tenhadamardtruediv]   |
 | Floor division    | [`vechadamardfloordiv`][vector.functional.vechadamardfloordiv] | [`veclhadamardfloordiv`][vector.lazy.veclhadamardfloordiv] | [`.hadamardfloordiv`][vector.objectoriented.Vector.hadamardfloordiv] |                                                      | [`tenhadamardfloordiv`][vector.multiaxis.tenhadamardfloordiv] |
 | Mod               | [`vechadamardmod`][vector.functional.vechadamardmod]           | [`veclhadamardmod`][vector.lazy.veclhadamardmod]           | [`.hadamardmod`][vector.objectoriented.Vector.hadamardmod]           |                                                      | [`tenhadamardmod`][vector.multiaxis.tenhadamardmod]           |
+| Divmod            | [`vechadamarddivmod`][vector.functional.vechadamarddivmod]     | [`veclhadamarddivmod`][vector.lazy.veclhadamarddivmod]     |                                                                      |                                                      |                                                               |
 | Min               | [`vechadamardmin`][vector.functional.vechadamardmin]           | [`veclhadamardmin`][vector.lazy.veclhadamardmin]           | [`.hadamardmin`][vector.objectoriented.Vector.hadamardmin]           |                                                      |                                                               |
 | Max               | [`vechadamardmax`][vector.functional.vechadamardmax]           | [`veclhadamardmax`][vector.lazy.veclhadamardmax]           | [`.hadamardmax`][vector.objectoriented.Vector.hadamardmax]           |                                                      |                                                               |
 
@@ -112,7 +113,7 @@ tuples. Done: [goessl/zipvar](https://github.com/goessl/zipvar)
 - [x] `numpy` routines
 - [x] multiaxis vectors: tensors?
 - [x] Absolute type safety.
-- [ ] Complexity analysis. Perfect complexity
+- [x] Complexity analysis. Perfect complexity
 - [ ] dimensionality signature (e.g. `vecadd`: $\mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^{\max{m, n}}$)
 - [ ] `vechadamardminmax`
 - [ ] never use `numpy.int64`, they don't detect overflows

@@ -84,5 +84,6 @@ integer zeros (e.g. `vecdot(veczero, veczero)==int(0)`).
         - vechadamardtruediv
         - vechadamardfloordiv
         - vechadamardmod
+        - vechadamarddivmod
         - vechadamardmin
         - vechadamardmax

@@ -1,6 +1,9 @@
 from vector import *
-from math import isclose
-from itertools import islice
+from math import isclose, sqrt
+from itertools import islice, count
+from random import randint
+from operationcounter import OperationCounter, count_ops
+from collections import Counter
 
 
 
@@ -64,10 +67,19 @@ def test_vecabs():
     assert vecabs(veczero) == 0
     assert vecabs((1,)) == 1
     assert vecabs((3, 4)) == 5
+    
+    assert isclose(abs(vecabs((1j, 2, 3j), conjugate=True)), sqrt(14))
+    assert isclose(vecabs((1, 2, 3), weights=(5, 6, 7, 8)), sqrt(92))
+    assert isclose(abs(vecabs((1, 2+3j, 3+4j), conjugate=True)), sqrt(39))
+    assert isclose(abs(vecabs((1, 2+3j, 3+4j), weights=(5, 6, 7, 8), conjugate=True)), sqrt(258))
 
 def test_vecabsq():
     assert vecabsq(veczero) == 0
+    
     assert vecabsq((1j, 2, 3j), conjugate=True) == 14
+    assert vecabsq((1, 2, 3), weights=(5, 6, 7, 8)) == 92
+    assert vecabsq((1, 2+3j, 3+4j), conjugate=True) == 39
+    assert vecabsq((1, 2+3j, 3+4j), weights=(5, 6, 7, 8), conjugate=True) == 258
 
 def test_vecdot():
     assert vecdot(veczero, veczero) == 0
@@ -151,6 +163,10 @@ def test_vechadamardmod():
     assert vechadamardmod(veczero, veczero) == veczero
     assert vechadamardmod(veczero, (1,)) == veczero
     assert vechadamardmod((1, 2, 3), (4, 5, 6)) == (1, 2, 3)
+
+def test_vechadamarddivmod():
+    v, w = (4, 5, 6), (1, 2, 3)
+    assert vechadamarddivmod(v, w) == (vechadamardfloordiv(v, w), vechadamardmod(v, w))
 
 def test_vechadamardmin():
     assert vechadamardmin() == veczero

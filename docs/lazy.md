@@ -18,7 +18,6 @@ Different behaviour:
 
 Lazy versions not possible/necessary as the don't return vectors:
 
-- [`veceq`][vector.functional.veceq]
 - [`vecabs`][vector.functional.vecabs]
 - [`vecabsq`][vector.functional.vecabsq]
 - [`vecdot`][vector.functional.vecdot]
@@ -42,6 +41,7 @@ Lazy versions not possible/necessary as the don't return vectors:
 ::: vector.lazy
     options:
       members:
+        - vecleq
         - vecltrim
         - veclround
         - veclrshift
@@ -52,11 +52,8 @@ Lazy versions not possible/necessary as the don't return vectors:
 ::: vector.lazy
     options:
       members:
+        - try_conugate
         - veclconj
-        - vecabs
-        - vecabsq
-        - vecdot
-        - vecparallel
 
 ## Vector space
 
@@ -84,5 +81,6 @@ Lazy versions not possible/necessary as the don't return vectors:
         - veclhadamardtruediv
         - veclhadamardfloordiv
         - veclhadamardmod
+        - veclhadamarddivmod
         - veclhadamardmin
         - veclhadamardmax
