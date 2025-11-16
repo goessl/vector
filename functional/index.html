@@ -304,6 +304,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#vector.functional--docstring-conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docstring conventions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#vector.functional.creation" class="md-nav__link">
     <span class="md-ellipsis">
       creation
@@ -798,6 +807,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#vector.functional--docstring-conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docstring conventions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#vector.functional.creation" class="md-nav__link">
     <span class="md-ellipsis">
       creation
@@ -1212,6 +1230,15 @@
 <p>The functions are <strong>type-independent</strong>. However, the data types used must
 <em>support necessary scalar operations</em>. For instance, for vector addition,
 coefficients must be addable.</p>
+<h3 id="vector.functional--docstring-conventions">Docstring conventions</h3>
+<ul>
+<li>Summary</li>
+<li>Math notation (vector notation if possible, index notation, domain &amp; codomain)</li>
+<li>Complexity (For a vector of length <span class="arithmatex">\(n\)</span> there will be - <span class="arithmatex">\(x\)</span> scalar additions (<code>add</code>), ...)</li>
+<li>Notes (Design choices)</li>
+<li>See also</li>
+<li>References</li>
+</ul>
 
 
 
@@ -1252,6 +1279,14 @@ coefficients must be addable.</p>
 
 
   <div class="doc doc-children">
+
+
+
+
+
+
+
+
 
 
 
@@ -1454,7 +1489,7 @@ coefficients must be addable.</p>
 <span class="sd">    Naming like in `numpy.random`, because seems more concise</span>
 <span class="sd">    (not `random` &amp; `gauss` as in the stdlib).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">random</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclrand</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -1516,7 +1551,7 @@ coefficients must be addable.</p>
 <span class="sd">    Naming like in `numpy.random`, because seems more concise</span>
 <span class="sd">    (not `random` &amp; `gauss` as in the stdlib).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">v</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">gauss</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclrandn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">vectruediv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">vecabs</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">weights</span><span class="p">))</span> <span class="k">if</span> <span class="n">normed</span> <span class="k">else</span> <span class="n">v</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1587,7 +1622,7 @@ coefficients must be addable.</p>
 
 
 <h3 id="vector.functional.utility.veceq" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">veceq</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">veceq</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span></code>
 
 </h3>
 
@@ -1598,11 +1633,14 @@ coefficients must be addable.</p>
 <div class="arithmatex">\[
     \vec{v}=\vec{w} \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{B}
 \]</div>
+<div class="admonition tip">
+<p class="admonition-title">Complexity</p>
 <p>For two vectors of lengths <span class="arithmatex">\(n\)</span> &amp; <span class="arithmatex">\(m\)</span> there will be at most</p>
 <ul>
 <li><span class="arithmatex">\(\min\{n, m\}\)</span> scalar comparisons (<code>eq</code>) &amp;</li>
 <li><span class="arithmatex">\(|n-m|\)</span> scalar boolean evaluations (<code>bool</code>).</li>
 </ul>
+</div>
 
 
             <details class="quote">
@@ -1620,19 +1658,21 @@ coefficients must be addable.</p>
 <span class="normal">19</span>
 <span class="normal">20</span>
 <span class="normal">21</span>
-<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veceq</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="normal">22</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veceq</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return if two vectors are equal.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \vec{v}=\vec{w} \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{B}</span>
 <span class="sd">    $$</span>
 
-<span class="sd">    For two vectors of lengths $n$ &amp; $m$ there will be at most</span>
+<span class="sd">    !!! tip &quot;Complexity&quot;</span>
 
-<span class="sd">    - $\min\{n, m\}$ scalar comparisons (`eq`) &amp;</span>
-<span class="sd">    - $|n-m|$ scalar boolean evaluations (`bool`).</span>
+<span class="sd">        For two vectors of lengths $n$ &amp; $m$ there will be at most</span>
+
+<span class="sd">        - $\min\{n, m\}$ scalar comparisons (`eq`) &amp;</span>
+<span class="sd">        - $|n-m|$ scalar boolean evaluations (`bool`).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1">#return all(starmap(eq, zip_longest(v, w, fillvalue=zero)))</span>
     <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="n">vecleq</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1664,6 +1704,14 @@ coefficients must be addable.</p>
         v_m
     \end{pmatrix} \ \text{where} \ m=\max\{\, j\mid |v_{j-1}|&gt;\text{tol}\,\}\cup\{-1\} \qquad \mathbb{K}^n\to\mathbb{K}^{\leq n}
 \]</div>
+<div class="admonition tip">
+<p class="admonition-title">Complexity</p>
+<p>For a vector of length <span class="arithmatex">\(n\)</span> there will be</p>
+<ul>
+<li><span class="arithmatex">\(n\)</span> scalar absolute evaluations (<code>abs</code>) &amp;</li>
+<li><span class="arithmatex">\(n\)</span> scalar comparisons (<code>gt</code>).</li>
+</ul>
+</div>
 
 
 <details class="note" open>
@@ -1678,8 +1726,7 @@ of <code>trim(v, sys.float_info.min)</code>.</li>
 
             <details class="quote">
               <summary>Source code in <code>vector\functional\utility.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">24</span>
-<span class="normal">25</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">25</span>
 <span class="normal">26</span>
 <span class="normal">27</span>
 <span class="normal">28</span>
@@ -1702,7 +1749,15 @@ of <code>trim(v, sys.float_info.min)</code>.</li>
 <span class="normal">45</span>
 <span class="normal">46</span>
 <span class="normal">47</span>
-<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vectrim</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">):</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vectrim</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Remove all trailing near zero (`abs(v_i)&lt;=tol`) coefficients.</span>
 
 <span class="sd">    $$</span>
@@ -1712,6 +1767,13 @@ of <code>trim(v, sys.float_info.min)</code>.</li>
 <span class="sd">            v_m</span>
 <span class="sd">        \end{pmatrix} \ \text{where} \ m=\max\{\, j\mid |v_{j-1}|&gt;\text{tol}\,\}\cup\{-1\} \qquad \mathbb{K}^n\to\mathbb{K}^{\leq n}</span>
 <span class="sd">    $$</span>
+
+<span class="sd">    !!! tip &quot;Complexity&quot;</span>
+
+<span class="sd">        For a vector of length $n$ there will be</span>
+
+<span class="sd">        - $n$ scalar absolute evaluations (`abs`) &amp;</span>
+<span class="sd">        - $n$ scalar comparisons (`gt`).</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
@@ -1753,23 +1815,42 @@ of <code>trim(v, sys.float_info.min)</code>.</li>
 <div class="arithmatex">\[
     (\text{round}_\text{ndigits}(v_i))_i \qquad \mathbb{K}^n\to\mathbb{K}^n
 \]</div>
+<div class="admonition tip">
+<p class="admonition-title">Complexity</p>
+<p>For a vector of length <span class="arithmatex">\(n\)</span> there will be</p>
+<ul>
+<li><span class="arithmatex">\(n\)</span> scalar roundings (<code>round</code>).</li>
+</ul>
+</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional\utility.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecround</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">ndigits</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecround</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">ndigits</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Round all coefficients to the given precision.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        (\text{round}_\text{ndigits}(v_i))_i \qquad \mathbb{K}^n\to\mathbb{K}^n</span>
 <span class="sd">    $$</span>
+
+<span class="sd">    !!! tip &quot;Complexity&quot;</span>
+
+<span class="sd">        For a vector of length $n$ there will be</span>
+
+<span class="sd">        - $n$ scalar roundings (`round`).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclround</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">ndigits</span><span class="o">=</span><span class="n">ndigits</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
@@ -1809,21 +1890,21 @@ of <code>trim(v, sys.float_info.min)</code>.</li>
 
             <details class="quote">
               <summary>Source code in <code>vector\functional\utility.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span>
-<span class="normal">73</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecrshift</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecrshift</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Pad `n` many `zero`s to the beginning of the vector.</span>
 
 <span class="sd">    $$</span>
@@ -1872,18 +1953,18 @@ of <code>trim(v, sys.float_info.min)</code>.</li>
 
             <details class="quote">
               <summary>Source code in <code>vector\functional\utility.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">75</span>
-<span class="normal">76</span>
-<span class="normal">77</span>
-<span class="normal">78</span>
-<span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span>
-<span class="normal">86</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclshift</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclshift</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Remove `n` many coefficients at the beginning of the vector.</span>
 
 <span class="sd">    $$</span>
@@ -1969,10 +2050,13 @@ of <code>trim(v, sys.float_info.min)</code>.</li>
 \]</div>
 <p>Trys to call a method <code>conjugate</code> on each element.
 If not found, simply keeps the element as is.</p>
+<div class="admonition tip">
+<p class="admonition-title">Complexity</p>
 <p>For a vector of length <span class="arithmatex">\(n\)</span> there will be</p>
 <ul>
 <li><span class="arithmatex">\(n\)</span> scalar conjugations.</li>
 </ul>
+</div>
 
 
             <details class="quote">
@@ -1991,7 +2075,9 @@ If not found, simply keeps the element as is.</p>
 <span class="normal">23</span>
 <span class="normal">24</span>
 <span class="normal">25</span>
-<span class="normal">26</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecconj</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecconj</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise complex conjugate.</span>
 
 <span class="sd">    $$</span>
@@ -2001,9 +2087,11 @@ If not found, simply keeps the element as is.</p>
 <span class="sd">    Trys to call a method `conjugate` on each element.</span>
 <span class="sd">    If not found, simply keeps the element as is.</span>
 
-<span class="sd">    For a vector of length $n$ there will be</span>
+<span class="sd">    !!! tip &quot;Complexity&quot;</span>
 
-<span class="sd">    - $n$ scalar conjugations.</span>
+<span class="sd">        For a vector of length $n$ there will be</span>
+
+<span class="sd">        - $n$ scalar conjugations.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclconj</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
@@ -2032,14 +2120,22 @@ If not found, simply keeps the element as is.</p>
 <div class="arithmatex">\[
     ||\vec{v}||_{\ell_{\mathbb{N}_0}^2}=\sqrt{\sum_iv_i^{(*)}v_i\omega_i} \qquad \mathbb{K}^n\to\mathbb{K}_0^+
 \]</div>
+<div class="admonition tip">
+<p class="admonition-title">Complexity</p>
+<p>For a vector of length <span class="arithmatex">\(n\)</span> there will be</p>
+<ul>
+<li><span class="arithmatex">\(n\)</span> scalar conjugations (<code>conjugate</code>) (if selected),</li>
+<li><span class="arithmatex">\(n\)</span>/<span class="arithmatex">\(2n\)</span> scalar multiplications (<code>mul</code>) without/with weights,</li>
+<li><span class="arithmatex">\(\begin{cases}n-1&amp;n\ge1\\0&amp;n\le1\end{cases}\)</span> scalar additions (<code>add</code>) &amp;</li>
+<li>one <code>sart</code> call.</li>
+</ul>
+</div>
 <p>Returns the square root of <a class="autorefs autorefs-internal" title="            vecabsq(v, weights=None, conjugate=False, zero=0)" href="#vector.functional.hilbert_space.vecabsq"><code>vecabsq</code></a>.</p>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional\hilbert_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">30</span>
 <span class="normal">31</span>
 <span class="normal">32</span>
 <span class="normal">33</span>
@@ -2048,12 +2144,32 @@ If not found, simply keeps the element as is.</p>
 <span class="normal">36</span>
 <span class="normal">37</span>
 <span class="normal">38</span>
-<span class="normal">39</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecabs</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conjugate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecabs</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conjugate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the Euclidean/L2-norm.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        ||\vec{v}||_{\ell_{\mathbb{N}_0}^2}=\sqrt{\sum_iv_i^{(*)}v_i\omega_i} \qquad \mathbb{K}^n\to\mathbb{K}_0^+</span>
 <span class="sd">    $$</span>
+
+<span class="sd">    !!! tip &quot;Complexity&quot;</span>
+
+<span class="sd">        For a vector of length $n$ there will be</span>
+
+<span class="sd">        - $n$ scalar conjugations (`conjugate`) (if selected),</span>
+<span class="sd">        - $n$/$2n$ scalar multiplications (`mul`) without/with weights,</span>
+<span class="sd">        - $\begin{cases}n-1&amp;n\ge1\\0&amp;n\le1\end{cases}$ scalar additions (`add`) &amp;</span>
+<span class="sd">        - one `sart` call.</span>
 
 <span class="sd">    Returns the square root of [`vecabsq`][vector.functional.vecabsq].</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -2086,12 +2202,15 @@ If not found, simply keeps the element as is.</p>
 <div class="arithmatex">\[
     ||\vec{v}||_{\ell_{\mathbb{N}_0}^2}^2=\sum_iv_i^{(*)}v_i\omega_i \qquad \mathbb{K}^n\to\mathbb{K}_0^+
 \]</div>
+<div class="admonition tip">
+<p class="admonition-title">Complexity</p>
 <p>For a vector of length <span class="arithmatex">\(n\)</span> there will be</p>
 <ul>
-<li><span class="arithmatex">\(n\)</span> scalar conjugations (if selected) (<code>conjugate</code>),</li>
-<li><span class="arithmatex">\(n\)</span>/<span class="arithmatex">\(2n\)</span> scalar multiplications without/with weights (<code>mul</code>) &amp;</li>
+<li><span class="arithmatex">\(n\)</span> scalar conjugations (<code>conjugate</code>) (if selected),</li>
+<li><span class="arithmatex">\(n\)</span>/<span class="arithmatex">\(2n\)</span> scalar multiplications (<code>mul</code>) without/with weights &amp;</li>
 <li><span class="arithmatex">\(\begin{cases}n-1&amp;n\ge1\\0&amp;n\le1\end{cases}\)</span> scalar additions (<code>add</code>).</li>
 </ul>
+</div>
 
 
 <details class="note" open>
@@ -2112,18 +2231,7 @@ If not found, simply keeps the element as is.</p>
 
             <details class="quote">
               <summary>Source code in <code>vector\functional\hilbert_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">52</span>
 <span class="normal">53</span>
 <span class="normal">54</span>
 <span class="normal">55</span>
@@ -2143,18 +2251,33 @@ If not found, simply keeps the element as is.</p>
 <span class="normal">69</span>
 <span class="normal">70</span>
 <span class="normal">71</span>
-<span class="normal">72</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecabsq</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conjugate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecabsq</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conjugate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the sum of absolute squares of the coefficients.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        ||\vec{v}||_{\ell_{\mathbb{N}_0}^2}^2=\sum_iv_i^{(*)}v_i\omega_i \qquad \mathbb{K}^n\to\mathbb{K}_0^+</span>
 <span class="sd">    $$</span>
 
-<span class="sd">    For a vector of length $n$ there will be</span>
+<span class="sd">    !!! tip &quot;Complexity&quot;</span>
 
-<span class="sd">    - $n$ scalar conjugations (if selected) (`conjugate`),</span>
-<span class="sd">    - $n$/$2n$ scalar multiplications without/with weights (`mul`) &amp;</span>
-<span class="sd">    - $\begin{cases}n-1&amp;n\ge1\\0&amp;n\le1\end{cases}$ scalar additions (`add`).</span>
+<span class="sd">        For a vector of length $n$ there will be</span>
+
+<span class="sd">        - $n$ scalar conjugations (`conjugate`) (if selected),</span>
+<span class="sd">        - $n$/$2n$ scalar multiplications (`mul`) without/with weights &amp;</span>
+<span class="sd">        - $\begin{cases}n-1&amp;n\ge1\\0&amp;n\le1\end{cases}$ scalar additions (`add`).</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
@@ -2201,47 +2324,54 @@ If not found, simply keeps the element as is.</p>
 <div class="arithmatex">\[
     \left&lt;\vec{v}\mid\vec{w}\right&gt;_{\ell_{\mathbb{N}_0}^2}=\sum_iv_i^{(*)}w_i\omega_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}
 \]</div>
+<div class="admonition tip">
+<p class="admonition-title">Complexity</p>
 <p>For two vectors of lengths <span class="arithmatex">\(n\)</span> &amp; <span class="arithmatex">\(m\)</span> there will be</p>
 <ul>
-<li><span class="arithmatex">\(\min\{n, m\}\)</span> scalar conjugations (if selected) (<code>conjugate</code>),</li>
-<li><span class="arithmatex">\(\min\{n, m\}\)</span>/<span class="arithmatex">\(2\min\{n, m\}\)</span> scalar multiplications without/with weights (<code>mul</code>) &amp;</li>
+<li><span class="arithmatex">\(\min\{n, m\}\)</span> scalar conjugations (<code>conjugate</code>) (if selected),</li>
+<li><span class="arithmatex">\(\min\{n, m\}\)</span>/<span class="arithmatex">\(2\min\{n, m\}\)</span> scalar multiplications (<code>mul</code> without/with weights) &amp;</li>
 <li><span class="arithmatex">\(\begin{cases}\min\{n, m\}-1&amp;n\ge1\land m\ge1\\0&amp;n\le1\lor m\le1\end{cases}\)</span> scalar additions (<code>add</code>).</li>
 </ul>
+</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional\hilbert_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">74</span>
-<span class="normal">75</span>
-<span class="normal">76</span>
-<span class="normal">77</span>
-<span class="normal">78</span>
-<span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span>
-<span class="normal">86</span>
-<span class="normal">87</span>
-<span class="normal">88</span>
-<span class="normal">89</span>
-<span class="normal">90</span>
-<span class="normal">91</span>
-<span class="normal">92</span>
-<span class="normal">93</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecdot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conjugate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecdot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conjugate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the inner product of two vectors.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \left&lt;\vec{v}\mid\vec{w}\right&gt;_{\ell_{\mathbb{N}_0}^2}=\sum_iv_i^{(*)}w_i\omega_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}</span>
 <span class="sd">    $$</span>
 
-<span class="sd">    For two vectors of lengths $n$ &amp; $m$ there will be</span>
+<span class="sd">    !!! tip &quot;Complexity&quot;</span>
 
-<span class="sd">    - $\min\{n, m\}$ scalar conjugations (if selected) (`conjugate`),</span>
-<span class="sd">    - $\min\{n, m\}$/$2\min\{n, m\}$ scalar multiplications without/with weights (`mul`) &amp;</span>
-<span class="sd">    - $\begin{cases}\min\{n, m\}-1&amp;n\ge1\land m\ge1\\0&amp;n\le1\lor m\le1\end{cases}$ scalar additions (`add`).</span>
+<span class="sd">        For two vectors of lengths $n$ &amp; $m$ there will be</span>
+
+<span class="sd">        - $\min\{n, m\}$ scalar conjugations (`conjugate`) (if selected),</span>
+<span class="sd">        - $\min\{n, m\}$/$2\min\{n, m\}$ scalar multiplications (`mul` without/with weights) &amp;</span>
+<span class="sd">        - $\begin{cases}\min\{n, m\}-1&amp;n\ge1\land m\ge1\\0&amp;n\le1\lor m\le1\end{cases}$ scalar additions (`add`).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">conjugate</span><span class="p">:</span>
         <span class="n">v</span> <span class="o">=</span> <span class="n">veclconj</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
@@ -2280,29 +2410,29 @@ If not found, simply keeps the element as is.</p>
 
             <details class="quote">
               <summary>Source code in <code>vector\functional\hilbert_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 95</span>
-<span class="normal"> 96</span>
-<span class="normal"> 97</span>
-<span class="normal"> 98</span>
-<span class="normal"> 99</span>
-<span class="normal">100</span>
-<span class="normal">101</span>
-<span class="normal">102</span>
-<span class="normal">103</span>
-<span class="normal">104</span>
-<span class="normal">105</span>
-<span class="normal">106</span>
-<span class="normal">107</span>
-<span class="normal">108</span>
-<span class="normal">109</span>
-<span class="normal">110</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">110</span>
 <span class="normal">111</span>
 <span class="normal">112</span>
 <span class="normal">113</span>
 <span class="normal">114</span>
 <span class="normal">115</span>
 <span class="normal">116</span>
-<span class="normal">117</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecparallel</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conjugate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecparallel</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conjugate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return if two vectors are parallel.</span>
 
 <span class="sd">    $$</span>
@@ -2429,10 +2559,13 @@ If not found, simply keeps the element as is.</p>
 <div class="arithmatex">\[
     +\vec{v} \qquad \mathbb{K}^n\to\mathbb{K}^n
 \]</div>
+<div class="admonition tip">
+<p class="admonition-title">Complexity</p>
 <p>For a vector of length <span class="arithmatex">\(n\)</span> there will be</p>
 <ul>
 <li><span class="arithmatex">\(n\)</span> scalar unary plus operations (<code>pos</code>).</li>
 </ul>
+</div>
 
 
             <details class="quote">
@@ -2448,16 +2581,18 @@ If not found, simply keeps the element as is.</p>
 <span class="normal">18</span>
 <span class="normal">19</span>
 <span class="normal">20</span>
-<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecpos</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+<span class="normal">21</span>
+<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecpos</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the vector with the unary positive operator applied.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        +\vec{v} \qquad \mathbb{K}^n\to\mathbb{K}^n</span>
 <span class="sd">    $$</span>
 
-<span class="sd">    For a vector of length $n$ there will be</span>
+<span class="sd">    !!! tip &quot;Complexity&quot;</span>
+<span class="sd">        For a vector of length $n$ there will be</span>
 
-<span class="sd">    - $n$ scalar unary plus operations (`pos`).</span>
+<span class="sd">        - $n$ scalar unary plus operations (`pos`).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclpos</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
@@ -2486,16 +2621,18 @@ If not found, simply keeps the element as is.</p>
 <div class="arithmatex">\[
     -\vec{v} \qquad \mathbb{K}^n\to\mathbb{K}^n
 \]</div>
+<div class="admonition tip">
+<p class="admonition-title">Complexity</p>
 <p>For a vector of length <span class="arithmatex">\(n\)</span> there will be</p>
 <ul>
 <li><span class="arithmatex">\(n\)</span> scalar negations (<code>neg</code>).</li>
 </ul>
+</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional\vector_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">23</span>
-<span class="normal">24</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">24</span>
 <span class="normal">25</span>
 <span class="normal">26</span>
 <span class="normal">27</span>
@@ -2505,16 +2642,21 @@ If not found, simply keeps the element as is.</p>
 <span class="normal">31</span>
 <span class="normal">32</span>
 <span class="normal">33</span>
-<span class="normal">34</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecneg</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecneg</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the vector with the unary negative operator applied.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        -\vec{v} \qquad \mathbb{K}^n\to\mathbb{K}^n</span>
 <span class="sd">    $$</span>
 
-<span class="sd">    For a vector of length $n$ there will be</span>
+<span class="sd">    !!! tip &quot;Complexity&quot;</span>
 
-<span class="sd">    - $n$ scalar negations (`neg`).</span>
+<span class="sd">        For a vector of length $n$ there will be</span>
+
+<span class="sd">        - $n$ scalar negations (`neg`).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclneg</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
@@ -2543,18 +2685,18 @@ If not found, simply keeps the element as is.</p>
 <div class="arithmatex">\[
     \vec{v}_0+\vec{v}_1+\cdots \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}
 \]</div>
+<div class="admonition tip">
+<p class="admonition-title">Complexity</p>
 <p>For two vectors of lengths <span class="arithmatex">\(n\)</span> &amp; <span class="arithmatex">\(m\)</span> there will be</p>
 <ul>
 <li><span class="arithmatex">\(\min\{n, m\}\)</span> scalar additions (<code>add</code>).</li>
 </ul>
+</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional\vector_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">39</span>
 <span class="normal">40</span>
 <span class="normal">41</span>
 <span class="normal">42</span>
@@ -2562,16 +2704,23 @@ If not found, simply keeps the element as is.</p>
 <span class="normal">44</span>
 <span class="normal">45</span>
 <span class="normal">46</span>
-<span class="normal">47</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecadd</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">):</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecadd</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the sum of vectors.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \vec{v}_0+\vec{v}_1+\cdots \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}</span>
 <span class="sd">    $$</span>
 
-<span class="sd">    For two vectors of lengths $n$ &amp; $m$ there will be</span>
+<span class="sd">    !!! tip &quot;Complexity&quot;</span>
 
-<span class="sd">    - $\min\{n, m\}$ scalar additions (`add`).</span>
+<span class="sd">        For two vectors of lengths $n$ &amp; $m$ there will be</span>
+
+<span class="sd">        - $\min\{n, m\}$ scalar additions (`add`).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">vecladd</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
@@ -2601,20 +2750,19 @@ If not found, simply keeps the element as is.</p>
     \vec{v}+c\vec{e}_i \qquad \mathbb{K}^n\to\mathbb{K}^{\max\{n, i\}}
 \]</div>
 <p>More efficient than <code>vecadd(v, vecbasis(i, c))</code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Complexity</p>
 <p>There will be</p>
 <ul>
-<li>one scalar addition (<code>add</code>) or one scalar identity (<code>pos</code>)</li>
+<li>one scalar addition (<code>add</code>) if <span class="arithmatex">\(i\le n\)</span> or</li>
+<li>one unary plus operations (<code>pos</code>) otherwise.</li>
 </ul>
+</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional\vector_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">54</span>
 <span class="normal">55</span>
 <span class="normal">56</span>
 <span class="normal">57</span>
@@ -2622,7 +2770,15 @@ If not found, simply keeps the element as is.</p>
 <span class="normal">59</span>
 <span class="normal">60</span>
 <span class="normal">61</span>
-<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecaddc</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecaddc</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return `v` with `c` added to the `i`-th coefficient.</span>
 
 <span class="sd">    $$</span>
@@ -2631,9 +2787,12 @@ If not found, simply keeps the element as is.</p>
 
 <span class="sd">    More efficient than `vecadd(v, vecbasis(i, c))`.</span>
 
-<span class="sd">    There will be</span>
+<span class="sd">    !!! tip &quot;Complexity&quot;</span>
 
-<span class="sd">    - one scalar addition (`add`) or one scalar identity (`pos`) </span>
+<span class="sd">        There will be</span>
+
+<span class="sd">        - one scalar addition (`add`) if $i\le n$ or</span>
+<span class="sd">        - one unary plus operations (`pos`) otherwise.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">vecladdc</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="n">zero</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
@@ -2662,38 +2821,45 @@ If not found, simply keeps the element as is.</p>
 <div class="arithmatex">\[
     \vec{v}-\vec{w} \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^{\max\{m, n\}}
 \]</div>
-<p>For two vectors of length <span class="arithmatex">\(n\)</span> &amp; <span class="arithmatex">\(m\)</span> there will be</p>
+<div class="admonition tip">
+<p class="admonition-title">Complexity</p>
+<p>For two vectors of lengths <span class="arithmatex">\(n\)</span> &amp; <span class="arithmatex">\(m\)</span> there will be</p>
 <ul>
-<li><span class="arithmatex">\(\min\{n, m\}\)</span> scalar subtractions (<code>-</code>) &amp;</li>
-<li><span class="arithmatex">\(\begin{cases}m-n&amp;m\ge n\\0&amp;m\le n\end{cases}\)</span> negations.</li>
+<li><span class="arithmatex">\(\min\{n, m\}\)</span> scalar subtractions (<code>sub</code>) &amp;</li>
+<li><span class="arithmatex">\(\begin{cases}m-n&amp;m\ge n\\0&amp;m\le n\end{cases}\)</span> negations (<code>neg</code>).</li>
 </ul>
+</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional\vector_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">72</span>
 <span class="normal">73</span>
 <span class="normal">74</span>
 <span class="normal">75</span>
-<span class="normal">76</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecsub</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecsub</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the difference of two vectors.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \vec{v}-\vec{w} \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^{\max\{m, n\}}</span>
 <span class="sd">    $$</span>
 
-<span class="sd">    For two vectors of length $n$ &amp; $m$ there will be</span>
+<span class="sd">    !!! tip &quot;Complexity&quot;</span>
 
-<span class="sd">    - $\min\{n, m\}$ scalar subtractions (`-`) &amp;</span>
-<span class="sd">    - $\begin{cases}m-n&amp;m\ge n\\0&amp;m\le n\end{cases}$ negations.</span>
+<span class="sd">        For two vectors of lengths $n$ &amp; $m$ there will be</span>
+
+<span class="sd">        - $\min\{n, m\}$ scalar subtractions (`sub`) &amp;</span>
+<span class="sd">        - $\begin{cases}m-n&amp;m\ge n\\0&amp;m\le n\end{cases}$ negations (`neg`).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclsub</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
@@ -2723,28 +2889,35 @@ If not found, simply keeps the element as is.</p>
     \vec{v}-c\vec{e}_i \qquad \mathbb{K}^n\to\mathbb{K}^{\max\{n, i\}}
 \]</div>
 <p>More efficient than <code>vecsub(v, vecbasis(i, c))</code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Complexity</p>
 <p>There will be</p>
 <ul>
-<li>one scalar subtraction (<code>sub</code>) or one scalar negation (<code>neg</code>)</li>
+<li>one scalar subtraction (<code>sub</code>) if <span class="arithmatex">\(i\le n\)</span> or</li>
+<li>one scalar negation (<code>neg</code>) otherwise.</li>
 </ul>
+</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional\vector_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">78</span>
-<span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span>
-<span class="normal">86</span>
-<span class="normal">87</span>
-<span class="normal">88</span>
-<span class="normal">89</span>
-<span class="normal">90</span>
-<span class="normal">91</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecsubc</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecsubc</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return `v` with `c` added to the `i`-th coefficient.</span>
 
 <span class="sd">    $$</span>
@@ -2753,9 +2926,12 @@ If not found, simply keeps the element as is.</p>
 
 <span class="sd">    More efficient than `vecsub(v, vecbasis(i, c))`.</span>
 
-<span class="sd">    There will be</span>
+<span class="sd">    !!! tip &quot;Complexity&quot;</span>
 
-<span class="sd">    - one scalar subtraction (`sub`) or one scalar negation (`neg`) </span>
+<span class="sd">        There will be</span>
+
+<span class="sd">        - one scalar subtraction (`sub`) if $i\le n$ or</span>
+<span class="sd">        - one scalar negation (`neg`) otherwise.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclsubc</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="n">zero</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
@@ -2784,35 +2960,42 @@ If not found, simply keeps the element as is.</p>
 <div class="arithmatex">\[
     a\vec{v} \qquad \mathbb{K}\times\mathbb{K}^n\to\mathbb{K}^n
 \]</div>
+<div class="admonition tip">
+<p class="admonition-title">Complexity</p>
 <p>For a vector of length <span class="arithmatex">\(n\)</span> there will be</p>
 <ul>
 <li><span class="arithmatex">\(n\)</span> scalar multiplications (<code>rmul</code>).</li>
 </ul>
+</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional\vector_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 93</span>
-<span class="normal"> 94</span>
-<span class="normal"> 95</span>
-<span class="normal"> 96</span>
-<span class="normal"> 97</span>
-<span class="normal"> 98</span>
-<span class="normal"> 99</span>
-<span class="normal">100</span>
-<span class="normal">101</span>
-<span class="normal">102</span>
-<span class="normal">103</span>
-<span class="normal">104</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the product of a scalar and a vector.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        a\vec{v} \qquad \mathbb{K}\times\mathbb{K}^n\to\mathbb{K}^n</span>
 <span class="sd">    $$</span>
 
-<span class="sd">    For a vector of length $n$ there will be</span>
+<span class="sd">    !!! tip &quot;Complexity&quot;</span>
 
-<span class="sd">    - $n$ scalar multiplications (`rmul`).</span>
+<span class="sd">        For a vector of length $n$ there will be</span>
+
+<span class="sd">        - $n$ scalar multiplications (`rmul`).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
@@ -2841,10 +3024,13 @@ If not found, simply keeps the element as is.</p>
 <div class="arithmatex">\[
     \frac{\vec{v}}{a} \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n
 \]</div>
+<div class="admonition tip">
+<p class="admonition-title">Complexity</p>
 <p>For a vector of length <span class="arithmatex">\(n\)</span> there will be</p>
 <ul>
 <li><span class="arithmatex">\(n\)</span> scalar true divisions (<code>truediv</code>).</li>
 </ul>
+</div>
 
 
 <details class="note" open>
@@ -2862,38 +3048,42 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
             <details class="quote">
               <summary>Source code in <code>vector\functional\vector_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">106</span>
-<span class="normal">107</span>
-<span class="normal">108</span>
-<span class="normal">109</span>
-<span class="normal">110</span>
-<span class="normal">111</span>
-<span class="normal">112</span>
-<span class="normal">113</span>
-<span class="normal">114</span>
-<span class="normal">115</span>
-<span class="normal">116</span>
-<span class="normal">117</span>
-<span class="normal">118</span>
-<span class="normal">119</span>
-<span class="normal">120</span>
-<span class="normal">121</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">121</span>
 <span class="normal">122</span>
 <span class="normal">123</span>
 <span class="normal">124</span>
 <span class="normal">125</span>
 <span class="normal">126</span>
 <span class="normal">127</span>
-<span class="normal">128</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vectruediv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vectruediv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the true division of a vector and a scalar.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \frac{\vec{v}}{a} \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n</span>
 <span class="sd">    $$</span>
 
-<span class="sd">    For a vector of length $n$ there will be</span>
+<span class="sd">    !!! tip &quot;Complexity&quot;</span>
 
-<span class="sd">    - $n$ scalar true divisions (`truediv`).</span>
+<span class="sd">        For a vector of length $n$ there will be</span>
+
+<span class="sd">        - $n$ scalar true divisions (`truediv`).</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
@@ -2933,35 +3123,42 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 <div class="arithmatex">\[
     \left(\left\lfloor\frac{v_i}{a}\right\rfloor\right)_i \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n
 \]</div>
+<div class="admonition tip">
+<p class="admonition-title">Complexity</p>
 <p>For a vector of length <span class="arithmatex">\(n\)</span> there will be</p>
 <ul>
 <li><span class="arithmatex">\(n\)</span> scalar floor divisions (<code>floordiv</code>).</li>
 </ul>
+</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional\vector_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">130</span>
-<span class="normal">131</span>
-<span class="normal">132</span>
-<span class="normal">133</span>
-<span class="normal">134</span>
-<span class="normal">135</span>
-<span class="normal">136</span>
-<span class="normal">137</span>
-<span class="normal">138</span>
-<span class="normal">139</span>
-<span class="normal">140</span>
-<span class="normal">141</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecfloordiv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecfloordiv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the floor division of a vector and a scalar.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \left(\left\lfloor\frac{v_i}{a}\right\rfloor\right)_i \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n</span>
 <span class="sd">    $$</span>
 
-<span class="sd">    For a vector of length $n$ there will be</span>
+<span class="sd">    !!! tip &quot;Complexity&quot;</span>
 
-<span class="sd">    - $n$ scalar floor divisions (`floordiv`).</span>
+<span class="sd">        For a vector of length $n$ there will be</span>
+
+<span class="sd">        - $n$ scalar floor divisions (`floordiv`).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclfloordiv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
@@ -2990,35 +3187,42 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 <div class="arithmatex">\[
     \left(v_i \mod a\right)_i \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n
 \]</div>
+<div class="admonition tip">
+<p class="admonition-title">Complexity</p>
 <p>For a vector of length <span class="arithmatex">\(n\)</span> there will be</p>
 <ul>
 <li><span class="arithmatex">\(n\)</span> scalar modulos (<code>mod</code>).</li>
 </ul>
+</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional\vector_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">143</span>
-<span class="normal">144</span>
-<span class="normal">145</span>
-<span class="normal">146</span>
-<span class="normal">147</span>
-<span class="normal">148</span>
-<span class="normal">149</span>
-<span class="normal">150</span>
-<span class="normal">151</span>
-<span class="normal">152</span>
-<span class="normal">153</span>
-<span class="normal">154</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise mod of a vector and a scalar.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \left(v_i \mod a\right)_i \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n</span>
 <span class="sd">    $$</span>
 
-<span class="sd">    For a vector of length $n$ there will be</span>
+<span class="sd">    !!! tip &quot;Complexity&quot;</span>
 
-<span class="sd">    - $n$ scalar modulos (`mod`).</span>
+<span class="sd">        For a vector of length $n$ there will be</span>
+
+<span class="sd">        - $n$ scalar modulos (`mod`).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
@@ -3047,40 +3251,47 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 <div class="arithmatex">\[
     \left(\left\lfloor\frac{v_i}{a}\right\rfloor\right)_i, \ \left(v_i \mod a\right)_i \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n\times\mathbb{K}^n
 \]</div>
+<div class="admonition tip">
+<p class="admonition-title">Complexity</p>
 <p>For a vector of length <span class="arithmatex">\(n\)</span> there will be</p>
 <ul>
 <li><span class="arithmatex">\(n\)</span> scalar divmods (<code>divmod</code>).</li>
 </ul>
+</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional\vector_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">156</span>
-<span class="normal">157</span>
-<span class="normal">158</span>
-<span class="normal">159</span>
-<span class="normal">160</span>
-<span class="normal">161</span>
-<span class="normal">162</span>
-<span class="normal">163</span>
-<span class="normal">164</span>
-<span class="normal">165</span>
-<span class="normal">166</span>
-<span class="normal">167</span>
-<span class="normal">168</span>
-<span class="normal">169</span>
-<span class="normal">170</span>
-<span class="normal">171</span>
-<span class="normal">172</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecdivmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecdivmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise divmod of a vector and a scalar.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \left(\left\lfloor\frac{v_i}{a}\right\rfloor\right)_i, \ \left(v_i \mod a\right)_i \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n\times\mathbb{K}^n</span>
 <span class="sd">    $$</span>
 
-<span class="sd">    For a vector of length $n$ there will be</span>
+<span class="sd">    !!! tip &quot;Complexity&quot;</span>
 
-<span class="sd">    - $n$ scalar divmods (`divmod`).</span>
+<span class="sd">        For a vector of length $n$ there will be</span>
+
+<span class="sd">        - $n$ scalar divmods (`divmod`).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">q</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">vi</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>
@@ -3180,10 +3391,13 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 <div class="arithmatex">\[
     \left((\vec{v}_0)_i\cdot(\vec{v}_1)_i\cdot\cdots\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\min_i n_i}
 \]</div>
+<div class="admonition tip">
+<p class="admonition-title">Complexity</p>
 <p>For vectors of lengths <span class="arithmatex">\(n_1, n_2, \dots, n_N\)</span> there will be</p>
 <ul>
 <li><span class="arithmatex">\(\begin{cases}(N-1)\min_in_i&amp;N\ge1\land\min_in_i\ge1\\0&amp;N\le1\lor\min_in_i=0\end{cases}\)</span> scalar multiplications (<code>mul</code>).</li>
 </ul>
+</div>
 
 
             <details class="quote">
@@ -3199,16 +3413,20 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 <span class="normal">19</span>
 <span class="normal">20</span>
 <span class="normal">21</span>
-<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamard</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">):</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamard</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise product of vectors.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \left((\vec{v}_0)_i\cdot(\vec{v}_1)_i\cdot\cdots\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\min_i n_i}</span>
 <span class="sd">    $$</span>
 
-<span class="sd">    For vectors of lengths $n_1, n_2, \dots, n_N$ there will be</span>
+<span class="sd">    !!! tip &quot;Complexity&quot;</span>
 
-<span class="sd">    - $\begin{cases}(N-1)\min_in_i&amp;N\ge1\land\min_in_i\ge1\\0&amp;N\le1\lor\min_in_i=0\end{cases}$ scalar multiplications (`mul`).</span>
+<span class="sd">        For vectors of lengths $n_1, n_2, \dots, n_N$ there will be</span>
+
+<span class="sd">        - $\begin{cases}(N-1)\min_in_i&amp;N\ge1\land\min_in_i\ge1\\0&amp;N\le1\lor\min_in_i=0\end{cases}$ scalar multiplications (`mul`).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclhadamard</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
@@ -3237,17 +3455,18 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 <div class="arithmatex">\[
     \left(\frac{v_i}{w_i}\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m
 \]</div>
+<div class="admonition tip">
+<p class="admonition-title">Complexity</p>
 <p>For two vectors of lengths <span class="arithmatex">\(n\)</span> &amp; <span class="arithmatex">\(m\)</span> there will be</p>
 <ul>
 <li><span class="arithmatex">\(n\)</span> scalar true divisions (<code>truediv</code>).</li>
 </ul>
+</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional\elementwise.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">26</span>
 <span class="normal">27</span>
 <span class="normal">28</span>
 <span class="normal">29</span>
@@ -3256,16 +3475,22 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 <span class="normal">32</span>
 <span class="normal">33</span>
 <span class="normal">34</span>
-<span class="normal">35</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardtruediv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardtruediv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise true division of two vectors.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \left(\frac{v_i}{w_i}\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m</span>
 <span class="sd">    $$</span>
 
-<span class="sd">    For two vectors of lengths $n$ &amp; $m$ there will be</span>
+<span class="sd">    !!! tip &quot;Complexity&quot;</span>
 
-<span class="sd">    - $n$ scalar true divisions (`truediv`).</span>
+<span class="sd">        For two vectors of lengths $n$ &amp; $m$ there will be</span>
+
+<span class="sd">        - $n$ scalar true divisions (`truediv`).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclhadamardtruediv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
@@ -3294,35 +3519,42 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 <div class="arithmatex">\[
     \left(\left\lfloor\frac{v_i}{w_i}\right\rfloor\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m
 \]</div>
+<div class="admonition tip">
+<p class="admonition-title">Complexity</p>
 <p>For two vectors of lengths <span class="arithmatex">\(n\)</span> &amp; <span class="arithmatex">\(m\)</span> there will be</p>
 <ul>
 <li><span class="arithmatex">\(n\)</span> scalar floor divisions (<code>floordiv</code>).</li>
 </ul>
+</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional\elementwise.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">41</span>
 <span class="normal">42</span>
 <span class="normal">43</span>
 <span class="normal">44</span>
 <span class="normal">45</span>
 <span class="normal">46</span>
 <span class="normal">47</span>
-<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardfloordiv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardfloordiv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise floor division of two vectors.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \left(\left\lfloor\frac{v_i}{w_i}\right\rfloor\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m</span>
 <span class="sd">    $$</span>
 
-<span class="sd">    For two vectors of lengths $n$ &amp; $m$ there will be</span>
+<span class="sd">    !!! tip &quot;Complexity&quot;</span>
 
-<span class="sd">    - $n$ scalar floor divisions (`floordiv`).</span>
+<span class="sd">        For two vectors of lengths $n$ &amp; $m$ there will be</span>
+
+<span class="sd">        - $n$ scalar floor divisions (`floordiv`).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclhadamardfloordiv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
@@ -3351,35 +3583,42 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 <div class="arithmatex">\[
     \left(v_i \mod w_i\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m
 \]</div>
+<div class="admonition tip">
+<p class="admonition-title">Complexity</p>
 <p>For two vectors of lengths <span class="arithmatex">\(n\)</span> &amp; <span class="arithmatex">\(m\)</span> there will be</p>
 <ul>
 <li><span class="arithmatex">\(n\)</span> scalar modulos (<code>mod</code>).</li>
 </ul>
+</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional\elementwise.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">56</span>
 <span class="normal">57</span>
 <span class="normal">58</span>
 <span class="normal">59</span>
 <span class="normal">60</span>
-<span class="normal">61</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise mod of two vectors.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \left(v_i \mod w_i\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m</span>
 <span class="sd">    $$</span>
 
-<span class="sd">    For two vectors of lengths $n$ &amp; $m$ there will be</span>
+<span class="sd">    !!! tip &quot;Complexity&quot;</span>
 
-<span class="sd">    - $n$ scalar modulos (`mod`).</span>
+<span class="sd">        For two vectors of lengths $n$ &amp; $m$ there will be</span>
+
+<span class="sd">        - $n$ scalar modulos (`mod`).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclhadamardmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
@@ -3408,39 +3647,46 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 <div class="arithmatex">\[
     \left(\left\lfloor\frac{v_i}{w_i}\right\rfloor\right)_i, \ \left(v_i \mod w_i\right)_i \qquad \mathbb{K}^n\times\mathbb{K}^m\to\mathbb{K}^n\times\mathbb{K}^n
 \]</div>
+<div class="admonition tip">
+<p class="admonition-title">Complexity</p>
 <p>For two vectors of lengths <span class="arithmatex">\(n\)</span> &amp; <span class="arithmatex">\(m\)</span> there will be</p>
 <ul>
 <li><span class="arithmatex">\(n\)</span> scalar divmods (<code>divmod</code>).</li>
 </ul>
+</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional\elementwise.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">71</span>
 <span class="normal">72</span>
 <span class="normal">73</span>
 <span class="normal">74</span>
 <span class="normal">75</span>
 <span class="normal">76</span>
 <span class="normal">77</span>
-<span class="normal">78</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamarddivmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamarddivmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise divmod of two vectors.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \left(\left\lfloor\frac{v_i}{w_i}\right\rfloor\right)_i, \ \left(v_i \mod w_i\right)_i \qquad \mathbb{K}^n\times\mathbb{K}^m\to\mathbb{K}^n\times\mathbb{K}^n</span>
 <span class="sd">    $$</span>
 
-<span class="sd">    For two vectors of lengths $n$ &amp; $m$ there will be</span>
+<span class="sd">    !!! tip &quot;Complexity&quot;</span>
 
-<span class="sd">    - $n$ scalar divmods (`divmod`).</span>
+<span class="sd">        For two vectors of lengths $n$ &amp; $m$ there will be</span>
+
+<span class="sd">        - $n$ scalar divmods (`divmod`).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">q</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">qi</span><span class="p">,</span> <span class="n">ri</span> <span class="ow">in</span> <span class="n">veclhadamarddivmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
@@ -3473,35 +3719,42 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 <div class="arithmatex">\[
     \left(\min((\vec{v}_0)_i,(\vec{v}_1)_i,\cdots)\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}
 \]</div>
+<div class="admonition tip">
+<p class="admonition-title">Complexity</p>
 <p>For two vectors of lengths <span class="arithmatex">\(n\)</span> &amp; <span class="arithmatex">\(m\)</span> there will be</p>
 <ul>
 <li><span class="arithmatex">\(\min\{n, m\}\)</span> comparisons (<code>lt</code>).</li>
 </ul>
+</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional\elementwise.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span>
-<span class="normal">86</span>
-<span class="normal">87</span>
-<span class="normal">88</span>
-<span class="normal">89</span>
-<span class="normal">90</span>
-<span class="normal">91</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardmin</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardmin</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise minimum of vectors.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \left(\min((\vec{v}_0)_i,(\vec{v}_1)_i,\cdots)\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}</span>
 <span class="sd">    $$</span>
 
-<span class="sd">    For two vectors of lengths $n$ &amp; $m$ there will be</span>
+<span class="sd">    !!! tip &quot;Complexity&quot;</span>
 
-<span class="sd">    - $\min\{n, m\}$ comparisons (`lt`).</span>
+<span class="sd">        For two vectors of lengths $n$ &amp; $m$ there will be</span>
+
+<span class="sd">        - $\min\{n, m\}$ comparisons (`lt`).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclhadamardmin</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
@@ -3530,35 +3783,42 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 <div class="arithmatex">\[
     \left(\max((\vec{v}_0)_i,(\vec{v}_1)_i,\cdots)\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}
 \]</div>
+<div class="admonition tip">
+<p class="admonition-title">Complexity</p>
 <p>For two vectors of lengths <span class="arithmatex">\(n\)</span> &amp; <span class="arithmatex">\(m\)</span> there will be</p>
 <ul>
 <li><span class="arithmatex">\(\min\{n, m\}\)</span> comparisons (<code>gt</code>).</li>
 </ul>
+</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\functional\elementwise.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 93</span>
-<span class="normal"> 94</span>
-<span class="normal"> 95</span>
-<span class="normal"> 96</span>
-<span class="normal"> 97</span>
-<span class="normal"> 98</span>
-<span class="normal"> 99</span>
-<span class="normal">100</span>
-<span class="normal">101</span>
-<span class="normal">102</span>
-<span class="normal">103</span>
-<span class="normal">104</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardmax</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vechadamardmax</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise maximum of vectors.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \left(\max((\vec{v}_0)_i,(\vec{v}_1)_i,\cdots)\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}</span>
 <span class="sd">    $$</span>
 
-<span class="sd">    For two vectors of lengths $n$ &amp; $m$ there will be</span>
+<span class="sd">    !!! tip &quot;Complexity&quot;</span>
 
-<span class="sd">    - $\min\{n, m\}$ comparisons (`gt`).</span>
+<span class="sd">        For two vectors of lengths $n$ &amp; $m$ there will be</span>
+
+<span class="sd">        - $\min\{n, m\}$ comparisons (`gt`).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">veclhadamardmax</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
