@@ -6,19 +6,20 @@ __all__ = ('veceq', 'vectrim', 'vecround', 'vecrshift', 'veclshift')
 
 
 
-def veceq(v, w, zero=0):
+def veceq(v, w):
     r"""Return if two vectors are equal.
     
     $$
         \vec{v}=\vec{w} \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{B}
     $$
     
-    For two vectors of lengths $n$ & $m$ there will be at most
-    
-    - $\min\{n, m\}$ scalar comparisons (`eq`) &
-    - $|n-m|$ scalar boolean evaluations (`bool`).
+    !!! tip "Complexity"
+        
+        For two vectors of lengths $n$ & $m$ there will be at most
+        
+        - $\min\{n, m\}$ scalar comparisons (`eq`) &
+        - $|n-m|$ scalar boolean evaluations (`bool`).
     """
-    #return all(starmap(eq, zip_longest(v, w, fillvalue=zero)))
     return all(vecleq(v, w))
 
 def vectrim(v, tol=1e-9):
@@ -31,6 +32,13 @@ def vectrim(v, tol=1e-9):
             v_m
         \end{pmatrix} \ \text{where} \ m=\max\{\, j\mid |v_{j-1}|>\text{tol}\,\}\cup\{-1\} \qquad \mathbb{K}^n\to\mathbb{K}^{\leq n}
     $$
+    
+    !!! tip "Complexity"
+        
+        For a vector of length $n$ there will be
+        
+        - $n$ scalar absolute evaluations (`abs`) &
+        - $n$ scalar comparisons (`gt`).
     
     Notes
     -----
@@ -53,6 +61,12 @@ def vecround(v, ndigits=None):
     $$
         (\text{round}_\text{ndigits}(v_i))_i \qquad \mathbb{K}^n\to\mathbb{K}^n
     $$
+    
+    !!! tip "Complexity"
+        
+        For a vector of length $n$ there will be
+        
+        - $n$ scalar roundings (`round`).
     """
     return tuple(veclround(v, ndigits=ndigits))
 

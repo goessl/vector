@@ -14,9 +14,10 @@ def vecpos(v):
         +\vec{v} \qquad \mathbb{K}^n\to\mathbb{K}^n
     $$
     
-    For a vector of length $n$ there will be
-    
-    - $n$ scalar unary plus operations (`pos`).
+    !!! tip "Complexity"
+        For a vector of length $n$ there will be
+        
+        - $n$ scalar unary plus operations (`pos`).
     """
     return tuple(veclpos(v))
 
@@ -27,9 +28,11 @@ def vecneg(v):
         -\vec{v} \qquad \mathbb{K}^n\to\mathbb{K}^n
     $$
     
-    For a vector of length $n$ there will be
-    
-    - $n$ scalar negations (`neg`).
+    !!! tip "Complexity"
+        
+        For a vector of length $n$ there will be
+        
+        - $n$ scalar negations (`neg`).
     """
     return tuple(veclneg(v))
 
@@ -40,9 +43,11 @@ def vecadd(*vs):
         \vec{v}_0+\vec{v}_1+\cdots \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}
     $$
     
-    For two vectors of lengths $n$ & $m$ there will be
-    
-    - $\min\{n, m\}$ scalar additions (`add`).
+    !!! tip "Complexity"
+        
+        For two vectors of lengths $n$ & $m$ there will be
+        
+        - $\min\{n, m\}$ scalar additions (`add`).
     """
     return tuple(vecladd(*vs))
 
@@ -55,9 +60,12 @@ def vecaddc(v, c, i=0, zero=0):
     
     More efficient than `vecadd(v, vecbasis(i, c))`.
     
-    There will be
-    
-    - one scalar addition (`add`) or one scalar identity (`pos`) 
+    !!! tip "Complexity"
+        
+        There will be
+        
+        - one scalar addition (`add`) if $i\le n$ or
+        - one unary plus operations (`pos`) otherwise.
     """
     return tuple(vecladdc(v, c, i=i, zero=zero))
 
@@ -68,10 +76,12 @@ def vecsub(v, w):
         \vec{v}-\vec{w} \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^{\max\{m, n\}}
     $$
     
-    For two vectors of length $n$ & $m$ there will be
-    
-    - $\min\{n, m\}$ scalar subtractions (`-`) &
-    - $\begin{cases}m-n&m\ge n\\0&m\le n\end{cases}$ negations.
+    !!! tip "Complexity"
+        
+        For two vectors of lengths $n$ & $m$ there will be
+        
+        - $\min\{n, m\}$ scalar subtractions (`sub`) &
+        - $\begin{cases}m-n&m\ge n\\0&m\le n\end{cases}$ negations (`neg`).
     """
     return tuple(veclsub(v, w))
 
@@ -84,9 +94,12 @@ def vecsubc(v, c, i=0, zero=0):
     
     More efficient than `vecsub(v, vecbasis(i, c))`.
     
-    There will be
-    
-    - one scalar subtraction (`sub`) or one scalar negation (`neg`) 
+    !!! tip "Complexity"
+        
+        There will be
+        
+        - one scalar subtraction (`sub`) if $i\le n$ or
+        - one scalar negation (`neg`) otherwise.
     """
     return tuple(veclsubc(v, c, i=i, zero=zero))
 
@@ -97,9 +110,11 @@ def vecmul(a, v):
         a\vec{v} \qquad \mathbb{K}\times\mathbb{K}^n\to\mathbb{K}^n
     $$
     
-    For a vector of length $n$ there will be
-    
-    - $n$ scalar multiplications (`rmul`).
+    !!! tip "Complexity"
+        
+        For a vector of length $n$ there will be
+        
+        - $n$ scalar multiplications (`rmul`).
     """
     return tuple(veclmul(a, v))
 
@@ -110,9 +125,11 @@ def vectruediv(v, a):
         \frac{\vec{v}}{a} \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n
     $$
     
-    For a vector of length $n$ there will be
-    
-    - $n$ scalar true divisions (`truediv`).
+    !!! tip "Complexity"
+        
+        For a vector of length $n$ there will be
+        
+        - $n$ scalar true divisions (`truediv`).
     
     Notes
     -----
@@ -134,9 +151,11 @@ def vecfloordiv(v, a):
         \left(\left\lfloor\frac{v_i}{a}\right\rfloor\right)_i \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n
     $$
     
-    For a vector of length $n$ there will be
-    
-    - $n$ scalar floor divisions (`floordiv`).
+    !!! tip "Complexity"
+        
+        For a vector of length $n$ there will be
+        
+        - $n$ scalar floor divisions (`floordiv`).
     """
     return tuple(veclfloordiv(v, a))
 
@@ -147,9 +166,11 @@ def vecmod(v, a):
         \left(v_i \mod a\right)_i \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n
     $$
     
-    For a vector of length $n$ there will be
-    
-    - $n$ scalar modulos (`mod`).
+    !!! tip "Complexity"
+        
+        For a vector of length $n$ there will be
+        
+        - $n$ scalar modulos (`mod`).
     """
     return tuple(veclmod(v, a))
 
@@ -160,9 +181,11 @@ def vecdivmod(v, a):
         \left(\left\lfloor\frac{v_i}{a}\right\rfloor\right)_i, \ \left(v_i \mod a\right)_i \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n\times\mathbb{K}^n
     $$
     
-    For a vector of length $n$ there will be
-    
-    - $n$ scalar divmods (`divmod`).
+    !!! tip "Complexity"
+        
+        For a vector of length $n$ there will be
+        
+        - $n$ scalar divmods (`divmod`).
     """
     q, r = [], []
     for vi in v:

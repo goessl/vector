@@ -18,6 +18,15 @@ They **return vectors as tuples**.
 The functions are **type-independent**. However, the data types used must
 *support necessary scalar operations*. For instance, for vector addition,
 coefficients must be addable.
+
+## Docstring conventions
+
+- Summary
+- Math notation (vector notation if possible, index notation, domain & codomain)
+- Complexity (For a vector of length $n$ there will be - $x$ scalar additions (`add`), ...)
+- Notes (Design choices)
+- See also
+- References
 """
 
 from .creation import *

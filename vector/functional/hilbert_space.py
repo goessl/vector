@@ -19,9 +19,11 @@ def vecconj(v):
     Trys to call a method `conjugate` on each element.
     If not found, simply keeps the element as is.
     
-    For a vector of length $n$ there will be
-    
-    - $n$ scalar conjugations.
+    !!! tip "Complexity"
+        
+        For a vector of length $n$ there will be
+        
+        - $n$ scalar conjugations.
     """
     return tuple(veclconj(v))
 
@@ -31,6 +33,15 @@ def vecabs(v, weights=None, conjugate=False, zero=0):
     $$
         ||\vec{v}||_{\ell_{\mathbb{N}_0}^2}=\sqrt{\sum_iv_i^{(*)}v_i\omega_i} \qquad \mathbb{K}^n\to\mathbb{K}_0^+
     $$
+    
+    !!! tip "Complexity"
+        
+        For a vector of length $n$ there will be
+        
+        - $n$ scalar conjugations (`conjugate`) (if selected),
+        - $n$/$2n$ scalar multiplications (`mul`) without/with weights,
+        - $\begin{cases}n-1&n\ge1\\0&n\le1\end{cases}$ scalar additions (`add`) &
+        - one `sart` call.
     
     Returns the square root of [`vecabsq`][vector.functional.vecabsq].
     """
@@ -45,11 +56,13 @@ def vecabsq(v, weights=None, conjugate=False, zero=0):
         ||\vec{v}||_{\ell_{\mathbb{N}_0}^2}^2=\sum_iv_i^{(*)}v_i\omega_i \qquad \mathbb{K}^n\to\mathbb{K}_0^+
     $$
     
-    For a vector of length $n$ there will be
-    
-    - $n$ scalar conjugations (if selected) (`conjugate`),
-    - $n$/$2n$ scalar multiplications without/with weights (`mul`) &
-    - $\begin{cases}n-1&n\ge1\\0&n\le1\end{cases}$ scalar additions (`add`).
+    !!! tip "Complexity"
+        
+        For a vector of length $n$ there will be
+        
+        - $n$ scalar conjugations (`conjugate`) (if selected),
+        - $n$/$2n$ scalar multiplications (`mul`) without/with weights &
+        - $\begin{cases}n-1&n\ge1\\0&n\le1\end{cases}$ scalar additions (`add`).
     
     Notes
     -----
@@ -78,11 +91,13 @@ def vecdot(v, w, weights=None, conjugate=False, zero=0):
         \left<\vec{v}\mid\vec{w}\right>_{\ell_{\mathbb{N}_0}^2}=\sum_iv_i^{(*)}w_i\omega_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}
     $$
     
-    For two vectors of lengths $n$ & $m$ there will be
-    
-    - $\min\{n, m\}$ scalar conjugations (if selected) (`conjugate`),
-    - $\min\{n, m\}$/$2\min\{n, m\}$ scalar multiplications without/with weights (`mul`) &
-    - $\begin{cases}\min\{n, m\}-1&n\ge1\land m\ge1\\0&n\le1\lor m\le1\end{cases}$ scalar additions (`add`).
+    !!! tip "Complexity"
+        
+        For two vectors of lengths $n$ & $m$ there will be
+        
+        - $\min\{n, m\}$ scalar conjugations (`conjugate`) (if selected),
+        - $\min\{n, m\}$/$2\min\{n, m\}$ scalar multiplications (`mul` without/with weights) &
+        - $\begin{cases}\min\{n, m\}-1&n\ge1\land m\ge1\\0&n\le1\lor m\le1\end{cases}$ scalar additions (`add`).
     """
     if conjugate:
         v = veclconj(v)

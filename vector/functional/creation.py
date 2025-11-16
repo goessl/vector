@@ -1,5 +1,5 @@
-from random import random, gauss
 from itertools import count
+from ..lazy import veclrand, veclrandn
 from .hilbert_space import vecabs
 from .vector_space import vectruediv
 
@@ -55,7 +55,7 @@ def vecrand(n):
     Naming like in `numpy.random`, because seems more concise
     (not `random` & `gauss` as in the stdlib).
     """
-    return tuple(random() for _ in range(n))
+    return tuple(veclrand(n))
 
 def vecrandn(n, normed=True, mu=0, sigma=1, weights=None):
     r"""Return a random vector of `n` normal distributed `float` coefficients.
@@ -69,5 +69,5 @@ def vecrandn(n, normed=True, mu=0, sigma=1, weights=None):
     Naming like in `numpy.random`, because seems more concise
     (not `random` & `gauss` as in the stdlib).
     """
-    v = tuple(gauss(mu, sigma) for _ in range(n))
+    v = tuple(veclrandn(n, mu, sigma))
     return vectruediv(v, vecabs(v, weights)) if normed else v

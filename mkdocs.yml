@@ -61,6 +61,7 @@ plugins:
 markdown_extensions:
   - pymdownx.highlight
   - pymdownx.superfences
+  - admonition
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.tasklist:
