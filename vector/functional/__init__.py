@@ -21,12 +21,27 @@ coefficients must be addable.
 
 ## Docstring conventions
 
-- Summary
-- Math notation (vector notation if possible, index notation, domain & codomain)
-- Complexity (For a vector of length $n$ there will be - $x$ scalar additions (`add`), ...)
-- Notes (Design choices)
-- See also
-- References
+Summary
+
+Math notation (vector notation if possible, index notation, domain & codomain)
+
+More information ("More efficient than ...").
+
+Complexity
+----------
+For a vector of length $n$ there will be - $x$ scalar additions (`add`), ...
+
+Notes
+-----
+Design choices
+
+See also
+--------
+Similar functions
+
+References
+----------
+Wikipedia, numpy, ...
 """
 
 from .creation import *
