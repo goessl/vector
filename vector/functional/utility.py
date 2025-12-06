@@ -2,9 +2,17 @@ from ..lazy import vecleq, veclround, veclrshift, vecllshift
 
 
 
-__all__ = ('veceq', 'vectrim', 'vecround', 'vecrshift', 'veclshift')
+__all__ = ('veclen', 'veceq', 'vectrim', 'vecround', 'vecrshift', 'veclshift')
 
 
+
+def veclen(v):
+    """Return the length (number of set coefficients) of the vector.
+    
+    Also works for single exhaustible iterables where `len(v)` wouldn't work,
+    altough the vector is gone then.
+    """
+    return sum(1 for _ in v)
 
 def veceq(v, w):
     r"""Return if two vectors are equal.
@@ -30,7 +38,7 @@ def vectrim(v, tol=1e-9):
             v_0 \\
             \vdots \\
             v_m
-        \end{pmatrix} \ \text{where} \ m=\max\{\, j\mid |v_{j-1}|>\text{tol}\,\}\cup\{-1\} \qquad \mathbb{K}^n\to\mathbb{K}^{\leq n}
+        \end{pmatrix} \ \text{where} \ m=\max\{\, j\mid |v_j|>\text{tol}\,\}\cup\{-1\} \qquad \mathbb{K}^n\to\mathbb{K}^{\leq n}
     $$
     
     Complexity

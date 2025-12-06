@@ -23,7 +23,7 @@ def vecconj(v):
     ----------
     For a vector of length $n$ there will be
     
-    - $n$ scalar conjugations.
+    - $n$ scalar conjugations (`conjugate`).
     """
     return tuple(veclconj(v))
 
@@ -61,8 +61,8 @@ def vecabsq(v, weights=None, conjugate=False, zero=0):
     For a vector of length $n$ there will be
     
     - $n$ scalar conjugations (`conjugate`) (if selected),
-    - $n$/$2n$ scalar multiplications (`mul`) without/with weights &
-    - $\begin{cases}n-1&n\ge1\\0&n\le1\end{cases}$ scalar additions (`add`).
+    - $\begin{cases}n-1&n\ge1\\0&n\le1\end{cases}$ scalar additions (`add`) &
+    - $n$/$2n$ scalar multiplications (`mul`) without/with weights.
     
     Notes
     -----
@@ -129,4 +129,4 @@ def vecparallel(v, w, weights=None, conjugate=False, zero=0):
             v2 += vic * vi * o
             w2 += wic * wi * o
             vw += vic * wi * o
-    return v2 * w2 == try_conjugate(vw) * vw
+    return v2 * w2 == (try_conjugate(vw) if conjugate else vw) * vw

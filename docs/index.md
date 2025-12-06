@@ -51,7 +51,7 @@ All vectors are **zero-indexed**.
 | Random uniform    | [`vecrand`][vector.functional.vecrand]                         | [`veclrand`][vector.lazy.veclrand]                         | [`Vector.rand`][vector.objectoriented.Vector.rand]                   | [`vecnprand`][vector.parallelised.vecnprand]         | [`tenrand`][vector.multiaxis.tenrand]                         |
 | Random normal     | [`vecrandn`][vector.functional.vecrandn]                       | [`veclrandn`][vector.lazy.veclrandn]                       | [`Vector.randn`][vector.objectoriented.Vector.randn]                 | [`vecnprandn`][vector.parallelised.vecnprandn]       | [`tenrandn`][vector.multiaxis.tenrandn]                       |
 | **Utility**       |                                                                |                                                            |                                                                      |                                                      |                                                               |
-| Dimensionality    |                                                                |                                                            | [`len`][vector.objectoriented.Vector.__len__]                        | [`vecnpdim`][vector.parallelised.vecnpdim]           | [`tendim`][vector.multiaxis.tendim]                           |
+| Dimensionality    | [`veclen`][vector.functional.veclen]                           |                                                            | [`len`][vector.objectoriented.Vector.__len__]                        | [`vecnpdim`][vector.parallelised.vecnpdim]           | [`tendim`][vector.multiaxis.tendim]                           |
 | Rank              |                                                                |                                                            |                                                                      |                                                      | [`tenrank`][vector.multiaxis.tenrank]                         |
 | Comparison        | [`veceq`][vector.functional.veceq]                             | [`vecleq`][vector.lazy.vecleq]                             | [`==`][vector.objectoriented.Vector.__eq__]                          | [`vecnpeq`][vector.parallelised.vecnpeq]             |                                                               |
 | Trimming          | [`vectrim`][vector.functional.vectrim]                         | [`vecltrim`][vector.lazy.vecltrim]                         | [`.trim`][vector.objectoriented.Vector.trim]                         | [`vecnptrim`][vector.parallelised.vecnptrim]         | [`tentrim`][vector.multiaxis.tentrim]                         |
@@ -114,6 +114,7 @@ tuples. Done: [goessl/zipvar](https://github.com/goessl/zipvar)
 - [x] multiaxis vectors: tensors?
 - [x] Absolute type safety.
 - [x] Complexity analysis. Perfect complexity
+- [ ] argument checks
 - [ ] dimensionality signature (e.g. `vecadd`: $\mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^{\max{m, n}}$)
 - [ ] `vechadamardminmax`
 - [ ] never use `numpy.int64`, they don't detect overflows

@@ -11,13 +11,15 @@
 
 Prefixed by `vec...` (vector).
 
-All functions accept vectors as **single exhaustible iterables**.
+All functions **accept vectors as single exhaustible iterables**.
 
 They **return vectors as tuples**.
 
-The functions are **type-independent**. However, the data types used must
-*support necessary scalar operations*. For instance, for vector addition,
+The functions are **type-independent**. However, the coefficients used must
+**support necessary scalar operations**. For instance, for vector addition,
 coefficients must be addable.
+
+For complete type safety a **zero** argument is available. Default is `int(0)`.
 
 ## Docstring conventions
 

@@ -30,6 +30,10 @@ def test_vecrandn():
 
 
 #utility
+def test_veclen():
+    assert veclen(veczero) == 0
+    assert veclen((1, 2, 3)) == 3
+
 def test_veceq():
     assert veceq(veczero, veczero)
     assert veceq((0,), veczero)

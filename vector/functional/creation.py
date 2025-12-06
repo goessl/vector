@@ -16,6 +16,8 @@ r"""Zero vector.
 $$
     \vec{0} \qquad \mathbb{K}^0
 $$
+
+An empty tuple: `()`.
 """
 
 def vecbasis(i, c=1, zero=0):
@@ -50,6 +52,8 @@ def vecrand(n):
         \vec{v}\sim\mathcal{U}^n([0, 1[) \qquad \mathbb{K}^n
     $$
     
+    The coefficients are sampled from a uniform distribution in `[0, 1[`.
+    
     Notes
     -----
     Naming like in `numpy.random`, because seems more concise
@@ -63,6 +67,8 @@ def vecrandn(n, normed=True, mu=0, sigma=1, weights=None):
     $$
         \vec{v}\sim\mathcal{N}^n(\mu, \sigma) \qquad \mathbb{K}^n
     $$
+    
+    The coefficients are sampled from a normal distribution.
     
     Notes
     -----
