@@ -71,7 +71,7 @@ def veclsub(v, w):
             yield vi - wi
 
 def veclsubc(v, c, i=0, zero=0):
-    r"""Return `v` with `c` added to the `i`-th coefficient.
+    r"""Return `v` with `c` subtracted from the `i`-th coefficient.
     
     $$
         \vec{v}-c\vec{e}_i \qquad \mathbb{K}^n\to\mathbb{K}^{\max\{n, i\}}

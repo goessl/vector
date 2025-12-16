@@ -14,7 +14,7 @@ nav:
   - lazy.md
   - objectoriented.md
   - parallelised.md
-  - multiaxis.md
+  - multilinear.md
 
 theme:
   name: material

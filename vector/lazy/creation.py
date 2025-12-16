@@ -23,7 +23,7 @@ def veclbasis(i, c=1, zero=0):
         c\vec{e}_i \qquad \mathbb{K}^{i+1}
     $$
     
-    Returns a tuple with `i` zeros followed by `c`.
+    Yields `i` zeros followed by `c`.
     """
     yield from chain(repeat(zero, i), (c,))
 

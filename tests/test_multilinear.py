@@ -116,3 +116,29 @@ def test_tenmod():
     assert np.array_equal(tenmod([[1, 10, 16],
                                   [6, 22, 39]], 5), [[1, 0, 1],
                                                      [1, 2, 4]])
+
+
+#elementwise
+def test_tenhadamardmin():
+    a = np.array([1, 2])
+    b = np.array([[3, 4],
+                  [5, 6]])
+    c = np.array([[7, 8, 9]])
+    
+    assert np.array_equal(
+        tenhadamardmin(a, b, c),
+        np.array([[1, 4, 9],
+                  [2, 6, 0]])
+    )
+
+def test_tenhadamardmax():
+    a = np.array([1, 2])
+    b = np.array([[3, 4],
+                  [5, 6]])
+    c = np.array([[7, 8, 9]])
+    
+    assert np.array_equal(
+        tenhadamardmax(a, b, c),
+        np.array([[7, 8, 9],
+                  [5, 6, 0]])
+    )

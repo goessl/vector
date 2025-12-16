@@ -36,7 +36,7 @@ tuples. Done: [goessl/zipvar](https://github.com/goessl/zipvar)
 - [x] `vecdivmod`
 - [x] docstrings
 - [x] `numpy` routines
-- [x] multiaxis vectors: tensors?
+- [x] multilinear vectors: tensors?
 - [x] Absolute type safety.
 - [x] Complexity analysis. Perfect complexity
 - [ ] argument checks
