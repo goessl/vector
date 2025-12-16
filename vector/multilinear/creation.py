@@ -23,7 +23,7 @@ Dimensionality of one isn't perfect, but at least its size is then zero and it c
 
 See also
 --------
-[`veczero`][vector.functional.veczero]
+- one-dimensional: [`veczero`][vector.functional.veczero]
 """
 tenzero.flags.writeable = False
 

@@ -43,7 +43,7 @@ def vecabs(v, weights=None, conjugate=False, zero=0):
     - $n$ scalar conjugations (`conjugate`) (if selected),
     - $n$/$2n$ scalar multiplications (`mul`) without/with weights,
     - $\begin{cases}n-1&n\ge1\\0&n\le1\end{cases}$ scalar additions (`add`) &
-    - one `sqrt` call.
+    - one `^0.5` call.
     """
     #hypot(*v) doesn't work for complex
     #math.sqrt doesn't work for complex and cmath.sqrt always returns complex

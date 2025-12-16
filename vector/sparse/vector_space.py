@@ -1,27 +1,23 @@
-from ..lazy import veclpos, veclneg, vecladd, vecladdc, veclsub, veclsubc, veclmul, vecltruediv, veclfloordiv, veclmod
+__all__ = ('vecsmap', 'vecspos', 'vecsneg', 'vecsadd', 'vecsaddc', 'vecssub', 'vecssubc',
+           'vecsmul', 'vecstruediv', 'vecsfloordiv', 'vecsmod', 'vecsdivmod')
 
 
-
-__all__ = ('vecmap', 'vecpos', 'vecneg', 'vecadd', 'vecaddc', 'vecsub', 'vecsubc',
-           'vecmul', 'vectruediv', 'vecfloordiv', 'vecmod', 'vecdivmod')
-
-
-def vecmap(f, v):
+def vecsmap(f, v):
     r"""Return the vector with the function `f` applied elementwise.
     
     $$
-        \left(f(v_i)\right_i \qquad \mathbb{K}^n\to\mathbb{K}^n
+        \left(f(v_i)\right_i
     $$
     
     Complexity
     ----------
-    For a vector of length $n$ there will be
+    For a vector of $n$ elements there will be
     
     - $n$ scalar calls to `f`.
     """
-    return tuple(map(f, v))
+    return {i:f(vi) for i, vi in v.items()}
 
-def vecpos(v):
+def vecspos(v):
     r"""Return the vector with the unary positive operator applied.
     
     $$
@@ -30,13 +26,13 @@ def vecpos(v):
     
     Complexity
     ----------
-    For a vector of length $n$ there will be
+    For a vector with $n$ elements there will be
     
     - $n$ scalar unary plus operations (`pos`).
     """
-    return tuple(veclpos(v))
+    return {i:+vi for i, vi in v.items()}
 
-def vecneg(v):
+def vecsneg(v):
     r"""Return the vector with the unary negative operator applied.
     
     $$
@@ -45,13 +41,13 @@ def vecneg(v):
     
     Complexity
     ----------
-    For a vector of length $n$ there will be
+    For a vector with $n$ elements there will be
     
     - $n$ scalar negations (`neg`).
     """
-    return tuple(veclneg(v))
+    return {i:-vi for i, vi in v.items()}
 
-def vecadd(*vs):
+def vecsadd(*vs):
     r"""Return the sum of vectors.
     
     $$
@@ -60,31 +56,41 @@ def vecadd(*vs):
     
     Complexity
     ----------
-    For two vectors of lengths $n$ & $m$ there will be
+    For two vectors with $n$ & $m$ elements there will be
     
     - $\min\{n, m\}$ scalar additions (`add`).
     """
-    return tuple(vecladd(*vs))
+    r = dict(vs[0]) if vs else {}
+    for v in vs[1:]:
+        for i, vi in v.items():
+            if i in r:
+                r[i] += vi
+            else:
+                r[i] = vi
+    return r
 
-def vecaddc(v, c, i=0, zero=0):
+def vecsaddc(v, c, i=0):
     r"""Return `v` with `c` added to the `i`-th coefficient.
     
     $$
         \vec{v}+c\vec{e}_i \qquad \mathbb{K}^n\to\mathbb{K}^{\max\{n, i\}}
     $$
     
-    More efficient than `vecadd(v, vecbasis(i, c))`.
-    
     Complexity
     ----------
     There will be
     
-    - one scalar addition (`add`) if $i\le n$ or
+    - one scalar addition (`add`) if $i\in\vec{v}$ or
     - one unary plus operations (`pos`) otherwise.
     """
-    return tuple(vecladdc(v, c, i=i, zero=zero))
+    r = dict(v)
+    if i in r:
+        r[i] += c
+    else:
+        r[i] = +c
+    return r
 
-def vecsub(v, w):
+def vecssub(v, w):
     r"""Return the difference of two vectors.
     
     $$
@@ -93,32 +99,41 @@ def vecsub(v, w):
     
     Complexity
     ----------
-    For two vectors of lengths $n$ & $m$ there will be
+    For two vectors with $n$ & $m$ elements there will be
     
     - $\min\{n, m\}$ scalar subtractions (`sub`) &
     - $\begin{cases}m-n&m\ge n\\0&m\le n\end{cases}$ negations (`neg`).
     """
-    return tuple(veclsub(v, w))
+    r = dict(v)
+    for i, wi in w.items():
+        if i in r:
+            r[i] -= wi
+        else:
+            r[i] = -wi
+    return r
 
-def vecsubc(v, c, i=0, zero=0):
-    r"""Return `v` with `c` subtracted from the `i`-th coefficient.
+def vecssubc(v, c, i=0):
+    r"""Return `v` with `c` added to the `i`-th coefficient.
     
     $$
         \vec{v}-c\vec{e}_i \qquad \mathbb{K}^n\to\mathbb{K}^{\max\{n, i\}}
     $$
     
-    More efficient than `vecsub(v, vecbasis(i, c))`.
-    
     Complexity
     ----------
     There will be
     
-    - one scalar subtraction (`sub`) if $i\le n$ or
+    - one scalar subtraction (`sub`) if $i\in\vec{v}$ or
     - one scalar negation (`neg`) otherwise.
     """
-    return tuple(veclsubc(v, c, i=i, zero=zero))
+    r = dict(v)
+    if i in r:
+        r[i] -= c
+    else:
+        r[i] = -c
+    return r
 
-def vecmul(a, v):
+def vecsmul(a, v):
     r"""Return the product of a scalar and a vector.
     
     $$
@@ -127,13 +142,13 @@ def vecmul(a, v):
     
     Complexity
     ----------
-    For a vector of length $n$ there will be
+    For a vector with $n$ elements there will be
     
     - $n$ scalar multiplications (`rmul`).
     """
-    return tuple(veclmul(a, v))
+    return {i:a*vi for i, vi in v.items()}
 
-def vectruediv(v, a):
+def vecstruediv(v, a):
     r"""Return the true division of a vector and a scalar.
     
     $$
@@ -142,24 +157,13 @@ def vectruediv(v, a):
     
     Complexity
     ----------
-    For a vector of length $n$ there will be
+    For a vector with $n$ elements there will be
     
     - $n$ scalar true divisions (`truediv`).
-    
-    Notes
-    -----
-    Why called `truediv` instead of `div`?
-    
-    - `div` would be more appropriate for an absolute clean mathematical
-    implementation, that doesn't care about the language used. But the package
-    might be used for pure integers/integer arithmetic, so both, `truediv`
-    and `floordiv` operations have to be provided, and none should be
-    privileged over the other by getting the universal `div` name.
-    - `truediv`/`floordiv` is unambiguous, like Python `operator`s.
     """
-    return tuple(vecltruediv(v, a))
+    return {i:vi/a for i, vi in v.items()}
 
-def vecfloordiv(v, a):
+def vecsfloordiv(v, a):
     r"""Return the floor division of a vector and a scalar.
     
     $$
@@ -168,13 +172,13 @@ def vecfloordiv(v, a):
     
     Complexity
     ----------
-    For a vector of length $n$ there will be
+    For a vector with $n$ elements there will be
     
     - $n$ scalar floor divisions (`floordiv`).
     """
-    return tuple(veclfloordiv(v, a))
+    return {i:vi//a for i, vi in v.items()}
 
-def vecmod(v, a):
+def vecsmod(v, a):
     r"""Return the elementwise mod of a vector and a scalar.
     
     $$
@@ -183,13 +187,13 @@ def vecmod(v, a):
     
     Complexity
     ----------
-    For a vector of length $n$ there will be
+    For a vector with $n$ elements there will be
     
     - $n$ scalar modulos (`mod`).
     """
-    return tuple(veclmod(v, a))
+    return {i:vi%a for i, vi in v.items()}
 
-def vecdivmod(v, a):
+def vecsdivmod(v, a):
     r"""Return the elementwise divmod of a vector and a scalar.
     
     $$
@@ -198,13 +202,11 @@ def vecdivmod(v, a):
     
     Complexity
     ----------
-    For a vector of length $n$ there will be
+    For a vector with $n$ elements there will be
     
     - $n$ scalar divmods (`divmod`).
     """
-    q, r = [], []
-    for vi in v:
-        qi, ri = divmod(vi, a)
-        q.append(qi)
-        r.append(ri)
-    return tuple(q), tuple(r)
+    q, r = {}, {}
+    for i, vi in v.items():
+        q[i], r[i] = divmod(vi, a)
+    return q, r

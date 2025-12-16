@@ -54,7 +54,7 @@ def tenadd(*ts):
         r[tuple(map(slice, t.shape)) + (0,)*(r.ndim-t.ndim)] += t
     return r
 
-def tenaddc(t, c, i=()):
+def tenaddc(t, c, i=(0,)):
     """Return `t` with `c` added to the `i`-th coefficient.
     
     $$

@@ -44,12 +44,13 @@ def tentrim(t, tol=1e-9):
     """
     t = np.asarray(t)
     for d in range(t.ndim): #reduce dimension
-        slc = (slice(None),)*d + (-1,) + (...,)
-        while t.shape[d]>0 and np.all(np.abs(t[*slc])<=tol):
-            t = t[(slice(None),)*d + (slice(-1),) + (...,)]
+        slc_idx = (slice(None),)*d + (-1,) + (...,)
+        slc_drop = (slice(None),)*d + (slice(-1),) + (...,)
+        while t.shape[d]>0 and np.all(np.abs(t[slc_idx])<=tol):
+            t = t[slc_drop]
     if t.size == 0:
         return t.reshape((0,))
-    while t.shape and t.shape[-1] == 1: #reduce rank
+    while t.ndim>1 and t.shape[-1]==1: #reduce rank
         t = t[..., 0]
     return t
 
@@ -68,7 +69,7 @@ def tenround(t, ndigits=0):
     return np.round(t, decimals=ndigits)
 
 def tenrshift(t, n):
-    r"""Pad `n` many zeros to the beginning of the tensor.
+    """Pad `n` many zeros to the beginning of the tensor.
     
     See also
     --------
@@ -78,7 +79,7 @@ def tenrshift(t, n):
     return np.pad(t, tuple((ni, 0) for ni in n))
 
 def tenlshift(t, n):
-    r"""Remove `n` many coefficients at the beginning of the tensor.
+    """Remove `n` many coefficients at the beginning of the tensor.
     
     See also
     --------

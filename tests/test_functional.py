@@ -9,7 +9,7 @@ from collections import Counter
 
 #creation
 def test_veczero():
-    assert veczero == veczero
+    assert veczero == ()
 
 def test_vecbasis():
     assert vecbasis(2, c=5) == (0, 0, 5)
