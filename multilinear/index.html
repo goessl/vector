@@ -302,6 +302,28 @@
   
   
     <li class="md-nav__item">
+      <a href="../sparse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sparse
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../objectoriented/" class="md-nav__link">
         
   
@@ -1175,7 +1197,9 @@ the arrays don't get stretched but rather padded with zeros.</p>
 
 <details class="see-also" open>
   <summary>See also</summary>
-  <p><a class="autorefs autorefs-internal" title="            veczero = ()" href="../functional/#vector.functional.creation.veczero"><code>veczero</code></a></p>
+  <ul>
+<li>one-dimensional: <a class="autorefs autorefs-internal" title="            veczero = ()" href="../functional/#vector.functional.creation.veczero"><code>veczero</code></a></li>
+</ul>
 </details>
     </div>
 
@@ -1584,7 +1608,8 @@ the outer corner.</p>
 <span class="normal">51</span>
 <span class="normal">52</span>
 <span class="normal">53</span>
-<span class="normal">54</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tentrim</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">):</span>
+<span class="normal">54</span>
+<span class="normal">55</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tentrim</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove all trailing near zero (`abs(v_i)&lt;=tol`) coefficients.</span>
 
 <span class="sd">    See also</span>
@@ -1593,12 +1618,13 @@ the outer corner.</p>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">ndim</span><span class="p">):</span> <span class="c1">#reduce dimension</span>
-        <span class="n">slc</span> <span class="o">=</span> <span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">),)</span><span class="o">*</span><span class="n">d</span> <span class="o">+</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,)</span> <span class="o">+</span> <span class="p">(</span><span class="o">...</span><span class="p">,)</span>
-        <span class="k">while</span> <span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">d</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="o">*</span><span class="n">slc</span><span class="p">])</span><span class="o">&lt;=</span><span class="n">tol</span><span class="p">):</span>
-            <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="p">[(</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">),)</span><span class="o">*</span><span class="n">d</span> <span class="o">+</span> <span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">),)</span> <span class="o">+</span> <span class="p">(</span><span class="o">...</span><span class="p">,)]</span>
+        <span class="n">slc_idx</span> <span class="o">=</span> <span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">),)</span><span class="o">*</span><span class="n">d</span> <span class="o">+</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,)</span> <span class="o">+</span> <span class="p">(</span><span class="o">...</span><span class="p">,)</span>
+        <span class="n">slc_drop</span> <span class="o">=</span> <span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">),)</span><span class="o">*</span><span class="n">d</span> <span class="o">+</span> <span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">),)</span> <span class="o">+</span> <span class="p">(</span><span class="o">...</span><span class="p">,)</span>
+        <span class="k">while</span> <span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">d</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">slc_idx</span><span class="p">])</span><span class="o">&lt;=</span><span class="n">tol</span><span class="p">):</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">slc_drop</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">t</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">0</span><span class="p">,))</span>
-    <span class="k">while</span> <span class="n">t</span><span class="o">.</span><span class="n">shape</span> <span class="ow">and</span> <span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="c1">#reduce rank</span>
+    <span class="k">while</span> <span class="n">t</span><span class="o">.</span><span class="n">ndim</span><span class="o">&gt;</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span> <span class="c1">#reduce rank</span>
         <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">t</span>
 </code></pre></div></td></tr></table></div>
@@ -1639,8 +1665,7 @@ the outer corner.</p>
 
             <details class="quote">
               <summary>Source code in <code>vector\multilinear\utility.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">56</span>
-<span class="normal">57</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">57</span>
 <span class="normal">58</span>
 <span class="normal">59</span>
 <span class="normal">60</span>
@@ -1651,7 +1676,8 @@ the outer corner.</p>
 <span class="normal">65</span>
 <span class="normal">66</span>
 <span class="normal">67</span>
-<span class="normal">68</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenround</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">ndigits</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="normal">68</span>
+<span class="normal">69</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenround</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">ndigits</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Round all coefficients to the given precision.</span>
 
 <span class="sd">    $$</span>
@@ -2086,7 +2112,7 @@ the outer corner.</p>
 
 
 <h3 id="vector.multilinear.vector_space.tenaddc" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">tenaddc</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="p">())</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">tenaddc</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,))</span></code>
 
 </h3>
 
@@ -2127,7 +2153,7 @@ the outer corner.</p>
 <span class="normal">72</span>
 <span class="normal">73</span>
 <span class="normal">74</span>
-<span class="normal">75</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenaddc</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="p">()):</span>
+<span class="normal">75</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenaddc</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,)):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return `t` with `c` added to the `i`-th coefficient.</span>
 
 <span class="sd">    $$</span>
