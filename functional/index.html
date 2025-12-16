@@ -780,12 +780,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../multiaxis/" class="md-nav__link">
+      <a href="../multilinear/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Multiaxis
+    Multilinear
     
   </span>
   
@@ -2991,7 +2991,7 @@ If not found, simply keeps the element as is.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return <code>v</code> with <code>c</code> added to the <code>i</code>-th coefficient.</p>
+        <p>Return <code>v</code> with <code>c</code> subtracted from the <code>i</code>-th coefficient.</p>
 <div class="arithmatex">\[
     \vec{v}-c\vec{e}_i \qquad \mathbb{K}^n\to\mathbb{K}^{\max\{n, i\}}
 \]</div>
@@ -3026,7 +3026,7 @@ If not found, simply keeps the element as is.</p>
 <span class="normal">103</span>
 <span class="normal">104</span>
 <span class="normal">105</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecsubc</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return `v` with `c` added to the `i`-th coefficient.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return `v` with `c` subtracted from the `i`-th coefficient.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \vec{v}-c\vec{e}_i \qquad \mathbb{K}^n\to\mathbb{K}^{\max\{n, i\}}</span>
