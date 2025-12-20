@@ -7,10 +7,10 @@ __all__ = ('tenconj', 'tenprod')
 
 
 def tenconj(t):
-    r"""Return the elementwise complex conjugate.
+    """Return the elementwise complex conjugate.
     
     $$
-        \vec{v}^*
+        t^*
     $$
     
     See also

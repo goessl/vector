@@ -43,7 +43,7 @@ def vecltrim(v, tol=1e-9):
     t = []
     for x in v:
         t.append(x)
-        if abs(x)>tol:
+        if (x if tol is None else abs(x)>tol):
             yield from t
             t.clear()
 

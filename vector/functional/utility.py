@@ -58,7 +58,7 @@ def vectrim(v, tol=1e-9):
     r, t = [], []
     for x in v:
         t.append(x)
-        if abs(x)>tol:
+        if (x if tol is None else abs(x)>tol):
             r.extend(t)
             t.clear()
     return tuple(r)

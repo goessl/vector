@@ -53,7 +53,7 @@ def vecstrim(v, tol=1e-9):
     of `trim(v, sys.float_info.min)`.
     - `tol=1e-9` like in [PEP 485](https://peps.python.org/pep-0485/#defaults).
     """
-    return {i:vi for i, vi in v.items() if abs(vi)>tol}
+    return {i:vi for i, vi in v.items() if (vi if tol is None else abs(vi)>tol)}
 
 def vecsround(v, ndigits=None):
     r"""Round all coefficients to the given precision.

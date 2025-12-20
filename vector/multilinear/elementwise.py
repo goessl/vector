@@ -5,7 +5,7 @@ import numpy as np
 
 __all__ = ('tenhadamard', 'tenhadamardtruediv',
            'tenhadamardfloordiv', 'tenhadamardmod',
-           'tenhadamardmin','tenhadamardmax')
+           'tenhadamardmin', 'tenhadamardmax')
 
 
 

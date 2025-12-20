@@ -16,6 +16,7 @@ nav:
   - objectoriented.md
   - parallelised.md
   - multilinear.md
+  - multilinear_sparse.md
 
 theme:
   name: material
