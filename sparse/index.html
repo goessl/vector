@@ -850,6 +850,28 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multilinear_sparse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multilinear
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1983,7 +2005,7 @@ of <code>trim(v, sys.float_info.min)</code>.</li>
 <span class="sd">    of `trim(v, sys.float_info.min)`.</span>
 <span class="sd">    - `tol=1e-9` like in [PEP 485](https://peps.python.org/pep-0485/#defaults).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span><span class="n">vi</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">vi</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">vi</span><span class="p">)</span><span class="o">&gt;</span><span class="n">tol</span><span class="p">}</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span><span class="n">vi</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">vi</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="p">(</span><span class="n">vi</span> <span class="k">if</span> <span class="n">tol</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">abs</span><span class="p">(</span><span class="n">vi</span><span class="p">)</span><span class="o">&gt;</span><span class="n">tol</span><span class="p">)}</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
