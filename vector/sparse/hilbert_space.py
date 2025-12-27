@@ -8,7 +8,7 @@ __all__ = ('vecsconj', 'vecsabs', 'vecsabsq', 'vecsdot', 'vecsparallel')
 
 
 def vecsconj(v):
-    r"""Return the elementwise complex conjugate.
+    r"""Return the complex conjugate.
     
     $$
         \vec{v}^*
@@ -26,7 +26,7 @@ def vecsconj(v):
     return {i:try_conjugate(vi) for i, vi in v.items()}
 
 def vecsabs(v, weights=None, conjugate=False, zero=0):
-    r"""Return the Euclidean/L2-norm.
+    r"""Return the Euclidean/$\ell_{\mathbb{N}_0}^2$-norm.
     
     $$
         ||\vec{v}||_{\ell_{\mathbb{N}_0}^2}=\sqrt{\sum_iv_i^{(*)}v_i\omega_i}
@@ -42,11 +42,15 @@ def vecsabs(v, weights=None, conjugate=False, zero=0):
     - $n$/$2n$ scalar multiplications (`mul`) without/with weights,
     - $\begin{cases}n-1&n\ge1\\0&n\le1\end{cases}$ scalar additions (`add`) &
     - one `^0.5` call.
+    
+    See also
+    --------
+    - squared version without square root: [`vecsabsq`][vector.sparse.hilbert_space.vecsabsq]
     """
     return vecsabsq(v, weights=weights, conjugate=conjugate, zero=zero)**0.5
 
 def vecsabsq(v, weights=None, conjugate=False, zero=0):
-    r"""Return the sum of absolute squares of the coefficients.
+    r"""Return the sum of absolute squares.
     
     $$
         ||\vec{v}||_{\ell_{\mathbb{N}_0}^2}^2=\sum_iv_i^{(*)}v_i\omega_i \qquad \mathbb{K}^n\to\mathbb{K}_0^+
@@ -75,7 +79,7 @@ def vecsabsq(v, weights=None, conjugate=False, zero=0):
             return sum_default((try_conjugate(vi)*vi*weights[i] for i, vi in v.items()), default=zero)
 
 def vecsdot(v, w, weights=None, conjugate=False, zero=0):
-    r"""Return the inner product of two vectors.
+    r"""Return the inner product.
     
     $$
         \left<\vec{v}\mid\vec{w}\right>_{\ell_{\mathbb{N}_0}^2}=\sum_iv_i^{(*)}w_i\omega_i

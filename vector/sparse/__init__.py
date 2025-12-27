@@ -10,7 +10,7 @@
 
 Prefixed by `vecs...` (vector - sparse).
 
-All functions accept vectors and return them as `dict`s (index:coefficient).
+All functions accept vectors and return them as **`dict`s (index:coefficient)**.
 
 The functions are **type-independent**. However, the data types used must
 *support necessary scalar operations*. For instance, for vector addition,

@@ -3,7 +3,7 @@ __all__ = ('try_conjugate', 'veclconj')
 
 
 def try_conjugate(x):
-    r"""Return the complex conjugate of a scalar.
+    r"""Return the complex conjugate.
     
     $$
         x^* \qquad \mathbb{K}\to\mathbb{K}
@@ -21,7 +21,7 @@ def try_conjugate(x):
     return conj() if callable(conj) else x
 
 def veclconj(v):
-    r"""Return the elementwise complex conjugate of a vector.
+    r"""Return the complex conjugate.
     
     $$
         \vec{v}^* \qquad \mathbb{K}^n\to\mathbb{K}^n

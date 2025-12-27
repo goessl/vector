@@ -9,8 +9,9 @@ __all__ = ('veclen', 'veceq', 'vectrim', 'vecrshift', 'veclshift')
 def veclen(v):
     """Return the length (number of set coefficients) of the vector.
     
-    Also works for single exhaustible iterables where `len(v)` wouldn't work,
-    altough the vector is gone then.
+    Notes
+    -----
+    For generators as they have no `len`gth, altough the vector is gone then.
     """
     return sum(1 for _ in v)
 
@@ -41,6 +42,9 @@ def vectrim(v, tol=1e-9):
         \end{pmatrix} \ \text{where} \ m=\max\{\, j\mid |v_j|>\text{tol}\,\}\cup\{-1\} \qquad \mathbb{K}^n\to\mathbb{K}^{\leq n}
     $$
     
+    `tol` may also be `None`,
+    then all coefficients that evaluate to `False` are trimmed.
+    
     Complexity
     ----------
     For a vector of length $n$ there will be
@@ -64,7 +68,7 @@ def vectrim(v, tol=1e-9):
     return tuple(r)
 
 def vecrshift(v, n, zero=0):
-    r"""Pad `n` many `zero`s to the beginning of the vector.
+    r"""Shift coefficients up.
     
     $$
         (v_{i-n})_i \qquad \begin{pmatrix}
@@ -80,7 +84,7 @@ def vecrshift(v, n, zero=0):
     return tuple(veclrshift(v, n, zero=zero))
 
 def veclshift(v, n):
-    r"""Remove `n` many coefficients at the beginning of the vector.
+    r"""Shift coefficients down.
     
     $$
         (v_{i+n})_i \qquad \begin{pmatrix}

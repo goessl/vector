@@ -39,6 +39,9 @@ def vecstrim(v, tol=1e-9):
         \end{pmatrix} \ \text{where} \ m=\max\{\, j\mid |v_j|>\text{tol}\,\}\cup\{-1\}
     $$
     
+    `tol` may also be `None`,
+    then all coefficients that evaluate to `False` are trimmed.
+    
     Complexity
     ----------
     For a vector of $n$ elements there will be
@@ -56,7 +59,7 @@ def vecstrim(v, tol=1e-9):
     return {i:vi for i, vi in v.items() if (vi if tol is None else abs(vi)>tol)}
 
 def vecsrshift(v, n):
-    r"""Pad `n` many `zero`s to the beginning of the vector.
+    r"""Shift coefficients up.
     
     $$
         (v_{i-n})_i \qquad \begin{pmatrix}
@@ -72,7 +75,7 @@ def vecsrshift(v, n):
     return {i+n:vi for i, vi in v.items()}
 
 def vecslshift(v, n):
-    r"""Remove `n` many coefficients at the beginning of the vector.
+    r"""Shift coefficients down.
     
     $$
         (v_{i+n})_i \qquad \begin{pmatrix}

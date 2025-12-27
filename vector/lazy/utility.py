@@ -33,6 +33,9 @@ def vecltrim(v, tol=1e-9):
         \end{pmatrix} \ \text{where} \ m=\max\{\, j\mid |v_{j-1}|>\text{tol}\,\}\cup\{-1\} \qquad \mathbb{K}^n\to\mathbb{K}^{\leq n}
     $$
     
+    `tol` may also be `None`,
+    then all coefficients that evaluate to `False` are trimmed.
+    
     Notes
     -----
     - Cutting of elements that are `abs(vi)<=tol` instead of `abs(vi)<tol` to
@@ -48,7 +51,7 @@ def vecltrim(v, tol=1e-9):
             t.clear()
 
 def veclrshift(v, n, zero=0):
-    r"""Pad `n` many `zero`s to the beginning of the vector.
+    r"""Shift coefficients up.
     
     $$
         (v_{i-n})_i \qquad \begin{pmatrix}
@@ -64,7 +67,7 @@ def veclrshift(v, n, zero=0):
     yield from chain(repeat(zero, n), v)
 
 def vecllshift(v, n):
-    r"""Remove `n` many coefficients at the beginning of the vector.
+    r"""Shift coefficients down.
     
     $$
         (v_{i+n})_i \qquad \begin{pmatrix}

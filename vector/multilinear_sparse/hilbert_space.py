@@ -7,10 +7,13 @@ __all__ = ('tensconj', )
 
 
 def tensconj(t):
-    r"""Return the elementwise complex conjugate.
+    r"""Return the complex.
     
     $$
         t^*
     $$
+    
+    Trys to call a method `conjugate` on each element.
+    If not found, simply keeps the element as is.
     """
     return {i:try_conjugate(ti) for i, ti in t.items()}

@@ -3,13 +3,13 @@ from operationcounter import MISSING, prod_default
 
 
 __all__ = ('tenshadamard', 'tenshadamardtruediv',
-           'tenshadamardfloordiv', 'tenshadamardmod',
+           'tenshadamardfloordiv', 'tenshadamardmod', 'tenshadamarddivmod',
            'tenshadamardmin', 'tenshadamardmax')
 
 
 
 def tenshadamard(*ts):
-    r"""Return the elementwise product of tensors.
+    r"""Return the elementwise product.
     
     $$
         \left((t_0)_i \cdot (t_1)_i \cdot \cdots\right)_i
@@ -23,7 +23,7 @@ def tenshadamard(*ts):
     return r
 
 def tenshadamardtruediv(s, t):
-    r"""Return the elementwise true division of two tensors.
+    r"""Return the elementwise true quotient.
     
     $$
         \left(\frac{s_i}{t_i}\right)_i
@@ -32,7 +32,7 @@ def tenshadamardtruediv(s, t):
     return {i:si/t[i] for i, si in s.items()}
 
 def tenshadamardfloordiv(s, t):
-    r"""Return the elementwise floor division of two tensors.
+    r"""Return the elementwise floor quotient.
     
     $$
         \left(\left\lfloor\frac{s_i}{t_i}\right\rfloor\right)_i
@@ -41,19 +41,19 @@ def tenshadamardfloordiv(s, t):
     return {i:si//t[i] for i, si in s.items()}
 
 def tenshadamardmod(s, t):
-    r"""Return the elementwise mod of two tensors.
+    r"""Return the elementwise remainder.
     
     $$
-        \left(s_i \mod t_i\right)_i
+        \left(s_i \bmod t_i\right)_i
     $$
     """
     return {i:si%t[i] for i, si in s.items()}
 
 def tenshadamarddivmod(s, t):
-    r"""Return the elementwise divmod of two tensors.
+    r"""Return the elementwise floor quotient and remainder.
     
     $$
-        \left(\left\lfloor\frac{s_i}{t_i}\right\rfloor\right)_i, \ \left(s_i \mod t_i\right)_i
+        \left(\left\lfloor\frac{s_i}{t_i}\right\rfloor\right)_i, \ \left(s_i \bmod t_i\right)_i
     $$
     """
     q, r = {}, {}
@@ -63,7 +63,7 @@ def tenshadamarddivmod(s, t):
     return q, r
 
 def tenshadamardmin(*ts, key=None):
-    r"""Return the elementwise minimum of tensors.
+    r"""Return the elementwise minimum.
     
     $$
         \left(\min((t_0)_i, (t_1)_i, \cdots)\right)_i
@@ -77,7 +77,7 @@ def tenshadamardmin(*ts, key=None):
     return r
 
 def tenshadamardmax(*ts, key=None):
-    r"""Return the elementwise maximum of tensors.
+    r"""Return the elementwise maximum.
     
     $$
         \left(\min((t_0)_i, (t_1)_i, \cdots)\right)_i

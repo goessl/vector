@@ -12,6 +12,6 @@ def vecstod(v, zero=0):
 def vecdtos(v):
     """Return a dense vector (`tuple`) as a sparse vector (`dict`).
     
-    The resulting `dict` is not [trimmed][vector.sparse.vecstrim].
+    The resulting `dict` is not [trimmed][vector.sparse.utility.vecstrim].
     """
     return {i:vi for i, vi in enumerate(v)}

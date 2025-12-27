@@ -13,7 +13,6 @@ nav:
   - functional.md
   - lazy.md
   - sparse.md
-  - objectoriented.md
   - parallelised.md
   - multilinear.md
   - multilinear_sparse.md

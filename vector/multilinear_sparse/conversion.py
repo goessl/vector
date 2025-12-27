@@ -1,3 +1,4 @@
+from ..functional.utility import vectrim
 from .utility import tensdim
 import numpy as np
 
@@ -19,4 +20,4 @@ def tendtos(t):
     
     The resulting `dict` is not [trimmed][vector.multilinear_sparse.tenstrim].
     """
-    return {i:ti for i, ti in np.ndenumerate(t)}
+    return {vectrim(i):ti for i, ti in np.ndenumerate(t)}

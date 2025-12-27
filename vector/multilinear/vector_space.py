@@ -9,7 +9,7 @@ __all__ = ('tenpos', 'tenneg', 'tenadd', 'tenaddc', 'tensub', 'tensubc',
 
 
 def tenpos(t):
-    """Return the tensor with the unary positive operator applied.
+    """Return the identity.
     
     $$
         +t
@@ -17,13 +17,12 @@ def tenpos(t):
     
     See also
     --------
-    - one-dimensional: [`vecpos`][vector.functional.vector_space.vecpos]
     - wraps: [`numpy.positive`](https://numpy.org/doc/stable/reference/generated/numpy.positive.html)
     """
     return np.positive(t)
 
 def tenneg(t):
-    """Return the tensor with the unary negative operator applied.
+    """Return the negation.
     
     $$
         -t
@@ -31,13 +30,12 @@ def tenneg(t):
     
     See also
     --------
-    - one-dimensional: [`vecneg`][vector.functional.vector_space.vecneg]
     - wraps: [`numpy.negative`](https://numpy.org/doc/stable/reference/generated/numpy.negative.html)
     """
     return np.negative(t)
 
 def tenadd(*ts):
-    r"""Return the sum of tensors.
+    r"""Return the sum.
     
     $$
         t_0 + t_1 + \cdots
@@ -45,7 +43,7 @@ def tenadd(*ts):
     
     See also
     --------
-    - one-dimensional: [`vecadd`][vector.functional.vector_space.vecadd]
+    - for sum on a single coefficient: [`tenaddc`][vector.multilinear.vector_space.tenaddc]
     """
     ts = tuple(map(np.asarray, ts))
     shape = vechadamardmax(*(t.shape for t in ts))
@@ -55,7 +53,7 @@ def tenadd(*ts):
     return r
 
 def tenaddc(t, c, i=(0,)):
-    """Return `t` with `c` added to the `i`-th coefficient.
+    """Return the sum with a basis tensor.
     
     $$
         t+ce_i
@@ -65,7 +63,7 @@ def tenaddc(t, c, i=(0,)):
     
     See also
     --------
-    - one-dimensional: [`vecaddc`][vector.functional.vector_space.vecaddc]
+    - for sum on more coefficients: [`tenadd`][vector.multilinear.vector_space.tenadd]
     """
     t = np.asarray(t)
     while t.ndim < len(i):
@@ -75,7 +73,7 @@ def tenaddc(t, c, i=(0,)):
     return t
 
 def tensub(s, t):
-    """Return the difference of two tensors.
+    """Return the difference.
     
     $$
         s - t
@@ -83,7 +81,7 @@ def tensub(s, t):
     
     See also
     --------
-    - one-dimensional: [`vecsub`][vector.functional.vector_space.vecsub]
+    - for difference on a single coefficient: [`tensubc`][vector.multilinear.vector_space.tensubc]
     """
     s, t = np.asarray(s), np.asarray(t)
     shape = vechadamardmax(s.shape, t.shape)
@@ -93,7 +91,7 @@ def tensub(s, t):
     return r
 
 def tensubc(t, c, i=(0,)):
-    """Return `t` with `c` subtracted from the `i`-th coefficient.
+    """Return the difference with a basis tensor.
     
     $$
         t-ce_i
@@ -103,7 +101,7 @@ def tensubc(t, c, i=(0,)):
     
     See also
     --------
-    - one-dimensional: [`vecsubc`][vector.functional.vector_space.vecsubc]
+    - for difference on more coefficients: [`tensub`][vector.multilinear.vector_space.tensub]
     """
     t = np.asarray(t)
     while t.ndim < len(i):
@@ -113,7 +111,7 @@ def tensubc(t, c, i=(0,)):
     return t
 
 def tenmul(a, t):
-    """Return the product of a scalar and a tensor.
+    """Return the product.
     
     $$
         at
@@ -121,63 +119,69 @@ def tenmul(a, t):
     
     See also
     --------
-    - one-dimensional: [`vecmul`][vector.functional.vector_space.vecmul]
     - wraps: [`numpy.multiply`](https://numpy.org/doc/stable/reference/generated/numpy.multiply.html)
     """
     return np.multiply(a, t)
 
 def tentruediv(t, a):
-    r"""Return the true division of a tensor and a scalar.
+    r"""Return the true quotient.
     
     $$
         \frac{t}{a}
     $$
     
+    Notes
+    -----
+    Why called `truediv` instead of `div`?
+    
+    - `div` would be more appropriate for an absolute clean mathematical
+    implementation, that doesn't care about the language used. But the package
+    might be used for pure integers/integer arithmetic, so both, `truediv`
+    and `floordiv` operations have to be provided, and none should be
+    privileged over the other by getting the universal `div` name.
+    - `truediv`/`floordiv` is unambiguous, like Python `operator`s.
+    
     See also
     --------
-    - one-dimensional: [`vectruediv`][vector.functional.vector_space.vectruediv]
     - wraps: [`numpy.divide`](https://numpy.org/doc/stable/reference/generated/numpy.divide.html)
     """
     return np.divide(t, a)
 
 def tenfloordiv(t, a):
-    r"""Return the floor division of a tensor and a scalar.
+    r"""Return the floor quotient.
     
     $$
-        \left(\left\lfloor\frac{t_i}{a}\right\rfloor\right)_i
+        \left\lfloor\frac{t}{a}\right\rfloor
     $$
     
     See also
     --------
-    - one-dimensional: [`vecfloordiv`][vector.functional.vector_space.vecfloordiv]
     - wraps: [`numpy.floor_divide`](https://numpy.org/doc/stable/reference/generated/numpy.floor_divide.html)
     """
     return np.floor_divide(t, a)
 
 def tenmod(t, a):
-    r"""Return the elementwise mod of a tensor and a scalar.
+    r"""Return the remainder.
     
     $$
-        \left(t_i \mod a\right)_i
+        t \bmod a
     $$
     
     See also
     --------
-    - one-dimensional: [`vecmod`][vector.functional.vector_space.vecmod]
     - wraps: [`numpy.mod`](https://numpy.org/doc/stable/reference/generated/numpy.mod.html)
     """
     return np.mod(t, a)
 
 def tendivmod(t, a):
-    r"""Return the elementwise divmod of a tensor and a scalar.
+    r"""Return the floor quotient and remainder
     
     $$
-        \left(\left\lfloor\frac{t_i}{a}\right\rfloor\right)_i, \ \left(t_i \mod a\right)_i
+        \left\lfloor\frac{t}{a}\right\rfloor, \ \left(t \bmod a\right)
     $$
     
     See also
     --------
-    - one-dimensional: [`vecdivmod`][vector.functional.vector_space.vecdivmod]
     - wraps: [`numpy.divmod`](https://numpy.org/doc/stable/reference/generated/numpy.divmod.html)
     """
     return np.divmod(t, a)

@@ -4,21 +4,17 @@ import numpy as np
 
 
 __all__ = ('tenhadamard', 'tenhadamardtruediv',
-           'tenhadamardfloordiv', 'tenhadamardmod',
+           'tenhadamardfloordiv', 'tenhadamardmod', 'tenhadamarddivmod',
            'tenhadamardmin', 'tenhadamardmax')
 
 
 
 def tenhadamard(*ts):
-    r"""Return the elementwise product of tensors.
+    r"""Return the elementwise product.
     
     $$
         \left((t_0)_i \cdot (t_1)_i \cdot \cdots\right)_i
     $$
-    
-    See also
-    --------
-    - one-dimensional: [`vechadamard`][vector.functional.elementwise.vechadamard]
     """
     ts = tuple(map(np.asarray, ts))
     shape = tuple(map(min, zip(*(t.shape for t in ts))))
@@ -31,63 +27,47 @@ def tenhadamard(*ts):
     return r
 
 def tenhadamardtruediv(s, t):
-    r"""Return the elementwise true division of two tensors.
+    r"""Return the elementwise true quotient.
     
     $$
         \left(\frac{s_i}{t_i}\right)_i
     $$
-    
-    See also
-    --------
-    - one-dimensional: [`vechadamardtruediv`][vector.functional.elementwise.vechadamardtruediv]
     """
     s, t = np.asarray(s), np.asarray(t)
     return np.divide(s, t[tuple(map(slice, s.shape)), ...])
 
 def tenhadamardfloordiv(s, t):
-    r"""Return the elementwise floor division of two tensors.
+    r"""Return the elementwise floor quotient.
     
     $$
         \left(\left\lfloor\frac{s_i}{t_i}\right\rfloor\right)_i
     $$
-    
-    See also
-    --------
-    - one-dimensional: [`vechadamardfloordiv`][vector.functional.elementwise.vechadamardfloordiv]
     """
     s, t = np.asarray(s), np.asarray(t)
     return np.floor_divide(s, t[tuple(map(slice, s.shape)), ...])
 
 def tenhadamardmod(s, t):
-    r"""Return the elementwise mod of two tensors.
+    r"""Return the elementwise remainder.
     
     $$
-        \left(s_i \mod t_i\right)_i
+        \left(s_i \bmod t_i\right)_i
     $$
-    
-    See also
-    --------
-    - one-dimensional: [`vechadamardmod`][vector.functional.elementwise.vechadamardmod]
     """
     s, t = np.asarray(s), np.asarray(t)
     return np.mod(s, t[tuple(map(slice, s.shape)), ...])
 
 def tenhadamarddivmod(s, t):
-    r"""Return the elementwise divmod of two tensors.
+    r"""Return the elementwise floor quotient and remainder.
     
     $$
-        \left(\left\lfloor\frac{s_i}{t_i}\right\rfloor\right)_i, \ \left(s_i \mod t_i\right)_i
+        \left(\left\lfloor\frac{s_i}{t_i}\right\rfloor\right)_i, \ \left(s_i \bmod t_i\right)_i
     $$
-    
-    See also
-    --------
-    - one-dimensional: [`vechadamarddivmod`][vector.functional.elementwise.vechadamarddivmod]
     """
     s, t = np.asarray(s), np.asarray(t)
     return np.divmod(s, t[tuple(map(slice, s.shape)), ...])
 
 def tenhadamardmin(*ts, key=None):
-    r"""Return the elementwise minimum of tensors.
+    r"""Return the elementwise minimum.
     
     $$
         \left(\min((t_0)_i, (t_1)_i, \cdots)\right)_i
@@ -126,7 +106,7 @@ def tenhadamardmin(*ts, key=None):
     return r
 
 def tenhadamardmax(*ts, key=None):
-    r"""Return the elementwise maximum of tensors.
+    r"""Return the elementwise maximum.
     
     $$
         \left(\min((t_0)_i, (t_1)_i, \cdots)\right)_i

@@ -11,7 +11,7 @@ __all__ = ('veclpos', 'veclneg', 'vecladd', 'vecladdc', 'veclsub', 'veclsubc',
 
 
 def veclpos(v):
-    r"""Return the vector with the unary positive operator applied.
+    r"""Return the identity.
     
     $$
         +\vec{v} \qquad \mathbb{K}^n\to\mathbb{K}^n
@@ -20,7 +20,7 @@ def veclpos(v):
     yield from map(pos, v)
 
 def veclneg(v):
-    r"""Return the vector with the unary negative operator applied.
+    r"""Return the negation.
     
     $$
         -\vec{v} \qquad \mathbb{K}^n\to\mathbb{K}^n
@@ -29,22 +29,30 @@ def veclneg(v):
     yield from map(neg, v)
 
 def vecladd(*vs):
-    r"""Return the sum of vectors.
+    r"""Return the sum.
     
     $$
         \vec{v}_0+\vec{v}_1+\cdots \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}
     $$
+    
+    See also
+    --------
+    - for sum on a single coefficient: [`vecladdc`][vector.lazy.vector_space.vecladdc]
     """
     yield from map(partial(sum_default, default=MISSING), group_ordinal(*vs))
 
 def vecladdc(v, c, i=0, zero=0):
-    r"""Return `v` with `c` added to the `i`-th coefficient.
+    r"""Return the sum with a basis vector.
     
     $$
-        \vec{v}+c\vec{e}_i \qquad \mathbb{K}^n\to\mathbb{K}^{\max\{n, i\}}
+        \vec{v}+c\vec{e}_i \qquad \mathbb{K}^n\to\mathbb{K}^{\max\{n, i+1\}}
     $$
     
     More efficient than `vecladd(v, veclbasis(i, c))`.
+    
+    See also
+    --------
+    - for sum on more coefficients: [`vecladd`][vector.lazy.vector_space.vecladd]
     """
     v = iter(v)
     yield from islice(chain(v, repeat(zero)), i)
@@ -55,11 +63,15 @@ def vecladdc(v, c, i=0, zero=0):
     yield from v
 
 def veclsub(v, w):
-    r"""Return the difference of two vectors.
+    r"""Return the difference.
     
     $$
         \vec{v}-\vec{w} \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^{\max\{m, n\}}
     $$
+    
+    See also
+    --------
+    - for difference on a single coefficient: [`veclsubc`][vector.lazy.vector_space.veclsubc]
     """
     sentinel = object()
     for vi, wi in zip_longest(v, w, fillvalue=sentinel):
@@ -71,13 +83,17 @@ def veclsub(v, w):
             yield vi - wi
 
 def veclsubc(v, c, i=0, zero=0):
-    r"""Return `v` with `c` subtracted from the `i`-th coefficient.
+    r"""Return the difference with a basis vector.
     
     $$
-        \vec{v}-c\vec{e}_i \qquad \mathbb{K}^n\to\mathbb{K}^{\max\{n, i\}}
+        \vec{v}-c\vec{e}_i \qquad \mathbb{K}^n\to\mathbb{K}^{\max\{n, i+1\}}
     $$
     
     More efficient than `veclsub(v, veclbasis(i, c))`.
+    
+    See also
+    --------
+    - for difference on more coefficients: [`veclsub`][vector.lazy.vector_space.veclsub]
     """
     v = iter(v)
     yield from islice(chain(v, repeat(zero)), i)
@@ -88,7 +104,7 @@ def veclsubc(v, c, i=0, zero=0):
     yield from v
 
 def veclmul(a, v):
-    r"""Return the product of a scalar and a vector.
+    r"""Return the product.
     
     $$
         a\vec{v} \qquad \mathbb{K}\times\mathbb{K}^n\to\mathbb{K}^n
@@ -97,7 +113,7 @@ def veclmul(a, v):
     yield from map(mul, repeat(a), v)
 
 def vecltruediv(v, a):
-    r"""Return the true division of a vector and a scalar.
+    r"""Return the true quotient.
     
     $$
         \frac{\vec{v}}{a} \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n
@@ -117,28 +133,28 @@ def vecltruediv(v, a):
     yield from map(truediv, v, repeat(a))
 
 def veclfloordiv(v, a):
-    r"""Return the floor division of a vector and a scalar.
+    r"""Return the floor quotient.
     
     $$
-        \left(\left\lfloor\frac{v_i}{a}\right\rfloor\right)_i \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n
+        \left\lfloor\frac{\vec{v}}{a}\right\rfloor \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n
     $$
     """
     yield from map(floordiv, v, repeat(a))
 
 def veclmod(v, a):
-    r"""Return the elementwise mod of a vector and a scalar.
+    r"""Return the remainder.
     
     $$
-        \left(v_i \mod a\right)_i \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n
+        \vec{v} \bmod a \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n
     $$
     """
     yield from map(mod, v, repeat(a))
 
 def vecldivmod(v, a):
-    r"""Return the elementwise divmod of a vector and a scalar.
+    r"""Return the floor quotient and remainder.
     
     $$
-        \left(\left\lfloor\frac{v_i}{a}\right\rfloor\right)_i, \ \left(v_i \mod a\right)_i \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n\times\mathbb{K}^n
+        \left\lfloor\frac{\vec{v}}{a}\right\rfloor, \ \left(\vec{v} \bmod a\right) \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n\times\mathbb{K}^n
     $$
     """
     for vi in v:

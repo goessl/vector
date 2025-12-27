@@ -10,7 +10,7 @@ __all__ = ('vecconj', 'vecabs', 'vecabsq', 'vecdot', 'vecparallel')
 
 
 def vecconj(v):
-    r"""Return the elementwise complex conjugate.
+    r"""Return the complex conjugate.
     
     $$
         \vec{v}^* \qquad \mathbb{K}^n\to\mathbb{K}^n
@@ -28,7 +28,7 @@ def vecconj(v):
     return tuple(veclconj(v))
 
 def vecabs(v, weights=None, conjugate=False, zero=0):
-    r"""Return the Euclidean/L2-norm.
+    r"""Return the Euclidean/$\ell_{\mathbb{N}_0}^2$-norm.
     
     $$
         ||\vec{v}||_{\ell_{\mathbb{N}_0}^2}=\sqrt{\sum_iv_i^{(*)}v_i\omega_i} \qquad \mathbb{K}^n\to\mathbb{K}_0^+
@@ -44,13 +44,17 @@ def vecabs(v, weights=None, conjugate=False, zero=0):
     - $n$/$2n$ scalar multiplications (`mul`) without/with weights,
     - $\begin{cases}n-1&n\ge1\\0&n\le1\end{cases}$ scalar additions (`add`) &
     - one `^0.5` call.
+    
+    See also
+    --------
+    - squared version without square root: [`vecabsq`][vector.functional.hilbert_space.vecabsq]
     """
     #hypot(*v) doesn't work for complex
     #math.sqrt doesn't work for complex and cmath.sqrt always returns complex
     return vecabsq(v, weights=weights, conjugate=conjugate, zero=zero)**0.5
 
 def vecabsq(v, weights=None, conjugate=False, zero=0):
-    r"""Return the sum of absolute squares of the coefficients.
+    r"""Return the sum of absolute squares.
     
     $$
         ||\vec{v}||_{\ell_{\mathbb{N}_0}^2}^2=\sum_iv_i^{(*)}v_i\omega_i \qquad \mathbb{K}^n\to\mathbb{K}_0^+
@@ -85,7 +89,7 @@ def vecabsq(v, weights=None, conjugate=False, zero=0):
         return sumprod_default(map(mul, vc, v), weights, default=zero)
 
 def vecdot(v, w, weights=None, conjugate=False, zero=0):
-    r"""Return the inner product of two vectors.
+    r"""Return the inner product.
     
     $$
         \left<\vec{v}\mid\vec{w}\right>_{\ell_{\mathbb{N}_0}^2}=\sum_iv_i^{(*)}w_i\omega_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}
@@ -113,6 +117,10 @@ def vecparallel(v, w, weights=None, conjugate=False, zero=0):
     $$
         \vec{v}\parallel\vec{w} \qquad ||\vec{v}||\,||\vec{w}|| \overset{?}{=} |\vec{v}\vec{w}|^2 \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{B}
     $$
+    
+    Complexity
+    ----------
+    Not yet perfect.
     """
     #doesn't work for exhaustible iterables
     #return vecabsq(v)*vecabsq(w) == abs(vecdot(v, w))**2

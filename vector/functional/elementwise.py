@@ -9,7 +9,7 @@ __all__ = ('vechadamard', 'vechadamardtruediv',
 
 
 def vechadamard(*vs):
-    r"""Return the elementwise product of vectors.
+    r"""Return the elementwise product.
     
     $$
         \left((\vec{v}_0)_i\cdot(\vec{v}_1)_i\cdot\cdots\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\min_i n_i}
@@ -24,7 +24,7 @@ def vechadamard(*vs):
     return tuple(veclhadamard(*vs))
 
 def vechadamardtruediv(v, w):
-    r"""Return the elementwise true division of two vectors.
+    r"""Return the elementwise true quotient.
     
     $$
         \left(\frac{v_i}{w_i}\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m
@@ -39,7 +39,7 @@ def vechadamardtruediv(v, w):
     return tuple(veclhadamardtruediv(v, w))
 
 def vechadamardfloordiv(v, w):
-    r"""Return the elementwise floor division of two vectors.
+    r"""Return the elementwise floor quotient.
     
     $$
         \left(\left\lfloor\frac{v_i}{w_i}\right\rfloor\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m
@@ -54,10 +54,10 @@ def vechadamardfloordiv(v, w):
     return tuple(veclhadamardfloordiv(v, w))
 
 def vechadamardmod(v, w):
-    r"""Return the elementwise mod of two vectors.
+    r"""Return the elementwise remainder.
     
     $$
-        \left(v_i \mod w_i\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m
+        \left(v_i \bmod w_i\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m
     $$
     
     Complexity
@@ -69,10 +69,10 @@ def vechadamardmod(v, w):
     return tuple(veclhadamardmod(v, w))
 
 def vechadamarddivmod(v, w):
-    r"""Return the elementwise divmod of two vectors.
+    r"""Return the elementwise floor quotient and remainder.
     
     $$
-        \left(\left\lfloor\frac{v_i}{w_i}\right\rfloor\right)_i, \ \left(v_i \mod w_i\right)_i \qquad \mathbb{K}^n\times\mathbb{K}^m\to\mathbb{K}^n\times\mathbb{K}^n
+        \left(\left\lfloor\frac{v_i}{w_i}\right\rfloor\right)_i, \ \left(v_i \bmod w_i\right)_i \qquad \mathbb{K}^n\times\mathbb{K}^m\to\mathbb{K}^n\times\mathbb{K}^n
     $$
     
     Complexity
@@ -88,7 +88,7 @@ def vechadamarddivmod(v, w):
     return tuple(q), tuple(r)
 
 def vechadamardmin(*vs, key=None):
-    r"""Return the elementwise minimum of vectors.
+    r"""Return the elementwise minimum.
     
     $$
         \left(\min((\vec{v}_0)_i,(\vec{v}_1)_i,\cdots)\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}
@@ -103,7 +103,7 @@ def vechadamardmin(*vs, key=None):
     return tuple(veclhadamardmin(*vs, key=key))
 
 def vechadamardmax(*vs, key=None):
-    r"""Return the elementwise maximum of vectors.
+    r"""Return the elementwise maximum.
     
     $$
         \left(\max((\vec{v}_0)_i,(\vec{v}_1)_i,\cdots)\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}

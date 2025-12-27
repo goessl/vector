@@ -1,27 +1,13 @@
-__all__ = ('vecsmap', 'vecspos', 'vecsneg', 'vecsadd', 'vecsaddc', 'vecssub', 'vecssubc',
+__all__ = ('vecspos', 'vecsneg', 'vecsadd', 'vecsaddc', 'vecssub', 'vecssubc',
            'vecsmul', 'vecstruediv', 'vecsfloordiv', 'vecsmod', 'vecsdivmod')
 
 
-def vecsmap(f, v):
-    r"""Return the vector with the function `f` applied elementwise.
-    
-    $$
-        \left(f(v_i)\right_i
-    $$
-    
-    Complexity
-    ----------
-    For a vector of $n$ elements there will be
-    
-    - $n$ scalar calls to `f`.
-    """
-    return {i:f(vi) for i, vi in v.items()}
 
 def vecspos(v):
-    r"""Return the vector with the unary positive operator applied.
+    r"""Return the identity.
     
     $$
-        +\vec{v} \qquad \mathbb{K}^n\to\mathbb{K}^n
+        +\vec{v}
     $$
     
     Complexity
@@ -33,10 +19,10 @@ def vecspos(v):
     return {i:+vi for i, vi in v.items()}
 
 def vecsneg(v):
-    r"""Return the vector with the unary negative operator applied.
+    r"""Return the negation.
     
     $$
-        -\vec{v} \qquad \mathbb{K}^n\to\mathbb{K}^n
+        -\vec{v}
     $$
     
     Complexity
@@ -48,10 +34,10 @@ def vecsneg(v):
     return {i:-vi for i, vi in v.items()}
 
 def vecsadd(*vs):
-    r"""Return the sum of vectors.
+    r"""Return the sum.
     
     $$
-        \vec{v}_0+\vec{v}_1+\cdots \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}
+        \vec{v}_0+\vec{v}_1+\cdots
     $$
     
     Complexity
@@ -59,6 +45,10 @@ def vecsadd(*vs):
     For two vectors with $n$ & $m$ elements there will be
     
     - $\min\{n, m\}$ scalar additions (`add`).
+    
+    See also
+    --------
+    - for sum on a single coefficient: [`vecsaddc`][vector.sparse.vector_space.vecsaddc]
     """
     r = dict(vs[0]) if vs else {}
     for v in vs[1:]:
@@ -70,10 +60,10 @@ def vecsadd(*vs):
     return r
 
 def vecsaddc(v, c, i=0):
-    r"""Return `v` with `c` added to the `i`-th coefficient.
+    r"""Return the sum with a basis vector.
     
     $$
-        \vec{v}+c\vec{e}_i \qquad \mathbb{K}^n\to\mathbb{K}^{\max\{n, i\}}
+        \vec{v}+c\vec{e}_i
     $$
     
     Complexity
@@ -82,6 +72,10 @@ def vecsaddc(v, c, i=0):
     
     - one scalar addition (`add`) if $i\in\vec{v}$ or
     - one unary plus operations (`pos`) otherwise.
+    
+    See also
+    --------
+    - for sum on more coefficients: [`vecsadd`][vector.sparse.vector_space.vecsadd]
     """
     r = dict(v)
     if i in r:
@@ -91,10 +85,10 @@ def vecsaddc(v, c, i=0):
     return r
 
 def vecssub(v, w):
-    r"""Return the difference of two vectors.
+    r"""Return the difference.
     
     $$
-        \vec{v}-\vec{w} \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^{\max\{m, n\}}
+        \vec{v}-\vec{w}
     $$
     
     Complexity
@@ -103,6 +97,10 @@ def vecssub(v, w):
     
     - $\min\{n, m\}$ scalar subtractions (`sub`) &
     - $\begin{cases}m-n&m\ge n\\0&m\le n\end{cases}$ negations (`neg`).
+    
+    See also
+    --------
+    - for difference on a single coefficient: [`vecssubc`][vector.sparse.vector_space.vecssubc]
     """
     r = dict(v)
     for i, wi in w.items():
@@ -113,10 +111,10 @@ def vecssub(v, w):
     return r
 
 def vecssubc(v, c, i=0):
-    r"""Return `v` with `c` added to the `i`-th coefficient.
+    r"""Return the difference with a basis vector.
     
     $$
-        \vec{v}-c\vec{e}_i \qquad \mathbb{K}^n\to\mathbb{K}^{\max\{n, i\}}
+        \vec{v}-c\vec{e}_i
     $$
     
     Complexity
@@ -125,6 +123,10 @@ def vecssubc(v, c, i=0):
     
     - one scalar subtraction (`sub`) if $i\in\vec{v}$ or
     - one scalar negation (`neg`) otherwise.
+    
+    See also
+    --------
+    - for difference on more coefficients: [`vecssub`][vector.sparse.vector_space.vecssub]
     """
     r = dict(v)
     if i in r:
@@ -134,10 +136,10 @@ def vecssubc(v, c, i=0):
     return r
 
 def vecsmul(a, v):
-    r"""Return the product of a scalar and a vector.
+    r"""Return the product.
     
     $$
-        a\vec{v} \qquad \mathbb{K}\times\mathbb{K}^n\to\mathbb{K}^n
+        a\vec{v}
     $$
     
     Complexity
@@ -149,10 +151,10 @@ def vecsmul(a, v):
     return {i:a*vi for i, vi in v.items()}
 
 def vecstruediv(v, a):
-    r"""Return the true division of a vector and a scalar.
+    r"""Return the true quotient.
     
     $$
-        \frac{\vec{v}}{a} \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n
+        \frac{\vec{v}}{a}
     $$
     
     Complexity
@@ -160,14 +162,25 @@ def vecstruediv(v, a):
     For a vector with $n$ elements there will be
     
     - $n$ scalar true divisions (`truediv`).
+    
+    Notes
+    -----
+    Why called `truediv` instead of `div`?
+    
+    - `div` would be more appropriate for an absolute clean mathematical
+    implementation, that doesn't care about the language used. But the package
+    might be used for pure integers/integer arithmetic, so both, `truediv`
+    and `floordiv` operations have to be provided, and none should be
+    privileged over the other by getting the universal `div` name.
+    - `truediv`/`floordiv` is unambiguous, like Python `operator`s.
     """
     return {i:vi/a for i, vi in v.items()}
 
 def vecsfloordiv(v, a):
-    r"""Return the floor division of a vector and a scalar.
+    r"""Return the floor quotient.
     
     $$
-        \left(\left\lfloor\frac{v_i}{a}\right\rfloor\right)_i \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n
+        \left\lfloor\frac{\vec{v}}{a}\right\rfloor
     $$
     
     Complexity
@@ -179,10 +192,10 @@ def vecsfloordiv(v, a):
     return {i:vi//a for i, vi in v.items()}
 
 def vecsmod(v, a):
-    r"""Return the elementwise mod of a vector and a scalar.
+    r"""Return the remainder.
     
     $$
-        \left(v_i \mod a\right)_i \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n
+        \vec{v} \bmod a
     $$
     
     Complexity
@@ -194,10 +207,10 @@ def vecsmod(v, a):
     return {i:vi%a for i, vi in v.items()}
 
 def vecsdivmod(v, a):
-    r"""Return the elementwise divmod of a vector and a scalar.
+    r"""Return the floor quotient and remainder.
     
     $$
-        \left(\left\lfloor\frac{v_i}{a}\right\rfloor\right)_i, \ \left(v_i \mod a\right)_i \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n\times\mathbb{K}^n
+        \left\lfloor\frac{\vec{v}}{a}\right\rfloor, \ \left(\vec{v} \bmod a\right)
     $$
     
     Complexity

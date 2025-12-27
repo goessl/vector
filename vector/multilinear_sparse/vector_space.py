@@ -4,7 +4,7 @@ __all__ = ('tenspos', 'tensneg', 'tensadd', 'tensaddc', 'tenssub', 'tenssubc',
 
 
 def tenspos(t):
-    """Return the tensor with the unary positive operator applied.
+    """Return the identity.
     
     $$
         +t
@@ -13,7 +13,7 @@ def tenspos(t):
     return {i:+ti for i, ti in t.items()}
 
 def tensneg(t):
-    """Return the tensor with the unary negative operator applied.
+    """Return the negation.
     
     $$
         -t
@@ -22,11 +22,15 @@ def tensneg(t):
     return {i:-ti for i, ti in t.items()}
 
 def tensadd(*ts):
-    r"""Return the sum of tensors.
+    r"""Return the sum.
     
     $$
         t_0 + t_1 + \cdots
     $$
+    
+    See also
+    --------
+    - for sum on a single coefficient: [`tensaddc`][vector.multilinear_sparse.vector_space.tensaddc]
     """
     r = dict(ts[0]) if ts else {}
     for t in ts[1:]:
@@ -38,13 +42,17 @@ def tensadd(*ts):
     return r
 
 def tensaddc(t, c, i=()):
-    """Return `t` with `c` added to the `i`-th coefficient.
+    """Return the sum with a basis tensor
     
     $$
         t+ce_i
     $$
     
     More efficient than `tensadd(t, tensbasis(i, c))`.
+    
+    See also
+    --------
+    - for sum on more coefficients: [`tensadd`][vector.multilinear_sparse.vector_space.tensadd]
     """
     r = dict(t)
     if i in r:
@@ -54,11 +62,15 @@ def tensaddc(t, c, i=()):
     return r
 
 def tenssub(s, t):
-    """Return the difference of two tensors.
+    """Return the difference.
     
     $$
         s - t
     $$
+    
+    See also
+    --------
+    - for difference on a single coefficient: [`tenssubc`][vector.multilinear_sparse.vector_space.tenssubc]
     """
     r = dict(s)
     for i, ti in t.items():
@@ -69,13 +81,17 @@ def tenssub(s, t):
     return r
 
 def tenssubc(t, c, i=()):
-    """Return `t` with `c` subtracted from the `i`-th coefficient.
+    """Return the difference with a basis tensor.
     
     $$
         t-ce_i
     $$
     
     More efficient than `tenssub(t, tensbasis(i, c))`.
+    
+    See also
+    --------
+    - for difference on more coefficients: [`tensub`][vector.multilinear_sparse.vector_space.tenssub]
     """
     r = dict(t)
     if i in r:
@@ -85,7 +101,7 @@ def tenssubc(t, c, i=()):
     return r
 
 def tensmul(a, t):
-    """Return the product of a scalar and a tensor.
+    """Return the product.
     
     $$
         at
@@ -94,7 +110,7 @@ def tensmul(a, t):
     return {i:a*ti for i, ti in t.items()}
 
 def tenstruediv(t, a):
-    r"""Return the true division of a tensor and a scalar.
+    r"""Return the true quotient.
     
     $$
         \frac{t}{a}
@@ -103,28 +119,28 @@ def tenstruediv(t, a):
     return {i:ti/a for i, ti in t.items()}
 
 def tensfloordiv(t, a):
-    r"""Return the floor division of a tensor and a scalar.
+    r"""Return the floor quotient.
     
     $$
-        \left(\left\lfloor\frac{t_i}{a}\right\rfloor\right)_i
+        \left\lfloor\frac{t}{a}\right\rfloor
     $$
     """
     return {i:ti//a for i, ti in t.items()}
 
 def tensmod(t, a):
-    r"""Return the elementwise mod of a tensor and a scalar.
+    r"""Return the remainder.
     
     $$
-        \left(t_i \mod a\right)_i
+        t \bmod a
     $$
     """
     return {i:ti%a for i, ti in t.items()}
 
 def tensdivmod(t, a):
-    r"""Return the elementwise divmod of a tensor and a scalar.
+    r"""Return the floor quotient and remainder.
     
     $$
-        \left(\left\lfloor\frac{t_i}{a}\right\rfloor\right)_i, \ \left(t_i \mod a\right)_i
+        \left\lfloor\frac{t}{a}\right\rfloor, \ \left(t \bmod a\right)
     $$
     """
     q, r = {}, {}

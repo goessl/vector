@@ -9,10 +9,10 @@ __all__ = ('vecshadamard', 'vecshadamardtruediv',
 
 
 def vecshadamard(*vs):
-    r"""Return the elementwise product of vectors.
+    r"""Return the elementwise product.
     
     $$
-        \left((\vec{v}_0)_i\cdot(\vec{v}_1)_i\cdot\cdots\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\min_i n_i}
+        \left((\vec{v}_0)_i\cdot(\vec{v}_1)_i\cdot\cdots\right)_i
     $$
     """
     r = {}
@@ -23,10 +23,10 @@ def vecshadamard(*vs):
     return r
 
 def vecshadamardtruediv(v, w):
-    r"""Return the elementwise true division of two vectors.
+    r"""Return the elementwise true quotient.
     
     $$
-        \left(\frac{v_i}{w_i}\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m
+        \left(\frac{v_i}{w_i}\right)_i
     $$
     """
     r = {}
@@ -39,10 +39,10 @@ def vecshadamardtruediv(v, w):
     return r
 
 def vecshadamardfloordiv(v, w):
-    r"""Return the elementwise floor division of two vectors.
+    r"""Return the elementwise floor quotient.
     
     $$
-        \left(\left\lfloor\frac{v_i}{w_i}\right\rfloor\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m
+        \left(\left\lfloor\frac{v_i}{w_i}\right\rfloor\right)_i
     $$
     """
     r = {}
@@ -55,10 +55,10 @@ def vecshadamardfloordiv(v, w):
     return r
 
 def vecshadamardmod(v, w):
-    r"""Return the elementwise mod of two vectors.
+    r"""Return the elementwise remainder.
     
     $$
-        \left(v_i \mod w_i\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m
+        \left(v_i \bmod w_i\right)_i
     $$
     """
     r = {}
@@ -71,10 +71,10 @@ def vecshadamardmod(v, w):
     return r
 
 def vecshadamarddivmod(v, w):
-    r"""Return the elementwise divmod of two vectors.
+    r"""Return the elementwise floor quotient and remainder.
     
     $$
-        \left(\left\lfloor\frac{v_i}{w_i}\right\rfloor\right)_i, \ \left(v_i \mod w_i\right)_i \qquad \mathbb{K}^n\times\mathbb{K}^m\to\mathbb{K}^n\times\mathbb{K}^n
+        \left(\left\lfloor\frac{v_i}{w_i}\right\rfloor\right)_i, \ \left(v_i \bmod w_i\right)_i
     $$
     """
     q, r = {}, {}
@@ -87,10 +87,10 @@ def vecshadamarddivmod(v, w):
     return q, r
 
 def vecshadamardmin(*vs, key=None):
-    r"""Return the elementwise minimum of vectors.
+    r"""Return the elementwise minimum.
     
     $$
-        \left(\min((\vec{v}_0)_i,(\vec{v}_1)_i,\cdots)\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}
+        \left(\min((\vec{v}_0)_i,(\vec{v}_1)_i,\cdots)\right)_i
     $$
     """
     r = {}
@@ -101,10 +101,10 @@ def vecshadamardmin(*vs, key=None):
     return r
 
 def vecshadamardmax(*vs, key=None):
-    r"""Return the elementwise maximum of vectors.
+    r"""Return the elementwise maximum.
     
     $$
-        \left(\max((\vec{v}_0)_i,(\vec{v}_1)_i,\cdots)\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}
+        \left(\max((\vec{v}_0)_i,(\vec{v}_1)_i,\cdots)\right)_i
     $$
     """
     r = {}

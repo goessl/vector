@@ -1,13 +1,15 @@
-from ..functional import vectrim, vecadd, vecsub, vechadamardmax
+from operator import add, sub
+from itertools import starmap, zip_longest
+from ..functional import vechadamardmax
 
 
 
-__all__ = ('tensrank', 'tensdim', 'tenstrim')
+__all__ = ('tensrank', 'tensdim', 'tenseq', 'tenstrim', 'tensrshift', 'tenslshift')
 
 
 
 def tensrank(t):
-    r"""Return the rank of a tensor.
+    r"""Return the rank.
     
     $$
         \text{rank}\,t
@@ -16,7 +18,7 @@ def tensrank(t):
     return max(map(len, t.keys()), default=0)
 
 def tensdim(t):
-    r"""Return the dimensionalities of a tensor.
+    r"""Return the dimensionalities.
     
     $$
         \dim t
@@ -25,7 +27,12 @@ def tensdim(t):
     return tuple(si+1 for si in vechadamardmax(*t.keys()))
 
 def tenseq(s, t):
-    """Return if two tensors are equal."""
+    r"""Return if two tensors are equal.
+    
+    $$
+        s\overset{?}{=}t
+    $$
+    """
     for i in s.keys()&t.keys():
         if i not in t:
             if bool(s[i]):
@@ -39,16 +46,34 @@ def tenseq(s, t):
     return True
 
 def tenstrim(t, tol=1e-9):
-    """Remove all near zero (`abs(t_i)<=tol`) coefficients."""
+    """Remove all near zero (`abs(t_i)<=tol`) coefficients.
+    
+    `tol` may also be `None`,
+    then all coefficients that evaluate to `False` are trimmed.
+    
+    Notes
+    -----
+    - Cutting of elements that are `abs(vi)<=tol` instead of `abs(vi)<tol` to
+    allow cutting of elements that are exactly zero by `trim(t, 0)` instead
+    of `trim(t, sys.float_info.min)`.
+    - `tol=1e-9` like in [PEP 485](https://peps.python.org/pep-0485/#defaults).
+    """
     if tol is None:
         return {i:ti for i, ti in t.items() if ti}
     else:
         return {i:ti for i, ti in t.items() if abs(ti)>tol}
 
 def tensrshift(t, n):
-    """Pad `n` many zeros to the beginning of the tensor."""
-    return {vecadd(i, n):ti for i, ti in t.items()}
+    """Shift coefficients up."""
+    #raw vector addition of indices prolly faster than vecadd
+    return {tuple(starmap(add, zip_longest(i, n, fillvalue=0))):ti
+            for i, ti in t.items()}
 
 def tenslshift(t, n):
-    """Remove `n` many coefficients at the beginning of the tensor."""
-    return {vectrim(vecsub(i, n)):ti for i, ti in t.items() if all(ii>=0 for ii in vecsub(i, n))}
+    """Shift coefficients down."""
+    r = {}
+    for i, ti in t.items():
+        i = tuple(starmap(sub, zip_longest(i, n, fillvalue=0)))
+        if all(ii>=0 for ii in i):
+            r[i] = ti
+    return r

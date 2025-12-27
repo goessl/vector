@@ -2,12 +2,12 @@ import numpy as np
 
 
 
-__all__ = ('tenrank', 'tendim', 'tentrim')
+__all__ = ('tenrank', 'tendim', 'teneq', 'tentrim', 'tenrshift', 'tenlshift')
 
 
 
 def tenrank(t):
-    r"""Return the rank of a tensor.
+    r"""Return the rank.
     
     $$
         \text{rank}\,t
@@ -20,7 +20,7 @@ def tenrank(t):
     return np.asarray(t).ndim
 
 def tendim(t):
-    r"""Return the dimensionalities of a tensor.
+    r"""Return the dimensionalities.
     
     $$
         \dim t
@@ -28,25 +28,37 @@ def tendim(t):
     
     See also
     --------
-    - one-dimensional: [`veclen`][vector.functional.utility.veclen]
     - wraps: [`numpy.ndarray.shape`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.shape.html)
     """
     return np.asarray(t).shape
 
-#TODO: teneq
+def teneq(s, t):
+    r"""Return if two tensors are equal.
+    
+    $$
+        s\overset{?}{=}t
+    $$
+    """
+    raise NotImplementedError
 
 def tentrim(t, tol=1e-9):
-    """Remove all trailing near zero (`abs(v_i)<=tol`) coefficients.
+    """Remove all trailing near zero (`abs(t_i)<=tol`) coefficients.
     
-    See also
-    --------
-    - one-dimensional: [`vectrim`][vector.functional.utility.vectrim]
+    `tol` may also be `None`,
+    then all coefficients that evaluate to `False` are trimmed.
+    
+    Notes
+    -----
+    - Cutting of elements that are `abs(vi)<=tol` instead of `abs(vi)<tol` to
+    allow cutting of elements that are exactly zero by `trim(t, 0)` instead
+    of `trim(t, sys.float_info.min)`.
+    - `tol=1e-9` like in [PEP 485](https://peps.python.org/pep-0485/#defaults).
     """
     t = np.asarray(t)
     for d in range(t.ndim): #reduce dimension
         slc_idx = (slice(None),)*d + (-1,) + (...,)
         slc_drop = (slice(None),)*d + (slice(-1),) + (...,)
-        while t.shape[d]>0 and np.all(np.abs(t[slc_idx])<=tol):
+        while t.shape[d]>0 and np.all(t[slc_idx].astype(bool) if tol is None else np.abs(t[slc_idx])<=tol):
             t = t[slc_drop]
     if t.size == 0:
         return t.reshape((0,))
@@ -55,21 +67,19 @@ def tentrim(t, tol=1e-9):
     return t
 
 def tenrshift(t, n):
-    """Pad `n` many zeros to the beginning of the tensor.
+    """Shift coefficients up.
     
     See also
     --------
-    - one-dimensional: [`vecrshift`][vector.functional.utility.vecrshift]
     - wraps: [`numpy.pad`](https://numpy.org/doc/stable/reference/generated/numpy.pad.html)
     """
     return np.pad(t, tuple((ni, 0) for ni in n))
 
 def tenlshift(t, n):
-    """Remove `n` many coefficients at the beginning of the tensor.
+    """Shift coefficients down.
     
     See also
     --------
-    - one-dimensional: [`veclshift`][vector.functional.utility.veclshift]
     - wraps: [`numpy.pad`](https://numpy.org/doc/stable/reference/generated/numpy.pad.html)
     """
     return np.array(t)[*(slice(ni, None) for ni in n)].copy()
