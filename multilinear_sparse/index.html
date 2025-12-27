@@ -24,7 +24,7 @@
     
     
       
-        <title>Multilinear - vector</title>
+        <title>Multilinear Sparse - vector</title>
       
     
     
@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#multilinear" class="md-skip">
+        <a href="#multilinear-sparse" class="md-skip">
           Skip to content
         </a>
       
@@ -120,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Multilinear
+              Multilinear Sparse
             
           </span>
         </div>
@@ -404,7 +404,7 @@
   
   
   <span class="md-ellipsis">
-    Multilinear
+    Multilinear Sparse
     
   </span>
   
@@ -417,7 +417,7 @@
   
   
   <span class="md-ellipsis">
-    Multilinear
+    Multilinear Sparse
     
   </span>
   
@@ -555,15 +555,6 @@
   <a href="#vector.multilinear_sparse.utility.tenstrim" class="md-nav__link">
     <span class="md-ellipsis">
       tenstrim
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#vector.multilinear_sparse.utility.tensround" class="md-nav__link">
-    <span class="md-ellipsis">
-      tensround
     </span>
   </a>
   
@@ -936,15 +927,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#vector.multilinear_sparse.utility.tensround" class="md-nav__link">
-    <span class="md-ellipsis">
-      tensround
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1176,7 +1158,7 @@
   
 
 
-<h1 id="multilinear">Multilinear</h1>
+<h1 id="multilinear-sparse">Multilinear Sparse</h1>
 
 
 <div class="doc doc-object doc-module">
@@ -1696,51 +1678,6 @@
         <span class="k">return</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span><span class="n">ti</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ti</span> <span class="ow">in</span> <span class="n">t</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">ti</span><span class="p">}</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span><span class="n">ti</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ti</span> <span class="ow">in</span> <span class="n">t</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">ti</span><span class="p">)</span><span class="o">&gt;</span><span class="n">tol</span><span class="p">}</span>
-</code></pre></div></td></tr></table></div>
-            </details>
-    </div>
-
-</div>
-
-
-
-
-
-
-<div class="doc doc-object doc-function">
-
-
-<h3 id="vector.multilinear_sparse.utility.tensround" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">tensround</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">ndigits</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
-
-</h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Round all coefficients to the given precision.</p>
-<div class="arithmatex">\[
-    (\text{round}_\text{ndigits}(v_i))_i
-\]</div>
-
-
-            <details class="quote">
-              <summary>Source code in <code>vector\multilinear_sparse\utility.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tensround</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">ndigits</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Round all coefficients to the given precision.</span>
-
-<span class="sd">    $$</span>
-<span class="sd">        (\text{round}_\text{ndigits}(v_i))_i</span>
-<span class="sd">    $$</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span><span class="nb">round</span><span class="p">(</span><span class="n">ti</span><span class="p">,</span> <span class="n">ndigits</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ti</span> <span class="ow">in</span> <span class="n">t</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>

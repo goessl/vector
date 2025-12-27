@@ -507,15 +507,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#vector.multilinear.utility.tenround" class="md-nav__link">
-    <span class="md-ellipsis">
-      tenround
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -757,7 +748,7 @@
   
   
   <span class="md-ellipsis">
-    Multilinear
+    Multilinear Sparse
     
   </span>
   
@@ -876,15 +867,6 @@
   <a href="#vector.multilinear.utility.tentrim" class="md-nav__link">
     <span class="md-ellipsis">
       tentrim
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#vector.multilinear.utility.tenround" class="md-nav__link">
-    <span class="md-ellipsis">
-      tenround
     </span>
   </a>
   
@@ -1651,69 +1633,6 @@ the outer corner.</p>
     <span class="k">while</span> <span class="n">t</span><span class="o">.</span><span class="n">ndim</span><span class="o">&gt;</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span> <span class="c1">#reduce rank</span>
         <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">t</span>
-</code></pre></div></td></tr></table></div>
-            </details>
-    </div>
-
-</div>
-
-
-
-
-
-
-<div class="doc doc-object doc-function">
-
-
-<h3 id="vector.multilinear.utility.tenround" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">tenround</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">ndigits</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
-
-</h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Round all coefficients to the given precision.</p>
-<div class="arithmatex">\[
-    (\text{round}_\text{ndigits}(v_i))_i
-\]</div>
-
-
-<details class="see-also" open>
-  <summary>See also</summary>
-  <ul>
-<li>one-dimensional: <a class="autorefs autorefs-internal" title="            vecround(v, ndigits=None)" href="../functional/#vector.functional.utility.vecround"><code>vecround</code></a></li>
-<li>wraps: <a href="https://numpy.org/doc/stable/reference/generated/numpy.round.html"><code>numpy.round</code></a></li>
-</ul>
-</details>
-
-            <details class="quote">
-              <summary>Source code in <code>vector\multilinear\utility.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenround</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">ndigits</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Round all coefficients to the given precision.</span>
-
-<span class="sd">    $$</span>
-<span class="sd">        (\text{round}_\text{ndigits}(v_i))_i</span>
-<span class="sd">    $$</span>
-
-<span class="sd">    See also</span>
-<span class="sd">    --------</span>
-<span class="sd">    - one-dimensional: [`vecround`][vector.functional.utility.vecround]</span>
-<span class="sd">    - wraps: [`numpy.round`](https://numpy.org/doc/stable/reference/generated/numpy.round.html)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="n">ndigits</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -3243,13 +3162,13 @@ the outer corner.</p>
         
         
           
-          <a href="../multilinear_sparse/" class="md-footer__link md-footer__link--next" aria-label="Next: Multilinear">
+          <a href="../multilinear_sparse/" class="md-footer__link md-footer__link--next" aria-label="Next: Multilinear Sparse">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Multilinear
+                Multilinear Sparse
               </div>
             </div>
             <div class="md-footer__button md-icon">
