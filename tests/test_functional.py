@@ -47,11 +47,6 @@ def test_vectrim():
     assert vectrim((0,)) == veczero
     assert vectrim((1, 0)) == (1,)
 
-def test_vecround():
-    assert vecround(veczero) == veczero
-    assert vecround((1.1, 2.2)) == (1, 2)
-    assert vecround((1.12, 2.23), ndigits=1) == (1.1, 2.2)
-
 def test_vecrshift():
     assert vecrshift(veczero, 2) == (0, 0)
     assert vecrshift((1, 2, 3), 2) == (0, 0, 1, 2, 3)

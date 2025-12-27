@@ -2,24 +2,10 @@ from ..lazy import veclpos, veclneg, vecladd, vecladdc, veclsub, veclsubc, veclm
 
 
 
-__all__ = ('vecmap', 'vecpos', 'vecneg', 'vecadd', 'vecaddc', 'vecsub', 'vecsubc',
+__all__ = ('vecpos', 'vecneg', 'vecadd', 'vecaddc', 'vecsub', 'vecsubc',
            'vecmul', 'vectruediv', 'vecfloordiv', 'vecmod', 'vecdivmod')
 
 
-def vecmap(f, v):
-    r"""Return the vector with the function `f` applied elementwise.
-    
-    $$
-        \left(f(v_i)\right_i \qquad \mathbb{K}^n\to\mathbb{K}^n
-    $$
-    
-    Complexity
-    ----------
-    For a vector of length $n$ there will be
-    
-    - $n$ scalar calls to `f`.
-    """
-    return tuple(map(f, v))
 
 def vecpos(v):
     r"""Return the vector with the unary positive operator applied.

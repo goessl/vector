@@ -2,7 +2,7 @@ from ..functional import vectrim, vecadd, vecsub, vechadamardmax
 
 
 
-__all__ = ('tensrank', 'tensdim', 'tenstrim', 'tensround')
+__all__ = ('tensrank', 'tensdim', 'tenstrim')
 
 
 
@@ -44,15 +44,6 @@ def tenstrim(t, tol=1e-9):
         return {i:ti for i, ti in t.items() if ti}
     else:
         return {i:ti for i, ti in t.items() if abs(ti)>tol}
-
-def tensround(t, ndigits=0):
-    r"""Round all coefficients to the given precision.
-    
-    $$
-        (\text{round}_\text{ndigits}(v_i))_i
-    $$
-    """
-    return {i:round(ti, ndigits) for i, ti in t.items()}
 
 def tensrshift(t, n):
     """Pad `n` many zeros to the beginning of the tensor."""

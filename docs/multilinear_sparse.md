@@ -1,4 +1,4 @@
-# Multilinear
+# Multilinear Sparse
 
 ::: vector.multilinear_sparse
     options:

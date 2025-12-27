@@ -32,10 +32,6 @@ def test_tentrim():
     assert tenstrim({(1, 2, 3):4, (5, 6, 7, 8):0}) == {(1, 2, 3):4}
     assert tenstrim(tenszero) == tenszero
 
-def test_tenround():
-    assert tensround({(1, 2, 3):1.1}) == {(1, 2, 3):1}
-    assert tensround({(1, 2, 3):1.12}, 1) == {(1, 2, 3):1.1}
-
 
 #vector space
 def test_tesnpos():

@@ -148,15 +148,6 @@ class Vector:
         """
         return type(self)(vectrim(self, tol))
     
-    def round(self, ndigits=None):
-        """Round all coefficients to the given precision.
-        
-        See also
-        --------
-        [`vecround`][vector.functional.vecround]
-        """
-        return type(self)(vecround(self, ndigits))
-    
     def is_parallel(self, other):
         """Return if the other vector is parallel.
         

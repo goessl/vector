@@ -2,7 +2,7 @@ import numpy as np
 
 
 
-__all__ = ('tenrank', 'tendim', 'tentrim', 'tenround')
+__all__ = ('tenrank', 'tendim', 'tentrim')
 
 
 
@@ -53,20 +53,6 @@ def tentrim(t, tol=1e-9):
     while t.ndim>1 and t.shape[-1]==1: #reduce rank
         t = t[..., 0]
     return t
-
-def tenround(t, ndigits=0):
-    r"""Round all coefficients to the given precision.
-    
-    $$
-        (\text{round}_\text{ndigits}(v_i))_i
-    $$
-    
-    See also
-    --------
-    - one-dimensional: [`vecround`][vector.functional.utility.vecround]
-    - wraps: [`numpy.round`](https://numpy.org/doc/stable/reference/generated/numpy.round.html)
-    """
-    return np.round(t, decimals=ndigits)
 
 def tenrshift(t, n):
     """Pad `n` many zeros to the beginning of the tensor.

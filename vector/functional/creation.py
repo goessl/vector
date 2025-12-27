@@ -35,7 +35,7 @@ def vecbases(start=0, c=1, zero=0):
     r"""Yield all basis vectors.
     
     $$
-        \left(\vec{e}_n\right)_\mathbb{n\in\mathbb{N_0}} = \left(\vec{e}_0, \vec{e}_1, \vec{e}_2, \dots \right)
+        \left(\vec{e}_n\right)_{n\in\mathbb{N_0}} = \left(\vec{e}_0, \vec{e}_1, \vec{e}_2, \dots \right)
     $$
     
     See also

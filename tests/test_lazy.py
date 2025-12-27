@@ -33,11 +33,6 @@ def test_vectrim():
     assert tuple(vecltrim((0,))) == vectrim((0,))
     assert tuple(vecltrim((1, 0))) == vectrim((1, 0))
 
-def test_veclround():
-    assert tuple(veclround(veclzero())) == vecround(veczero)
-    assert tuple(veclround((1.1, 2.2))) == vecround((1.1, 2.2))
-    assert tuple(veclround((1.12, 2.23), ndigits=1)) == vecround((1.12, 2.23), ndigits=1)
-
 def test_veclrshift():
     assert tuple(veclrshift(veclzero(), 2)) == vecrshift(veczero, 2)
     assert tuple(veclrshift((1, 2, 3), 2)) == vecrshift((1, 2, 3), 2)

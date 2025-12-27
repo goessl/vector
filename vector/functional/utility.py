@@ -1,8 +1,8 @@
-from ..lazy import vecleq, veclround, veclrshift, vecllshift
+from ..lazy import vecleq, veclrshift, vecllshift
 
 
 
-__all__ = ('veclen', 'veceq', 'vectrim', 'vecround', 'vecrshift', 'veclshift')
+__all__ = ('veclen', 'veceq', 'vectrim', 'vecrshift', 'veclshift')
 
 
 
@@ -62,21 +62,6 @@ def vectrim(v, tol=1e-9):
             r.extend(t)
             t.clear()
     return tuple(r)
-
-def vecround(v, ndigits=None):
-    r"""Round all coefficients to the given precision.
-    
-    $$
-        (\text{round}_\text{ndigits}(v_i))_i \qquad \mathbb{K}^n\to\mathbb{K}^n
-    $$
-    
-    Complexity
-    ----------
-    For a vector of length $n$ there will be
-    
-    - $n$ scalar roundings (`round`).
-    """
-    return tuple(veclround(v, ndigits=ndigits))
 
 def vecrshift(v, n, zero=0):
     r"""Pad `n` many `zero`s to the beginning of the vector.

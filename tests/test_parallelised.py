@@ -48,10 +48,6 @@ def test_vecnptrim():
                                      [5, 6, 7    , 8e-13]]), [[1, 2, 3e-10],
                                                               [5, 6, 7]])
 
-def test_vecnpround():
-    assert np.array_equal(vecnpround([1.1, 2.2]), [1, 2])
-    assert np.array_equal(vecnpround([1.12, 2.23], 1), [1.1, 2.2])
-
 
 #Hilbert space
 def test_vecnpabsq():

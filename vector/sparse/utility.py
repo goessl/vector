@@ -1,4 +1,4 @@
-__all__ = ('vecseq', 'vecstrim', 'vecsround', 'vecsrshift', 'vecslshift')
+__all__ = ('vecseq', 'vecstrim', 'vecsrshift', 'vecslshift')
 
 
 
@@ -54,21 +54,6 @@ def vecstrim(v, tol=1e-9):
     - `tol=1e-9` like in [PEP 485](https://peps.python.org/pep-0485/#defaults).
     """
     return {i:vi for i, vi in v.items() if (vi if tol is None else abs(vi)>tol)}
-
-def vecsround(v, ndigits=None):
-    r"""Round all coefficients to the given precision.
-    
-    $$
-        (\text{round}_\text{ndigits}(v_i))_i \qquad \mathbb{K}^n\to\mathbb{K}^n
-    $$
-    
-    Complexity
-    ----------
-    For a vector of $n$ elements there will be
-    
-    - $n$ scalar roundings (`round`).
-    """
-    return {i:round(vi, ndigits) for i, vi in v.items()}
 
 def vecsrshift(v, n):
     r"""Pad `n` many `zero`s to the beginning of the vector.

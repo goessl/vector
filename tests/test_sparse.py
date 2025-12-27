@@ -47,11 +47,6 @@ def test_vecstrim():
     assert vecstrim({1:0, 2:0, 5:0}) == vecszero
     assert vecstrim({2:0, 5:1, 10:0}) == {5:1}
 
-def test_vecsround():
-    assert vecsround(vecszero) == vecszero
-    assert vecsround({0:1.1, 1:2.2}) == {0:1, 1:2}
-    assert vecsround({0:1.12, 1:2.23}, ndigits=1) == {0:1.1, 1:2.2}
-
 def test_vecsrshift():
     assert vecsrshift(vecszero, 2) == vecszero
     assert vecsrshift({0:1, 1:2, 2:3}, 2) == {2:1, 3:2, 4:3}

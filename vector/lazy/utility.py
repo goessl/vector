@@ -2,7 +2,7 @@ from itertools import chain, islice, repeat, zip_longest
 
 
 
-__all__ = ('vecleq', 'vecltrim', 'veclround', 'veclrshift', 'vecllshift')
+__all__ = ('vecleq', 'vecltrim', 'veclrshift', 'vecllshift')
 
 
 
@@ -46,15 +46,6 @@ def vecltrim(v, tol=1e-9):
         if (x if tol is None else abs(x)>tol):
             yield from t
             t.clear()
-
-def veclround(v, ndigits=None):
-    r"""Round all coefficients to the given precision.
-    
-    $$
-        (\text{round}_\text{ndigits}(v_i))_i \qquad \mathbb{K}^n\to\mathbb{K}^n
-    $$
-    """
-    yield from (round(c, ndigits) for c in v)
 
 def veclrshift(v, n, zero=0):
     r"""Pad `n` many `zero`s to the beginning of the vector.
