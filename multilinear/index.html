@@ -326,28 +326,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../objectoriented/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Object-oriented
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../parallelised/" class="md-nav__link">
         
   
@@ -499,9 +477,36 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#vector.multilinear.utility.teneq" class="md-nav__link">
+    <span class="md-ellipsis">
+      teneq
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#vector.multilinear.utility.tentrim" class="md-nav__link">
     <span class="md-ellipsis">
       tentrim
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector.multilinear.utility.tenrshift" class="md-nav__link">
+    <span class="md-ellipsis">
+      tenrshift
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector.multilinear.utility.tenlshift" class="md-nav__link">
+    <span class="md-ellipsis">
+      tenlshift
     </span>
   </a>
   
@@ -700,6 +705,15 @@
   <a href="#vector.multilinear.elementwise.tenhadamardmod" class="md-nav__link">
     <span class="md-ellipsis">
       tenhadamardmod
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector.multilinear.elementwise.tenhadamarddivmod" class="md-nav__link">
+    <span class="md-ellipsis">
+      tenhadamarddivmod
     </span>
   </a>
   
@@ -864,9 +878,36 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#vector.multilinear.utility.teneq" class="md-nav__link">
+    <span class="md-ellipsis">
+      teneq
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#vector.multilinear.utility.tentrim" class="md-nav__link">
     <span class="md-ellipsis">
       tentrim
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector.multilinear.utility.tenrshift" class="md-nav__link">
+    <span class="md-ellipsis">
+      tenrshift
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector.multilinear.utility.tenlshift" class="md-nav__link">
+    <span class="md-ellipsis">
+      tenlshift
     </span>
   </a>
   
@@ -1071,6 +1112,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#vector.multilinear.elementwise.tenhadamarddivmod" class="md-nav__link">
+    <span class="md-ellipsis">
+      tenhadamarddivmod
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#vector.multilinear.elementwise.tenhadamardmin" class="md-nav__link">
     <span class="md-ellipsis">
       tenhadamardmin
@@ -1125,7 +1175,7 @@
         <p>Tensor arithmetic.</p>
 <p>Prefixed by <code>ten...</code> (tensor).</p>
 <p>Handle multiaxis vectors, that for example represent multivariate polynomials.</p>
-<p>Tensors are accepted as <a href="https://numpy.org/doc/stable/glossary.html#term-array_like"><code>numpy.array_like</code></a> and returned as <code>numpy.ndarray</code>s.</p>
+<p>Tensors are accepted as <a href="https://numpy.org/doc/stable/glossary.html#term-array_like"><code>numpy.array_like</code></a> and returned as <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html"><code>numpy.ndarray</code></a>s.</p>
 <p>Broadcasting happens similar to <a href="https://numpy.org/doc/stable/user/basics.broadcasting.html"><code>numpy</code>s broadcasting</a>,
 but the axes are matched in ascending order instead of descending order, and
 the arrays don't get stretched but rather padded with zeros.</p>
@@ -1190,8 +1240,9 @@ the arrays don't get stretched but rather padded with zeros.</p>
 
         <p>Zero tensor.</p>
 <div class="arithmatex">\[
-    0
+    0 \qquad \mathbb{K}^0
 \]</div>
+<p>An empty array.</p>
 
 
 <details class="note" open>
@@ -1199,13 +1250,6 @@ the arrays don't get stretched but rather padded with zeros.</p>
   <p>Why shape <code>(0,)</code> (=one dimensional, zero length) instead of <code>()</code> (zero dimensional)?</p>
 <p>Shape <code>()</code> would be size one (empty product) and a scalar that could have any nonzero value.</p>
 <p>Dimensionality of one isn't perfect, but at least its size is then zero and it couldn't be any arbitrary value.</p>
-</details>
-
-<details class="see-also" open>
-  <summary>See also</summary>
-  <ul>
-<li>one-dimensional: <a class="autorefs autorefs-internal" title="            veczero = ()" href="../functional/#vector.functional.creation.veczero"><code>veczero</code></a></li>
-</ul>
 </details>
     </div>
 
@@ -1227,7 +1271,7 @@ the arrays don't get stretched but rather padded with zeros.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return the <code>i</code>-th basis tensor times <code>c</code>.</p>
+        <p>Return a basis tensor.</p>
 <div class="arithmatex">\[
     ce_i
 \]</div>
@@ -1235,16 +1279,11 @@ the arrays don't get stretched but rather padded with zeros.</p>
 the outer corner.</p>
 
 
-<details class="see-also" open>
-  <summary>See also</summary>
-  <ul>
-<li>one-dimensional: <a class="autorefs autorefs-internal" title="            vecbasis(i, c=1, zero=0)" href="../functional/#vector.functional.creation.vecbasis"><code>vecbasis</code></a></li>
-</ul>
-</details>
-
             <details class="quote">
               <summary>Source code in <code>vector\multilinear\creation.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">30</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
 <span class="normal">31</span>
 <span class="normal">32</span>
 <span class="normal">33</span>
@@ -1254,14 +1293,8 @@ the outer corner.</p>
 <span class="normal">37</span>
 <span class="normal">38</span>
 <span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenbasis</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the `i`-th basis tensor times `c`.</span>
+<span class="normal">40</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenbasis</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a basis tensor.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        ce_i</span>
@@ -1269,10 +1302,6 @@ the outer corner.</p>
 
 <span class="sd">    Returns a `numpy.ndarray` with `i+1` zeros in each direction and a `c` in</span>
 <span class="sd">    the outer corner.</span>
-
-<span class="sd">    See also</span>
-<span class="sd">    --------</span>
-<span class="sd">    - one-dimensional: [`vecbasis`][vector.functional.creation.vecbasis]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">result_type</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
     <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span> <span class="c1">#dont unpack i, it might be a scalar</span>
@@ -1299,23 +1328,35 @@ the outer corner.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return a random tensor of <code>d</code> uniform coefficients in <code>[0, 1[</code>.</p>
+        <p>Return a random tensor of uniform sampled <code>float</code> coefficients.</p>
 <div class="arithmatex">\[
     t \sim \mathcal{U}^d([0, 1[)
 \]</div>
+<p>The coefficients are sampled from a uniform distribution in <code>[0, 1[</code>.</p>
 
+
+<details class="note" open>
+  <summary>Notes</summary>
+  <p>Naming like <a href="https://numpy.org/doc/stable/reference/random/legacy.html"><code>numpy.random</code></a>,
+because seems more concise (not <code>random</code> &amp; <code>gauss</code> as in the stdlib).</p>
+</details>
 
 <details class="see-also" open>
   <summary>See also</summary>
   <ul>
-<li>one-dimensional: <a class="autorefs autorefs-internal" title="            vecrand(n)" href="../functional/#vector.functional.creation.vecrand"><code>vecrand</code></a></li>
 <li>wraps: <a href="https://numpy.org/doc/stable/reference/generated/numpy.random.rand.html"><code>numpy.random.rand</code></a></li>
 </ul>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\multilinear\creation.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">48</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
 <span class="normal">49</span>
 <span class="normal">50</span>
 <span class="normal">51</span>
@@ -1328,15 +1369,21 @@ the outer corner.</p>
 <span class="normal">58</span>
 <span class="normal">59</span>
 <span class="normal">60</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenrand</span><span class="p">(</span><span class="o">*</span><span class="n">d</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return a random tensor of `d` uniform coefficients in `[0, 1[`.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return a random tensor of uniform sampled `float` coefficients.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        t \sim \mathcal{U}^d([0, 1[)</span>
 <span class="sd">    $$</span>
 
+<span class="sd">    The coefficients are sampled from a uniform distribution in `[0, 1[`.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Naming like [`numpy.random`](https://numpy.org/doc/stable/reference/random/legacy.html),</span>
+<span class="sd">    because seems more concise (not `random` &amp; `gauss` as in the stdlib).</span>
+
 <span class="sd">    See also</span>
 <span class="sd">    --------</span>
-<span class="sd">    - one-dimensional: [`vecrand`][vector.functional.creation.vecrand]</span>
 <span class="sd">    - wraps: [`numpy.random.rand`](https://numpy.org/doc/stable/reference/generated/numpy.random.rand.html)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="o">*</span><span class="n">d</span><span class="p">)</span>
@@ -1362,16 +1409,22 @@ the outer corner.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return a random tensor of <code>d</code> normal distributed coefficients.</p>
+        <p>Return a random tensor of normal sampled <code>float</code> coefficients.</p>
 <div class="arithmatex">\[
-    t \sim \mathcal{N}^d
+    t \sim \mathcal{N}^d(0, 1)
 \]</div>
+<p>The coefficients are sampled from a normal distribution.</p>
 
+
+<details class="note" open>
+  <summary>Notes</summary>
+  <p>Naming like <a href="https://numpy.org/doc/stable/reference/random/legacy.html"><code>numpy.random</code></a>,
+because seems more concise (not <code>random</code> &amp; <code>gauss</code> as in the stdlib).</p>
+</details>
 
 <details class="see-also" open>
   <summary>See also</summary>
   <ul>
-<li>one-dimensional: <a class="autorefs autorefs-internal" title="            vecrandn(n, normed=True, mu=0, sigma=1, weights=None)" href="../functional/#vector.functional.creation.vecrandn"><code>vecrandn</code></a></li>
 <li>wraps: <a href="https://numpy.org/doc/stable/reference/generated/numpy.random.randn.html"><code>numpy.random.randn</code></a></li>
 </ul>
 </details>
@@ -1390,16 +1443,28 @@ the outer corner.</p>
 <span class="normal">71</span>
 <span class="normal">72</span>
 <span class="normal">73</span>
-<span class="normal">74</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenrandn</span><span class="p">(</span><span class="o">*</span><span class="n">d</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return a random tensor of `d` normal distributed coefficients.</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenrandn</span><span class="p">(</span><span class="o">*</span><span class="n">d</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return a random tensor of normal sampled `float` coefficients.</span>
 
 <span class="sd">    $$</span>
-<span class="sd">        t \sim \mathcal{N}^d</span>
+<span class="sd">        t \sim \mathcal{N}^d(0, 1)</span>
 <span class="sd">    $$</span>
+
+<span class="sd">    The coefficients are sampled from a normal distribution.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Naming like [`numpy.random`](https://numpy.org/doc/stable/reference/random/legacy.html),</span>
+<span class="sd">    because seems more concise (not `random` &amp; `gauss` as in the stdlib).</span>
 
 <span class="sd">    See also</span>
 <span class="sd">    --------</span>
-<span class="sd">    - one-dimensional: [`vecrandn`][vector.functional.creation.vecrandn]</span>
 <span class="sd">    - wraps: [`numpy.random.randn`](https://numpy.org/doc/stable/reference/generated/numpy.random.randn.html)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="o">*</span><span class="n">d</span><span class="p">)</span>
@@ -1463,7 +1528,7 @@ the outer corner.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return the rank of a tensor.</p>
+        <p>Return the rank.</p>
 <div class="arithmatex">\[
     \text{rank}\,t
 \]</div>
@@ -1490,7 +1555,7 @@ the outer corner.</p>
 <span class="normal">18</span>
 <span class="normal">19</span>
 <span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenrank</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the rank of a tensor.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the rank.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \text{rank}\,t</span>
@@ -1523,7 +1588,7 @@ the outer corner.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return the dimensionalities of a tensor.</p>
+        <p>Return the dimensionalities.</p>
 <div class="arithmatex">\[
     \dim t
 \]</div>
@@ -1532,7 +1597,6 @@ the outer corner.</p>
 <details class="see-also" open>
   <summary>See also</summary>
   <ul>
-<li>one-dimensional: <a class="autorefs autorefs-internal" title="            veclen(v)" href="../functional/#vector.functional.utility.veclen"><code>veclen</code></a></li>
 <li>wraps: <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.shape.html"><code>numpy.ndarray.shape</code></a></li>
 </ul>
 </details>
@@ -1550,9 +1614,8 @@ the outer corner.</p>
 <span class="normal">30</span>
 <span class="normal">31</span>
 <span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tendim</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the dimensionalities of a tensor.</span>
+<span class="normal">33</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tendim</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the dimensionalities.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \dim t</span>
@@ -1560,10 +1623,54 @@ the outer corner.</p>
 
 <span class="sd">    See also</span>
 <span class="sd">    --------</span>
-<span class="sd">    - one-dimensional: [`veclen`][vector.functional.utility.veclen]</span>
 <span class="sd">    - wraps: [`numpy.ndarray.shape`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.shape.html)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="vector.multilinear.utility.teneq" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">teneq</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return if two tensors are equal.</p>
+<div class="arithmatex">\[
+    s\overset{?}{=}t
+\]</div>
+
+
+            <details class="quote">
+              <summary>Source code in <code>vector\multilinear\utility.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">teneq</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return if two tensors are equal.</span>
+
+<span class="sd">    $$</span>
+<span class="sd">        s\overset{?}{=}t</span>
+<span class="sd">    $$</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -1586,25 +1693,24 @@ the outer corner.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Remove all trailing near zero (<code>abs(v_i)&lt;=tol</code>) coefficients.</p>
+        <p>Remove all trailing near zero (<code>abs(t_i)&lt;=tol</code>) coefficients.</p>
+<p><code>tol</code> may also be <code>None</code>,
+then all coefficients that evaluate to <code>False</code> are trimmed.</p>
 
 
-<details class="see-also" open>
-  <summary>See also</summary>
+<details class="note" open>
+  <summary>Notes</summary>
   <ul>
-<li>one-dimensional: <a class="autorefs autorefs-internal" title="            vectrim(v, tol=1e-09)" href="../functional/#vector.functional.utility.vectrim"><code>vectrim</code></a></li>
+<li>Cutting of elements that are <code>abs(vi)&lt;=tol</code> instead of <code>abs(vi)&lt;tol</code> to
+allow cutting of elements that are exactly zero by <code>trim(t, 0)</code> instead
+of <code>trim(t, sys.float_info.min)</code>.</li>
+<li><code>tol=1e-9</code> like in <a href="https://peps.python.org/pep-0485/#defaults">PEP 485</a>.</li>
 </ul>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\multilinear\utility.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">44</span>
 <span class="normal">45</span>
 <span class="normal">46</span>
 <span class="normal">47</span>
@@ -1615,18 +1721,36 @@ the outer corner.</p>
 <span class="normal">52</span>
 <span class="normal">53</span>
 <span class="normal">54</span>
-<span class="normal">55</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tentrim</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove all trailing near zero (`abs(v_i)&lt;=tol`) coefficients.</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tentrim</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove all trailing near zero (`abs(t_i)&lt;=tol`) coefficients.</span>
 
-<span class="sd">    See also</span>
-<span class="sd">    --------</span>
-<span class="sd">    - one-dimensional: [`vectrim`][vector.functional.utility.vectrim]</span>
+<span class="sd">    `tol` may also be `None`,</span>
+<span class="sd">    then all coefficients that evaluate to `False` are trimmed.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    - Cutting of elements that are `abs(vi)&lt;=tol` instead of `abs(vi)&lt;tol` to</span>
+<span class="sd">    allow cutting of elements that are exactly zero by `trim(t, 0)` instead</span>
+<span class="sd">    of `trim(t, sys.float_info.min)`.</span>
+<span class="sd">    - `tol=1e-9` like in [PEP 485](https://peps.python.org/pep-0485/#defaults).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">ndim</span><span class="p">):</span> <span class="c1">#reduce dimension</span>
         <span class="n">slc_idx</span> <span class="o">=</span> <span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">),)</span><span class="o">*</span><span class="n">d</span> <span class="o">+</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,)</span> <span class="o">+</span> <span class="p">(</span><span class="o">...</span><span class="p">,)</span>
         <span class="n">slc_drop</span> <span class="o">=</span> <span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">),)</span><span class="o">*</span><span class="n">d</span> <span class="o">+</span> <span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">),)</span> <span class="o">+</span> <span class="p">(</span><span class="o">...</span><span class="p">,)</span>
-        <span class="k">while</span> <span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">d</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">slc_idx</span><span class="p">])</span><span class="o">&lt;=</span><span class="n">tol</span><span class="p">):</span>
+        <span class="k">while</span> <span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">d</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">slc_idx</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span> <span class="k">if</span> <span class="n">tol</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">slc_idx</span><span class="p">])</span><span class="o">&lt;=</span><span class="n">tol</span><span class="p">):</span>
             <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">slc_drop</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">t</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">0</span><span class="p">,))</span>
@@ -1644,8 +1768,98 @@ the outer corner.</p>
 
 
 
+<div class="doc doc-object doc-function">
 
 
+<h3 id="vector.multilinear.utility.tenrshift" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">tenrshift</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Shift coefficients up.</p>
+
+
+<details class="see-also" open>
+  <summary>See also</summary>
+  <ul>
+<li>wraps: <a href="https://numpy.org/doc/stable/reference/generated/numpy.pad.html"><code>numpy.pad</code></a></li>
+</ul>
+</details>
+
+            <details class="quote">
+              <summary>Source code in <code>vector\multilinear\utility.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenrshift</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Shift coefficients up.</span>
+
+<span class="sd">    See also</span>
+<span class="sd">    --------</span>
+<span class="sd">    - wraps: [`numpy.pad`](https://numpy.org/doc/stable/reference/generated/numpy.pad.html)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">((</span><span class="n">ni</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">ni</span> <span class="ow">in</span> <span class="n">n</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="vector.multilinear.utility.tenlshift" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">tenlshift</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Shift coefficients down.</p>
+
+
+<details class="see-also" open>
+  <summary>See also</summary>
+  <ul>
+<li>wraps: <a href="https://numpy.org/doc/stable/reference/generated/numpy.pad.html"><code>numpy.pad</code></a></li>
+</ul>
+</details>
+
+            <details class="quote">
+              <summary>Source code in <code>vector\multilinear\utility.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenlshift</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Shift coefficients down.</span>
+
+<span class="sd">    See also</span>
+<span class="sd">    --------</span>
+<span class="sd">    - wraps: [`numpy.pad`](https://numpy.org/doc/stable/reference/generated/numpy.pad.html)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">t</span><span class="p">)[</span><span class="o">*</span><span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="n">ni</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="k">for</span> <span class="n">ni</span> <span class="ow">in</span> <span class="n">n</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
 
 
 
@@ -1866,7 +2080,7 @@ the outer corner.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return the tensor with the unary positive operator applied.</p>
+        <p>Return the identity.</p>
 <div class="arithmatex">\[
     +t
 \]</div>
@@ -1875,7 +2089,6 @@ the outer corner.</p>
 <details class="see-also" open>
   <summary>See also</summary>
   <ul>
-<li>one-dimensional: <a class="autorefs autorefs-internal" title="            vecpos(v)" href="../functional/#vector.functional.vector_space.vecpos"><code>vecpos</code></a></li>
 <li>wraps: <a href="https://numpy.org/doc/stable/reference/generated/numpy.positive.html"><code>numpy.positive</code></a></li>
 </ul>
 </details>
@@ -1893,9 +2106,8 @@ the outer corner.</p>
 <span class="normal">19</span>
 <span class="normal">20</span>
 <span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenpos</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the tensor with the unary positive operator applied.</span>
+<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenpos</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the identity.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        +t</span>
@@ -1903,7 +2115,6 @@ the outer corner.</p>
 
 <span class="sd">    See also</span>
 <span class="sd">    --------</span>
-<span class="sd">    - one-dimensional: [`vecpos`][vector.functional.vector_space.vecpos]</span>
 <span class="sd">    - wraps: [`numpy.positive`](https://numpy.org/doc/stable/reference/generated/numpy.positive.html)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">positive</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
@@ -1929,7 +2140,7 @@ the outer corner.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return the tensor with the unary negative operator applied.</p>
+        <p>Return the negation.</p>
 <div class="arithmatex">\[
     -t
 \]</div>
@@ -1938,14 +2149,14 @@ the outer corner.</p>
 <details class="see-also" open>
   <summary>See also</summary>
   <ul>
-<li>one-dimensional: <a class="autorefs autorefs-internal" title="            vecneg(v)" href="../functional/#vector.functional.vector_space.vecneg"><code>vecneg</code></a></li>
 <li>wraps: <a href="https://numpy.org/doc/stable/reference/generated/numpy.negative.html"><code>numpy.negative</code></a></li>
 </ul>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\multilinear\vector_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">25</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">24</span>
+<span class="normal">25</span>
 <span class="normal">26</span>
 <span class="normal">27</span>
 <span class="normal">28</span>
@@ -1955,10 +2166,8 @@ the outer corner.</p>
 <span class="normal">32</span>
 <span class="normal">33</span>
 <span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenneg</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the tensor with the unary negative operator applied.</span>
+<span class="normal">35</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenneg</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the negation.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        -t</span>
@@ -1966,7 +2175,6 @@ the outer corner.</p>
 
 <span class="sd">    See also</span>
 <span class="sd">    --------</span>
-<span class="sd">    - one-dimensional: [`vecneg`][vector.functional.vector_space.vecneg]</span>
 <span class="sd">    - wraps: [`numpy.negative`](https://numpy.org/doc/stable/reference/generated/numpy.negative.html)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">negative</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
@@ -1992,7 +2200,7 @@ the outer corner.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return the sum of tensors.</p>
+        <p>Return the sum.</p>
 <div class="arithmatex">\[
     t_0 + t_1 + \cdots
 \]</div>
@@ -2001,13 +2209,15 @@ the outer corner.</p>
 <details class="see-also" open>
   <summary>See also</summary>
   <ul>
-<li>one-dimensional: <a class="autorefs autorefs-internal" title="            vecadd(*vs)" href="../functional/#vector.functional.vector_space.vecadd"><code>vecadd</code></a></li>
+<li>for sum on a single coefficient: <a class="autorefs autorefs-internal" title="            tenaddc(t, c, i=(0,))" href="#vector.multilinear.vector_space.tenaddc"><code>tenaddc</code></a></li>
 </ul>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\multilinear\vector_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">39</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
 <span class="normal">40</span>
 <span class="normal">41</span>
 <span class="normal">42</span>
@@ -2021,10 +2231,8 @@ the outer corner.</p>
 <span class="normal">50</span>
 <span class="normal">51</span>
 <span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenadd</span><span class="p">(</span><span class="o">*</span><span class="n">ts</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the sum of tensors.</span>
+<span class="normal">53</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenadd</span><span class="p">(</span><span class="o">*</span><span class="n">ts</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the sum.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        t_0 + t_1 + \cdots</span>
@@ -2032,7 +2240,7 @@ the outer corner.</p>
 
 <span class="sd">    See also</span>
 <span class="sd">    --------</span>
-<span class="sd">    - one-dimensional: [`vecadd`][vector.functional.vector_space.vecadd]</span>
+<span class="sd">    - for sum on a single coefficient: [`tenaddc`][vector.multilinear.vector_space.tenaddc]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">ts</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">,</span> <span class="n">ts</span><span class="p">))</span>
     <span class="n">shape</span> <span class="o">=</span> <span class="n">vechadamardmax</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">shape</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">ts</span><span class="p">))</span>
@@ -2062,7 +2270,7 @@ the outer corner.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return <code>t</code> with <code>c</code> added to the <code>i</code>-th coefficient.</p>
+        <p>Return the sum with a basis tensor.</p>
 <div class="arithmatex">\[
     t+ce_i
 \]</div>
@@ -2072,13 +2280,15 @@ the outer corner.</p>
 <details class="see-also" open>
   <summary>See also</summary>
   <ul>
-<li>one-dimensional: <a class="autorefs autorefs-internal" title="            vecaddc(v, c, i=0, zero=0)" href="../functional/#vector.functional.vector_space.vecaddc"><code>vecaddc</code></a></li>
+<li>for sum on more coefficients: <a class="autorefs autorefs-internal" title="            tenadd(*ts)" href="#vector.multilinear.vector_space.tenadd"><code>tenadd</code></a></li>
 </ul>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\multilinear\vector_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">57</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
 <span class="normal">58</span>
 <span class="normal">59</span>
 <span class="normal">60</span>
@@ -2094,10 +2304,8 @@ the outer corner.</p>
 <span class="normal">70</span>
 <span class="normal">71</span>
 <span class="normal">72</span>
-<span class="normal">73</span>
-<span class="normal">74</span>
-<span class="normal">75</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenaddc</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,)):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return `t` with `c` added to the `i`-th coefficient.</span>
+<span class="normal">73</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenaddc</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,)):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the sum with a basis tensor.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        t+ce_i</span>
@@ -2107,7 +2315,7 @@ the outer corner.</p>
 
 <span class="sd">    See also</span>
 <span class="sd">    --------</span>
-<span class="sd">    - one-dimensional: [`vecaddc`][vector.functional.vector_space.vecaddc]</span>
+<span class="sd">    - for sum on more coefficients: [`tenadd`][vector.multilinear.vector_space.tenadd]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
     <span class="k">while</span> <span class="n">t</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
@@ -2137,7 +2345,7 @@ the outer corner.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return the difference of two tensors.</p>
+        <p>Return the difference.</p>
 <div class="arithmatex">\[
     s - t
 \]</div>
@@ -2146,13 +2354,15 @@ the outer corner.</p>
 <details class="see-also" open>
   <summary>See also</summary>
   <ul>
-<li>one-dimensional: <a class="autorefs autorefs-internal" title="            vecsub(v, w)" href="../functional/#vector.functional.vector_space.vecsub"><code>vecsub</code></a></li>
+<li>for difference on a single coefficient: <a class="autorefs autorefs-internal" title="            tensubc(t, c, i=(0,))" href="#vector.multilinear.vector_space.tensubc"><code>tensubc</code></a></li>
 </ul>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\multilinear\vector_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">77</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
 <span class="normal">78</span>
 <span class="normal">79</span>
 <span class="normal">80</span>
@@ -2166,10 +2376,8 @@ the outer corner.</p>
 <span class="normal">88</span>
 <span class="normal">89</span>
 <span class="normal">90</span>
-<span class="normal">91</span>
-<span class="normal">92</span>
-<span class="normal">93</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tensub</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the difference of two tensors.</span>
+<span class="normal">91</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tensub</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the difference.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        s - t</span>
@@ -2177,7 +2385,7 @@ the outer corner.</p>
 
 <span class="sd">    See also</span>
 <span class="sd">    --------</span>
-<span class="sd">    - one-dimensional: [`vecsub`][vector.functional.vector_space.vecsub]</span>
+<span class="sd">    - for difference on a single coefficient: [`tensubc`][vector.multilinear.vector_space.tensubc]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">s</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
     <span class="n">shape</span> <span class="o">=</span> <span class="n">vechadamardmax</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -2207,7 +2415,7 @@ the outer corner.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return <code>t</code> with <code>c</code> subtracted from the <code>i</code>-th coefficient.</p>
+        <p>Return the difference with a basis tensor.</p>
 <div class="arithmatex">\[
     t-ce_i
 \]</div>
@@ -2217,13 +2425,15 @@ the outer corner.</p>
 <details class="see-also" open>
   <summary>See also</summary>
   <ul>
-<li>one-dimensional: <a class="autorefs autorefs-internal" title="            vecsubc(v, c, i=0, zero=0)" href="../functional/#vector.functional.vector_space.vecsubc"><code>vecsubc</code></a></li>
+<li>for difference on more coefficients: <a class="autorefs autorefs-internal" title="            tensub(s, t)" href="#vector.multilinear.vector_space.tensub"><code>tensub</code></a></li>
 </ul>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\multilinear\vector_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 95</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
 <span class="normal"> 96</span>
 <span class="normal"> 97</span>
 <span class="normal"> 98</span>
@@ -2239,10 +2449,8 @@ the outer corner.</p>
 <span class="normal">108</span>
 <span class="normal">109</span>
 <span class="normal">110</span>
-<span class="normal">111</span>
-<span class="normal">112</span>
-<span class="normal">113</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tensubc</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,)):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return `t` with `c` subtracted from the `i`-th coefficient.</span>
+<span class="normal">111</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tensubc</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,)):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the difference with a basis tensor.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        t-ce_i</span>
@@ -2252,7 +2460,7 @@ the outer corner.</p>
 
 <span class="sd">    See also</span>
 <span class="sd">    --------</span>
-<span class="sd">    - one-dimensional: [`vecsubc`][vector.functional.vector_space.vecsubc]</span>
+<span class="sd">    - for difference on more coefficients: [`tensub`][vector.multilinear.vector_space.tensub]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
     <span class="k">while</span> <span class="n">t</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
@@ -2282,7 +2490,7 @@ the outer corner.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return the product of a scalar and a tensor.</p>
+        <p>Return the product.</p>
 <div class="arithmatex">\[
     at
 \]</div>
@@ -2291,14 +2499,15 @@ the outer corner.</p>
 <details class="see-also" open>
   <summary>See also</summary>
   <ul>
-<li>one-dimensional: <a class="autorefs autorefs-internal" title="            vecmul(a, v)" href="../functional/#vector.functional.vector_space.vecmul"><code>vecmul</code></a></li>
 <li>wraps: <a href="https://numpy.org/doc/stable/reference/generated/numpy.multiply.html"><code>numpy.multiply</code></a></li>
 </ul>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\multilinear\vector_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">115</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
 <span class="normal">116</span>
 <span class="normal">117</span>
 <span class="normal">118</span>
@@ -2307,11 +2516,8 @@ the outer corner.</p>
 <span class="normal">121</span>
 <span class="normal">122</span>
 <span class="normal">123</span>
-<span class="normal">124</span>
-<span class="normal">125</span>
-<span class="normal">126</span>
-<span class="normal">127</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the product of a scalar and a tensor.</span>
+<span class="normal">124</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the product.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        at</span>
@@ -2319,7 +2525,6 @@ the outer corner.</p>
 
 <span class="sd">    See also</span>
 <span class="sd">    --------</span>
-<span class="sd">    - one-dimensional: [`vecmul`][vector.functional.vector_space.vecmul]</span>
 <span class="sd">    - wraps: [`numpy.multiply`](https://numpy.org/doc/stable/reference/generated/numpy.multiply.html)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
@@ -2345,23 +2550,38 @@ the outer corner.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return the true division of a tensor and a scalar.</p>
+        <p>Return the true quotient.</p>
 <div class="arithmatex">\[
     \frac{t}{a}
 \]</div>
 
 
+<details class="note" open>
+  <summary>Notes</summary>
+  <p>Why called <code>truediv</code> instead of <code>div</code>?</p>
+<ul>
+<li><code>div</code> would be more appropriate for an absolute clean mathematical
+implementation, that doesn't care about the language used. But the package
+might be used for pure integers/integer arithmetic, so both, <code>truediv</code>
+and <code>floordiv</code> operations have to be provided, and none should be
+privileged over the other by getting the universal <code>div</code> name.</li>
+<li><code>truediv</code>/<code>floordiv</code> is unambiguous, like Python <code>operator</code>s.</li>
+</ul>
+</details>
+
 <details class="see-also" open>
   <summary>See also</summary>
   <ul>
-<li>one-dimensional: <a class="autorefs autorefs-internal" title="            vectruediv(v, a)" href="../functional/#vector.functional.vector_space.vectruediv"><code>vectruediv</code></a></li>
 <li>wraps: <a href="https://numpy.org/doc/stable/reference/generated/numpy.divide.html"><code>numpy.divide</code></a></li>
 </ul>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\multilinear\vector_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">129</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
 <span class="normal">130</span>
 <span class="normal">131</span>
 <span class="normal">132</span>
@@ -2373,16 +2593,33 @@ the outer corner.</p>
 <span class="normal">138</span>
 <span class="normal">139</span>
 <span class="normal">140</span>
-<span class="normal">141</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tentruediv</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the true division of a tensor and a scalar.</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tentruediv</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the true quotient.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \frac{t}{a}</span>
 <span class="sd">    $$</span>
 
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Why called `truediv` instead of `div`?</span>
+
+<span class="sd">    - `div` would be more appropriate for an absolute clean mathematical</span>
+<span class="sd">    implementation, that doesn&#39;t care about the language used. But the package</span>
+<span class="sd">    might be used for pure integers/integer arithmetic, so both, `truediv`</span>
+<span class="sd">    and `floordiv` operations have to be provided, and none should be</span>
+<span class="sd">    privileged over the other by getting the universal `div` name.</span>
+<span class="sd">    - `truediv`/`floordiv` is unambiguous, like Python `operator`s.</span>
+
 <span class="sd">    See also</span>
 <span class="sd">    --------</span>
-<span class="sd">    - one-dimensional: [`vectruediv`][vector.functional.vector_space.vectruediv]</span>
 <span class="sd">    - wraps: [`numpy.divide`](https://numpy.org/doc/stable/reference/generated/numpy.divide.html)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
@@ -2408,44 +2645,41 @@ the outer corner.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return the floor division of a tensor and a scalar.</p>
+        <p>Return the floor quotient.</p>
 <div class="arithmatex">\[
-    \left(\left\lfloor\frac{t_i}{a}\right\rfloor\right)_i
+    \left\lfloor\frac{t}{a}\right\rfloor
 \]</div>
 
 
 <details class="see-also" open>
   <summary>See also</summary>
   <ul>
-<li>one-dimensional: <a class="autorefs autorefs-internal" title="            vecfloordiv(v, a)" href="../functional/#vector.functional.vector_space.vecfloordiv"><code>vecfloordiv</code></a></li>
 <li>wraps: <a href="https://numpy.org/doc/stable/reference/generated/numpy.floor_divide.html"><code>numpy.floor_divide</code></a></li>
 </ul>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\multilinear\vector_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">143</span>
-<span class="normal">144</span>
-<span class="normal">145</span>
-<span class="normal">146</span>
-<span class="normal">147</span>
-<span class="normal">148</span>
-<span class="normal">149</span>
-<span class="normal">150</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">150</span>
 <span class="normal">151</span>
 <span class="normal">152</span>
 <span class="normal">153</span>
 <span class="normal">154</span>
-<span class="normal">155</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenfloordiv</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the floor division of a tensor and a scalar.</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenfloordiv</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the floor quotient.</span>
 
 <span class="sd">    $$</span>
-<span class="sd">        \left(\left\lfloor\frac{t_i}{a}\right\rfloor\right)_i</span>
+<span class="sd">        \left\lfloor\frac{t}{a}\right\rfloor</span>
 <span class="sd">    $$</span>
 
 <span class="sd">    See also</span>
 <span class="sd">    --------</span>
-<span class="sd">    - one-dimensional: [`vecfloordiv`][vector.functional.vector_space.vecfloordiv]</span>
 <span class="sd">    - wraps: [`numpy.floor_divide`](https://numpy.org/doc/stable/reference/generated/numpy.floor_divide.html)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">floor_divide</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
@@ -2471,44 +2705,41 @@ the outer corner.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return the elementwise mod of a tensor and a scalar.</p>
+        <p>Return the remainder.</p>
 <div class="arithmatex">\[
-    \left(t_i \mod a\right)_i
+    t \bmod a
 \]</div>
 
 
 <details class="see-also" open>
   <summary>See also</summary>
   <ul>
-<li>one-dimensional: <a class="autorefs autorefs-internal" title="            vecmod(v, a)" href="../functional/#vector.functional.vector_space.vecmod"><code>vecmod</code></a></li>
 <li>wraps: <a href="https://numpy.org/doc/stable/reference/generated/numpy.mod.html"><code>numpy.mod</code></a></li>
 </ul>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\multilinear\vector_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">157</span>
-<span class="normal">158</span>
-<span class="normal">159</span>
-<span class="normal">160</span>
-<span class="normal">161</span>
-<span class="normal">162</span>
-<span class="normal">163</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">163</span>
 <span class="normal">164</span>
 <span class="normal">165</span>
 <span class="normal">166</span>
 <span class="normal">167</span>
 <span class="normal">168</span>
-<span class="normal">169</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenmod</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise mod of a tensor and a scalar.</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenmod</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the remainder.</span>
 
 <span class="sd">    $$</span>
-<span class="sd">        \left(t_i \mod a\right)_i</span>
+<span class="sd">        t \bmod a</span>
 <span class="sd">    $$</span>
 
 <span class="sd">    See also</span>
 <span class="sd">    --------</span>
-<span class="sd">    - one-dimensional: [`vecmod`][vector.functional.vector_space.vecmod]</span>
 <span class="sd">    - wraps: [`numpy.mod`](https://numpy.org/doc/stable/reference/generated/numpy.mod.html)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
@@ -2534,44 +2765,41 @@ the outer corner.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return the elementwise divmod of a tensor and a scalar.</p>
+        <p>Return the floor quotient and remainder</p>
 <div class="arithmatex">\[
-    \left(\left\lfloor\frac{t_i}{a}\right\rfloor\right)_i, \ \left(t_i \mod a\right)_i
+    \left\lfloor\frac{t}{a}\right\rfloor, \ \left(t \bmod a\right)
 \]</div>
 
 
 <details class="see-also" open>
   <summary>See also</summary>
   <ul>
-<li>one-dimensional: <a class="autorefs autorefs-internal" title="            vecdivmod(v, a)" href="../functional/#vector.functional.vector_space.vecdivmod"><code>vecdivmod</code></a></li>
 <li>wraps: <a href="https://numpy.org/doc/stable/reference/generated/numpy.divmod.html"><code>numpy.divmod</code></a></li>
 </ul>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\multilinear\vector_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">171</span>
-<span class="normal">172</span>
-<span class="normal">173</span>
-<span class="normal">174</span>
-<span class="normal">175</span>
-<span class="normal">176</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">176</span>
 <span class="normal">177</span>
 <span class="normal">178</span>
 <span class="normal">179</span>
 <span class="normal">180</span>
 <span class="normal">181</span>
 <span class="normal">182</span>
-<span class="normal">183</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tendivmod</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise divmod of a tensor and a scalar.</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tendivmod</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the floor quotient and remainder</span>
 
 <span class="sd">    $$</span>
-<span class="sd">        \left(\left\lfloor\frac{t_i}{a}\right\rfloor\right)_i, \ \left(t_i \mod a\right)_i</span>
+<span class="sd">        \left\lfloor\frac{t}{a}\right\rfloor, \ \left(t \bmod a\right)</span>
 <span class="sd">    $$</span>
 
 <span class="sd">    See also</span>
 <span class="sd">    --------</span>
-<span class="sd">    - one-dimensional: [`vecdivmod`][vector.functional.vector_space.vecdivmod]</span>
 <span class="sd">    - wraps: [`numpy.divmod`](https://numpy.org/doc/stable/reference/generated/numpy.divmod.html)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">divmod</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
@@ -2639,18 +2867,11 @@ the outer corner.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return the elementwise product of tensors.</p>
+        <p>Return the elementwise product.</p>
 <div class="arithmatex">\[
     \left((t_0)_i \cdot (t_1)_i \cdot \cdots\right)_i
 \]</div>
 
-
-<details class="see-also" open>
-  <summary>See also</summary>
-  <ul>
-<li>one-dimensional: <a class="autorefs autorefs-internal" title="            vechadamard(*vs)" href="../functional/#vector.functional.elementwise.vechadamard"><code>vechadamard</code></a></li>
-</ul>
-</details>
 
             <details class="quote">
               <summary>Source code in <code>vector\multilinear\elementwise.py</code></summary>
@@ -2669,20 +2890,12 @@ the outer corner.</p>
 <span class="normal">24</span>
 <span class="normal">25</span>
 <span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenhadamard</span><span class="p">(</span><span class="o">*</span><span class="n">ts</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise product of tensors.</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenhadamard</span><span class="p">(</span><span class="o">*</span><span class="n">ts</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise product.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \left((t_0)_i \cdot (t_1)_i \cdot \cdots\right)_i</span>
 <span class="sd">    $$</span>
-
-<span class="sd">    See also</span>
-<span class="sd">    --------</span>
-<span class="sd">    - one-dimensional: [`vechadamard`][vector.functional.elementwise.vechadamard]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">ts</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">,</span> <span class="n">ts</span><span class="p">))</span>
     <span class="n">shape</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">min</span><span class="p">,</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">shape</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">ts</span><span class="p">))))</span>
@@ -2715,43 +2928,28 @@ the outer corner.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return the elementwise true division of two tensors.</p>
+        <p>Return the elementwise true quotient.</p>
 <div class="arithmatex">\[
     \left(\frac{s_i}{t_i}\right)_i
 \]</div>
 
 
-<details class="see-also" open>
-  <summary>See also</summary>
-  <ul>
-<li>one-dimensional: <a class="autorefs autorefs-internal" title="            vechadamardtruediv(v, w)" href="../functional/#vector.functional.elementwise.vechadamardtruediv"><code>vechadamardtruediv</code></a></li>
-</ul>
-</details>
-
             <details class="quote">
               <summary>Source code in <code>vector\multilinear\elementwise.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">33</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
 <span class="normal">34</span>
 <span class="normal">35</span>
 <span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenhadamardtruediv</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise true division of two tensors.</span>
+<span class="normal">37</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenhadamardtruediv</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise true quotient.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \left(\frac{s_i}{t_i}\right)_i</span>
 <span class="sd">    $$</span>
-
-<span class="sd">    See also</span>
-<span class="sd">    --------</span>
-<span class="sd">    - one-dimensional: [`vechadamardtruediv`][vector.functional.elementwise.vechadamardtruediv]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">s</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">slice</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">shape</span><span class="p">)),</span> <span class="o">...</span><span class="p">])</span>
@@ -2777,43 +2975,28 @@ the outer corner.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return the elementwise floor division of two tensors.</p>
+        <p>Return the elementwise floor quotient.</p>
 <div class="arithmatex">\[
     \left(\left\lfloor\frac{s_i}{t_i}\right\rfloor\right)_i
 \]</div>
 
 
-<details class="see-also" open>
-  <summary>See also</summary>
-  <ul>
-<li>one-dimensional: <a class="autorefs autorefs-internal" title="            vechadamardfloordiv(v, w)" href="../functional/#vector.functional.elementwise.vechadamardfloordiv"><code>vechadamardfloordiv</code></a></li>
-</ul>
-</details>
-
             <details class="quote">
               <summary>Source code in <code>vector\multilinear\elementwise.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenhadamardfloordiv</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise floor division of two tensors.</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenhadamardfloordiv</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise floor quotient.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \left(\left\lfloor\frac{s_i}{t_i}\right\rfloor\right)_i</span>
 <span class="sd">    $$</span>
-
-<span class="sd">    See also</span>
-<span class="sd">    --------</span>
-<span class="sd">    - one-dimensional: [`vechadamardfloordiv`][vector.functional.elementwise.vechadamardfloordiv]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">s</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">floor_divide</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">slice</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">shape</span><span class="p">)),</span> <span class="o">...</span><span class="p">])</span>
@@ -2839,43 +3022,28 @@ the outer corner.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return the elementwise mod of two tensors.</p>
+        <p>Return the elementwise remainder.</p>
 <div class="arithmatex">\[
-    \left(s_i \mod t_i\right)_i
+    \left(s_i \bmod t_i\right)_i
 \]</div>
 
 
-<details class="see-also" open>
-  <summary>See also</summary>
-  <ul>
-<li>one-dimensional: <a class="autorefs autorefs-internal" title="            vechadamardmod(v, w)" href="../functional/#vector.functional.elementwise.vechadamardmod"><code>vechadamardmod</code></a></li>
-</ul>
-</details>
-
             <details class="quote">
               <summary>Source code in <code>vector\multilinear\elementwise.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span>
-<span class="normal">73</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenhadamardmod</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise mod of two tensors.</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenhadamardmod</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise remainder.</span>
 
 <span class="sd">    $$</span>
-<span class="sd">        \left(s_i \mod t_i\right)_i</span>
+<span class="sd">        \left(s_i \bmod t_i\right)_i</span>
 <span class="sd">    $$</span>
-
-<span class="sd">    See also</span>
-<span class="sd">    --------</span>
-<span class="sd">    - one-dimensional: [`vechadamardmod`][vector.functional.elementwise.vechadamardmod]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">s</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">slice</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">shape</span><span class="p">)),</span> <span class="o">...</span><span class="p">])</span>
@@ -2888,6 +3056,49 @@ the outer corner.</p>
 
 
 
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="vector.multilinear.elementwise.tenhadamarddivmod" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">tenhadamarddivmod</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return the elementwise floor quotient and remainder.</p>
+<div class="arithmatex">\[
+    \left(\left\lfloor\frac{s_i}{t_i}\right\rfloor\right)_i, \ \left(s_i \bmod t_i\right)_i
+\]</div>
+
+
+            <details class="quote">
+              <summary>Source code in <code>vector\multilinear\elementwise.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenhadamarddivmod</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise floor quotient and remainder.</span>
+
+<span class="sd">    $$</span>
+<span class="sd">        \left(\left\lfloor\frac{s_i}{t_i}\right\rfloor\right)_i, \ \left(s_i \bmod t_i\right)_i</span>
+<span class="sd">    $$</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">s</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">divmod</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">slice</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">shape</span><span class="p">)),</span> <span class="o">...</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
 
 
 
@@ -2905,7 +3116,7 @@ the outer corner.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return the elementwise minimum of tensors.</p>
+        <p>Return the elementwise minimum.</p>
 <div class="arithmatex">\[
     \left(\min((t_0)_i, (t_1)_i, \cdots)\right)_i
 \]</div>
@@ -2913,7 +3124,27 @@ the outer corner.</p>
 
             <details class="quote">
               <summary>Source code in <code>vector\multilinear\elementwise.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 89</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
 <span class="normal"> 90</span>
 <span class="normal"> 91</span>
 <span class="normal"> 92</span>
@@ -2930,28 +3161,8 @@ the outer corner.</p>
 <span class="normal">103</span>
 <span class="normal">104</span>
 <span class="normal">105</span>
-<span class="normal">106</span>
-<span class="normal">107</span>
-<span class="normal">108</span>
-<span class="normal">109</span>
-<span class="normal">110</span>
-<span class="normal">111</span>
-<span class="normal">112</span>
-<span class="normal">113</span>
-<span class="normal">114</span>
-<span class="normal">115</span>
-<span class="normal">116</span>
-<span class="normal">117</span>
-<span class="normal">118</span>
-<span class="normal">119</span>
-<span class="normal">120</span>
-<span class="normal">121</span>
-<span class="normal">122</span>
-<span class="normal">123</span>
-<span class="normal">124</span>
-<span class="normal">125</span>
-<span class="normal">126</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenhadamardmin</span><span class="p">(</span><span class="o">*</span><span class="n">ts</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise minimum of tensors.</span>
+<span class="normal">106</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenhadamardmin</span><span class="p">(</span><span class="o">*</span><span class="n">ts</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise minimum.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \left(\min((t_0)_i, (t_1)_i, \cdots)\right)_i</span>
@@ -3010,7 +3221,7 @@ the outer corner.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return the elementwise maximum of tensors.</p>
+        <p>Return the elementwise maximum.</p>
 <div class="arithmatex">\[
     \left(\min((t_0)_i, (t_1)_i, \cdots)\right)_i
 \]</div>
@@ -3018,7 +3229,27 @@ the outer corner.</p>
 
             <details class="quote">
               <summary>Source code in <code>vector\multilinear\elementwise.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">128</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
 <span class="normal">129</span>
 <span class="normal">130</span>
 <span class="normal">131</span>
@@ -3035,28 +3266,8 @@ the outer corner.</p>
 <span class="normal">142</span>
 <span class="normal">143</span>
 <span class="normal">144</span>
-<span class="normal">145</span>
-<span class="normal">146</span>
-<span class="normal">147</span>
-<span class="normal">148</span>
-<span class="normal">149</span>
-<span class="normal">150</span>
-<span class="normal">151</span>
-<span class="normal">152</span>
-<span class="normal">153</span>
-<span class="normal">154</span>
-<span class="normal">155</span>
-<span class="normal">156</span>
-<span class="normal">157</span>
-<span class="normal">158</span>
-<span class="normal">159</span>
-<span class="normal">160</span>
-<span class="normal">161</span>
-<span class="normal">162</span>
-<span class="normal">163</span>
-<span class="normal">164</span>
-<span class="normal">165</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenhadamardmax</span><span class="p">(</span><span class="o">*</span><span class="n">ts</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise maximum of tensors.</span>
+<span class="normal">145</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenhadamardmax</span><span class="p">(</span><span class="o">*</span><span class="n">ts</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise maximum.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \left(\min((t_0)_i, (t_1)_i, \cdots)\right)_i</span>

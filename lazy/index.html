@@ -704,28 +704,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../objectoriented/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Object-oriented
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../parallelised/" class="md-nav__link">
         
   
@@ -1184,12 +1162,13 @@
 <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
 <p>Prefixed by <code>vecl...</code> (vector - lazy).</p>
+<p>Functions are <strong>generators</strong>.</p>
 <p>Lazy generator versions of <a href="../functional/"><code>functional</code></a>.</p>
 <p>Different behaviour:</p>
 <ul>
 <li><a class="autorefs autorefs-internal" title="            vecrandn(n, normed=True, mu=0, sigma=1, weights=None)" href="../functional/#vector.functional.creation.vecrandn"><code>vecrandn</code></a>: normalisation not possible.</li>
 </ul>
-<p>Not implemented lazily:</p>
+<p>Not implemented lazily as these are consumers:</p>
 <ul>
 <li><a class="autorefs autorefs-internal" title="            vecabs(v, weights=None, conjugate=False, zero=0)" href="../functional/#vector.functional.hilbert_space.vecabs"><code>vecabs</code></a></li>
 <li><a class="autorefs autorefs-internal" title="            vecabsq(v, weights=None, conjugate=False, zero=0)" href="../functional/#vector.functional.hilbert_space.vecabsq"><code>vecabsq</code></a></li>
@@ -1258,6 +1237,7 @@
 <div class="arithmatex">\[
     \vec{0} \qquad \mathbb{K}^0
 \]</div>
+<p>An empty generator.</p>
 
 
             <details class="quote">
@@ -1269,12 +1249,16 @@
 <span class="normal">14</span>
 <span class="normal">15</span>
 <span class="normal">16</span>
-<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclzero</span><span class="p">():</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclzero</span><span class="p">():</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Zero vector.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \vec{0} \qquad \mathbb{K}^0</span>
 <span class="sd">    $$</span>
+
+<span class="sd">    An empty generator.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">yield from</span> <span class="p">()</span>
 </code></pre></div></td></tr></table></div>
@@ -1299,32 +1283,47 @@
 
     <div class="doc doc-contents ">
 
-        <p>Return the <code>i</code>-th basis vector times <code>c</code>.</p>
+        <p>Return a basis vector.</p>
 <div class="arithmatex">\[
     c\vec{e}_i \qquad \mathbb{K}^{i+1}
 \]</div>
 <p>Yields <code>i</code> zeros followed by <code>c</code>.</p>
 
 
+<details class="see-also" open>
+  <summary>See also</summary>
+  <ul>
+<li>for all basis vectors: <a class="autorefs autorefs-internal" title="            veclbases(start=0, c=1, zero=0)" href="#vector.lazy.creation.veclbases"><code>veclbases</code></a></li>
+</ul>
+</details>
+
             <details class="quote">
               <summary>Source code in <code>vector\lazy\creation.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">21</span>
 <span class="normal">22</span>
 <span class="normal">23</span>
 <span class="normal">24</span>
 <span class="normal">25</span>
 <span class="normal">26</span>
 <span class="normal">27</span>
-<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclbasis</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the `i`-th basis vector times `c`.</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclbasis</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return a basis vector.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        c\vec{e}_i \qquad \mathbb{K}^{i+1}</span>
 <span class="sd">    $$</span>
 
 <span class="sd">    Yields `i` zeros followed by `c`.</span>
+
+<span class="sd">    See also</span>
+<span class="sd">    --------</span>
+<span class="sd">    - for all basis vectors: [`veclbases`][vector.lazy.creation.veclbases]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">yield from</span> <span class="n">chain</span><span class="p">(</span><span class="n">repeat</span><span class="p">(</span><span class="n">zero</span><span class="p">,</span> <span class="n">i</span><span class="p">),</span> <span class="p">(</span><span class="n">c</span><span class="p">,))</span>
 </code></pre></div></td></tr></table></div>
@@ -1351,41 +1350,41 @@
 
         <p>Yield all basis vectors.</p>
 <div class="arithmatex">\[
-    \left(\vec{e}_n\right)_{n\in\mathbb{N_0}} = \left(\vec{e}_0, \vec{e}_1, \vec{e}_2, \dots \right)
+    \left(\vec{e}_n\right)_{n\in\mathbb{N}_{\geq\text{start}}} = \left(\vec{e}_\text{start}, \vec{e}_{\text{start}+1}, \dots \right)
 \]</div>
 
 
 <details class="see-also" open>
   <summary>See also</summary>
   <ul>
-<li>for single basis vector: <a class="autorefs autorefs-internal" title="            vecbasis(i, c=1, zero=0)" href="../functional/#vector.functional.creation.vecbasis"><code>vecbasis</code></a></li>
+<li>for single basis vector: <a class="autorefs autorefs-internal" title="            veclbases(start=0, c=1, zero=0)" href="#vector.lazy.creation.veclbases"><code>veclbasis</code></a></li>
 </ul>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\lazy\creation.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">36</span>
 <span class="normal">37</span>
 <span class="normal">38</span>
 <span class="normal">39</span>
 <span class="normal">40</span>
 <span class="normal">41</span>
-<span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclbases</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclbases</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Yield all basis vectors.</span>
 
 <span class="sd">    $$</span>
-<span class="sd">        \left(\vec{e}_n\right)_{n\in\mathbb{N_0}} = \left(\vec{e}_0, \vec{e}_1, \vec{e}_2, \dots \right)</span>
+<span class="sd">        \left(\vec{e}_n\right)_{n\in\mathbb{N}_{\geq\text{start}}} = \left(\vec{e}_\text{start}, \vec{e}_{\text{start}+1}, \dots \right)</span>
 <span class="sd">    $$</span>
 
 <span class="sd">    See also</span>
 <span class="sd">    --------</span>
-<span class="sd">    - for single basis vector: [`vecbasis`][vector.functional.vecbasis]</span>
+<span class="sd">    - for single basis vector: [`veclbasis`][vector.lazy.creation.veclbases]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">count</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">):</span>
         <span class="k">yield</span> <span class="n">veclbasis</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="n">zero</span><span class="p">)</span>
@@ -1411,43 +1410,48 @@
 
     <div class="doc doc-contents ">
 
-        <p>Return a random vector of <code>n</code> uniform <code>float</code> coefficients in <code>[0, 1[</code>.</p>
+        <p>Return a random vector of uniform sampled <code>float</code> coefficients.</p>
 <div class="arithmatex">\[
     \vec{v}\sim\mathcal{U}^n([0, 1[) \qquad \mathbb{K}^n
 \]</div>
+<p>The coefficients are sampled from a uniform distribution in <code>[0, 1[</code>.</p>
 
 
 <details class="note" open>
   <summary>Notes</summary>
-  <p>Naming like in <code>numpy.random</code>, because seems more concise
-(not <code>random</code> &amp; <code>gauss</code> as in the stdlib).</p>
+  <p>Naming like <a href="https://numpy.org/doc/stable/reference/random/legacy.html"><code>numpy.random</code></a>,
+because seems more concise (not <code>random</code> &amp; <code>gauss</code> as in the stdlib).</p>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\lazy\creation.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">50</span>
 <span class="normal">51</span>
 <span class="normal">52</span>
 <span class="normal">53</span>
 <span class="normal">54</span>
 <span class="normal">55</span>
-<span class="normal">56</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclrand</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return a random vector of `n` uniform `float` coefficients in `[0, 1[`.</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclrand</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return a random vector of uniform sampled `float` coefficients.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \vec{v}\sim\mathcal{U}^n([0, 1[) \qquad \mathbb{K}^n</span>
 <span class="sd">    $$</span>
 
+<span class="sd">    The coefficients are sampled from a uniform distribution in `[0, 1[`.</span>
+
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
-<span class="sd">    Naming like in `numpy.random`, because seems more concise</span>
-<span class="sd">    (not `random` &amp; `gauss` as in the stdlib).</span>
+<span class="sd">    Naming like [`numpy.random`](https://numpy.org/doc/stable/reference/random/legacy.html),</span>
+<span class="sd">    because seems more concise (not `random` &amp; `gauss` as in the stdlib).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">yield from</span> <span class="p">(</span><span class="n">random</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
@@ -1472,48 +1476,56 @@
 
     <div class="doc doc-contents ">
 
-        <p>Return a random vector of <code>n</code> normal distributed <code>float</code> coefficients.</p>
+        <p>Return a random vector of normal sampled <code>float</code> coefficients.</p>
 <div class="arithmatex">\[
     \vec{v}\sim\mathcal{N}^n(\mu, \sigma) \qquad \mathbb{K}^n
 \]</div>
-<p>Difference to <a class="autorefs autorefs-internal" title="            vecrandn(n, normed=True, mu=0, sigma=1, weights=None)" href="../functional/#vector.functional.creation.vecrandn"><code>vecrandn</code></a>: The vector can't be normalised as it isn't materialised.</p>
+<p>The coefficients are sampled from a normal distribution.</p>
+<p>Difference to <a class="autorefs autorefs-internal" title="            vecrandn(n, normed=True, mu=0, sigma=1, weights=None)" href="../functional/#vector.functional.creation.vecrandn"><code>vecrandn</code></a>:
+The vector can't be normalised as it isn't materialised.</p>
 
 
 <details class="note" open>
   <summary>Notes</summary>
-  <p>Naming like in <code>numpy.random</code>, because seems more concise
-(not <code>random</code> &amp; <code>gauss</code> as in the stdlib).</p>
+  <p>Naming like <a href="https://numpy.org/doc/stable/reference/random/legacy.html"><code>numpy.random</code></a>,
+because seems more concise (not <code>random</code> &amp; <code>gauss</code> as in the stdlib).</p>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>vector\lazy\creation.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">66</span>
 <span class="normal">67</span>
 <span class="normal">68</span>
 <span class="normal">69</span>
 <span class="normal">70</span>
 <span class="normal">71</span>
-<span class="normal">72</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclrandn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return a random vector of `n` normal distributed `float` coefficients.</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclrandn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return a random vector of normal sampled `float` coefficients.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \vec{v}\sim\mathcal{N}^n(\mu, \sigma) \qquad \mathbb{K}^n</span>
 <span class="sd">    $$</span>
 
-<span class="sd">    Difference to [`vecrandn`][vector.functional.vecrandn]: The vector can&#39;t be normalised as it isn&#39;t materialised.</span>
+<span class="sd">    The coefficients are sampled from a normal distribution.</span>
+
+<span class="sd">    Difference to [`vecrandn`][vector.functional.vecrandn]:</span>
+<span class="sd">    The vector can&#39;t be normalised as it isn&#39;t materialised.</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
-<span class="sd">    Naming like in `numpy.random`, because seems more concise</span>
-<span class="sd">    (not `random` &amp; `gauss` as in the stdlib).</span>
+<span class="sd">    Naming like [`numpy.random`](https://numpy.org/doc/stable/reference/random/legacy.html),</span>
+<span class="sd">    because seems more concise (not `random` &amp; `gauss` as in the stdlib).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">yield from</span> <span class="p">(</span><span class="n">gauss</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
@@ -1643,6 +1655,8 @@
         v_m
     \end{pmatrix} \ \text{where} \ m=\max\{\, j\mid |v_{j-1}|&gt;\text{tol}\,\}\cup\{-1\} \qquad \mathbb{K}^n\to\mathbb{K}^{\leq n}
 \]</div>
+<p><code>tol</code> may also be <code>None</code>,
+then all coefficients that evaluate to <code>False</code> are trimmed.</p>
 
 
 <details class="note" open>
@@ -1680,7 +1694,10 @@ of <code>trim(v, sys.float_info.min)</code>.</li>
 <span class="normal">45</span>
 <span class="normal">46</span>
 <span class="normal">47</span>
-<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecltrim</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">):</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecltrim</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Remove all trailing near zero (`abs(v_i)&lt;=tol`) coefficients.</span>
 
 <span class="sd">    $$</span>
@@ -1690,6 +1707,9 @@ of <code>trim(v, sys.float_info.min)</code>.</li>
 <span class="sd">            v_m</span>
 <span class="sd">        \end{pmatrix} \ \text{where} \ m=\max\{\, j\mid |v_{j-1}|&gt;\text{tol}\,\}\cup\{-1\} \qquad \mathbb{K}^n\to\mathbb{K}^{\leq n}</span>
 <span class="sd">    $$</span>
+
+<span class="sd">    `tol` may also be `None`,</span>
+<span class="sd">    then all coefficients that evaluate to `False` are trimmed.</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
@@ -1726,7 +1746,7 @@ of <code>trim(v, sys.float_info.min)</code>.</li>
 
     <div class="doc doc-contents ">
 
-        <p>Pad <code>n</code> many <code>zero</code>s to the beginning of the vector.</p>
+        <p>Shift coefficients up.</p>
 <div class="arithmatex">\[
     (v_{i-n})_i \qquad \begin{pmatrix}
         0 \\
@@ -1741,10 +1761,7 @@ of <code>trim(v, sys.float_info.min)</code>.</li>
 
             <details class="quote">
               <summary>Source code in <code>vector\lazy\utility.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">53</span>
 <span class="normal">54</span>
 <span class="normal">55</span>
 <span class="normal">56</span>
@@ -1755,8 +1772,11 @@ of <code>trim(v, sys.float_info.min)</code>.</li>
 <span class="normal">61</span>
 <span class="normal">62</span>
 <span class="normal">63</span>
-<span class="normal">64</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclrshift</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Pad `n` many `zero`s to the beginning of the vector.</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclrshift</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Shift coefficients up.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        (v_{i-n})_i \qquad \begin{pmatrix}</span>
@@ -1792,7 +1812,7 @@ of <code>trim(v, sys.float_info.min)</code>.</li>
 
     <div class="doc doc-contents ">
 
-        <p>Remove <code>n</code> many coefficients at the beginning of the vector.</p>
+        <p>Shift coefficients down.</p>
 <div class="arithmatex">\[
     (v_{i+n})_i \qquad \begin{pmatrix}
         v_n \\
@@ -1804,10 +1824,7 @@ of <code>trim(v, sys.float_info.min)</code>.</li>
 
             <details class="quote">
               <summary>Source code in <code>vector\lazy\utility.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">69</span>
 <span class="normal">70</span>
 <span class="normal">71</span>
 <span class="normal">72</span>
@@ -1815,8 +1832,11 @@ of <code>trim(v, sys.float_info.min)</code>.</li>
 <span class="normal">74</span>
 <span class="normal">75</span>
 <span class="normal">76</span>
-<span class="normal">77</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecllshift</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Remove `n` many coefficients at the beginning of the vector.</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecllshift</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Shift coefficients down.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        (v_{i+n})_i \qquad \begin{pmatrix}</span>
@@ -1887,7 +1907,7 @@ of <code>trim(v, sys.float_info.min)</code>.</li>
 
     <div class="doc doc-contents ">
 
-        <p>Return the complex conjugate of a scalar.</p>
+        <p>Return the complex conjugate.</p>
 <div class="arithmatex">\[
     x^* \qquad \mathbb{K}\to\mathbb{K}
 \]</div>
@@ -1914,7 +1934,7 @@ If not found, simply returns the element as is.</p>
 <span class="normal">19</span>
 <span class="normal">20</span>
 <span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">try_conjugate</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the complex conjugate of a scalar.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the complex conjugate.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        x^* \qquad \mathbb{K}\to\mathbb{K}</span>
@@ -1952,7 +1972,7 @@ If not found, simply returns the element as is.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return the elementwise complex conjugate of a vector.</p>
+        <p>Return the complex conjugate.</p>
 <div class="arithmatex">\[
     \vec{v}^* \qquad \mathbb{K}^n\to\mathbb{K}^n
 \]</div>
@@ -1973,7 +1993,7 @@ If not found, simply keeps the element as is.</p>
 <span class="normal">31</span>
 <span class="normal">32</span>
 <span class="normal">33</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclconj</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise complex conjugate of a vector.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the complex conjugate.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \vec{v}^* \qquad \mathbb{K}^n\to\mathbb{K}^n</span>
@@ -2043,7 +2063,7 @@ If not found, simply keeps the element as is.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return the vector with the unary positive operator applied.</p>
+        <p>Return the identity.</p>
 <div class="arithmatex">\[
     +\vec{v} \qquad \mathbb{K}^n\to\mathbb{K}^n
 \]</div>
@@ -2059,7 +2079,7 @@ If not found, simply keeps the element as is.</p>
 <span class="normal">18</span>
 <span class="normal">19</span>
 <span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclpos</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the vector with the unary positive operator applied.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the identity.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        +\vec{v} \qquad \mathbb{K}^n\to\mathbb{K}^n</span>
@@ -2088,7 +2108,7 @@ If not found, simply keeps the element as is.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return the vector with the unary negative operator applied.</p>
+        <p>Return the negation.</p>
 <div class="arithmatex">\[
     -\vec{v} \qquad \mathbb{K}^n\to\mathbb{K}^n
 \]</div>
@@ -2104,7 +2124,7 @@ If not found, simply keeps the element as is.</p>
 <span class="normal">27</span>
 <span class="normal">28</span>
 <span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclneg</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the vector with the unary negative operator applied.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the negation.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        -\vec{v} \qquad \mathbb{K}^n\to\mathbb{K}^n</span>
@@ -2133,11 +2153,18 @@ If not found, simply keeps the element as is.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return the sum of vectors.</p>
+        <p>Return the sum.</p>
 <div class="arithmatex">\[
     \vec{v}_0+\vec{v}_1+\cdots \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}
 \]</div>
 
+
+<details class="see-also" open>
+  <summary>See also</summary>
+  <ul>
+<li>for sum on a single coefficient: <a class="autorefs autorefs-internal" title="            vecladdc(v, c, i=0, zero=0)" href="#vector.lazy.vector_space.vecladdc"><code>vecladdc</code></a></li>
+</ul>
+</details>
 
             <details class="quote">
               <summary>Source code in <code>vector\lazy\vector_space.py</code></summary>
@@ -2148,12 +2175,20 @@ If not found, simply keeps the element as is.</p>
 <span class="normal">35</span>
 <span class="normal">36</span>
 <span class="normal">37</span>
-<span class="normal">38</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecladd</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the sum of vectors.</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecladd</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the sum.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \vec{v}_0+\vec{v}_1+\cdots \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}</span>
 <span class="sd">    $$</span>
+
+<span class="sd">    See also</span>
+<span class="sd">    --------</span>
+<span class="sd">    - for sum on a single coefficient: [`vecladdc`][vector.lazy.vector_space.vecladdc]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">yield from</span> <span class="nb">map</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">sum_default</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">MISSING</span><span class="p">),</span> <span class="n">group_ordinal</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
@@ -2178,20 +2213,23 @@ If not found, simply keeps the element as is.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return <code>v</code> with <code>c</code> added to the <code>i</code>-th coefficient.</p>
+        <p>Return the sum with a basis vector.</p>
 <div class="arithmatex">\[
-    \vec{v}+c\vec{e}_i \qquad \mathbb{K}^n\to\mathbb{K}^{\max\{n, i\}}
+    \vec{v}+c\vec{e}_i \qquad \mathbb{K}^n\to\mathbb{K}^{\max\{n, i+1\}}
 \]</div>
 <p>More efficient than <code>vecladd(v, veclbasis(i, c))</code>.</p>
 
 
+<details class="see-also" open>
+  <summary>See also</summary>
+  <ul>
+<li>for sum on more coefficients: <a class="autorefs autorefs-internal" title="            vecladd(*vs)" href="#vector.lazy.vector_space.vecladd"><code>vecladd</code></a></li>
+</ul>
+</details>
+
             <details class="quote">
               <summary>Source code in <code>vector\lazy\vector_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">44</span>
 <span class="normal">45</span>
 <span class="normal">46</span>
 <span class="normal">47</span>
@@ -2202,14 +2240,26 @@ If not found, simply keeps the element as is.</p>
 <span class="normal">52</span>
 <span class="normal">53</span>
 <span class="normal">54</span>
-<span class="normal">55</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecladdc</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return `v` with `c` added to the `i`-th coefficient.</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecladdc</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the sum with a basis vector.</span>
 
 <span class="sd">    $$</span>
-<span class="sd">        \vec{v}+c\vec{e}_i \qquad \mathbb{K}^n\to\mathbb{K}^{\max\{n, i\}}</span>
+<span class="sd">        \vec{v}+c\vec{e}_i \qquad \mathbb{K}^n\to\mathbb{K}^{\max\{n, i+1\}}</span>
 <span class="sd">    $$</span>
 
 <span class="sd">    More efficient than `vecladd(v, veclbasis(i, c))`.</span>
+
+<span class="sd">    See also</span>
+<span class="sd">    --------</span>
+<span class="sd">    - for sum on more coefficients: [`vecladd`][vector.lazy.vector_space.vecladd]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">v</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
     <span class="k">yield from</span> <span class="n">islice</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">repeat</span><span class="p">(</span><span class="n">zero</span><span class="p">)),</span> <span class="n">i</span><span class="p">)</span>
@@ -2240,34 +2290,49 @@ If not found, simply keeps the element as is.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return the difference of two vectors.</p>
+        <p>Return the difference.</p>
 <div class="arithmatex">\[
     \vec{v}-\vec{w} \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^{\max\{m, n\}}
 \]</div>
 
 
+<details class="see-also" open>
+  <summary>See also</summary>
+  <ul>
+<li>for difference on a single coefficient: <a class="autorefs autorefs-internal" title="            veclsubc(v, c, i=0, zero=0)" href="#vector.lazy.vector_space.veclsubc"><code>veclsubc</code></a></li>
+</ul>
+</details>
+
             <details class="quote">
               <summary>Source code in <code>vector\lazy\vector_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">65</span>
 <span class="normal">66</span>
 <span class="normal">67</span>
 <span class="normal">68</span>
 <span class="normal">69</span>
 <span class="normal">70</span>
-<span class="normal">71</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclsub</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the difference of two vectors.</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclsub</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the difference.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \vec{v}-\vec{w} \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^{\max\{m, n\}}</span>
 <span class="sd">    $$</span>
+
+<span class="sd">    See also</span>
+<span class="sd">    --------</span>
+<span class="sd">    - for difference on a single coefficient: [`veclsubc`][vector.lazy.vector_space.veclsubc]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">sentinel</span> <span class="o">=</span> <span class="nb">object</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">vi</span><span class="p">,</span> <span class="n">wi</span> <span class="ow">in</span> <span class="n">zip_longest</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">fillvalue</span><span class="o">=</span><span class="n">sentinel</span><span class="p">):</span>
@@ -2299,38 +2364,53 @@ If not found, simply keeps the element as is.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return <code>v</code> with <code>c</code> subtracted from the <code>i</code>-th coefficient.</p>
+        <p>Return the difference with a basis vector.</p>
 <div class="arithmatex">\[
-    \vec{v}-c\vec{e}_i \qquad \mathbb{K}^n\to\mathbb{K}^{\max\{n, i\}}
+    \vec{v}-c\vec{e}_i \qquad \mathbb{K}^n\to\mathbb{K}^{\max\{n, i+1\}}
 \]</div>
 <p>More efficient than <code>veclsub(v, veclbasis(i, c))</code>.</p>
 
 
+<details class="see-also" open>
+  <summary>See also</summary>
+  <ul>
+<li>for difference on more coefficients: <a class="autorefs autorefs-internal" title="            veclsub(v, w)" href="#vector.lazy.vector_space.veclsub"><code>veclsub</code></a></li>
+</ul>
+</details>
+
             <details class="quote">
               <summary>Source code in <code>vector\lazy\vector_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">73</span>
-<span class="normal">74</span>
-<span class="normal">75</span>
-<span class="normal">76</span>
-<span class="normal">77</span>
-<span class="normal">78</span>
-<span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span>
-<span class="normal">86</span>
-<span class="normal">87</span>
-<span class="normal">88</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclsubc</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return `v` with `c` subtracted from the `i`-th coefficient.</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclsubc</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the difference with a basis vector.</span>
 
 <span class="sd">    $$</span>
-<span class="sd">        \vec{v}-c\vec{e}_i \qquad \mathbb{K}^n\to\mathbb{K}^{\max\{n, i\}}</span>
+<span class="sd">        \vec{v}-c\vec{e}_i \qquad \mathbb{K}^n\to\mathbb{K}^{\max\{n, i+1\}}</span>
 <span class="sd">    $$</span>
 
 <span class="sd">    More efficient than `veclsub(v, veclbasis(i, c))`.</span>
+
+<span class="sd">    See also</span>
+<span class="sd">    --------</span>
+<span class="sd">    - for difference on more coefficients: [`veclsub`][vector.lazy.vector_space.veclsub]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">v</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
     <span class="k">yield from</span> <span class="n">islice</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">repeat</span><span class="p">(</span><span class="n">zero</span><span class="p">)),</span> <span class="n">i</span><span class="p">)</span>
@@ -2361,7 +2441,7 @@ If not found, simply keeps the element as is.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return the product of a scalar and a vector.</p>
+        <p>Return the product.</p>
 <div class="arithmatex">\[
     a\vec{v} \qquad \mathbb{K}\times\mathbb{K}^n\to\mathbb{K}^n
 \]</div>
@@ -2369,15 +2449,15 @@ If not found, simply keeps the element as is.</p>
 
             <details class="quote">
               <summary>Source code in <code>vector\lazy\vector_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">90</span>
-<span class="normal">91</span>
-<span class="normal">92</span>
-<span class="normal">93</span>
-<span class="normal">94</span>
-<span class="normal">95</span>
-<span class="normal">96</span>
-<span class="normal">97</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the product of a scalar and a vector.</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the product.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        a\vec{v} \qquad \mathbb{K}\times\mathbb{K}^n\to\mathbb{K}^n</span>
@@ -2406,7 +2486,7 @@ If not found, simply keeps the element as is.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return the true division of a vector and a scalar.</p>
+        <p>Return the true quotient.</p>
 <div class="arithmatex">\[
     \frac{\vec{v}}{a} \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n
 \]</div>
@@ -2427,26 +2507,26 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
             <details class="quote">
               <summary>Source code in <code>vector\lazy\vector_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 99</span>
-<span class="normal">100</span>
-<span class="normal">101</span>
-<span class="normal">102</span>
-<span class="normal">103</span>
-<span class="normal">104</span>
-<span class="normal">105</span>
-<span class="normal">106</span>
-<span class="normal">107</span>
-<span class="normal">108</span>
-<span class="normal">109</span>
-<span class="normal">110</span>
-<span class="normal">111</span>
-<span class="normal">112</span>
-<span class="normal">113</span>
-<span class="normal">114</span>
-<span class="normal">115</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">115</span>
 <span class="normal">116</span>
-<span class="normal">117</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecltruediv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the true division of a vector and a scalar.</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecltruediv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the true quotient.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \frac{\vec{v}}{a} \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n</span>
@@ -2486,26 +2566,26 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
     <div class="doc doc-contents ">
 
-        <p>Return the floor division of a vector and a scalar.</p>
+        <p>Return the floor quotient.</p>
 <div class="arithmatex">\[
-    \left(\left\lfloor\frac{v_i}{a}\right\rfloor\right)_i \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n
+    \left\lfloor\frac{\vec{v}}{a}\right\rfloor \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n
 \]</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\lazy\vector_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">119</span>
-<span class="normal">120</span>
-<span class="normal">121</span>
-<span class="normal">122</span>
-<span class="normal">123</span>
-<span class="normal">124</span>
-<span class="normal">125</span>
-<span class="normal">126</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclfloordiv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the floor division of a vector and a scalar.</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclfloordiv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the floor quotient.</span>
 
 <span class="sd">    $$</span>
-<span class="sd">        \left(\left\lfloor\frac{v_i}{a}\right\rfloor\right)_i \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n</span>
+<span class="sd">        \left\lfloor\frac{\vec{v}}{a}\right\rfloor \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n</span>
 <span class="sd">    $$</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">yield from</span> <span class="nb">map</span><span class="p">(</span><span class="n">floordiv</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">repeat</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
@@ -2531,26 +2611,26 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
     <div class="doc doc-contents ">
 
-        <p>Return the elementwise mod of a vector and a scalar.</p>
+        <p>Return the remainder.</p>
 <div class="arithmatex">\[
-    \left(v_i \mod a\right)_i \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n
+    \vec{v} \bmod a \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n
 \]</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\lazy\vector_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">128</span>
-<span class="normal">129</span>
-<span class="normal">130</span>
-<span class="normal">131</span>
-<span class="normal">132</span>
-<span class="normal">133</span>
-<span class="normal">134</span>
-<span class="normal">135</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise mod of a vector and a scalar.</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the remainder.</span>
 
 <span class="sd">    $$</span>
-<span class="sd">        \left(v_i \mod a\right)_i \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n</span>
+<span class="sd">        \vec{v} \bmod a \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n</span>
 <span class="sd">    $$</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">yield from</span> <span class="nb">map</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">repeat</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
@@ -2576,27 +2656,27 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
     <div class="doc doc-contents ">
 
-        <p>Return the elementwise divmod of a vector and a scalar.</p>
+        <p>Return the floor quotient and remainder.</p>
 <div class="arithmatex">\[
-    \left(\left\lfloor\frac{v_i}{a}\right\rfloor\right)_i, \ \left(v_i \mod a\right)_i \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n\times\mathbb{K}^n
+    \left\lfloor\frac{\vec{v}}{a}\right\rfloor, \ \left(\vec{v} \bmod a\right) \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n\times\mathbb{K}^n
 \]</div>
 
 
             <details class="quote">
               <summary>Source code in <code>vector\lazy\vector_space.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">137</span>
-<span class="normal">138</span>
-<span class="normal">139</span>
-<span class="normal">140</span>
-<span class="normal">141</span>
-<span class="normal">142</span>
-<span class="normal">143</span>
-<span class="normal">144</span>
-<span class="normal">145</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecldivmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise divmod of a vector and a scalar.</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecldivmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the floor quotient and remainder.</span>
 
 <span class="sd">    $$</span>
-<span class="sd">        \left(\left\lfloor\frac{v_i}{a}\right\rfloor\right)_i, \ \left(v_i \mod a\right)_i \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n\times\mathbb{K}^n</span>
+<span class="sd">        \left\lfloor\frac{\vec{v}}{a}\right\rfloor, \ \left(\vec{v} \bmod a\right) \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n\times\mathbb{K}^n</span>
 <span class="sd">    $$</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">vi</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>
@@ -2661,7 +2741,7 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
     <div class="doc doc-contents ">
 
-        <p>Return the elementwise product of vectors.</p>
+        <p>Return the elementwise product.</p>
 <div class="arithmatex">\[
     \left((\vec{v}_0)_i\cdot(\vec{v}_1)_i\cdot\cdots\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\min_i n_i}
 \]</div>
@@ -2677,7 +2757,7 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 <span class="normal">19</span>
 <span class="normal">20</span>
 <span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclhadamard</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise product of vectors.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise product.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \left((\vec{v}_0)_i\cdot(\vec{v}_1)_i\cdot\cdots\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\min_i n_i}</span>
@@ -2706,7 +2786,7 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
     <div class="doc doc-contents ">
 
-        <p>Return the elementwise true division of two vectors.</p>
+        <p>Return the elementwise true quotient.</p>
 <div class="arithmatex">\[
     \left(\frac{v_i}{w_i}\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m
 \]</div>
@@ -2722,7 +2802,7 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 <span class="normal">28</span>
 <span class="normal">29</span>
 <span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclhadamardtruediv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise true division of two vectors.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise true quotient.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \left(\frac{v_i}{w_i}\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m</span>
@@ -2751,7 +2831,7 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
     <div class="doc doc-contents ">
 
-        <p>Return the elementwise floor division of two vectors.</p>
+        <p>Return the elementwise floor quotient.</p>
 <div class="arithmatex">\[
     \left(\left\lfloor\frac{v_i}{w_i}\right\rfloor\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m
 \]</div>
@@ -2767,7 +2847,7 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 <span class="normal">37</span>
 <span class="normal">38</span>
 <span class="normal">39</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclhadamardfloordiv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise floor division of two vectors.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise floor quotient.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \left(\left\lfloor\frac{v_i}{w_i}\right\rfloor\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m</span>
@@ -2796,9 +2876,9 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
     <div class="doc doc-contents ">
 
-        <p>Return the elementwise mod of two vectors.</p>
+        <p>Return the elementwise remainder.</p>
 <div class="arithmatex">\[
-    \left(v_i \mod w_i\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m
+    \left(v_i \bmod w_i\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m
 \]</div>
 
 
@@ -2812,10 +2892,10 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 <span class="normal">46</span>
 <span class="normal">47</span>
 <span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclhadamardmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise mod of two vectors.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise remainder.</span>
 
 <span class="sd">    $$</span>
-<span class="sd">        \left(v_i \mod w_i\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m</span>
+<span class="sd">        \left(v_i \bmod w_i\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m</span>
 <span class="sd">    $$</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">yield from</span> <span class="nb">map</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">chain</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">exception_generator</span><span class="p">(</span><span class="ne">ZeroDivisionError</span><span class="p">)))</span>
@@ -2841,9 +2921,9 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
     <div class="doc doc-contents ">
 
-        <p>Return the elementwise divmod of two vectors.</p>
+        <p>Return the elementwise floor quotient and remainder.</p>
 <div class="arithmatex">\[
-    \left(\left\lfloor\frac{v_i}{w_i}\right\rfloor\right)_i, \ \left(v_i \mod w_i\right)_i \qquad \mathbb{K}^n\times\mathbb{K}^m\to\mathbb{K}^n\times\mathbb{K}^n
+    \left(\left\lfloor\frac{v_i}{w_i}\right\rfloor\right)_i, \ \left(v_i \bmod w_i\right)_i \qquad \mathbb{K}^n\times\mathbb{K}^m\to\mathbb{K}^n\times\mathbb{K}^n
 \]</div>
 
 
@@ -2857,10 +2937,10 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 <span class="normal">55</span>
 <span class="normal">56</span>
 <span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclhadamarddivmod</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise divmod of two vectors.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise floor quotient and remainder.</span>
 
 <span class="sd">    $$</span>
-<span class="sd">        \left(\left\lfloor\frac{v_i}{w_i}\right\rfloor\right)_i, \ \left(v_i \mod w_i\right)_i \qquad \mathbb{K}^n\times\mathbb{K}^m\to\mathbb{K}^n\times\mathbb{K}^n</span>
+<span class="sd">        \left(\left\lfloor\frac{v_i}{w_i}\right\rfloor\right)_i, \ \left(v_i \bmod w_i\right)_i \qquad \mathbb{K}^n\times\mathbb{K}^m\to\mathbb{K}^n\times\mathbb{K}^n</span>
 <span class="sd">    $$</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">yield from</span> <span class="nb">map</span><span class="p">(</span><span class="nb">divmod</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">chain</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">exception_generator</span><span class="p">(</span><span class="ne">ZeroDivisionError</span><span class="p">)))</span>
@@ -2886,7 +2966,7 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
     <div class="doc doc-contents ">
 
-        <p>Return the elementwise minimum of vectors.</p>
+        <p>Return the elementwise minimum.</p>
 <div class="arithmatex">\[
     \left(\min((\vec{v}_0)_i,(\vec{v}_1)_i,\cdots)\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}
 \]</div>
@@ -2902,7 +2982,7 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 <span class="normal">64</span>
 <span class="normal">65</span>
 <span class="normal">66</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclhadamardmin</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise minimum of vectors.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise minimum.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \left(\min((\vec{v}_0)_i,(\vec{v}_1)_i,\cdots)\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}</span>
@@ -2931,7 +3011,7 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
     <div class="doc doc-contents ">
 
-        <p>Return the elementwise maximum of vectors.</p>
+        <p>Return the elementwise maximum.</p>
 <div class="arithmatex">\[
     \left(\max((\vec{v}_0)_i,(\vec{v}_1)_i,\cdots)\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}
 \]</div>
@@ -2947,7 +3027,7 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 <span class="normal">73</span>
 <span class="normal">74</span>
 <span class="normal">75</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclhadamardmax</span><span class="p">(</span><span class="o">*</span><span class="n">vs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise maximum of vectors.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise maximum.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \left(\max((\vec{v}_0)_i,(\vec{v}_1)_i,\cdots)\right)_i \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}</span>
