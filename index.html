@@ -629,12 +629,12 @@
 <li>general-purpose <strong>functions</strong> (prefixed <code>vec...</code>) in <em>pure Python</em> with <strong>perfect complexity</strong>,</li>
 <li>lazy <strong>generators</strong> (prefixed <code>vecl...</code>),</li>
 <li><code>dicts</code> as <strong>sparse</strong> vectors (prefixed <code>vecs...</code>),</li>
-<li>a clean <strong>class</strong> (<code>Vector</code>) with <em>easy to use syntax</em>,</li>
 <li><em>tensor</em> functions (prefixed <code>ten...</code>) for <strong>multilinear operations</strong>,</li>
-<li>sparse <em>tensor</em> functions (prefixed <code>tens...</code>) for <strong>sparse multilinear operations</strong> &amp;</li>
+<li>sparse <em>tensor</em> functions (prefixed <code>tens...</code>) for <strong>multilinear sparse operations</strong> &amp;</li>
 <li>improved <em>numpy-routines</em> (prefixed <code>vecnp...</code>) for <strong>parallelised
 operations</strong>.</li>
 </ul>
+<p>Functional, sparse and multilinear sparse additionally contain wrapper classes.</p>
 <p>to handle <strong>type-independent, infinite-dimensional</strong> vectors.
 It operates on vectors of different lengths, treating them as
 infinite-dimensional by assuming that all components after the given ones are
@@ -756,7 +756,7 @@ infinite-dimensional by assuming that all components after the given ones are
 <td>Rank</td>
 <td></td>
 <td></td>
-<td></td>
+<td><a class="autorefs autorefs-internal" title="            vecslen(v)" href="sparse/#vector.sparse.utility.vecslen"><code>vecslen</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenrank(t)" href="multilinear/#vector.multilinear.utility.tenrank"><code>tenrank</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tensrank(t)" href="multilinear_sparse/#vector.multilinear_sparse.utility.tensrank"><code>tensrank</code></a></td>
 <td></td>
