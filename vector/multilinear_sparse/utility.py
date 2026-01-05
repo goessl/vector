@@ -53,7 +53,7 @@ def tenstrim(t, tol=1e-9):
     
     Notes
     -----
-    - Cutting of elements that are `abs(vi)<=tol` instead of `abs(vi)<tol` to
+    - Cutting of elements that are `abs(t_i)<=tol` instead of `abs(t_i)<tol` to
     allow cutting of elements that are exactly zero by `trim(t, 0)` instead
     of `trim(t, sys.float_info.min)`.
     - `tol=1e-9` like in [PEP 485](https://peps.python.org/pep-0485/#defaults).

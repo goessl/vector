@@ -7,7 +7,10 @@ __all__ = ('veclen', 'veceq', 'vectrim', 'vecrshift', 'veclshift')
 
 
 def veclen(v):
-    """Return the length (number of set coefficients) of the vector.
+    """Return the length (number of set coefficients).
+    
+    Doesn't handle trailing zeros, use [`vectrim`][vector.functional.utility.vectrim]
+    if needed.
     
     Notes
     -----
@@ -54,7 +57,7 @@ def vectrim(v, tol=1e-9):
     
     Notes
     -----
-    - Cutting of elements that are `abs(vi)<=tol` instead of `abs(vi)<tol` to
+    - Cutting of elements that are `abs(v_i)<=tol` instead of `abs(v_i)<tol` to
     allow cutting of elements that are exactly zero by `trim(v, 0)` instead
     of `trim(v, sys.float_info.min)`.
     - `tol=1e-9` like in [PEP 485](https://peps.python.org/pep-0485/#defaults).

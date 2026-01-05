@@ -32,11 +32,12 @@ This package includes
 - general-purpose **functions** (prefixed `vec...`) in *pure Python* with **perfect complexity**,
 - lazy **generators** (prefixed `vecl...`),
 - `dicts` as **sparse** vectors (prefixed `vecs...`),
-- a clean **class** (`Vector`) with *easy to use syntax*,
 - *tensor* functions (prefixed `ten...`) for **multilinear operations**,
-- sparse *tensor* functions (prefixed `tens...`) for **sparse multilinear operations** &
+- sparse *tensor* functions (prefixed `tens...`) for **multilinear sparse operations** &
 - improved *numpy-routines* (prefixed `vecnp...`) for **parallelised
 operations**.
+
+Functional, sparse and multilinear sparse additionally contain wrapper classes.
 
 to handle **type-independent, infinite-dimensional** vectors.
 It operates on vectors of different lengths, treating them as
@@ -58,7 +59,7 @@ All vectors are **zero-indexed**.
 | from special type |                                                                            |                                                                        | [`vecstod`][vector.sparse.conversion.vecstod]                            |                                                                             |                                                                                      |                                                      |
 | **Utility**       |                                                                            |                                                                        |                                                                          |                                                                             |                                                                                      |                                                      |
 | Dimensionality    | [`veclen`][vector.functional.utility.veclen]                               |                                                                        |                                                                          | [`tendim`][vector.multilinear.utility.tendim]                               | [`tensdim`][vector.multilinear_sparse.utility.tensdim]                               | [`vecnpdim`][vector.parallelised.vecnpdim]           |
-| Rank              |                                                                            |                                                                        |                                                                          | [`tenrank`][vector.multilinear.utility.tenrank]                             | [`tensrank`][vector.multilinear_sparse.utility.tensrank]                             |                                                      |
+| Rank              |                                                                            |                                                                        | [`vecslen`][vector.sparse.utility.vecslen]                               | [`tenrank`][vector.multilinear.utility.tenrank]                             | [`tensrank`][vector.multilinear_sparse.utility.tensrank]                             |                                                      |
 | Comparison        | [`veceq`][vector.functional.utility.veceq]                                 | [`vecleq`][vector.lazy.utility.vecleq]                                 | [`vecseq`][vector.sparse.utility.vecseq]                                 |                                                                             | [`tenseq`][vector.multilinear_sparse.utility.tenseq]                                 | [`vecnpeq`][vector.parallelised.vecnpeq]             |
 | Trimming          | [`vectrim`][vector.functional.utility.vectrim]                             | [`vecltrim`][vector.lazy.utility.vecltrim]                             | [`vecstrim`][vector.sparse.utility.vecstrim]                             | [`tentrim`][vector.multilinear.utility.tentrim]                             | [`tenstrim`][vector.multilinear_sparse.utility.tenstrim]                             | [`vecnptrim`][vector.parallelised.vecnptrim]         |
 | Right shift       | [`vecrshift`][vector.functional.utility.vecrshift]                         | [`veclrshift`][vector.lazy.utility.veclrshift]                         | [`vecsrshift`][vector.sparse.utility.vecsrshift]                         | [`tenrshift`][vector.multilinear.utility.tenrshift]                         | [`tensrshift`][vector.multilinear_sparse.utility.tensrshift]                         |                                                      |

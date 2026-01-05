@@ -1,6 +1,14 @@
-__all__ = ('vecseq', 'vecstrim', 'vecsrshift', 'vecslshift')
+__all__ = ('vecslen', 'vecseq', 'vecstrim', 'vecsrshift', 'vecslshift')
 
 
+
+def vecslen(v):
+    """Return the maximum set index.
+    
+    Doesn't handle trailing zeros, use [`vecstrim`][vector.sparse.utility.vecstrim]
+    if needed.
+    """
+    return max(v.keys(), default=0)
 
 def vecseq(v, w):
     r"""Return if two vectors are equal.
@@ -51,7 +59,7 @@ def vecstrim(v, tol=1e-9):
     
     Notes
     -----
-    - Cutting of elements that are `abs(vi)<=tol` instead of `abs(vi)<tol` to
+    - Cutting of elements that are `abs(v_i)<=tol` instead of `abs(v_i)<tol` to
     allow cutting of elements that are exactly zero by `trim(v, 0)` instead
     of `trim(v, sys.float_info.min)`.
     - `tol=1e-9` like in [PEP 485](https://peps.python.org/pep-0485/#defaults).

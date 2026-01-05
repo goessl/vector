@@ -15,3 +15,4 @@ from .utility import *
 from .hilbert_space import *
 from .vector_space import *
 from .elementwise import *
+from .objectoriented import *
