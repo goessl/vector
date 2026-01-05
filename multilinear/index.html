@@ -1701,7 +1701,7 @@ then all coefficients that evaluate to <code>False</code> are trimmed.</p>
 <details class="note" open>
   <summary>Notes</summary>
   <ul>
-<li>Cutting of elements that are <code>abs(vi)&lt;=tol</code> instead of <code>abs(vi)&lt;tol</code> to
+<li>Cutting of elements that are <code>abs(t_i)&lt;=tol</code> instead of <code>abs(t_i)&lt;tol</code> to
 allow cutting of elements that are exactly zero by <code>trim(t, 0)</code> instead
 of <code>trim(t, sys.float_info.min)</code>.</li>
 <li><code>tol=1e-9</code> like in <a href="https://peps.python.org/pep-0485/#defaults">PEP 485</a>.</li>
@@ -1741,7 +1741,7 @@ of <code>trim(t, sys.float_info.min)</code>.</li>
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
-<span class="sd">    - Cutting of elements that are `abs(vi)&lt;=tol` instead of `abs(vi)&lt;tol` to</span>
+<span class="sd">    - Cutting of elements that are `abs(t_i)&lt;=tol` instead of `abs(t_i)&lt;tol` to</span>
 <span class="sd">    allow cutting of elements that are exactly zero by `trim(t, 0)` instead</span>
 <span class="sd">    of `trim(t, sys.float_info.min)`.</span>
 <span class="sd">    - `tol=1e-9` like in [PEP 485](https://peps.python.org/pep-0485/#defaults).</span>
