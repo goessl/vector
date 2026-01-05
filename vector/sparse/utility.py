@@ -1,6 +1,14 @@
-__all__ = ('vecseq', 'vecstrim', 'vecsrshift', 'vecslshift')
+__all__ = ('vecslen', 'vecseq', 'vecstrim', 'vecsrshift', 'vecslshift')
 
 
+
+def vecslen(v):
+    """Return the maximum set index.
+    
+    Doesn't handle trailing zeros, use [`vecstrim`][vector.sparse.utility.vecstrim]
+    if needed.
+    """
+    return max(v.keys(), default=0)
 
 def vecseq(v, w):
     r"""Return if two vectors are equal.
