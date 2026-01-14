@@ -13,7 +13,7 @@ def tensconj(t):
         t^*
     $$
     
-    Trys to call a method `conjugate` on each element.
+    Tries to call a method `conjugate` on each element.
     If not found, simply keeps the element as is.
     """
     return {i:try_conjugate(ti) for i, ti in t.items()}

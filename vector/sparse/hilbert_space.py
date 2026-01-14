@@ -14,7 +14,7 @@ def vecsconj(v):
         \vec{v}^*
     $$
     
-    Trys to call a method `conjugate` on each element.
+    Tries to call a method `conjugate` on each element.
     If not found, simply keeps the element as is.
     
     Complexity

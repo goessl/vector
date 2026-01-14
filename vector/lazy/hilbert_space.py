@@ -9,7 +9,7 @@ def try_conjugate(x):
         x^* \qquad \mathbb{K}\to\mathbb{K}
     $$
     
-    Trys to call a method `conjugate`.
+    Tries to call a method `conjugate`.
     If not found, simply returns the element as is.
     """
     #try:
@@ -27,7 +27,7 @@ def veclconj(v):
         \vec{v}^* \qquad \mathbb{K}^n\to\mathbb{K}^n
     $$
     
-    Trys to call a method `conjugate` on each element.
+    Tries to call a method `conjugate` on each element.
     If not found, simply keeps the element as is.
     """
     yield from map(try_conjugate, v)

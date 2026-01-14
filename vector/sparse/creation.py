@@ -5,7 +5,6 @@ from .vector_space import vecstruediv
 
 
 
-
 __all__ = ('vecszero', 'vecsbasis', 'vecsbases', 'vecsrand', 'vecsrandn')
 
 

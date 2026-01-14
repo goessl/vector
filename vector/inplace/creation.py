@@ -1,40 +1,41 @@
 from itertools import count
 from ..lazy import veclrand, veclrandn
-from .hilbert_space import vecabs
-from .vector_space import vectruediv
+from ..functional.hilbert_space import vecabs
+from .vector_space import vecitruediv
 
 
 
-__all__ = ('veczero', 'vecbasis', 'vecbases', 'vecrand', 'vecrandn')
+__all__ = ('vecizero', 'vecibasis', 'vecibases', 'vecirand', 'vecirandn')
 
 
 
-veczero = ()
-r"""Zero vector.
+def vecizero():
+    r"""Return a zero vector.
+    
+    $$
+        \vec{0} \qquad \mathbb{K}^0
+    $$
+    
+    An empty list: `[]`.
+    """
+    return []
 
-$$
-    \vec{0} \qquad \mathbb{K}^0
-$$
-
-An empty tuple: `()`.
-"""
-
-def vecbasis(i, c=1, zero=0):
+def vecibasis(i, c=1, zero=0):
     r"""Return a basis vector.
     
     $$
         c\vec{e}_i \qquad \mathbb{K}^{i+1}
     $$
     
-    Returns a tuple with `i` many `zero`s followed by `c`.
+    Returns a list with `i` many `zero`s followed by `c`.
     
     See also
     --------
-    - for all basis vectors: [`vecbases`][vector.functional.creation.vecbases]
+    - for all basis vectors: [`vecibases`][vector.inplace.creation.vecibases]
     """
-    return (zero,)*i + (c,)
+    return [zero]*i + [c]
 
-def vecbases(start=0, c=1, zero=0):
+def vecibases(start=0, c=1, zero=0):
     r"""Yield all basis vectors.
     
     $$
@@ -43,12 +44,12 @@ def vecbases(start=0, c=1, zero=0):
     
     See also
     --------
-    - for single basis vector: [`vecbasis`][vector.functional.creation.vecbasis]
+    - for single basis vector: [`vecibasis`][vector.inplace.creation.vecibasis]
     """
     for i in count(start=start):
-        yield vecbasis(i, c=c, zero=zero)
+        yield vecibasis(i, c=c, zero=zero)
 
-def vecrand(n):
+def vecirand(n):
     r"""Return a random vector of uniform sampled `float` coefficients.
     
     $$
@@ -62,9 +63,9 @@ def vecrand(n):
     Naming like [`numpy.random`](https://numpy.org/doc/stable/reference/random/legacy.html),
     because seems more concise (not `random` & `gauss` as in the stdlib).
     """
-    return tuple(veclrand(n))
+    return list(veclrand(n))
 
-def vecrandn(n, normed=True, mu=0, sigma=1, weights=None):
+def vecirandn(n, normed=True, mu=0, sigma=1, weights=None):
     r"""Return a random vector of normal sampled `float` coefficients.
     
     $$
@@ -78,5 +79,5 @@ def vecrandn(n, normed=True, mu=0, sigma=1, weights=None):
     Naming like [`numpy.random`](https://numpy.org/doc/stable/reference/random/legacy.html),
     because seems more concise (not `random` & `gauss` as in the stdlib).
     """
-    v = tuple(veclrandn(n, mu, sigma))
-    return vectruediv(v, vecabs(v, weights)) if normed else v
+    v = list(veclrandn(n, mu, sigma))
+    return vecitruediv(v, vecabs(v, weights)) if normed else v
