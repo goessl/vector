@@ -15,6 +15,10 @@
         <link rel="canonical" href="https://goessl.github.io/vector/inplace/">
       
       
+        <link rel="prev" href="../lazy/">
+      
+      
+        <link rel="next" href="../sparse/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -166,6 +170,46 @@
     
     
     
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
     
       <div class="md-header__source">
         <a href="https://github.com/goessl/vector" title="Go to repository" class="md-source" data-md-component="source">
@@ -289,6 +333,361 @@
   
 
       </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    In-place
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    In-place
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vector.inplace--docstring-conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docstring conventions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vector.inplace.creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      creation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="creation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vector.inplace.creation.vecizero" class="md-nav__link">
+    <span class="md-ellipsis">
+      vecizero
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector.inplace.creation.vecibasis" class="md-nav__link">
+    <span class="md-ellipsis">
+      vecibasis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector.inplace.creation.vecibases" class="md-nav__link">
+    <span class="md-ellipsis">
+      vecibases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector.inplace.creation.vecirand" class="md-nav__link">
+    <span class="md-ellipsis">
+      vecirand
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector.inplace.creation.vecirandn" class="md-nav__link">
+    <span class="md-ellipsis">
+      vecirandn
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vector.inplace.utility" class="md-nav__link">
+    <span class="md-ellipsis">
+      utility
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="utility">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vector.inplace.utility.vecitrim" class="md-nav__link">
+    <span class="md-ellipsis">
+      vecitrim
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector.inplace.utility.vecirshift" class="md-nav__link">
+    <span class="md-ellipsis">
+      vecirshift
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector.inplace.utility.vecilshift" class="md-nav__link">
+    <span class="md-ellipsis">
+      vecilshift
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vector.inplace.hilbert_space" class="md-nav__link">
+    <span class="md-ellipsis">
+      hilbert_space
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="hilbert_space">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vector.inplace.hilbert_space.veciconj" class="md-nav__link">
+    <span class="md-ellipsis">
+      veciconj
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vector.inplace.vector_space" class="md-nav__link">
+    <span class="md-ellipsis">
+      vector_space
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="vector_space">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vector.inplace.vector_space.vecipos" class="md-nav__link">
+    <span class="md-ellipsis">
+      vecipos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector.inplace.vector_space.vecineg" class="md-nav__link">
+    <span class="md-ellipsis">
+      vecineg
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector.inplace.vector_space.veciadd" class="md-nav__link">
+    <span class="md-ellipsis">
+      veciadd
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector.inplace.vector_space.veciaddc" class="md-nav__link">
+    <span class="md-ellipsis">
+      veciaddc
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector.inplace.vector_space.vecisub" class="md-nav__link">
+    <span class="md-ellipsis">
+      vecisub
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector.inplace.vector_space.vecisubc" class="md-nav__link">
+    <span class="md-ellipsis">
+      vecisubc
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector.inplace.vector_space.vecimul" class="md-nav__link">
+    <span class="md-ellipsis">
+      vecimul
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector.inplace.vector_space.vecitruediv" class="md-nav__link">
+    <span class="md-ellipsis">
+      vecitruediv
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector.inplace.vector_space.vecifloordiv" class="md-nav__link">
+    <span class="md-ellipsis">
+      vecifloordiv
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector.inplace.vector_space.vecimod" class="md-nav__link">
+    <span class="md-ellipsis">
+      vecimod
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vector.inplace.elementwise" class="md-nav__link">
+    <span class="md-ellipsis">
+      elementwise
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="elementwise">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vector.inplace.elementwise.vecihadamard" class="md-nav__link">
+    <span class="md-ellipsis">
+      vecihadamard
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector.inplace.elementwise.vecihadamardtruediv" class="md-nav__link">
+    <span class="md-ellipsis">
+      vecihadamardtruediv
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector.inplace.elementwise.vecihadamardfloordiv" class="md-nav__link">
+    <span class="md-ellipsis">
+      vecihadamardfloordiv
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector.inplace.elementwise.vecihadamardmod" class="md-nav__link">
+    <span class="md-ellipsis">
+      vecihadamardmod
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1934,7 +2333,7 @@ If not found, simply keeps the element as is.</p>
 
 
 <h3 id="vector.inplace.vector_space.vecimul" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vecimul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vecimul</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span></code>
 
 </h3>
 
@@ -1943,7 +2342,7 @@ If not found, simply keeps the element as is.</p>
 
         <p>Return the product.</p>
 <div class="arithmatex">\[
-    a\vec{v} \qquad \mathbb{K}\times\mathbb{K}^n\to\mathbb{K}^n
+    \vec{v}a \qquad \mathbb{K}\times\mathbb{K}^n\to\mathbb{K}^n
 \]</div>
 
 
@@ -1958,11 +2357,11 @@ If not found, simply keeps the element as is.</p>
 <span class="normal">116</span>
 <span class="normal">117</span>
 <span class="normal">118</span>
-<span class="normal">119</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecimul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+<span class="normal">119</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecimul</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the product.</span>
 
 <span class="sd">    $$</span>
-<span class="sd">        a\vec{v} \qquad \mathbb{K}\times\mathbb{K}^n\to\mathbb{K}^n</span>
+<span class="sd">        \vec{v}a \qquad \mathbb{K}\times\mathbb{K}^n\to\mathbb{K}^n</span>
 <span class="sd">    $$</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)):</span>
@@ -2437,6 +2836,44 @@ privileged over the other by getting the universal <code>div</code> name.</li>
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../lazy/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lazy">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Lazy
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../sparse/" class="md-footer__link md-footer__link--next" aria-label="Next: Sparse">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Sparse
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
