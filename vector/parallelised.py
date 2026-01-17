@@ -1,5 +1,5 @@
 import numpy as np
-from .functional import veceq
+from .functional.utility import veceq
 
 
 

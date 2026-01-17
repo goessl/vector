@@ -107,11 +107,11 @@ def vecisubc(v, c, i=0, zero=0):
         v[i] -= c
     return v
 
-def vecimul(a, v):
+def vecimul(v, a):
     r"""Return the product.
     
     $$
-        a\vec{v} \qquad \mathbb{K}\times\mathbb{K}^n\to\mathbb{K}^n
+        \vec{v}a \qquad \mathbb{K}\times\mathbb{K}^n\to\mathbb{K}^n
     $$
     """
     for i in range(len(v)):

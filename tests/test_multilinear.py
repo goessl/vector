@@ -94,9 +94,9 @@ def test_tensub():
                                                          [-4, -5, -6]])
 
 def test_tenmul():
-    assert np.array_equal(tenmul(5, [[1, 2, 3],
-                                     [4, 5, 6]]), [[ 5, 10, 15],
-                                                   [20, 25, 30]])
+    assert np.array_equal(tenrmul(5, [[1, 2, 3],
+                                      [4, 5, 6]]), [[ 5, 10, 15],
+                                                    [20, 25, 30]])
 
 def test_tentruediv():
     assert np.array_equal(tentruediv([[1, 10, 16],

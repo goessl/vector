@@ -95,9 +95,9 @@ def test_veclsubc():
     assert tuple(veclsubc((1, 2), 4, 5)) == vecsubc((1, 2), 4, 5)
     assert tuple(veclsubc((1, 2, 3, 4, 5), 5, 2)) == vecsubc((1, 2, 3, 4, 5), 5, 2)
 
-def test_veclmul():
-    assert tuple(veclmul(5, veclzero())) == vecmul(5, veczero)
-    assert tuple(veclmul(5, (1, 2, 3))) == vecmul(5, (1, 2, 3))
+def test_veclrmul():
+    assert tuple(veclrmul(5, veclzero())) == vecrmul(5, veczero)
+    assert tuple(veclrmul(5, (1, 2, 3))) == vecrmul(5, (1, 2, 3))
 
 def test_vecltruediv():
     assert tuple(vecltruediv(veclzero(), 1)) == vectruediv((), 1)

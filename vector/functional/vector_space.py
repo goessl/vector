@@ -1,9 +1,9 @@
-from ..lazy import veclpos, veclneg, vecladd, vecladdc, veclsub, veclsubc, veclmul, vecltruediv, veclfloordiv, veclmod
+from ..lazy import veclpos, veclneg, vecladd, vecladdc, veclsub, veclsubc, veclmul, veclrmul, vecltruediv, veclfloordiv, veclmod
 
 
 
 __all__ = ('vecpos', 'vecneg', 'vecadd', 'vecaddc', 'vecsub', 'vecsubc',
-           'vecmul', 'vectruediv', 'vecfloordiv', 'vecmod', 'vecdivmod')
+           'vecmul', 'vecrmul', 'vectruediv', 'vecfloordiv', 'vecmod', 'vecdivmod')
 
 
 
@@ -120,7 +120,22 @@ def vecsubc(v, c, i=0, zero=0):
     """
     return tuple(veclsubc(v, c, i=i, zero=zero))
 
-def vecmul(a, v):
+def vecmul(v, a):
+    r"""Return the product.
+    
+    $$
+        \vec{v}a \qquad \mathbb{K}\times\mathbb{K}^n\to\mathbb{K}^n
+    $$
+    
+    Complexity
+    ----------
+    For a vector of length $n$ there will be
+    
+    - $n$ scalar multiplications (`rmul`).
+    """
+    return tuple(veclmul(v, a))
+
+def vecrmul(a, v):
     r"""Return the product.
     
     $$
@@ -133,7 +148,7 @@ def vecmul(a, v):
     
     - $n$ scalar multiplications (`rmul`).
     """
-    return tuple(veclmul(a, v))
+    return tuple(veclrmul(a, v))
 
 def vectruediv(v, a):
     r"""Return the true quotient.

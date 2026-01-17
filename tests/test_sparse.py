@@ -118,9 +118,9 @@ def test_vecssubc():
     assert vecssubc({0:1, 1:2}, 4, 5) == {0:1, 1:2, 5:-4}
     assert vecssubc({0:1, 1:2, 2:3, 3:4, 4:5}, 5, 2) == {0:1, 1:2, 2:-2, 3:4, 4:5}
 
-def test_vecsmul():
-    assert vecsmul(5, vecszero) == vecszero
-    assert vecsmul(5, {0:1, 1:2, 2:3}) == {0:5, 1:10, 2:15}
+def test_vecsrmul():
+    assert vecsrmul(5, vecszero) == vecszero
+    assert vecsrmul(5, {0:1, 1:2, 2:3}) == {0:5, 1:10, 2:15}
 
 def test_vecstruediv():
     assert vecstruediv(vecszero, 1) == vecszero

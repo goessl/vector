@@ -55,9 +55,9 @@ def test_tenssub():
 def test_tenssubc():
     assert tenssubc({(1, 2, 3):4}, 5) == {():-5, (1, 2, 3):4}
 
-def test_tensmul():
-    assert tensmul(5, tenszero) == tenszero
-    assert tensmul(5, {(1, 2, 3):4}) == {(1, 2, 3):20}
+def test_tensrmul():
+    assert tensrmul(5, tenszero) == tenszero
+    assert tensrmul(5, {(1, 2, 3):4}) == {(1, 2, 3):20}
 
 def test_tenstruediv():
     assert tenstruediv(tenszero, 5) == tenszero

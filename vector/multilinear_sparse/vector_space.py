@@ -1,5 +1,5 @@
 __all__ = ('tenspos', 'tensneg', 'tensadd', 'tensaddc', 'tenssub', 'tenssubc',
-           'tensmul', 'tenstruediv', 'tensfloordiv', 'tensmod', 'tensdivmod')
+           'tensmul', 'tensrmul', 'tenstruediv', 'tensfloordiv', 'tensmod', 'tensdivmod')
 
 
 
@@ -100,7 +100,16 @@ def tenssubc(t, c, i=()):
         r[i] = -c
     return r
 
-def tensmul(a, t):
+def tensmul(t, a):
+    """Return the product.
+    
+    $$
+        ta
+    $$
+    """
+    return {i:ti*a for i, ti in t.items()}
+
+def tensrmul(a, t):
     """Return the product.
     
     $$

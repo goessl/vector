@@ -12,6 +12,7 @@ nav:
   - Home: index.md
   - functional.md
   - lazy.md
+  - inplace.md
   - sparse.md
   - parallelised.md
   - multilinear.md
@@ -47,17 +48,18 @@ extra:
       name: goessl on Instagram
 
 plugins:
-- mkdocstrings:
-    default_handler: python
-    handlers:
-      python:
-        options:
-          members_order: source
-          show_labels: false
-          show_root_toc_entry: false
-          show_symbol_type_heading: true
-          group_by_category: false
-          docstring_style: numpy
+  - search
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          options:
+            members_order: source
+            show_labels: false
+            show_root_toc_entry: false
+            show_symbol_type_heading: true
+            group_by_category: false
+            docstring_style: numpy
 
 markdown_extensions:
   - pymdownx.highlight

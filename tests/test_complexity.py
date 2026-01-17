@@ -138,12 +138,12 @@ def test_vecsubc():
             vecsubc(v, c, i)
         assert counter==Counter({'sub': 1}) or counter==Counter({'neg': 1})
 
-def test_vecmul():
+def test_vecrmul():
     for n in range(20):
         a = randint(-100, +100)
         v = tuple(OperationCounter(randint(-100, +100)) for _ in range(n))
         with count_ops() as counter:
-            vecmul(a, v)
+            vecrmul(a, v)
         assert counter == Counter({'rmul':n})
 
 def test_vectruediv():

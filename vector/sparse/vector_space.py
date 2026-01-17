@@ -1,5 +1,5 @@
 __all__ = ('vecspos', 'vecsneg', 'vecsadd', 'vecsaddc', 'vecssub', 'vecssubc',
-           'vecsmul', 'vecstruediv', 'vecsfloordiv', 'vecsmod', 'vecsdivmod')
+           'vecsmul', 'vecsrmul', 'vecstruediv', 'vecsfloordiv', 'vecsmod', 'vecsdivmod')
 
 
 
@@ -135,7 +135,22 @@ def vecssubc(v, c, i=0):
         r[i] = -c
     return r
 
-def vecsmul(a, v):
+def vecsmul(v, a):
+    r"""Return the product.
+    
+    $$
+        \vec{v}a
+    $$
+    
+    Complexity
+    ----------
+    For a vector with $n$ elements there will be
+    
+    - $n$ scalar multiplications (`rmul`).
+    """
+    return {i:vi*a for i, vi in v.items()}
+
+def vecsrmul(a, v):
     r"""Return the product.
     
     $$

@@ -1,7 +1,7 @@
 from .creation import vecbasis, vecbases, vecrand, vecrandn
 from .utility import veceq, vectrim, vecrshift, veclshift
 from .hilbert_space import vecconj, vecabs, vecabsq
-from .vector_space import vecpos, vecneg, vecadd, vecaddc, vecsub, vecsubc, vecmul, vectruediv, vecfloordiv, vecmod, vecdivmod
+from .vector_space import vecpos, vecneg, vecadd, vecaddc, vecsub, vecsubc, vecmul, vecrmul, vectruediv, vecfloordiv, vecmod, vecdivmod
 from .elementwise import vechadamard, vechadamardtruediv, vechadamardfloordiv, vechadamardmod, vechadamarddivmod, vechadamardmin, vechadamardmax
 
 
@@ -104,10 +104,10 @@ class Vector:
         return type(self)(vecsubc(self, c, i=i))
     
     def __mul__(self, other):
-        return type(self)(vecmul(other, self))
+        return type(self)(vecmul(self, other))
     
     def __rmul__(self, other):
-        return type(self)(vecmul(other, self))
+        return type(self)(vecrmul(other, self))
     
     def __truediv__(self, other):
         return type(self)(vectruediv(self, other))

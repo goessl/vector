@@ -1,6 +1,6 @@
 from .functional import *
 from .lazy import *
-from .implace import *
+from .inplace import *
 from .sparse import *
 from .parallelised import *
 from .multilinear import *

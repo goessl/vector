@@ -1,10 +1,10 @@
-from ..functional import vechadamardmax
+from ..functional.elementwise import vechadamardmax
 import numpy as np
 
 
 
 __all__ = ('tenpos', 'tenneg', 'tenadd', 'tenaddc', 'tensub', 'tensubc',
-           'tenmul', 'tentruediv', 'tenfloordiv', 'tenmod', 'tendivmod')
+           'tenmul', 'tenrmul', 'tentruediv', 'tenfloordiv', 'tenmod', 'tendivmod')
 
 
 
@@ -110,7 +110,20 @@ def tensubc(t, c, i=(0,)):
     t[i + (0,)*(len(i)-t.ndim)] -= c
     return t
 
-def tenmul(a, t):
+def tenmul(t, a):
+    """Return the product.
+    
+    $$
+        ta
+    $$
+    
+    See also
+    --------
+    - wraps: [`numpy.multiply`](https://numpy.org/doc/stable/reference/generated/numpy.multiply.html)
+    """
+    return np.multiply(t, a)
+
+def tenrmul(a, t):
     """Return the product.
     
     $$

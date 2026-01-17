@@ -6,7 +6,7 @@ from operationcounter import MISSING, group_ordinal, sum_default
 
 
 __all__ = ('veclpos', 'veclneg', 'vecladd', 'vecladdc', 'veclsub', 'veclsubc',
-           'veclmul', 'vecltruediv', 'veclfloordiv', 'veclmod', 'vecldivmod')
+           'veclmul', 'veclrmul', 'vecltruediv', 'veclfloordiv', 'veclmod', 'vecldivmod')
 
 
 
@@ -103,7 +103,16 @@ def veclsubc(v, c, i=0, zero=0):
         yield -c
     yield from v
 
-def veclmul(a, v):
+def veclmul(v, a):
+    r"""Return the product.
+    
+    $$
+        \vec{v}a \qquad \mathbb{K}\times\mathbb{K}^n\to\mathbb{K}^n
+    $$
+    """
+    yield from map(mul, v, repeat(a))
+
+def veclrmul(a, v):
     r"""Return the product.
     
     $$

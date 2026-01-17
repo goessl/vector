@@ -1,7 +1,7 @@
 from .creation import vecsbasis, vecsbases, vecsrand, vecsrandn
 from .utility import vecslen, vecseq, vecstrim, vecsrshift, vecslshift
 from .hilbert_space import vecsconj, vecsabs, vecsabsq
-from .vector_space import vecspos, vecsneg, vecsadd, vecsaddc, vecssub, vecssubc, vecsmul, vecstruediv, vecsfloordiv, vecsmod, vecsdivmod
+from .vector_space import vecspos, vecsneg, vecsadd, vecsaddc, vecssub, vecssubc, vecsmul, vecsrmul, vecstruediv, vecsfloordiv, vecsmod, vecsdivmod
 from .elementwise import vecshadamard, vecshadamardtruediv, vecshadamardfloordiv, vecshadamardmod, vecshadamarddivmod, vecshadamardmin, vecshadamardmax
 
 
@@ -112,10 +112,10 @@ class VectorSparse:
         return type(self)(vecssubc(self.data, c, i=i))
     
     def __mul__(self, other):
-        return type(self)(vecsmul(other, self.data))
+        return type(self)(vecsmul(self.data, other))
     
     def __rmul__(self, other):
-        return type(self)(vecsmul(other, self.data))
+        return type(self)(vecsrmul(other, self.data))
     
     def __truediv__(self, other):
         return type(self)(vecstruediv(self.data, other))

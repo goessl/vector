@@ -1,7 +1,7 @@
 from .creation import tensbasis, tensrand, tensrandn
 from .utility import tensrank, tensdim, tenseq, tenstrim, tensrshift, tenslshift
 from .hilbert_space import tensconj
-from .vector_space import tenspos, tensneg, tensadd, tensaddc, tenssub, tenssubc, tensmul, tenstruediv, tensfloordiv, tensmod, tensdivmod
+from .vector_space import tenspos, tensneg, tensadd, tensaddc, tenssub, tenssubc, tensmul, tensrmul, tenstruediv, tensfloordiv, tensmod, tensdivmod
 from .elementwise import tenshadamard, tenshadamardtruediv, tenshadamardfloordiv, tenshadamardmod, tenshadamarddivmod, tenshadamardmin, tenshadamardmax
 from ..functional.utility import vectrim
 
@@ -125,12 +125,12 @@ class TensorSparse:
     
     def __mul__(self, other):
         r = type(self)()
-        r.data = tensmul(other, self.data)
+        r.data = tensmul(self.data, other)
         return r
     
     def __rmul__(self, other):
         r = type(self)()
-        r.data = tensmul(other, self.data)
+        r.data = tensrmul(other, self.data)
         return r
     
     def __truediv__(self, other):
