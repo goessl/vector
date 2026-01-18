@@ -41,6 +41,7 @@ tuples. Done: [goessl/zipvar](https://github.com/goessl/zipvar)
 - [x] Complexity analysis. Perfect complexity
 - [x] dimensionality signature (e.g. `vecadd`: $\mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^{\max{m, n}}$)
 - [x] sparse vectors (`dict`s)
+- [x] in-place
 - [ ] argument checks
 - [ ] lp-norms & metrics
 - [ ] `vechadamardminmax`
@@ -51,7 +52,7 @@ tuples. Done: [goessl/zipvar](https://github.com/goessl/zipvar)
 
 ## License (MIT)
 
-Copyright (c) 2022-2025 Sebastian Gössl
+Copyright (c) 2022-2026 Sebastian Gössl
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

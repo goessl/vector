@@ -4,7 +4,9 @@ from ..functional.elementwise import vechadamardmax
 
 
 
-__all__ = ('tensrank', 'tensdim', 'tenseq', 'tenstrim', 'tensrshift', 'tenslshift')
+__all__ = ('tensrank', 'tensdim', 'tenseq',
+           'tenstrim', 'tensitrim',
+           'tensrshift', 'tenslshift')
 
 
 
@@ -27,7 +29,7 @@ def tensdim(t):
     return tuple(si+1 for si in vechadamardmax(*t.keys()))
 
 def tenseq(s, t):
-    r"""Return if two tensors are equal.
+    r"""Return whether two tensors are equal.
     
     $$
         s\overset{?}{=}t
@@ -45,7 +47,7 @@ def tenseq(s, t):
                 return False
     return True
 
-def tenstrim(t, tol=1e-9):
+def tenstrim(t, tol=None):
     """Remove all near zero (`abs(t_i)<=tol`) coefficients.
     
     `tol` may also be `None`,
@@ -56,12 +58,32 @@ def tenstrim(t, tol=1e-9):
     - Cutting of elements that are `abs(t_i)<=tol` instead of `abs(t_i)<tol` to
     allow cutting of elements that are exactly zero by `trim(t, 0)` instead
     of `trim(t, sys.float_info.min)`.
-    - `tol=1e-9` like in [PEP 485](https://peps.python.org/pep-0485/#defaults).
     """
     if tol is None:
         return {i:ti for i, ti in t.items() if ti}
     else:
         return {i:ti for i, ti in t.items() if abs(ti)>tol}
+
+def tensitrim(t, tol=None):
+    """Remove all near zero (`abs(t_i)<=tol`) coefficients.
+    
+    `tol` may also be `None`,
+    then all coefficients that evaluate to `False` are trimmed.
+    
+    Notes
+    -----
+    - Cutting of elements that are `abs(t_i)<=tol` instead of `abs(t_i)<tol` to
+    allow cutting of elements that are exactly zero by `trim(t, 0)` instead
+    of `trim(t, sys.float_info.min)`.
+    """
+    if tol is None:
+        indices_to_del = tuple(i for i, ti in t.items() if not ti)
+    else:
+        indices_to_del = tuple(i for i, ti in t.items() if abs(ti)<=tol)
+    
+    for i in indices_to_del:
+        del t[i]
+    return t
 
 def tensrshift(t, n):
     """Shift coefficients up."""

@@ -1,7 +1,7 @@
 from .creation import tensbasis, tensrand, tensrandn
-from .utility import tensrank, tensdim, tenseq, tenstrim, tensrshift, tenslshift
-from .hilbert_space import tensconj
-from .vector_space import tenspos, tensneg, tensadd, tensaddc, tenssub, tenssubc, tensmul, tensrmul, tenstruediv, tensfloordiv, tensmod, tensdivmod
+from .utility import tensrank, tensdim, tenseq, tenstrim, tensitrim, tensrshift, tenslshift
+from .hilbert_space import tensconj, tensiconj
+from .vector_space import tenspos, tensneg, tensadd, tensiadd, tensaddc, tensiaddc, tenssub, tensisub, tenssubc, tensisubc, tensmul, tensrmul, tensimul, tenstruediv, tensitruediv, tensfloordiv, tensifloordiv, tensmod, tensimod, tensdivmod
 from .elementwise import tenshadamard, tenshadamardtruediv, tenshadamardfloordiv, tenshadamardmod, tenshadamarddivmod, tenshadamardmin, tenshadamardmax
 from ..functional.utility import vectrim
 
@@ -69,10 +69,14 @@ class TensorSparse:
     def __eq__(self, other):
         return tenseq(self.data, other.data)
     
-    def trim(self, tol=1e-9):
+    def trim(self, tol=None):
         r = type(self)()
         r.data = tenstrim(self.data, tol=tol)
         return r
+    
+    def itrim(self, tol=None):
+        tensitrim(self.data, tol=tol)
+        return self
     
     def __rshift__(self, other):
         r = type(self)()
@@ -91,6 +95,10 @@ class TensorSparse:
         r.data = tensconj(self.data)
         return r
     
+    def iconjugate(self):
+        tensiconj(self.data)
+        return self
+    
     
     #vector_space
     def __pos__(self):
@@ -108,20 +116,36 @@ class TensorSparse:
         r.data = tensadd(self.data, other.data)
         return r
     
+    def __iadd__(self, other):
+        tensiadd(self.data, other.data)
+        return self
+    
     def addc(self, c, i=()):
         r = type(self)()
         r.data = tensaddc(self.data, c, i=i)
         return r
+    
+    def iaddc(self, c, i=()):
+        tensiaddc(self.data, c, i=i)
+        return self
     
     def __sub__(self, other):
         r = type(self)()
         r.data = tenssub(self.data, other.data)
         return r
     
+    def __isub__(self, other):
+        tensisub(self.data, other.data)
+        return self
+    
     def subc(self, c, i=()):
         r = type(self)()
         r.data = tenssubc(self.data, c, i=i)
         return r
+    
+    def isubc(self, c, i=()):
+        tensisubc(self.data, c, i=i)
+        return self
     
     def __mul__(self, other):
         r = type(self)()
@@ -133,20 +157,36 @@ class TensorSparse:
         r.data = tensrmul(other, self.data)
         return r
     
+    def __imul__(self, other):
+        tensimul(self.data, other)
+        return self
+    
     def __truediv__(self, other):
         r = type(self)()
         r.data = tenstruediv(self.data, other)
         return r
+    
+    def __itruediv__(self, other):
+        tensitruediv(self.data, other)
+        return self
     
     def __floordiv__(self, other):
         r = type(self)()
         r.data = tensfloordiv(self.data, other)
         return r
     
+    def __ifloordiv__(self, other):
+        tensifloordiv(self.data, other)
+        return self
+    
     def __mod__(self, other):
         r = type(self)()
         r.data = tensmod(self.data, other)
         return r
+    
+    def __imod__(self, other):
+        tensimod(self.data, other)
+        return self
     
     def __divmod__(self, other):
         q, r = type(self)(), type(self)()

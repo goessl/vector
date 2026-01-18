@@ -7,10 +7,10 @@ __all__ = ('veciconj',)
 
 
 def veciconj(v):
-    r"""Return the complex conjugate.
+    r"""Complex conjugate.
     
     $$
-        \vec{v}^* \qquad \mathbb{K}^n\to\mathbb{K}^n
+        \vec{v} = \vec{v}^* \qquad \mathbb{K}^n\to\mathbb{K}^n
     $$
     
     Tries to call a method `conjugate` on each element.

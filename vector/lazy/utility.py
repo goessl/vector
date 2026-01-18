@@ -22,7 +22,7 @@ def vecleq(v, w):
         else:
             yield vi == wi
 
-def vecltrim(v, tol=1e-9):
+def vecltrim(v, tol=None):
     r"""Remove all trailing near zero (`abs(v_i)<=tol`) coefficients.
     
     $$
@@ -41,7 +41,6 @@ def vecltrim(v, tol=1e-9):
     - Cutting of elements that are `abs(v_i)<=tol` instead of `abs(v_i)<tol` to
     allow cutting of elements that are exactly zero by `trim(v, 0)` instead
     of `trim(v, sys.float_info.min)`.
-    - `tol=1e-9` like in [PEP 485](https://peps.python.org/pep-0485/#defaults).
     """
     t = []
     for x in v:

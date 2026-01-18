@@ -4,10 +4,10 @@ __all__ = ('vecipos', 'vecineg', 'veciadd', 'veciaddc', 'vecisub', 'vecisubc',
 
 
 def vecipos(v):
-    r"""Return the identity.
+    r"""Apply unary positive.
     
     $$
-        +\vec{v} \qquad \mathbb{K}^n\to\mathbb{K}^n
+        \vec{v} = +\vec{v} \qquad \mathbb{K}^n\to\mathbb{K}^n
     $$
     """
     for i, vi in enumerate(v):
@@ -15,10 +15,10 @@ def vecipos(v):
     return v
 
 def vecineg(v):
-    r"""Return the negation.
+    r"""Negate.
     
     $$
-        -\vec{v} \qquad \mathbb{K}^n\to\mathbb{K}^n
+        \vec{v} = -\vec{v} \qquad \mathbb{K}^n\to\mathbb{K}^n
     $$
     """
     for i, vi in enumerate(v):
@@ -26,10 +26,10 @@ def vecineg(v):
     return v
 
 def veciadd(v, *ws):
-    r"""Return the sum.
+    r"""Add.
     
     $$
-        \vec{v}+\vec{w}_0+\vec{w}_1+\cdots \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}
+        \vec{v} += \vec{w}_0+\vec{w}_1+\cdots \qquad \mathbb{K}^{n_0}\times\mathbb{K}^{n_1}\times\cdots\to\mathbb{K}^{\max_i n_i}
     $$
     
     See also
@@ -51,10 +51,10 @@ def veciadd(v, *ws):
     return v
 
 def veciaddc(v, c, i=0, zero=0):
-    r"""Return the sum with a basis vector.
+    r"""Add a basis vector.
     
     $$
-        \vec{v}+c\vec{e}_i \qquad \mathbb{K}^n\to\mathbb{K}^{\max\{n, i+1\}}
+        \vec{v} += c\vec{e}_i \qquad \mathbb{K}^n\to\mathbb{K}^{\max\{n, i+1\}}
     $$
     
     More efficient than `veciadd(v, vecibasis(i, c))`.
@@ -71,10 +71,10 @@ def veciaddc(v, c, i=0, zero=0):
     return v
 
 def vecisub(v, w):
-    r"""Return the difference.
+    r"""Subtract.
     
     $$
-        \vec{v}-\vec{w} \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^{\max\{m, n\}}
+        \vec{v} -= \vec{w} \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^{\max\{m, n\}}
     $$
     
     See also
@@ -88,10 +88,10 @@ def vecisub(v, w):
     return v
 
 def vecisubc(v, c, i=0, zero=0):
-    r"""Return the difference with a basis vector.
+    r"""Subtract a basis vector.
     
     $$
-        \vec{v}-c\vec{e}_i \qquad \mathbb{K}^n\to\mathbb{K}^{\max\{n, i+1\}}
+        \vec{v} -= c\vec{e}_i \qquad \mathbb{K}^n\to\mathbb{K}^{\max\{n, i+1\}}
     $$
     
     More efficient than `vecisub(v, vecibasis(i, c))`.
@@ -108,10 +108,10 @@ def vecisubc(v, c, i=0, zero=0):
     return v
 
 def vecimul(v, a):
-    r"""Return the product.
+    r"""Multiply.
     
     $$
-        \vec{v}a \qquad \mathbb{K}\times\mathbb{K}^n\to\mathbb{K}^n
+        \vec{v} \cdot= a \qquad \mathbb{K}\times\mathbb{K}^n\to\mathbb{K}^n
     $$
     """
     for i in range(len(v)):
@@ -119,10 +119,10 @@ def vecimul(v, a):
     return v
 
 def vecitruediv(v, a):
-    r"""Return the true quotient.
+    r"""True divide.
     
     $$
-        \frac{\vec{v}}{a} \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n
+        \vec{v} /= a \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n
     $$
     
     Notes
@@ -141,10 +141,10 @@ def vecitruediv(v, a):
     return v
 
 def vecifloordiv(v, a):
-    r"""Return the floor quotient.
+    r"""Floor divide.
     
     $$
-        \left\lfloor\frac{\vec{v}}{a}\right\rfloor \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n
+        \vec{v} //= a \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n
     $$
     """
     for i in range(len(v)):
@@ -152,10 +152,10 @@ def vecifloordiv(v, a):
     return v
 
 def vecimod(v, a):
-    r"""Return the remainder.
+    r"""Mod.
     
     $$
-        \vec{v} \bmod a \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n
+        \vec{v} \%= a \qquad \mathbb{K}^n\times\mathbb{K}\to\mathbb{K}^n
     $$
     """
     for i in range(len(v)):

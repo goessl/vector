@@ -19,7 +19,7 @@ def veclen(v):
     return sum(1 for _ in v)
 
 def veceq(v, w):
-    r"""Return if two vectors are equal.
+    r"""Return whether two vectors are equal.
     
     $$
         \vec{v}\overset{?}{=}\vec{w} \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{B}
@@ -34,7 +34,7 @@ def veceq(v, w):
     """
     return all(vecleq(v, w))
 
-def vectrim(v, tol=1e-9):
+def vectrim(v, tol=None):
     r"""Remove all trailing near zero (`abs(v_i)<=tol`) coefficients.
     
     $$
@@ -60,7 +60,6 @@ def vectrim(v, tol=1e-9):
     - Cutting of elements that are `abs(v_i)<=tol` instead of `abs(v_i)<tol` to
     allow cutting of elements that are exactly zero by `trim(v, 0)` instead
     of `trim(v, sys.float_info.min)`.
-    - `tol=1e-9` like in [PEP 485](https://peps.python.org/pep-0485/#defaults).
     """
     r, t = [], []
     for x in v:

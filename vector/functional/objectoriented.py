@@ -63,7 +63,7 @@ class Vector:
     def __eq__(self, other):
         return veceq(self, other)
     
-    def trim(self, tol=1e-9):
+    def trim(self, tol=None):
         return type(self)(vectrim(self, tol=tol))
     
     def __rshift__(self, other):

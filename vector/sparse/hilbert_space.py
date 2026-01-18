@@ -3,7 +3,9 @@ from operationcounter import sum_default, sumprod_default
 
 
 
-__all__ = ('vecsconj', 'vecsabs', 'vecsabsq', 'vecsdot', 'vecsparallel')
+__all__ = ('vecsconj', 'vecsiconj',
+           'vecsabs', 'vecsabsq',
+           'vecsdot', 'vecsparallel')
 
 
 
@@ -24,6 +26,26 @@ def vecsconj(v):
     - $n$ scalar conjugations.
     """
     return {i:try_conjugate(vi) for i, vi in v.items()}
+
+def vecsiconj(v):
+    r"""Complex conjugate.
+    
+    $$
+        \vec{v} = \vec{v}^*
+    $$
+    
+    Tries to call a method `conjugate` on each element.
+    If not found, simply keeps the element as is.
+    
+    Complexity
+    ----------
+    For a vector of $n$ elements there will be
+    
+    - $n$ scalar conjugations.
+    """
+    for i, vi in v.items():
+        v[i] = try_conjugate(vi)
+    return v
 
 def vecsabs(v, weights=None, conjugate=False, zero=0):
     r"""Return the Euclidean/$\ell_{\mathbb{N}_0}^2$-norm.

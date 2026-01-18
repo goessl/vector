@@ -1,7 +1,7 @@
 from .creation import vecsbasis, vecsbases, vecsrand, vecsrandn
 from .utility import vecslen, vecseq, vecstrim, vecsrshift, vecslshift
 from .hilbert_space import vecsconj, vecsabs, vecsabsq
-from .vector_space import vecspos, vecsneg, vecsadd, vecsaddc, vecssub, vecssubc, vecsmul, vecsrmul, vecstruediv, vecsfloordiv, vecsmod, vecsdivmod
+from .vector_space import vecspos, vecsneg, vecsadd, vecsiadd, vecsaddc, vecsiaddc, vecssub, vecsisub, vecssubc, vecsisubc, vecsmul, vecsrmul, vecsimul, vecstruediv, vecsitruediv, vecsfloordiv, vecsifloordiv, vecsmod, vecsimod, vecsdivmod
 from .elementwise import vecshadamard, vecshadamardtruediv, vecshadamardfloordiv, vecshadamardmod, vecshadamarddivmod, vecshadamardmin, vecshadamardmax
 
 
@@ -71,7 +71,7 @@ class VectorSparse:
     def __eq__(self, other):
         return vecseq(self.data, other.data)
     
-    def trim(self, tol=1e-9):
+    def trim(self, tol=None):
         return type(self)(vecstrim(self.data, tol=tol))
     
     def __rshift__(self, other):
@@ -102,14 +102,30 @@ class VectorSparse:
     def __add__(self, other):
         return type(self)(vecsadd(self.data, other.data))
     
-    def addc(self, c, i=()):
+    def __iadd__(self, other):
+        vecsiadd(self.data, other.data)
+        return self
+    
+    def addc(self, c, i=0):
         return type(self)(vecsaddc(self.data, c, i=i))
+    
+    def iaddc(self, c, i=0):
+        vecsiaddc(self.data, c, i=i)
+        return self
     
     def __sub__(self, other):
         return type(self)(vecssub(self.data, other.data))
     
-    def subc(self, c, i=()):
+    def __isub__(self, other):
+        vecsisub(self.data, other.data)
+        return self
+    
+    def subc(self, c, i=0):
         return type(self)(vecssubc(self.data, c, i=i))
+    
+    def isubc(self, c, i=0):
+        vecsisubc(self.data, c, i=i)
+        return self
     
     def __mul__(self, other):
         return type(self)(vecsmul(self.data, other))
@@ -117,14 +133,30 @@ class VectorSparse:
     def __rmul__(self, other):
         return type(self)(vecsrmul(other, self.data))
     
+    def __imul__(self, other):
+        vecsimul(self.data, other)
+        return self
+    
     def __truediv__(self, other):
         return type(self)(vecstruediv(self.data, other))
+    
+    def __itruediv__(self, other):
+        vecsitruediv(self.data, other)
+        return self
     
     def __floordiv__(self, other):
         return type(self)(vecsfloordiv(self.data, other))
     
+    def __ifloordiv__(self, other):
+        vecsifloordiv(self.data, other)
+        return self
+    
     def __mod__(self, other):
         return type(self)(vecsmod(self.data, other))
+    
+    def __imod__(self, other):
+        vecsimod(self.data, other)
+        return self
     
     def __divmod__(self, other):
         q, r = type(self)(), type(self)()

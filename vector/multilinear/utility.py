@@ -33,7 +33,7 @@ def tendim(t):
     return np.asarray(t).shape
 
 def teneq(s, t):
-    r"""Return if two tensors are equal.
+    r"""Return whether two tensors are equal.
     
     $$
         s\overset{?}{=}t
@@ -41,7 +41,7 @@ def teneq(s, t):
     """
     raise NotImplementedError
 
-def tentrim(t, tol=1e-9):
+def tentrim(t, tol=None):
     """Remove all trailing near zero (`abs(t_i)<=tol`) coefficients.
     
     `tol` may also be `None`,
@@ -52,13 +52,12 @@ def tentrim(t, tol=1e-9):
     - Cutting of elements that are `abs(t_i)<=tol` instead of `abs(t_i)<tol` to
     allow cutting of elements that are exactly zero by `trim(t, 0)` instead
     of `trim(t, sys.float_info.min)`.
-    - `tol=1e-9` like in [PEP 485](https://peps.python.org/pep-0485/#defaults).
     """
     t = np.asarray(t)
     for d in range(t.ndim): #reduce dimension
         slc_idx = (slice(None),)*d + (-1,) + (...,)
         slc_drop = (slice(None),)*d + (slice(-1),) + (...,)
-        while t.shape[d]>0 and np.all(t[slc_idx].astype(bool) if tol is None else np.abs(t[slc_idx])<=tol):
+        while t.shape[d]>0 and np.all(np.logical_not(t[slc_idx].astype(bool)) if tol is None else np.abs(t[slc_idx])<=tol):
             t = t[slc_drop]
     if t.size == 0:
         return t.reshape((0,))

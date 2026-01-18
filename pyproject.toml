@@ -7,7 +7,7 @@ allow-direct-references = true
 
 [project]
 name = "vector"
-version = "11.1"
+version = "11.2"
 description = "An infinite-dimensional vector Python package."
 readme = "README.md"
 requires-python = ">=3.12"

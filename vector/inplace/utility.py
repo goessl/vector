@@ -2,7 +2,7 @@ __all__ = ('vecitrim', 'vecirshift', 'vecilshift')
 
 
 
-def vecitrim(v, tol=1e-9):
+def vecitrim(v, tol=None):
     r"""Remove all trailing near zero (`abs(v_i)<=tol`) coefficients.
     
     $$
@@ -21,7 +21,6 @@ def vecitrim(v, tol=1e-9):
     - Cutting of elements that are `abs(v_i)<=tol` instead of `abs(v_i)<tol` to
     allow cutting of elements that are exactly zero by `trim(v, 0)` instead
     of `trim(v, sys.float_info.min)`.
-    - `tol=1e-9` like in [PEP 485](https://peps.python.org/pep-0485/#defaults).
     """
     while v and (not v[-1] if tol is None else abs(v[-1])<=tol):
         v.pop()
