@@ -1728,7 +1728,7 @@ because seems more concise (not <code>random</code> &amp; <code>gauss</code> as 
 
     <div class="doc doc-contents ">
 
-        <p>Return if two tensors are equal.</p>
+        <p>Return whether two tensors are equal.</p>
 <div class="arithmatex">\[
     s\overset{?}{=}t
 \]</div>
@@ -1744,7 +1744,7 @@ because seems more concise (not <code>random</code> &amp; <code>gauss</code> as 
 <span class="normal">40</span>
 <span class="normal">41</span>
 <span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">teneq</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return if two tensors are equal.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return whether two tensors are equal.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        s\overset{?}{=}t</span>
@@ -1766,7 +1766,7 @@ because seems more concise (not <code>random</code> &amp; <code>gauss</code> as 
 
 
 <h3 id="vector.multilinear.utility.tentrim" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">tentrim</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-09</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">tentrim</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 </h3>
 
@@ -1784,7 +1784,6 @@ then all coefficients that evaluate to <code>False</code> are trimmed.</p>
 <li>Cutting of elements that are <code>abs(t_i)&lt;=tol</code> instead of <code>abs(t_i)&lt;tol</code> to
 allow cutting of elements that are exactly zero by <code>trim(t, 0)</code> instead
 of <code>trim(t, sys.float_info.min)</code>.</li>
-<li><code>tol=1e-9</code> like in <a href="https://peps.python.org/pep-0485/#defaults">PEP 485</a>.</li>
 </ul>
 </details>
 
@@ -1812,8 +1811,7 @@ of <code>trim(t, sys.float_info.min)</code>.</li>
 <span class="normal">63</span>
 <span class="normal">64</span>
 <span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tentrim</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">):</span>
+<span class="normal">66</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tentrim</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove all trailing near zero (`abs(t_i)&lt;=tol`) coefficients.</span>
 
 <span class="sd">    `tol` may also be `None`,</span>
@@ -1824,13 +1822,12 @@ of <code>trim(t, sys.float_info.min)</code>.</li>
 <span class="sd">    - Cutting of elements that are `abs(t_i)&lt;=tol` instead of `abs(t_i)&lt;tol` to</span>
 <span class="sd">    allow cutting of elements that are exactly zero by `trim(t, 0)` instead</span>
 <span class="sd">    of `trim(t, sys.float_info.min)`.</span>
-<span class="sd">    - `tol=1e-9` like in [PEP 485](https://peps.python.org/pep-0485/#defaults).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">ndim</span><span class="p">):</span> <span class="c1">#reduce dimension</span>
         <span class="n">slc_idx</span> <span class="o">=</span> <span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">),)</span><span class="o">*</span><span class="n">d</span> <span class="o">+</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,)</span> <span class="o">+</span> <span class="p">(</span><span class="o">...</span><span class="p">,)</span>
         <span class="n">slc_drop</span> <span class="o">=</span> <span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">),)</span><span class="o">*</span><span class="n">d</span> <span class="o">+</span> <span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">),)</span> <span class="o">+</span> <span class="p">(</span><span class="o">...</span><span class="p">,)</span>
-        <span class="k">while</span> <span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">d</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">slc_idx</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span> <span class="k">if</span> <span class="n">tol</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">slc_idx</span><span class="p">])</span><span class="o">&lt;=</span><span class="n">tol</span><span class="p">):</span>
+        <span class="k">while</span> <span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">d</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_not</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">slc_idx</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">))</span> <span class="k">if</span> <span class="n">tol</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">slc_idx</span><span class="p">])</span><span class="o">&lt;=</span><span class="n">tol</span><span class="p">):</span>
             <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">slc_drop</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">t</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">0</span><span class="p">,))</span>
@@ -1871,14 +1868,14 @@ of <code>trim(t, sys.float_info.min)</code>.</li>
 
             <details class="quote">
               <summary>Source code in <code>vector\multilinear\utility.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">69</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">68</span>
+<span class="normal">69</span>
 <span class="normal">70</span>
 <span class="normal">71</span>
 <span class="normal">72</span>
 <span class="normal">73</span>
 <span class="normal">74</span>
-<span class="normal">75</span>
-<span class="normal">76</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenrshift</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="normal">75</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenrshift</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Shift coefficients up.</span>
 
 <span class="sd">    See also</span>
@@ -1920,14 +1917,14 @@ of <code>trim(t, sys.float_info.min)</code>.</li>
 
             <details class="quote">
               <summary>Source code in <code>vector\multilinear\utility.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">78</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">77</span>
+<span class="normal">78</span>
 <span class="normal">79</span>
 <span class="normal">80</span>
 <span class="normal">81</span>
 <span class="normal">82</span>
 <span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenlshift</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="normal">84</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenlshift</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Shift coefficients down.</span>
 
 <span class="sd">    See also</span>

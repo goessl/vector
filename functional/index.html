@@ -1776,7 +1776,7 @@ because seems more concise (not <code>random</code> &amp; <code>gauss</code> as 
     <div class="doc doc-contents ">
 
         <p>Return the length (number of set coefficients).</p>
-<p>Doesn't handle trailing zeros, use <a class="autorefs autorefs-internal" title="            vectrim(v, tol=1e-09)" href="#vector.functional.utility.vectrim"><code>vectrim</code></a>
+<p>Doesn't handle trailing zeros, use <a class="autorefs autorefs-internal" title="            vectrim(v, tol=None)" href="#vector.functional.utility.vectrim"><code>vectrim</code></a>
 if needed.</p>
 
 
@@ -1830,7 +1830,7 @@ if needed.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return if two vectors are equal.</p>
+        <p>Return whether two vectors are equal.</p>
 <div class="arithmatex">\[
     \vec{v}\overset{?}{=}\vec{w} \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{B}
 \]</div>
@@ -1862,7 +1862,7 @@ if needed.</p>
 <span class="normal">33</span>
 <span class="normal">34</span>
 <span class="normal">35</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veceq</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return if two vectors are equal.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return whether two vectors are equal.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \vec{v}\overset{?}{=}\vec{w} \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{B}</span>
@@ -1891,7 +1891,7 @@ if needed.</p>
 
 
 <h3 id="vector.functional.utility.vectrim" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vectrim</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-09</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">vectrim</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 </h3>
 
@@ -1925,7 +1925,6 @@ then all coefficients that evaluate to <code>False</code> are trimmed.</p>
 <li>Cutting of elements that are <code>abs(v_i)&lt;=tol</code> instead of <code>abs(v_i)&lt;tol</code> to
 allow cutting of elements that are exactly zero by <code>trim(v, 0)</code> instead
 of <code>trim(v, sys.float_info.min)</code>.</li>
-<li><code>tol=1e-9</code> like in <a href="https://peps.python.org/pep-0485/#defaults">PEP 485</a>.</li>
 </ul>
 </details>
 
@@ -1964,8 +1963,7 @@ of <code>trim(v, sys.float_info.min)</code>.</li>
 <span class="normal">67</span>
 <span class="normal">68</span>
 <span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vectrim</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">):</span>
+<span class="normal">70</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vectrim</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Remove all trailing near zero (`abs(v_i)&lt;=tol`) coefficients.</span>
 
 <span class="sd">    $$</span>
@@ -1991,7 +1989,6 @@ of <code>trim(v, sys.float_info.min)</code>.</li>
 <span class="sd">    - Cutting of elements that are `abs(v_i)&lt;=tol` instead of `abs(v_i)&lt;tol` to</span>
 <span class="sd">    allow cutting of elements that are exactly zero by `trim(v, 0)` instead</span>
 <span class="sd">    of `trim(v, sys.float_info.min)`.</span>
-<span class="sd">    - `tol=1e-9` like in [PEP 485](https://peps.python.org/pep-0485/#defaults).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">r</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>
@@ -2037,7 +2034,8 @@ of <code>trim(v, sys.float_info.min)</code>.</li>
 
             <details class="quote">
               <summary>Source code in <code>vector\functional\utility.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">73</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">72</span>
+<span class="normal">73</span>
 <span class="normal">74</span>
 <span class="normal">75</span>
 <span class="normal">76</span>
@@ -2050,8 +2048,7 @@ of <code>trim(v, sys.float_info.min)</code>.</li>
 <span class="normal">83</span>
 <span class="normal">84</span>
 <span class="normal">85</span>
-<span class="normal">86</span>
-<span class="normal">87</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecrshift</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="normal">86</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecrshift</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Shift coefficients up.</span>
 
 <span class="sd">    $$</span>
@@ -2100,18 +2097,18 @@ of <code>trim(v, sys.float_info.min)</code>.</li>
 
             <details class="quote">
               <summary>Source code in <code>vector\functional\utility.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 89</span>
-<span class="normal"> 90</span>
-<span class="normal"> 91</span>
-<span class="normal"> 92</span>
-<span class="normal"> 93</span>
-<span class="normal"> 94</span>
-<span class="normal"> 95</span>
-<span class="normal"> 96</span>
-<span class="normal"> 97</span>
-<span class="normal"> 98</span>
-<span class="normal"> 99</span>
-<span class="normal">100</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclshift</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span>
+<span class="normal">93</span>
+<span class="normal">94</span>
+<span class="normal">95</span>
+<span class="normal">96</span>
+<span class="normal">97</span>
+<span class="normal">98</span>
+<span class="normal">99</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">veclshift</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Shift coefficients down.</span>
 
 <span class="sd">    $$</span>
