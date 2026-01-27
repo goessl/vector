@@ -30,3 +30,8 @@ test = ["pytest"]
 name = "vector._util"
 sources = ["vector/_utilmodule.c"]
 py-limited-api = true
+
+[[tool.setuptools.ext-modules]]
+name = "vector.multilinear_sparse._vectorspace"
+sources = ["vector/multilinear_sparse/_vectorspacemodule.c"]
+py-limited-api = true

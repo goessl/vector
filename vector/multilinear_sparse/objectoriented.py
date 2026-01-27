@@ -1,7 +1,7 @@
 from .creation import tensbasis, tensrand, tensrandn
 from .utility import tensrank, tensdim, tenseq, tenstrim, tensitrim, tensrshift, tenslshift
 from .hilbert_space import tensconj, tensiconj
-from .vector_space import tenspos, tensneg, tensadd, tensiadd, tensaddc, tensiaddc, tenssub, tensisub, tenssubc, tensisubc, tensmul, tensrmul, tensimul, tenstruediv, tensitruediv, tensfloordiv, tensifloordiv, tensmod, tensimod, tensdivmod
+from .vectorspace import tenspos, tensneg, tensadd, tensiadd, tensaddc, tensiaddc, tenssub, tensisub, tenssubc, tensisubc, tensmul, tensrmul, tensimul, tenstruediv, tensitruediv, tensfloordiv, tensifloordiv, tensmod, tensimod, tensdivmod
 from .elementwise import tenshadamard, tenshadamardtruediv, tenshadamardfloordiv, tenshadamardmod, tenshadamarddivmod, tenshadamardmin, tenshadamardmax
 from ..dense.utility import vectrim
 

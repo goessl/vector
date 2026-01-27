@@ -1,3 +1,7 @@
+from typing import TypeVar
+
+
+
 __all__ = ('tenspos',             'tensipos',
            'tensneg',             'tensineg',
            'tensadd',             'tensiadd',
@@ -12,7 +16,12 @@ __all__ = ('tenspos',             'tensipos',
 
 
 
-def tenspos(t):
+T = TypeVar('T')
+Index = tuple[int, ...]
+
+
+
+def tenspos(t:dict[Index,T]) -> dict[Index,T]:
     """Return the identity.
     
     $$
@@ -21,7 +30,7 @@ def tenspos(t):
     """
     return {i:+ti for i, ti in t.items()}
 
-def tensipos(t):
+def tensipos(t:dict[Index,T]) -> dict[Index,T]:
     """Apply unary plus.
     
     $$
@@ -32,7 +41,7 @@ def tensipos(t):
         t[i] = +ti
     return t
 
-def tensneg(t):
+def tensneg(t:dict[Index,T]) -> dict[Index,T]:
     """Return the negation.
     
     $$
@@ -41,7 +50,7 @@ def tensneg(t):
     """
     return {i:-ti for i, ti in t.items()}
 
-def tensineg(t):
+def tensineg(t:dict[Index,T]) -> dict[Index,T]:
     """Negate.
     
     $$
@@ -52,7 +61,7 @@ def tensineg(t):
         t[i] = -ti
     return t
 
-def tensadd(*ts):
+def tensadd(*ts:dict[Index,T]) -> dict[Index,T]:
     r"""Return the sum.
     
     $$
@@ -63,7 +72,7 @@ def tensadd(*ts):
     --------
     - for sum on a single coefficient: [`tensaddc`][vector.multilinear_sparse.vector_space.tensaddc]
     """
-    r = dict(ts[0]) if ts else {}
+    r:dict[Index,T] = dict(ts[0]) if ts else {}
     for t in ts[1:]:
         for i, ti in t.items():
             if i in r:
@@ -72,7 +81,7 @@ def tensadd(*ts):
                 r[i] = +ti
     return r
 
-def tensiadd(s, *ts):
+def tensiadd(s:dict[Index,T], *ts:dict[Index,T]) -> dict[Index,T]:
     r"""Add.
     
     $$
@@ -91,7 +100,7 @@ def tensiadd(s, *ts):
                 s[i] = +ti
     return s
 
-def tensaddc(t, c, i=()):
+def tensaddc(t:dict[Index,T], c:T, i:Index=()) -> dict[Index,T]:
     """Return the sum with a basis tensor.
     
     $$
@@ -102,14 +111,14 @@ def tensaddc(t, c, i=()):
     --------
     - for sum on more coefficients: [`tensadd`][vector.multilinear_sparse.vector_space.tensadd]
     """
-    r = dict(t)
+    r:dict[Index,T] = dict(t)
     if i in r:
         r[i] += c
     else:
         r[i] = +c
     return r
 
-def tensiaddc(t, c, i=()):
+def tensiaddc(t:dict[Index,T], c:T, i:Index=()) -> dict[Index,T]:
     """Add a basis tensor.
     
     $$
@@ -126,7 +135,7 @@ def tensiaddc(t, c, i=()):
         t[i] = +c
     return t
 
-def tenssub(s, t):
+def tenssub(s:dict[Index,T], t:dict[Index,T]) -> dict[Index,T]:
     """Return the difference.
     
     $$
@@ -137,7 +146,7 @@ def tenssub(s, t):
     --------
     - for difference on a single coefficient: [`tenssubc`][vector.multilinear_sparse.vector_space.tenssubc]
     """
-    r = dict(s)
+    r:dict[Index,T] = dict(s)
     for i, ti in t.items():
         if i in r:
             r[i] -= ti
@@ -145,7 +154,7 @@ def tenssub(s, t):
             r[i] = -ti
     return r
 
-def tensisub(s, t):
+def tensisub(s:dict[Index,T], t:dict[Index,T]) -> dict[Index,T]:
     """Subtract.
     
     $$
@@ -163,7 +172,7 @@ def tensisub(s, t):
             s[i] = -ti
     return s
 
-def tenssubc(t, c, i=()):
+def tenssubc(t:dict[Index,T], c:T, i:Index=()) -> dict[Index,T]:
     """Return the difference with a basis tensor.
     
     $$
@@ -174,14 +183,14 @@ def tenssubc(t, c, i=()):
     --------
     - for difference on more coefficients: [`tenssub`][vector.multilinear_sparse.vector_space.tenssub]
     """
-    r = dict(t)
+    r:dict[Index,T] = dict(t)
     if i in r:
         r[i] -= c
     else:
         r[i] = -c
     return r
 
-def tensisubc(t, c, i=()):
+def tensisubc(t:dict[Index,T], c:T, i:Index=()) -> dict[Index,T]:
     """Subtract a basis tensor.
     
     $$
@@ -198,7 +207,7 @@ def tensisubc(t, c, i=()):
         t[i] = -c
     return t
 
-def tensmul(t, a):
+def tensmul(t:dict[Index,T], a:T) -> dict[Index,T]:
     """Return the product.
     
     $$
@@ -207,7 +216,7 @@ def tensmul(t, a):
     """
     return {i:ti*a for i, ti in t.items()}
 
-def tensrmul(a, t):
+def tensrmul(a:T, t:dict[Index,T]) -> dict[Index,T]:
     """Return the product.
     
     $$
@@ -216,7 +225,7 @@ def tensrmul(a, t):
     """
     return {i:a*ti for i, ti in t.items()}
 
-def tensimul(t, a):
+def tensimul(t:dict[Index,T], a:T) -> dict[Index,T]:
     r"""Multiply.
     
     $$
@@ -227,20 +236,11 @@ def tensimul(t, a):
         t[i] *= a
     return t
 
-def tenstruediv(t, a):
+def tenstruediv(t:dict[Index,T], a:T) -> dict[Index,T]:
     r"""Return the true quotient.
     
     $$
         \frac{t}{a}
-    $$
-    """
-    return {i:ti/a for i, ti in t.items()}
-
-def tensitruediv(t, a):
-    """True divide.
-    
-    $$
-        t /= a
     $$
     
     Notes
@@ -254,11 +254,20 @@ def tensitruediv(t, a):
     privileged over the other by getting the universal `div` name.
     - `truediv`/`floordiv` is unambiguous, like Python `operator`s.
     """
+    return {i:ti/a for i, ti in t.items()}
+
+def tensitruediv(t:dict[Index,T], a:T) -> dict[Index,T]:
+    """True divide.
+    
+    $$
+        t /= a
+    $$
+    """
     for i in t:
         t[i] /= a
     return t
 
-def tensfloordiv(t, a):
+def tensfloordiv(t:dict[Index,T], a:T) -> dict[Index,T]:
     r"""Return the floor quotient.
     
     $$
@@ -267,7 +276,7 @@ def tensfloordiv(t, a):
     """
     return {i:ti//a for i, ti in t.items()}
 
-def tensifloordiv(t, a):
+def tensifloordiv(t:dict[Index,T], a:T) -> dict[Index,T]:
     """Floor divide.
     
     $$
@@ -278,7 +287,7 @@ def tensifloordiv(t, a):
         t[i] //= a
     return t
 
-def tensmod(t, a):
+def tensmod(t:dict[Index,T], a:T) -> dict[Index,T]:
     r"""Return the remainder.
     
     $$
@@ -287,7 +296,7 @@ def tensmod(t, a):
     """
     return {i:ti%a for i, ti in t.items()}
 
-def tensimod(t, a):
+def tensimod(t:dict[Index,T], a:T) -> dict[Index,T]:
     r"""Mod.
     
     $$
@@ -298,14 +307,15 @@ def tensimod(t, a):
         t[i] %= a
     return t
 
-def tensdivmod(t, a):
+def tensdivmod(t:dict[Index,T], a:T) -> tuple[dict[Index,T], dict[Index,T]]:
     r"""Return the floor quotient and remainder.
     
     $$
         \left\lfloor\frac{t}{a}\right\rfloor, \ \left(t \bmod a\right)
     $$
     """
-    q, r = {}, {}
+    q:dict[Index,T] = {}
+    r:dict[Index,T] = {}
     for i, ti in t.items():
         q[i], r[i] = divmod(ti, a)
     return q, r
