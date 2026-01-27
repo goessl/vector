@@ -2,34 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://goessl.github.io/vector/</loc>
-         <lastmod>2026-01-18</lastmod>
+         <lastmod>2026-01-27</lastmod>
     </url>
     <url>
-         <loc>https://goessl.github.io/vector/functional/</loc>
-         <lastmod>2026-01-18</lastmod>
+         <loc>https://goessl.github.io/vector/dense/</loc>
+         <lastmod>2026-01-27</lastmod>
     </url>
     <url>
          <loc>https://goessl.github.io/vector/inplace/</loc>
-         <lastmod>2026-01-18</lastmod>
+         <lastmod>2026-01-27</lastmod>
     </url>
     <url>
          <loc>https://goessl.github.io/vector/lazy/</loc>
-         <lastmod>2026-01-18</lastmod>
+         <lastmod>2026-01-27</lastmod>
     </url>
     <url>
          <loc>https://goessl.github.io/vector/multilinear/</loc>
-         <lastmod>2026-01-18</lastmod>
+         <lastmod>2026-01-27</lastmod>
     </url>
     <url>
          <loc>https://goessl.github.io/vector/multilinear_sparse/</loc>
-         <lastmod>2026-01-18</lastmod>
+         <lastmod>2026-01-27</lastmod>
     </url>
     <url>
          <loc>https://goessl.github.io/vector/parallelised/</loc>
-         <lastmod>2026-01-18</lastmod>
+         <lastmod>2026-01-27</lastmod>
     </url>
     <url>
          <loc>https://goessl.github.io/vector/sparse/</loc>
-         <lastmod>2026-01-18</lastmod>
+         <lastmod>2026-01-27</lastmod>
+    </url>
+    <url>
+         <loc>https://goessl.github.io/vector/util/</loc>
+         <lastmod>2026-01-27</lastmod>
     </url>
 </urlset>
