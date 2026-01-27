@@ -9,7 +9,7 @@ __all__ = ('veclen', 'veceq', 'vectrim', 'vecrshift', 'veclshift')
 def veclen(v):
     """Return the length (number of set coefficients).
     
-    Doesn't handle trailing zeros, use [`vectrim`][vector.functional.utility.vectrim]
+    Doesn't handle trailing zeros, use [`vectrim`][vector.dense.utility.vectrim]
     if needed.
     
     Notes

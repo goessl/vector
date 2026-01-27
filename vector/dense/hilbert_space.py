@@ -1,11 +1,11 @@
 from operator import mul
-from itertools import tee, zip_longest
-from ..lazy import try_conjugate, veclconj
+from itertools import tee
+from ..lazy import veclconj
 from operationcounter import sumprod_default
 
 
 
-__all__ = ('vecconj', 'vecabs', 'vecabsq', 'vecdot', 'vecparallel')
+__all__ = ('vecconj', 'vecabs', 'vecabsq', 'vecdot')
 
 
 
@@ -34,7 +34,7 @@ def vecabs(v, weights=None, conjugate=False, zero=0):
         ||\vec{v}||_{\ell_{\mathbb{N}_0}^2}=\sqrt{\sum_iv_i^{(*)}v_i\omega_i} \qquad \mathbb{K}^n\to\mathbb{K}_0^+
     $$
     
-    Returns the square root of [`vecabsq`][vector.functional.vecabsq].
+    Returns the square root of [`vecabsq`][vector.dense.vecabsq].
     
     Complexity
     ----------
@@ -47,7 +47,7 @@ def vecabs(v, weights=None, conjugate=False, zero=0):
     
     See also
     --------
-    - squared version without square root: [`vecabsq`][vector.functional.hilbert_space.vecabsq]
+    - squared version without square root: [`vecabsq`][vector.dense.hilbert_space.vecabsq]
     """
     #hypot(*v) doesn't work for complex
     #math.sqrt doesn't work for complex and cmath.sqrt always returns complex
@@ -110,31 +110,3 @@ def vecdot(v, w, weights=None, conjugate=False, zero=0):
         return sumprod_default(v, w, default=zero)
     else:
         return sumprod_default(map(mul, v, w), weights, default=zero)
-
-def vecparallel(v, w, weights=None, conjugate=False, zero=0):
-    r"""Return if two vectors are parallel.
-    
-    $$
-        \vec{v}\parallel\vec{w} \qquad ||\vec{v}||\,||\vec{w}|| \overset{?}{=} |\vec{v}\vec{w}|^2 \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{B}
-    $$
-    
-    Complexity
-    ----------
-    Not yet perfect.
-    """
-    #doesn't work for exhaustible iterables
-    #return vecabsq(v)*vecabsq(w) == abs(vecdot(v, w))**2
-    v2, w2, vw = zero, zero, zero
-    if weights is None:
-        for vi, wi in zip_longest(v, w, fillvalue=zero):
-            vic, wic = (try_conjugate(vi), try_conjugate(wi)) if conjugate else (vi, wi)
-            v2 += vic * vi
-            w2 += wic * wi
-            vw += vic * wi
-    else:
-        for vi, wi, o in zip_longest(v, w, weights, fillvalue=zero):
-            vic, wic = (try_conjugate(vi), try_conjugate(wi)) if conjugate else (vi, wi)
-            v2 += vic * vi * o
-            w2 += wic * wi * o
-            vw += vic * wi * o
-    return v2 * w2 == (try_conjugate(vw) if conjugate else vw) * vw

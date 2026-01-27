@@ -30,7 +30,7 @@ def vecbasis(i, c=1, zero=0):
     
     See also
     --------
-    - for all basis vectors: [`vecbases`][vector.functional.creation.vecbases]
+    - for all basis vectors: [`vecbases`][vector.dense.creation.vecbases]
     """
     return (zero,)*i + (c,)
 
@@ -43,7 +43,7 @@ def vecbases(start=0, c=1, zero=0):
     
     See also
     --------
-    - for single basis vector: [`vecbasis`][vector.functional.creation.vecbasis]
+    - for single basis vector: [`vecbasis`][vector.dense.creation.vecbasis]
     """
     for i in count(start=start):
         yield vecbasis(i, c=c, zero=zero)

@@ -1,4 +1,4 @@
-from ..lazy import try_conjugate
+from ..util import try_conjugate
 
 
 

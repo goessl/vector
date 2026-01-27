@@ -10,13 +10,14 @@ copyright: Copyright &copy; 2022 - 2025 Sebastian Gössl
 
 nav:
   - Home: index.md
-  - functional.md
+  - dense.md
   - lazy.md
   - inplace.md
   - sparse.md
   - parallelised.md
   - multilinear.md
   - multilinear_sparse.md
+  - util.md
 
 theme:
   name: material

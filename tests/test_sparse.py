@@ -85,10 +85,6 @@ def test_vecsdot():
     assert vecsdot({0:1}, vecszero) == 0
     assert vecsdot({0:1, 5:2}, {0:3, 5:4, 6:5}) == 11
 
-#def test_vecparallel():
-#    assert vecparallel((1, 2, 3), (3, 4, 5)) == False
-#    assert vecparallel((1, 2, 3), (3, 6, 9)) == True
-
 
 #vector space
 def test_vecspos():

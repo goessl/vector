@@ -1,5 +1,5 @@
 from random import random, gauss
-from ..functional.utility import vectrim
+from ..dense.utility import vectrim
 from numpy import ndindex
 
 

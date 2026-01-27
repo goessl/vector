@@ -1,11 +1,11 @@
-from ..lazy import try_conjugate
+from ..util import try_conjugate
 from operationcounter import sum_default, sumprod_default
 
 
 
 __all__ = ('vecsconj', 'vecsiconj',
            'vecsabs', 'vecsabsq',
-           'vecsdot', 'vecsparallel')
+           'vecsdot')
 
 
 
@@ -117,15 +117,3 @@ def vecsdot(v, w, weights=None, conjugate=False, zero=0):
             return sum_default((v[k]*w[k]*weights[k] for k in v.keys()&w.keys()), default=zero)
         else:
             return sum_default((try_conjugate(v[k])*w[k]*weights[k] for k in v.keys()&w.keys()), default=zero)
-
-def vecsparallel(v, w, weights=None, conjugate=False, zero=0):
-    r"""Return if two vectors are parallel.
-    
-    $$
-        \vec{v}\parallel\vec{w} \qquad ||\vec{v}||\,||\vec{w}|| \overset{?}{=} |\vec{v}\vec{w}|^2
-    $$
-    """
-    vv = vecsabsq(v, weights=weights, conjugate=conjugate, zero=zero)
-    ww = vecsabsq(w, weights=weights, conjugate=conjugate, zero=zero)
-    vw = vecsdot(v, w, weights=weights, conjugate=conjugate, zero=zero)
-    return vv * ww == (try_conjugate(vw) if conjugate else vw) * vw

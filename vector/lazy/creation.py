@@ -42,7 +42,7 @@ def veclbases(start=0, c=1, zero=0):
     
     See also
     --------
-    - for single basis vector: [`veclbasis`][vector.lazy.creation.veclbases]
+    - for single basis vector: [`veclbasis`][vector.lazy.creation.veclbasis]
     """
     for i in count(start=start):
         yield veclbasis(i, c=c, zero=zero)
@@ -72,7 +72,7 @@ def veclrandn(n, mu=0, sigma=1):
     
     The coefficients are sampled from a normal distribution.
     
-    Difference to [`vecrandn`][vector.functional.vecrandn]:
+    Difference to [`vecrandn`][vector.dense.vecrandn]:
     The vector can't be normalised as it isn't materialised.
     
     Notes

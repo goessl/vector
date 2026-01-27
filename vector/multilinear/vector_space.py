@@ -1,4 +1,4 @@
-from ..functional.elementwise import vechadamardmax
+from ..dense.elementwise import vechadamardmax
 import numpy as np
 
 

@@ -3,7 +3,7 @@ from .utility import tensrank, tensdim, tenseq, tenstrim, tensitrim, tensrshift,
 from .hilbert_space import tensconj, tensiconj
 from .vector_space import tenspos, tensneg, tensadd, tensiadd, tensaddc, tensiaddc, tenssub, tensisub, tenssubc, tensisubc, tensmul, tensrmul, tensimul, tenstruediv, tensitruediv, tensfloordiv, tensifloordiv, tensmod, tensimod, tensdivmod
 from .elementwise import tenshadamard, tenshadamardtruediv, tenshadamardfloordiv, tenshadamardmod, tenshadamarddivmod, tenshadamardmin, tenshadamardmax
-from ..functional.utility import vectrim
+from ..dense.utility import vectrim
 
 
 

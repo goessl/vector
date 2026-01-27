@@ -84,10 +84,6 @@ def test_vecdot():
         if min(n, m) <= 1:
             assert counter == Counter({'mul':min(n, m)})
 
-def test_vecparallel():
-    assert vecparallel((1, 2, 3), (3, 4, 5)) == False
-    assert vecparallel((1, 2, 3), (3, 6, 9)) == True
-
 
 #vector space
 def test_vecpos():

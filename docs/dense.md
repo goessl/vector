@@ -1,6 +1,6 @@
-# Functional
+# Dense
 
-::: vector.functional
+::: vector.dense
     options:
       show_submodules: true
       members:

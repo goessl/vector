@@ -12,18 +12,17 @@ Prefixed by `vecl...` (vector - lazy).
 
 Functions are **generators**.
 
-Lazy generator versions of [`functional`](functional.md).
+Lazy generator versions of [`dense`](dense.md).
 
 Different behaviour:
 
-- [`vecrandn`][vector.functional.vecrandn]: normalisation not possible.
+- [`vecrandn`][vector.dense.vecrandn]: normalisation not possible.
 
 Not implemented lazily as these are consumers:
 
-- [`vecabs`][vector.functional.vecabs]
-- [`vecabsq`][vector.functional.vecabsq]
-- [`vecdot`][vector.functional.vecdot]
-- [`vecparallel`][vector.functional.vecparallel]
+- [`vecabs`][vector.dense.vecabs]
+- [`vecabsq`][vector.dense.vecabsq]
+- [`vecdot`][vector.dense.vecdot]
 """
 
 

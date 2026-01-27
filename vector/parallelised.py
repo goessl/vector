@@ -1,5 +1,5 @@
 import numpy as np
-from .functional.utility import veceq
+from .dense.utility import veceq
 
 
 
@@ -8,7 +8,7 @@ __all__ = (#creation
            #utility
            'vecnpdim', 'vecnpeq', 'vecnptrim', 'vecnpround',
            #Hilbert space
-           'vecnpabsq', 'vecnpabs', 'vecnpdot', 'vecnpparallel',
+           'vecnpabsq', 'vecnpabs', 'vecnpdot',
            #vector space
            'vecnppos', 'vecnpneg', 'vecnpadd', 'vecnpsub',
            'vecnpmul', 'vecnptruediv', 'vecnpfloordiv', 'vecnpmod')
@@ -103,11 +103,6 @@ def vecnpdot(v, w):
     shape = tuple(reversed(tuple(
             map(min, zip(reversed(v.shape), reversed(w.shape))))))
     return np.sum(v[...,*map(slice, shape)]*w[...,*map(slice, shape)], axis=-1)
-
-def vecnpparallel(v, w):
-    """Return if two vectors are parallel."""
-    v, w = np.asarray(v), np.asarray(w)
-    return vecnpabsq(v)*vecnpabsq(w) == vecnpdot(v, w)**2
 
 
 #vector space

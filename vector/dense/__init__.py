@@ -1,4 +1,4 @@
-"""Vector operation functions.
+"""Dense, immutable vector operations.
 
 ```python
 >>> from vector import vecadd

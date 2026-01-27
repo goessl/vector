@@ -1,4 +1,4 @@
-from ..functional.utility import vectrim
+from ..dense.utility import vectrim
 from .utility import tensdim
 import numpy as np
 

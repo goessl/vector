@@ -1,4 +1,4 @@
-from ..lazy.hilbert_space import try_conjugate
+from ..util import try_conjugate
 
 
 

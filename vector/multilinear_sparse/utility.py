@@ -1,6 +1,6 @@
 from operator import add, sub
 from itertools import starmap, zip_longest
-from ..functional.elementwise import vechadamardmax
+from ..dense.elementwise import vechadamardmax
 
 
 
