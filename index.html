@@ -787,7 +787,7 @@
 <h2 id="usage">Usage</h2>
 <p>This package includes</p>
 <ul>
-<li>general-purpose <strong>functions</strong> (prefixed <code>vec...</code>) in <em>pure Python</em> with <strong>perfect complexity</strong>,</li>
+<li>general-purpose <strong>functions</strong> (prefixed <code>vec...</code>) with <strong>perfect complexity</strong>,</li>
 <li>lazy <strong>generators</strong> (prefixed <code>vecl...</code>),</li>
 <li><strong>in-place</strong> modifications (prefixed <code>veci...</code>),</li>
 <li><code>dicts</code> as <strong>sparse</strong> vectors (prefixed <code>vecs...</code>),</li>
@@ -1018,50 +1018,50 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Conjugation</td>
-<td><a class="autorefs autorefs-internal" title="            vecconj(v)" href="dense/#vector.dense.hilbert_space.vecconj"><code>vecconj</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            veclconj(v)" href="lazy/#vector.lazy.hilbert_space.veclconj"><code>veclconj</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecconj(v)" href="dense/#vector.dense.hilbertspace.vecconj"><code>vecconj</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            veclconj(v)" href="lazy/#vector.lazy.hilbertspace.veclconj"><code>veclconj</code></a></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            vecsconj(v)" href="sparse/#vector.sparse.hilbert_space.vecsconj"><code>vecsconj</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            tenconj(t)" href="multilinear/#vector.multilinear.hilbert_space.tenconj"><code>tenconj</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            tensconj(t)" href="multilinear_sparse/#vector.multilinear_sparse.hilbert_space.tensconj"><code>tensconj</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsconj(v)" href="sparse/#vector.sparse.hilbertspace.vecsconj"><code>vecsconj</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tenconj(t)" href="multilinear/#vector.multilinear.hilbertspace.tenconj"><code>tenconj</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tensconj(t)" href="multilinear_sparse/#vector.multilinear_sparse.hilbertspace.tensconj"><code>tensconj</code></a></td>
 <td></td>
 </tr>
 <tr>
 <td>in-place</td>
 <td></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            veciconj(v)" href="inplace/#vector.inplace.hilbert_space.veciconj"><code>veciconj</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            vecsiconj(v)" href="sparse/#vector.sparse.hilbert_space.vecsiconj"><code>vecsiconj</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            veciconj(v)" href="inplace/#vector.inplace.hilbertspace.veciconj"><code>veciconj</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsiconj(v)" href="sparse/#vector.sparse.hilbertspace.vecsiconj"><code>vecsiconj</code></a></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            tensiconj(t)" href="multilinear_sparse/#vector.multilinear_sparse.hilbert_space.tensiconj"><code>tensiconj</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tensiconj(t)" href="multilinear_sparse/#vector.multilinear_sparse.hilbertspace.tensiconj"><code>tensiconj</code></a></td>
 <td></td>
 </tr>
 <tr>
 <td>Norm</td>
-<td><a class="autorefs autorefs-internal" title="            vecabs(v, weights=None, conjugate=False, zero=0)" href="dense/#vector.dense.hilbert_space.vecabs"><code>vecabs</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecabs(v, weights=None, conjugate=False, zero=0)" href="dense/#vector.dense.hilbertspace.vecabs"><code>vecabs</code></a></td>
 <td></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            vecsabs(v, weights=None, conjugate=False, zero=0)" href="sparse/#vector.sparse.hilbert_space.vecsabs"><code>vecsabs</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsabs(v, weights=None, conjugate=False, zero=0)" href="sparse/#vector.sparse.hilbertspace.vecsabs"><code>vecsabs</code></a></td>
 <td></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            vecnpabs(v)" href="parallelised/#vector.parallelised.vecnpabs"><code>vecnpabs</code></a></td>
 </tr>
 <tr>
 <td>Norm squared</td>
-<td><a class="autorefs autorefs-internal" title="            vecabsq(v, weights=None, conjugate=False, zero=0)" href="dense/#vector.dense.hilbert_space.vecabsq"><code>vecabsq</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecabsq(v, weights=None, conjugate=False, zero=0)" href="dense/#vector.dense.hilbertspace.vecabsq"><code>vecabsq</code></a></td>
 <td></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            vecsabsq(v, weights=None, conjugate=False, zero=0)" href="sparse/#vector.sparse.hilbert_space.vecsabsq"><code>vecsabsq</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsabsq(v, weights=None, conjugate=False, zero=0)" href="sparse/#vector.sparse.hilbertspace.vecsabsq"><code>vecsabsq</code></a></td>
 <td></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            vecnpabsq(v)" href="parallelised/#vector.parallelised.vecnpabsq"><code>vecnpabsq</code></a></td>
 </tr>
 <tr>
 <td>Inner product</td>
-<td><a class="autorefs autorefs-internal" title="            vecdot(v, w, weights=None, conjugate=False, zero=0)" href="dense/#vector.dense.hilbert_space.vecdot"><code>vecdot</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecdot(v, w, weights=None, conjugate=False, zero=0)" href="dense/#vector.dense.hilbertspace.vecdot"><code>vecdot</code></a></td>
 <td></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            vecsdot(v, w, weights=None, conjugate=False, zero=0)" href="sparse/#vector.sparse.hilbert_space.vecsdot"><code>vecsdot</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsdot(v, w, weights=None, conjugate=False, zero=0)" href="sparse/#vector.sparse.hilbertspace.vecsdot"><code>vecsdot</code></a></td>
 <td></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            vecnpdot(v, w)" href="parallelised/#vector.parallelised.vecnpdot"><code>vecnpdot</code></a></td>
@@ -1078,222 +1078,222 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Positive</td>
-<td><a class="autorefs autorefs-internal" title="            vecpos(v)" href="dense/#vector.dense.vector_space.vecpos"><code>vecpos</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            veclpos(v)" href="lazy/#vector.lazy.vector_space.veclpos"><code>veclpos</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecpos(v)" href="dense/#vector.dense.vectorspace.vecpos"><code>vecpos</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            veclpos(v)" href="lazy/#vector.lazy.vectorspace.veclpos"><code>veclpos</code></a></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            vecspos(v)" href="sparse/#vector.sparse.vector_space.vecspos"><code>vecspos</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            tenpos(t)" href="multilinear/#vector.multilinear.vector_space.tenpos"><code>tenpos</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            tenspos(t)" href="multilinear_sparse/#vector.multilinear_sparse.vector_space.tenspos"><code>tenspos</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecspos(v)" href="sparse/#vector.sparse.vectorspace.vecspos"><code>vecspos</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tenpos(t)" href="multilinear/#vector.multilinear.vectorspace.tenpos"><code>tenpos</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tenspos(t)" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tenspos"><code>tenspos</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecnppos(v)" href="parallelised/#vector.parallelised.vecnppos"><code>vecnppos</code></a></td>
 </tr>
 <tr>
 <td>in-place</td>
 <td></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            vecipos(v)" href="inplace/#vector.inplace.vector_space.vecipos"><code>vecipos</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            vecsipos(v)" href="sparse/#vector.sparse.vector_space.vecsipos"><code>vecsipos</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecipos(v)" href="inplace/#vector.inplace.vectorspace.vecipos"><code>vecipos</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsipos(v)" href="sparse/#vector.sparse.vectorspace.vecsipos"><code>vecsipos</code></a></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            tensipos(t)" href="multilinear_sparse/#vector.multilinear_sparse.vector_space.tensipos"><code>tensipos</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tensipos(t)" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensipos"><code>tensipos</code></a></td>
 <td></td>
 </tr>
 <tr>
 <td>Negative</td>
-<td><a class="autorefs autorefs-internal" title="            vecneg(v)" href="dense/#vector.dense.vector_space.vecneg"><code>vecneg</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            veclneg(v)" href="lazy/#vector.lazy.vector_space.veclneg"><code>veclneg</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecneg(v)" href="dense/#vector.dense.vectorspace.vecneg"><code>vecneg</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            veclneg(v)" href="lazy/#vector.lazy.vectorspace.veclneg"><code>veclneg</code></a></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            vecsneg(v)" href="sparse/#vector.sparse.vector_space.vecsneg"><code>vecsneg</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            tenneg(t)" href="multilinear/#vector.multilinear.vector_space.tenneg"><code>tenneg</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            tensneg(t)" href="multilinear_sparse/#vector.multilinear_sparse.vector_space.tensneg"><code>tensneg</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsneg(v)" href="sparse/#vector.sparse.vectorspace.vecsneg"><code>vecsneg</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tenneg(t)" href="multilinear/#vector.multilinear.vectorspace.tenneg"><code>tenneg</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tensneg(t)" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensneg"><code>tensneg</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecnpneg(v)" href="parallelised/#vector.parallelised.vecnpneg"><code>vecnpneg</code></a></td>
 </tr>
 <tr>
 <td>in-place</td>
 <td></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            vecineg(v)" href="inplace/#vector.inplace.vector_space.vecineg"><code>vecineg</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            vecsineg(v)" href="sparse/#vector.sparse.vector_space.vecsineg"><code>vecsineg</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecineg(v)" href="inplace/#vector.inplace.vectorspace.vecineg"><code>vecineg</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsineg(v)" href="sparse/#vector.sparse.vectorspace.vecsineg"><code>vecsineg</code></a></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            tensineg(t)" href="multilinear_sparse/#vector.multilinear_sparse.vector_space.tensineg"><code>tensineg</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tensineg(t)" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensineg"><code>tensineg</code></a></td>
 <td></td>
 </tr>
 <tr>
 <td>Addition</td>
-<td><a class="autorefs autorefs-internal" title="            vecadd(*vs)" href="dense/#vector.dense.vector_space.vecadd"><code>vecadd</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            vecladd(*vs)" href="lazy/#vector.lazy.vector_space.vecladd"><code>vecladd</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecadd(*vs)" href="dense/#vector.dense.vectorspace.vecadd"><code>vecadd</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecladd(*vs)" href="lazy/#vector.lazy.vectorspace.vecladd"><code>vecladd</code></a></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            vecsadd(*vs)" href="sparse/#vector.sparse.vector_space.vecsadd"><code>vecsadd</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            tenadd(*ts)" href="multilinear/#vector.multilinear.vector_space.tenadd"><code>tenadd</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            tensadd(*ts)" href="multilinear_sparse/#vector.multilinear_sparse.vector_space.tensadd"><code>tensadd</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsadd(*vs)" href="sparse/#vector.sparse.vectorspace.vecsadd"><code>vecsadd</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tenadd(*ts)" href="multilinear/#vector.multilinear.vectorspace.tenadd"><code>tenadd</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tensadd(*ts)" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensadd"><code>tensadd</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecnpadd(*vs)" href="parallelised/#vector.parallelised.vecnpadd"><code>vecnpadd</code></a></td>
 </tr>
 <tr>
 <td>in-place</td>
 <td></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            veciadd(v, *ws)" href="inplace/#vector.inplace.vector_space.veciadd"><code>veciadd</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            vecsiadd(v, *ws)" href="sparse/#vector.sparse.vector_space.vecsiadd"><code>vecsiadd</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            veciadd(v, *ws)" href="inplace/#vector.inplace.vectorspace.veciadd"><code>veciadd</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsiadd(v, *ws)" href="sparse/#vector.sparse.vectorspace.vecsiadd"><code>vecsiadd</code></a></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            tensiadd(s, *ts)" href="multilinear_sparse/#vector.multilinear_sparse.vector_space.tensiadd"><code>tensiadd</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tensiadd(s, *ts)" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensiadd"><code>tensiadd</code></a></td>
 <td></td>
 </tr>
 <tr>
 <td>Basis addition</td>
-<td><a class="autorefs autorefs-internal" title="            vecaddc(v, c, i=0, zero=0)" href="dense/#vector.dense.vector_space.vecaddc"><code>vecaddc</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            vecladdc(v, c, i=0, zero=0)" href="lazy/#vector.lazy.vector_space.vecladdc"><code>vecladdc</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecaddc(v, c, i=0, zero=0)" href="dense/#vector.dense.vectorspace.vecaddc"><code>vecaddc</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecladdc(v, c, i=0, zero=0)" href="lazy/#vector.lazy.vectorspace.vecladdc"><code>vecladdc</code></a></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            vecsaddc(v, c, i=0)" href="sparse/#vector.sparse.vector_space.vecsaddc"><code>vecsaddc</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            tenaddc(t, c, i=(0,))" href="multilinear/#vector.multilinear.vector_space.tenaddc"><code>tenaddc</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            tensaddc(t, c, i=())" href="multilinear_sparse/#vector.multilinear_sparse.vector_space.tensaddc"><code>tensaddc</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsaddc(v, c, i=0)" href="sparse/#vector.sparse.vectorspace.vecsaddc"><code>vecsaddc</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tenaddc(t, c, i=(0,))" href="multilinear/#vector.multilinear.vectorspace.tenaddc"><code>tenaddc</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tensaddc(t, c, i=())" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensaddc"><code>tensaddc</code></a></td>
 <td></td>
 </tr>
 <tr>
 <td>in-place</td>
 <td></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            veciaddc(v, c, i=0, zero=0)" href="inplace/#vector.inplace.vector_space.veciaddc"><code>veciaddc</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            vecsiaddc(v, c, i=0)" href="sparse/#vector.sparse.vector_space.vecsiaddc"><code>vecsiaddc</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            veciaddc(v, c, i=0, zero=0)" href="inplace/#vector.inplace.vectorspace.veciaddc"><code>veciaddc</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsiaddc(v, c, i=0)" href="sparse/#vector.sparse.vectorspace.vecsiaddc"><code>vecsiaddc</code></a></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            tensiaddc(t, c, i=())" href="multilinear_sparse/#vector.multilinear_sparse.vector_space.tensiaddc"><code>tensiaddc</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tensiaddc(t, c, i=())" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensiaddc"><code>tensiaddc</code></a></td>
 <td></td>
 </tr>
 <tr>
 <td>Subtraction</td>
-<td><a class="autorefs autorefs-internal" title="            vecsub(v, w)" href="dense/#vector.dense.vector_space.vecsub"><code>vecsub</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            veclsub(v, w)" href="lazy/#vector.lazy.vector_space.veclsub"><code>veclsub</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsub(v, w)" href="dense/#vector.dense.vectorspace.vecsub"><code>vecsub</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            veclsub(v, w)" href="lazy/#vector.lazy.vectorspace.veclsub"><code>veclsub</code></a></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            vecssub(v, w)" href="sparse/#vector.sparse.vector_space.vecssub"><code>vecssub</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            tensub(s, t)" href="multilinear/#vector.multilinear.vector_space.tensub"><code>tensub</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            tenssub(s, t)" href="multilinear_sparse/#vector.multilinear_sparse.vector_space.tenssub"><code>tenssub</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecssub(v, w)" href="sparse/#vector.sparse.vectorspace.vecssub"><code>vecssub</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tensub(s, t)" href="multilinear/#vector.multilinear.vectorspace.tensub"><code>tensub</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tenssub(s, t)" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tenssub"><code>tenssub</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecnpsub(v, w)" href="parallelised/#vector.parallelised.vecnpsub"><code>vecnpsub</code></a></td>
 </tr>
 <tr>
 <td>in-place</td>
 <td></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            vecisub(v, w)" href="inplace/#vector.inplace.vector_space.vecisub"><code>vecisub</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            vecsisub(v, w)" href="sparse/#vector.sparse.vector_space.vecsisub"><code>vecsisub</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecisub(v, w)" href="inplace/#vector.inplace.vectorspace.vecisub"><code>vecisub</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsisub(v, w)" href="sparse/#vector.sparse.vectorspace.vecsisub"><code>vecsisub</code></a></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            tensisub(s, t)" href="multilinear_sparse/#vector.multilinear_sparse.vector_space.tensisub"><code>tensisub</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tensisub(s, t)" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensisub"><code>tensisub</code></a></td>
 <td></td>
 </tr>
 <tr>
 <td>Basis subtraction</td>
-<td><a class="autorefs autorefs-internal" title="            vecsubc(v, c, i=0, zero=0)" href="dense/#vector.dense.vector_space.vecsubc"><code>vecsubc</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            veclsubc(v, c, i=0, zero=0)" href="lazy/#vector.lazy.vector_space.veclsubc"><code>veclsubc</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsubc(v, c, i=0, zero=0)" href="dense/#vector.dense.vectorspace.vecsubc"><code>vecsubc</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            veclsubc(v, c, i=0, zero=0)" href="lazy/#vector.lazy.vectorspace.veclsubc"><code>veclsubc</code></a></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            vecssubc(v, c, i=0)" href="sparse/#vector.sparse.vector_space.vecssubc"><code>vecssubc</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            tensubc(t, c, i=(0,))" href="multilinear/#vector.multilinear.vector_space.tensubc"><code>tensubc</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            tenssubc(t, c, i=())" href="multilinear_sparse/#vector.multilinear_sparse.vector_space.tenssubc"><code>tenssubc</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecssubc(v, c, i=0)" href="sparse/#vector.sparse.vectorspace.vecssubc"><code>vecssubc</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tensubc(t, c, i=(0,))" href="multilinear/#vector.multilinear.vectorspace.tensubc"><code>tensubc</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tenssubc(t, c, i=())" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tenssubc"><code>tenssubc</code></a></td>
 <td></td>
 </tr>
 <tr>
 <td>in-place</td>
 <td></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            vecisubc(v, c, i=0, zero=0)" href="inplace/#vector.inplace.vector_space.vecisubc"><code>vecisubc</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            vecsisubc(v, c, i=0)" href="sparse/#vector.sparse.vector_space.vecsisubc"><code>vecsisubc</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecisubc(v, c, i=0, zero=0)" href="inplace/#vector.inplace.vectorspace.vecisubc"><code>vecisubc</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsisubc(v, c, i=0)" href="sparse/#vector.sparse.vectorspace.vecsisubc"><code>vecsisubc</code></a></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            tensisubc(t, c, i=())" href="multilinear_sparse/#vector.multilinear_sparse.vector_space.tensisubc"><code>tensisubc</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tensisubc(t, c, i=())" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensisubc"><code>tensisubc</code></a></td>
 <td></td>
 </tr>
 <tr>
 <td>Multiplication</td>
-<td><a class="autorefs autorefs-internal" title="            vecrmul(a, v)" href="dense/#vector.dense.vector_space.vecrmul"><code>vecrmul</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            veclrmul(a, v)" href="lazy/#vector.lazy.vector_space.veclrmul"><code>veclrmul</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecrmul(a, v)" href="dense/#vector.dense.vectorspace.vecrmul"><code>vecrmul</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            veclrmul(a, v)" href="lazy/#vector.lazy.vectorspace.veclrmul"><code>veclrmul</code></a></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            vecsrmul(a, v)" href="sparse/#vector.sparse.vector_space.vecsrmul"><code>vecsrmul</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            tenrmul(a, t)" href="multilinear/#vector.multilinear.vector_space.tenrmul"><code>tenrmul</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            tensrmul(a, t)" href="multilinear_sparse/#vector.multilinear_sparse.vector_space.tensrmul"><code>tensrmul</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsrmul(a, v)" href="sparse/#vector.sparse.vectorspace.vecsrmul"><code>vecsrmul</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tenrmul(a, t)" href="multilinear/#vector.multilinear.vectorspace.tenrmul"><code>tenrmul</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tensrmul(a, t)" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensrmul"><code>tensrmul</code></a></td>
 <td></td>
 </tr>
 <tr>
 <td>from left</td>
-<td><a class="autorefs autorefs-internal" title="            vecmul(v, a)" href="dense/#vector.dense.vector_space.vecmul"><code>vecmul</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            veclmul(v, a)" href="lazy/#vector.lazy.vector_space.veclmul"><code>veclmul</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecmul(v, a)" href="dense/#vector.dense.vectorspace.vecmul"><code>vecmul</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            veclmul(v, a)" href="lazy/#vector.lazy.vectorspace.veclmul"><code>veclmul</code></a></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            vecsmul(v, a)" href="sparse/#vector.sparse.vector_space.vecsmul"><code>vecsmul</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            tenmul(t, a)" href="multilinear/#vector.multilinear.vector_space.tenmul"><code>tenmul</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            tensmul(t, a)" href="multilinear_sparse/#vector.multilinear_sparse.vector_space.tensmul"><code>tensmul</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsmul(v, a)" href="sparse/#vector.sparse.vectorspace.vecsmul"><code>vecsmul</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tenmul(t, a)" href="multilinear/#vector.multilinear.vectorspace.tenmul"><code>tenmul</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tensmul(t, a)" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensmul"><code>tensmul</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecnpmul(a, v)" href="parallelised/#vector.parallelised.vecnpmul"><code>vecnpmul</code></a></td>
 </tr>
 <tr>
 <td>in-place</td>
 <td></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            vecimul(v, a)" href="inplace/#vector.inplace.vector_space.vecimul"><code>vecimul</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            vecsimul(v, a)" href="sparse/#vector.sparse.vector_space.vecsimul"><code>vecsimul</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecimul(v, a)" href="inplace/#vector.inplace.vectorspace.vecimul"><code>vecimul</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsimul(v, a)" href="sparse/#vector.sparse.vectorspace.vecsimul"><code>vecsimul</code></a></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            tensimul(t, a)" href="multilinear_sparse/#vector.multilinear_sparse.vector_space.tensimul"><code>tensimul</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tensimul(t, a)" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensimul"><code>tensimul</code></a></td>
 <td></td>
 </tr>
 <tr>
 <td>True division</td>
-<td><a class="autorefs autorefs-internal" title="            vectruediv(v, a)" href="dense/#vector.dense.vector_space.vectruediv"><code>vectruediv</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            vecltruediv(v, a)" href="lazy/#vector.lazy.vector_space.vecltruediv"><code>vecltruediv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vectruediv(v, a)" href="dense/#vector.dense.vectorspace.vectruediv"><code>vectruediv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecltruediv(v, a)" href="lazy/#vector.lazy.vectorspace.vecltruediv"><code>vecltruediv</code></a></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            vecstruediv(v, a)" href="sparse/#vector.sparse.vector_space.vecstruediv"><code>vecstruediv</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            tentruediv(t, a)" href="multilinear/#vector.multilinear.vector_space.tentruediv"><code>tentruediv</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            tenstruediv(t, a)" href="multilinear_sparse/#vector.multilinear_sparse.vector_space.tenstruediv"><code>tenstruediv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecstruediv(v, a)" href="sparse/#vector.sparse.vectorspace.vecstruediv"><code>vecstruediv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tentruediv(t, a)" href="multilinear/#vector.multilinear.vectorspace.tentruediv"><code>tentruediv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tenstruediv(t, a)" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tenstruediv"><code>tenstruediv</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecnptruediv(v, a)" href="parallelised/#vector.parallelised.vecnptruediv"><code>vecnptruediv</code></a></td>
 </tr>
 <tr>
 <td>in-place</td>
 <td></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            vecitruediv(v, a)" href="inplace/#vector.inplace.vector_space.vecitruediv"><code>vecitruediv</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            vecsitruediv(v, a)" href="sparse/#vector.sparse.vector_space.vecsitruediv"><code>vecsitruediv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecitruediv(v, a)" href="inplace/#vector.inplace.vectorspace.vecitruediv"><code>vecitruediv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsitruediv(v, a)" href="sparse/#vector.sparse.vectorspace.vecsitruediv"><code>vecsitruediv</code></a></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            tensitruediv(t, a)" href="multilinear_sparse/#vector.multilinear_sparse.vector_space.tensitruediv"><code>tensitruediv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tensitruediv(t, a)" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensitruediv"><code>tensitruediv</code></a></td>
 <td></td>
 </tr>
 <tr>
 <td>Floor division</td>
-<td><a class="autorefs autorefs-internal" title="            vecfloordiv(v, a)" href="dense/#vector.dense.vector_space.vecfloordiv"><code>vecfloordiv</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            veclfloordiv(v, a)" href="lazy/#vector.lazy.vector_space.veclfloordiv"><code>veclfloordiv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecfloordiv(v, a)" href="dense/#vector.dense.vectorspace.vecfloordiv"><code>vecfloordiv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            veclfloordiv(v, a)" href="lazy/#vector.lazy.vectorspace.veclfloordiv"><code>veclfloordiv</code></a></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            vecsfloordiv(v, a)" href="sparse/#vector.sparse.vector_space.vecsfloordiv"><code>vecsfloordiv</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            tenfloordiv(t, a)" href="multilinear/#vector.multilinear.vector_space.tenfloordiv"><code>tenfloordiv</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            tensfloordiv(t, a)" href="multilinear_sparse/#vector.multilinear_sparse.vector_space.tensfloordiv"><code>tensfloordiv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsfloordiv(v, a)" href="sparse/#vector.sparse.vectorspace.vecsfloordiv"><code>vecsfloordiv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tenfloordiv(t, a)" href="multilinear/#vector.multilinear.vectorspace.tenfloordiv"><code>tenfloordiv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tensfloordiv(t, a)" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensfloordiv"><code>tensfloordiv</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecnpfloordiv(v, a)" href="parallelised/#vector.parallelised.vecnpfloordiv"><code>vecnpfloordiv</code></a></td>
 </tr>
 <tr>
 <td>in-place</td>
 <td></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            vecifloordiv(v, a)" href="inplace/#vector.inplace.vector_space.vecifloordiv"><code>vecifloordiv</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            vecsifloordiv(v, a)" href="sparse/#vector.sparse.vector_space.vecsifloordiv"><code>vecsifloordiv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecifloordiv(v, a)" href="inplace/#vector.inplace.vectorspace.vecifloordiv"><code>vecifloordiv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsifloordiv(v, a)" href="sparse/#vector.sparse.vectorspace.vecsifloordiv"><code>vecsifloordiv</code></a></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            tensifloordiv(t, a)" href="multilinear_sparse/#vector.multilinear_sparse.vector_space.tensifloordiv"><code>tensifloordiv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tensifloordiv(t, a)" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensifloordiv"><code>tensifloordiv</code></a></td>
 <td></td>
 </tr>
 <tr>
 <td>Mod</td>
-<td><a class="autorefs autorefs-internal" title="            vecmod(v, a)" href="dense/#vector.dense.vector_space.vecmod"><code>vecmod</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            veclmod(v, a)" href="lazy/#vector.lazy.vector_space.veclmod"><code>veclmod</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecmod(v, a)" href="dense/#vector.dense.vectorspace.vecmod"><code>vecmod</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            veclmod(v, a)" href="lazy/#vector.lazy.vectorspace.veclmod"><code>veclmod</code></a></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            vecsmod(v, a)" href="sparse/#vector.sparse.vector_space.vecsmod"><code>vecstruediv</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            tenmod(t, a)" href="multilinear/#vector.multilinear.vector_space.tenmod"><code>tenmod</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            tensmod(t, a)" href="multilinear_sparse/#vector.multilinear_sparse.vector_space.tensmod"><code>tensmod</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsmod(v, a)" href="sparse/#vector.sparse.vectorspace.vecsmod"><code>vecstruediv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tenmod(t, a)" href="multilinear/#vector.multilinear.vectorspace.tenmod"><code>tenmod</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tensmod(t, a)" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensmod"><code>tensmod</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecnpmod(v, a)" href="parallelised/#vector.parallelised.vecnpmod"><code>vecnpmod</code></a></td>
 </tr>
 <tr>
 <td>in-place</td>
 <td></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            vecimod(v, a)" href="inplace/#vector.inplace.vector_space.vecimod"><code>vecimod</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            vecsimod(v, a)" href="sparse/#vector.sparse.vector_space.vecsimod"><code>vecsitruediv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecimod(v, a)" href="inplace/#vector.inplace.vectorspace.vecimod"><code>vecimod</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsimod(v, a)" href="sparse/#vector.sparse.vectorspace.vecsimod"><code>vecsitruediv</code></a></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            tensimod(t, a)" href="multilinear_sparse/#vector.multilinear_sparse.vector_space.tensimod"><code>tensimod</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tensimod(t, a)" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensimod"><code>tensimod</code></a></td>
 <td></td>
 </tr>
 <tr>
 <td>Divmod</td>
-<td><a class="autorefs autorefs-internal" title="            vecdivmod(v, a)" href="dense/#vector.dense.vector_space.vecdivmod"><code>vecdivmod</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            vecldivmod(v, a)" href="lazy/#vector.lazy.vector_space.vecldivmod"><code>vecldivmod</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecdivmod(v, a)" href="dense/#vector.dense.vectorspace.vecdivmod"><code>vecdivmod</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecldivmod(v, a)" href="lazy/#vector.lazy.vectorspace.vecldivmod"><code>vecldivmod</code></a></td>
 <td></td>
-<td><a class="autorefs autorefs-internal" title="            vecsdivmod(v, a)" href="sparse/#vector.sparse.vector_space.vecsdivmod"><code>vecsdivmod</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            tendivmod(t, a)" href="multilinear/#vector.multilinear.vector_space.tendivmod"><code>tendivmod</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            tensdivmod(t, a)" href="multilinear_sparse/#vector.multilinear_sparse.vector_space.tensdivmod"><code>tensdivmod</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsdivmod(v, a)" href="sparse/#vector.sparse.vectorspace.vecsdivmod"><code>vecsdivmod</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tendivmod(t, a)" href="multilinear/#vector.multilinear.vectorspace.tendivmod"><code>tendivmod</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            tensdivmod(t, a)" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensdivmod"><code>tensdivmod</code></a></td>
 <td></td>
 </tr>
 <tr>
@@ -1406,6 +1406,9 @@ tuples. Done: <a href="https://github.com/goessl/zipvar">goessl/zipvar</a></li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> dimensionality signature (e.g. <code>vecadd</code>: <span class="arithmatex">\(\mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^{\max{m, n}}\)</span>)</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> sparse vectors (<code>dict</code>s)</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> in-place</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> C extension</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <code>vector.util</code></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <code>vector.multiliear_sparse.vectorspace</code></li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>veceq</code> to <code>veccmp</code>?</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> argument checks</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> lp-norms &amp; metrics</li>
