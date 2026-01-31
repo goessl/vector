@@ -47,7 +47,7 @@ def vecabs(v, weights=None, conjugate=False, zero=0):
     
     See also
     --------
-    - squared version without square root: [`vecabsq`][vector.dense.hilbert_space.vecabsq]
+    - squared version without square root: [`vecabsq`][vector.dense.hilbertspace.vecabsq]
     """
     #hypot(*v) doesn't work for complex
     #math.sqrt doesn't work for complex and cmath.sqrt always returns complex

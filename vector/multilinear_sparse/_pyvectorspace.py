@@ -70,7 +70,7 @@ def tensadd(*ts:dict[Index,T]) -> dict[Index,T]:
     
     See also
     --------
-    - for sum on a single coefficient: [`tensaddc`][vector.multilinear_sparse.vector_space.tensaddc]
+    - for sum on a single coefficient: [`tensaddc`][vector.multilinear_sparse.vectorspace.tensaddc]
     """
     r:dict[Index,T] = dict(ts[0]) if ts else {}
     for t in ts[1:]:
@@ -90,7 +90,7 @@ def tensiadd(s:dict[Index,T], *ts:dict[Index,T]) -> dict[Index,T]:
     
     See also
     --------
-    - for sum on a single coefficient: [`tensiaddc`][vector.multilinear_sparse.vector_space.tensiaddc]
+    - for sum on a single coefficient: [`tensiaddc`][vector.multilinear_sparse.vectorspace.tensiaddc]
     """
     for t in ts:
         for i, ti in t.items():
@@ -109,7 +109,7 @@ def tensaddc(t:dict[Index,T], c:T, i:Index=()) -> dict[Index,T]:
     
     See also
     --------
-    - for sum on more coefficients: [`tensadd`][vector.multilinear_sparse.vector_space.tensadd]
+    - for sum on more coefficients: [`tensadd`][vector.multilinear_sparse.vectorspace.tensadd]
     """
     r:dict[Index,T] = dict(t)
     if i in r:
@@ -127,7 +127,7 @@ def tensiaddc(t:dict[Index,T], c:T, i:Index=()) -> dict[Index,T]:
     
     See also
     --------
-    - for sum on more coefficients: [`tensiadd`][vector.multilinear_sparse.vector_space.tensiadd]
+    - for sum on more coefficients: [`tensiadd`][vector.multilinear_sparse.vectorspace.tensiadd]
     """
     if i in t:
         t[i] += c
@@ -144,7 +144,7 @@ def tenssub(s:dict[Index,T], t:dict[Index,T]) -> dict[Index,T]:
     
     See also
     --------
-    - for difference on a single coefficient: [`tenssubc`][vector.multilinear_sparse.vector_space.tenssubc]
+    - for difference on a single coefficient: [`tenssubc`][vector.multilinear_sparse.vectorspace.tenssubc]
     """
     r:dict[Index,T] = dict(s)
     for i, ti in t.items():
@@ -163,7 +163,7 @@ def tensisub(s:dict[Index,T], t:dict[Index,T]) -> dict[Index,T]:
     
     See also
     --------
-    - for difference on a single coefficient: [`tensisubc`][vector.multilinear_sparse.vector_space.tensisubc]
+    - for difference on a single coefficient: [`tensisubc`][vector.multilinear_sparse.vectorspace.tensisubc]
     """
     for i, ti in t.items():
         if i in s:
@@ -181,7 +181,7 @@ def tenssubc(t:dict[Index,T], c:T, i:Index=()) -> dict[Index,T]:
     
     See also
     --------
-    - for difference on more coefficients: [`tenssub`][vector.multilinear_sparse.vector_space.tenssub]
+    - for difference on more coefficients: [`tenssub`][vector.multilinear_sparse.vectorspace.tenssub]
     """
     r:dict[Index,T] = dict(t)
     if i in r:
@@ -199,7 +199,7 @@ def tensisubc(t:dict[Index,T], c:T, i:Index=()) -> dict[Index,T]:
     
     See also
     --------
-    - for difference on more coefficients: [`tensisub`][vector.multilinear_sparse.vector_space.tensisub]
+    - for difference on more coefficients: [`tensisub`][vector.multilinear_sparse.vectorspace.tensisub]
     """
     if i in t:
         t[i] -= c

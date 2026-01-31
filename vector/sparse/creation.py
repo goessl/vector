@@ -1,7 +1,7 @@
 from random import random, gauss
 from itertools import count
-from .hilbert_space import vecsabs
-from .vector_space import vecstruediv
+from .hilbertspace import vecsabs
+from .vectorspace import vecstruediv
 
 
 

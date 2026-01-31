@@ -6,6 +6,6 @@
       members:
         - creation
         - utility
-        - hilbert_space
-        - vector_space
+        - hilbertspace
+        - vectorspace
         - elementwise

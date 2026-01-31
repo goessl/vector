@@ -1,7 +1,7 @@
 from itertools import count
 from ..lazy.creation import veclrand, veclrandn
-from ..dense.hilbert_space import vecabs
-from .vector_space import vecitruediv
+from ..dense.hilbertspace import vecabs
+from .vectorspace import vecitruediv
 
 
 

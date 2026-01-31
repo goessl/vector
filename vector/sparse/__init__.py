@@ -46,7 +46,7 @@ Wikipedia, numpy, ...
 from .creation import *
 from .conversion import *
 from .utility import *
-from .hilbert_space import *
-from .vector_space import *
+from .hilbertspace import *
+from .vectorspace import *
 from .elementwise import *
 from .objectoriented import *

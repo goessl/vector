@@ -448,7 +448,7 @@ $$\n\
 \n\
 See also\n\
 --------\n\
-- for sum on a single coefficient: [`tensaddc`][vector.multilinear_sparse.vector_space.tensaddc]\n\
+- for sum on a single coefficient: [`tensaddc`][vector.multilinear_sparse.vectorspace.tensaddc]\n\
 \n\
 C implementation.");
 
@@ -482,7 +482,7 @@ $$\n\
 \n\
 See also\n\
 --------\n\
-- for sum on a single coefficient: [`tensiaddc`][vector.multilinear_sparse.vector_space.tensiaddc]\n\
+- for sum on a single coefficient: [`tensiaddc`][vector.multilinear_sparse.vectorspace.tensiaddc]\n\
 \n\
 C implementation.");
 
@@ -520,7 +520,7 @@ $$\n\
 \n\
 See also\n\
 --------\n\
-- for sum on more coefficients: [`tensadd`][vector.multilinear_sparse.vector_space.tensadd]\n\
+- for sum on more coefficients: [`tensadd`][vector.multilinear_sparse.vectorspace.tensadd]\n\
 \n\
 C implementation.");
 
@@ -539,7 +539,7 @@ $$\n\
 \n\
 See also\n\
 --------\n\
-- for sum on more coefficients: [`tensiadd`][vector.multilinear_sparse.vector_space.tensiadd]\n\
+- for sum on more coefficients: [`tensiadd`][vector.multilinear_sparse.vectorspace.tensiadd]\n\
 \n\
 C implementation.");
 
@@ -559,7 +559,7 @@ $$\n\
 \n\
 See also\n\
 --------\n\
-- for difference on a single coefficient: [`tenssubc`][vector.multilinear_sparse.vector_space.tenssubc]\n\
+- for difference on a single coefficient: [`tenssubc`][vector.multilinear_sparse.vectorspace.tenssubc]\n\
 \n\
 C implementation.");
 
@@ -605,7 +605,7 @@ $$\n\
 \n\
 See also\n\
 --------\n\
-- for difference on a single coefficient: [`tensisubc`][vector.multilinear_sparse.vector_space.tensisubc]\n\
+- for difference on a single coefficient: [`tensisubc`][vector.multilinear_sparse.vectorspace.tensisubc]\n\
 \n\
 C implementation.");
 
@@ -642,7 +642,7 @@ $$\n\
 \n\
 See also\n\
 --------\n\
-- for difference on more coefficients: [`tenssub`][vector.multilinear_sparse.vector_space.tenssub]\n\
+- for difference on more coefficients: [`tenssub`][vector.multilinear_sparse.vectorspace.tenssub]\n\
 \n\
 C implementation.");
 
@@ -661,7 +661,7 @@ $$\n\
 \n\
 See also\n\
 --------\n\
-- for difference on more coefficients: [`tensisub`][vector.multilinear_sparse.vector_space.tensisub]\n\
+- for difference on more coefficients: [`tensisub`][vector.multilinear_sparse.vectorspace.tensisub]\n\
 \n\
 C implementation.");
 

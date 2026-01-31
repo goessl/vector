@@ -42,6 +42,9 @@ tuples. Done: [goessl/zipvar](https://github.com/goessl/zipvar)
 - [x] dimensionality signature (e.g. `vecadd`: $\mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^{\max{m, n}}$)
 - [x] sparse vectors (`dict`s)
 - [x] in-place
+- [ ] C extension
+  - [x] `vector.util`
+  - [x] `vector.multiliear_sparse.vectorspace`
 - [ ] argument checks
 - [ ] lp-norms & metrics
 - [ ] `vechadamardminmax`
