@@ -15,7 +15,7 @@ def tenconj(t):
     
     See also
     --------
-    - one-dimensional: [`vecconj`][vector.dense.hilbert_space.vecconj]
+    - one-dimensional: [`vecconj`][vector.dense.hilbertspace.vecconj]
     - wraps: [`numpy.conjugate`](https://numpy.org/doc/stable/reference/generated/numpy.conjugate.html)
     """
     return np.conjugate(t)

@@ -52,7 +52,7 @@ def vecadd(*vs):
     
     See also
     --------
-    - for sum on a single coefficient: [`vecaddc`][vector.dense.vector_space.vecaddc]
+    - for sum on a single coefficient: [`vecaddc`][vector.dense.vectorspace.vecaddc]
     """
     return tuple(vecladd(*vs))
 
@@ -74,7 +74,7 @@ def vecaddc(v, c, i=0, zero=0):
     
     See also
     --------
-    - for sum on more coefficients: [`vecadd`][vector.dense.vector_space.vecadd]
+    - for sum on more coefficients: [`vecadd`][vector.dense.vectorspace.vecadd]
     """
     return tuple(vecladdc(v, c, i=i, zero=zero))
 
@@ -94,7 +94,7 @@ def vecsub(v, w):
     
     See also
     --------
-    - for difference on a single coefficient: [`vecsubc`][vector.dense.vector_space.vecsubc]
+    - for difference on a single coefficient: [`vecsubc`][vector.dense.vectorspace.vecsubc]
     """
     return tuple(veclsub(v, w))
 
@@ -116,7 +116,7 @@ def vecsubc(v, c, i=0, zero=0):
     
     See also
     --------
-    - for difference on more coefficients: [`vecsub`][vector.dense.vector_space.vecsub]
+    - for difference on more coefficients: [`vecsub`][vector.dense.vectorspace.vecsub]
     """
     return tuple(veclsubc(v, c, i=i, zero=zero))
 

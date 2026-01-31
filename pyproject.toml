@@ -1,16 +1,13 @@
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
-
-[tool.hatch.metadata]
-allow-direct-references = true
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "vector"
-version = "11.3"
+version = "12.0"
 description = "An infinite-dimensional vector Python package."
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.14"
 authors = [
     {name="Sebastian Gössl", email="goessl@student.tugraz.at"}
 ]
@@ -19,21 +16,6 @@ license-files = ["LICENSE"]
 dependencies = [
     "operationcounter @ git+https://github.com/goessl/operationcounter.git",
     "numpy"
-]
-classifiers = [
-    "Development Status :: 5 - Production/Stable",
-    "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
-    "Programming Language :: Python",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
-    "Programming Language :: Python :: 3.14",
-    "Topic :: Scientific/Engineering",
-    "Topic :: Scientific/Engineering :: Mathematics",
-    "Topic :: Scientific/Engineering :: Physics"
 ]
 
 [project.urls]
@@ -44,11 +26,12 @@ Repository = "https://github.com/goessl/vector.git"
 [project.optional-dependencies]
 test = ["pytest"]
 
-[tool.hatch.build.targets.wheel]
-packages = ["vector"]
-include = ["LICENSE", "README.md"]
+[[tool.setuptools.ext-modules]]
+name = "vector._util"
+sources = ["vector/_utilmodule.c"]
+py-limited-api = true
 
-[tool.hatch.build.targets.sdist]
-include = ["vector", "tests",
-    "mkdocs.yml", "docs",
-    "pyproject.toml", "README.md", "LICENSE"]
+[[tool.setuptools.ext-modules]]
+name = "vector.multilinear_sparse._vectorspace"
+sources = ["vector/multilinear_sparse/_vectorspacemodule.c"]
+py-limited-api = true

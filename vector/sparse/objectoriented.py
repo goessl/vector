@@ -1,7 +1,7 @@
 from .creation import vecsbasis, vecsbases, vecsrand, vecsrandn
 from .utility import vecslen, vecseq, vecstrim, vecsrshift, vecslshift
-from .hilbert_space import vecsconj, vecsabs, vecsabsq
-from .vector_space import vecspos, vecsneg, vecsadd, vecsiadd, vecsaddc, vecsiaddc, vecssub, vecsisub, vecssubc, vecsisubc, vecsmul, vecsrmul, vecsimul, vecstruediv, vecsitruediv, vecsfloordiv, vecsifloordiv, vecsmod, vecsimod, vecsdivmod
+from .hilbertspace import vecsconj, vecsabs, vecsabsq
+from .vectorspace import vecspos, vecsneg, vecsadd, vecsiadd, vecsaddc, vecsiaddc, vecssub, vecsisub, vecssubc, vecsisubc, vecsmul, vecsrmul, vecsimul, vecstruediv, vecsitruediv, vecsfloordiv, vecsifloordiv, vecsmod, vecsimod, vecsdivmod
 from .elementwise import vecshadamard, vecshadamardtruediv, vecshadamardfloordiv, vecshadamardmod, vecshadamarddivmod, vecshadamardmin, vecshadamardmax
 
 
@@ -81,7 +81,7 @@ class VectorSparse:
         return type(self)(vecslshift(self.data, other))
     
     
-    #hilbert_space
+    #hilbertspace
     def conjugate(self):
         return type(self)(vecsconj(self.data))
     

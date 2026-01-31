@@ -34,7 +34,7 @@ def veciadd(v, *ws):
     
     See also
     --------
-    - for sum on a single coefficient: [`veciaddc`][vector.inplace.vector_space.veciaddc]
+    - for sum on a single coefficient: [`veciaddc`][vector.inplace.vectorspace.veciaddc]
     """
     if ws:
         #extract longest vector so we only have to extend once
@@ -61,7 +61,7 @@ def veciaddc(v, c, i=0, zero=0):
     
     See also
     --------
-    - for sum on more coefficients: [`veciadd`][vector.inplace.vector_space.veciadd]
+    - for sum on more coefficients: [`veciadd`][vector.inplace.vectorspace.veciadd]
     """
     if i >= len(v):
         v.extend([zero] * (i-len(v)))
@@ -79,7 +79,7 @@ def vecisub(v, w):
     
     See also
     --------
-    - for difference on a single coefficient: [`vecisubc`][vector.inplace.vector_space.vecisubc]
+    - for difference on a single coefficient: [`vecisubc`][vector.inplace.vectorspace.vecisubc]
     """
     for i, wi in enumerate(w[:len(v)]):
         v[i] -= wi
@@ -98,7 +98,7 @@ def vecisubc(v, c, i=0, zero=0):
     
     See also
     --------
-    - for difference on more coefficients: [`vecisub`][vector.inplace.vector_space.vecisub]
+    - for difference on more coefficients: [`vecisub`][vector.inplace.vectorspace.vecisub]
     """
     if i >= len(v):
         v.extend([zero] * (i-len(v)))

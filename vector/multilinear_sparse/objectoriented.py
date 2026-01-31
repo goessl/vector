@@ -1,7 +1,7 @@
 from .creation import tensbasis, tensrand, tensrandn
 from .utility import tensrank, tensdim, tenseq, tenstrim, tensitrim, tensrshift, tenslshift
-from .hilbert_space import tensconj, tensiconj
-from .vector_space import tenspos, tensneg, tensadd, tensiadd, tensaddc, tensiaddc, tenssub, tensisub, tenssubc, tensisubc, tensmul, tensrmul, tensimul, tenstruediv, tensitruediv, tensfloordiv, tensifloordiv, tensmod, tensimod, tensdivmod
+from .hilbertspace import tensconj, tensiconj
+from .vectorspace import tenspos, tensneg, tensadd, tensiadd, tensaddc, tensiaddc, tenssub, tensisub, tenssubc, tensisubc, tensmul, tensrmul, tensimul, tenstruediv, tensitruediv, tensfloordiv, tensifloordiv, tensmod, tensimod, tensdivmod
 from .elementwise import tenshadamard, tenshadamardtruediv, tenshadamardfloordiv, tenshadamardmod, tenshadamarddivmod, tenshadamardmin, tenshadamardmax
 from ..dense.utility import vectrim
 
@@ -89,7 +89,7 @@ class TensorSparse:
         return r
     
     
-    #hilbert_space
+    #hilbertspace
     def conjugate(self):
         r = type(self)()
         r.data = tensconj(self.data)
@@ -100,7 +100,7 @@ class TensorSparse:
         return self
     
     
-    #vector_space
+    #vectorspace
     def __pos__(self):
         r = type(self)()
         r.data = tenspos(self.data)

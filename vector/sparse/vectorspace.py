@@ -92,7 +92,7 @@ def vecsadd(*vs):
     
     See also
     --------
-    - for sum on a single coefficient: [`vecsaddc`][vector.sparse.vector_space.vecsaddc]
+    - for sum on a single coefficient: [`vecsaddc`][vector.sparse.vectorspace.vecsaddc]
     """
     r = dict(vs[0]) if vs else {}
     for v in vs[1:]:
@@ -119,7 +119,7 @@ def vecsiadd(v, *ws):
     
     See also
     --------
-    - for sum on a single coefficient: [`vecsiaddc`][vector.sparse.vector_space.vecsiaddc]
+    - for sum on a single coefficient: [`vecsiaddc`][vector.sparse.vectorspace.vecsiaddc]
     """
     for w in ws:
         for i, wi in w.items():
@@ -145,7 +145,7 @@ def vecsaddc(v, c, i=0):
     
     See also
     --------
-    - for sum on more coefficients: [`vecsadd`][vector.sparse.vector_space.vecsadd]
+    - for sum on more coefficients: [`vecsadd`][vector.sparse.vectorspace.vecsadd]
     """
     r = dict(v)
     if i in r:
@@ -170,7 +170,7 @@ def vecsiaddc(v, c, i=0):
     
     See also
     --------
-    - for sum on more coefficients: [`vecsiadd`][vector.sparse.vector_space.vecsiadd]
+    - for sum on more coefficients: [`vecsiadd`][vector.sparse.vectorspace.vecsiadd]
     """
     if i in v:
         v[i] += c
@@ -194,7 +194,7 @@ def vecssub(v, w):
     
     See also
     --------
-    - for difference on a single coefficient: [`vecssubc`][vector.sparse.vector_space.vecssubc]
+    - for difference on a single coefficient: [`vecssubc`][vector.sparse.vectorspace.vecssubc]
     """
     r = dict(v)
     for i, wi in w.items():
@@ -220,7 +220,7 @@ def vecsisub(v, w):
     
     See also
     --------
-    - for difference on a single coefficient: [`vecsisubc`][vector.sparse.vector_space.vecsisubc]
+    - for difference on a single coefficient: [`vecsisubc`][vector.sparse.vectorspace.vecsisubc]
     """
     for i, wi in w.items():
         if i in v:
@@ -245,7 +245,7 @@ def vecssubc(v, c, i=0):
     
     See also
     --------
-    - for difference on more coefficients: [`vecssub`][vector.sparse.vector_space.vecssub]
+    - for difference on more coefficients: [`vecssub`][vector.sparse.vectorspace.vecssub]
     """
     r = dict(v)
     if i in r:
@@ -270,7 +270,7 @@ def vecsisubc(v, c, i=0):
     
     See also
     --------
-    - for difference on more coefficients: [`vecsisub`][vector.sparse.vector_space.vecsisub]
+    - for difference on more coefficients: [`vecsisub`][vector.sparse.vectorspace.vecsisub]
     """
     if i in v:
         v[i] -= c

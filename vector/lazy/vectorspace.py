@@ -37,7 +37,7 @@ def vecladd(*vs):
     
     See also
     --------
-    - for sum on a single coefficient: [`vecladdc`][vector.lazy.vector_space.vecladdc]
+    - for sum on a single coefficient: [`vecladdc`][vector.lazy.vectorspace.vecladdc]
     """
     yield from map(partial(sum_default, default=MISSING), group_ordinal(*vs))
 
@@ -52,7 +52,7 @@ def vecladdc(v, c, i=0, zero=0):
     
     See also
     --------
-    - for sum on more coefficients: [`vecladd`][vector.lazy.vector_space.vecladd]
+    - for sum on more coefficients: [`vecladd`][vector.lazy.vectorspace.vecladd]
     """
     v = iter(v)
     yield from islice(chain(v, repeat(zero)), i)
@@ -71,7 +71,7 @@ def veclsub(v, w):
     
     See also
     --------
-    - for difference on a single coefficient: [`veclsubc`][vector.lazy.vector_space.veclsubc]
+    - for difference on a single coefficient: [`veclsubc`][vector.lazy.vectorspace.veclsubc]
     """
     sentinel = object()
     for vi, wi in zip_longest(v, w, fillvalue=sentinel):
@@ -93,7 +93,7 @@ def veclsubc(v, c, i=0, zero=0):
     
     See also
     --------
-    - for difference on more coefficients: [`veclsub`][vector.lazy.vector_space.veclsub]
+    - for difference on more coefficients: [`veclsub`][vector.lazy.vectorspace.veclsub]
     """
     v = iter(v)
     yield from islice(chain(v, repeat(zero)), i)

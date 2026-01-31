@@ -12,7 +12,10 @@ Sparse tensors are accepted and returned as **`dict`s** whos keys are **trimmed*
 from .creation import *
 from .conversion import *
 from .utility import *
-from .hilbert_space import *
-from .vector_space import *
+from .hilbertspace import *
+try:
+    from ._vectorspace import *
+except ImportError:
+    from ._pyvectorspace import *
 from .elementwise import *
 from .objectoriented import *

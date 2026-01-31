@@ -54,7 +54,7 @@ def vecsabs(v, weights=None, conjugate=False, zero=0):
         ||\vec{v}||_{\ell_{\mathbb{N}_0}^2}=\sqrt{\sum_iv_i^{(*)}v_i\omega_i}
     $$
     
-    Returns the square root of [`vecsabsq`][vector.sparse.hilbert_space.vecsabsq].
+    Returns the square root of [`vecsabsq`][vector.sparse.hilbertspace.vecsabsq].
     
     Complexity
     ----------
@@ -67,7 +67,7 @@ def vecsabs(v, weights=None, conjugate=False, zero=0):
     
     See also
     --------
-    - squared version without square root: [`vecsabsq`][vector.sparse.hilbert_space.vecsabsq]
+    - squared version without square root: [`vecsabsq`][vector.sparse.hilbertspace.vecsabsq]
     """
     return vecsabsq(v, weights=weights, conjugate=conjugate, zero=zero)**0.5
 

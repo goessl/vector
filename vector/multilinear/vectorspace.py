@@ -43,7 +43,7 @@ def tenadd(*ts):
     
     See also
     --------
-    - for sum on a single coefficient: [`tenaddc`][vector.multilinear.vector_space.tenaddc]
+    - for sum on a single coefficient: [`tenaddc`][vector.multilinear.vectorspace.tenaddc]
     """
     ts = tuple(map(np.asarray, ts))
     shape = vechadamardmax(*(t.shape for t in ts))
@@ -63,7 +63,7 @@ def tenaddc(t, c, i=(0,)):
     
     See also
     --------
-    - for sum on more coefficients: [`tenadd`][vector.multilinear.vector_space.tenadd]
+    - for sum on more coefficients: [`tenadd`][vector.multilinear.vectorspace.tenadd]
     """
     t = np.asarray(t)
     while t.ndim < len(i):
@@ -81,7 +81,7 @@ def tensub(s, t):
     
     See also
     --------
-    - for difference on a single coefficient: [`tensubc`][vector.multilinear.vector_space.tensubc]
+    - for difference on a single coefficient: [`tensubc`][vector.multilinear.vectorspace.tensubc]
     """
     s, t = np.asarray(s), np.asarray(t)
     shape = vechadamardmax(s.shape, t.shape)
@@ -101,7 +101,7 @@ def tensubc(t, c, i=(0,)):
     
     See also
     --------
-    - for difference on more coefficients: [`tensub`][vector.multilinear.vector_space.tensub]
+    - for difference on more coefficients: [`tensub`][vector.multilinear.vectorspace.tensub]
     """
     t = np.asarray(t)
     while t.ndim < len(i):

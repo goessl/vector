@@ -1,7 +1,7 @@
 from .creation import vecbasis, vecbases, vecrand, vecrandn
 from .utility import veceq, vectrim, vecrshift, veclshift
-from .hilbert_space import vecconj, vecabs, vecabsq
-from .vector_space import vecpos, vecneg, vecadd, vecaddc, vecsub, vecsubc, vecmul, vecrmul, vectruediv, vecfloordiv, vecmod, vecdivmod
+from .hilbertspace import vecconj, vecabs, vecabsq
+from .vectorspace import vecpos, vecneg, vecadd, vecaddc, vecsub, vecsubc, vecmul, vecrmul, vectruediv, vecfloordiv, vecmod, vecdivmod
 from .elementwise import vechadamard, vechadamardtruediv, vechadamardfloordiv, vechadamardmod, vechadamarddivmod, vechadamardmin, vechadamardmax
 
 
@@ -73,7 +73,7 @@ class Vector:
         return type(self)(veclshift(self, other))
     
     
-    #hilbert_space
+    #hilbertspace
     def conjugate(self):
         return type(self)(vecconj(self))
     
@@ -84,7 +84,7 @@ class Vector:
         return vecabsq(self)
     
     
-    #vector_space
+    #vectorspace
     def __pos__(self):
         return type(self)(vecpos(self))
     
