@@ -1541,7 +1541,7 @@ the arrays don't get stretched but rather padded with zeros.</p>
 <div class="arithmatex">\[
     0 \qquad \mathbb{K}^0
 \]</div>
-<p>An empty array.</p>
+<p>An empty array: <code>[]</code>.</p>
 
 
 <details class="note" open>
@@ -1627,7 +1627,7 @@ the outer corner.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return a random tensor of uniform sampled <code>float</code> coefficients.</p>
+        <p>Return a random tensor of uniformly sampled <code>float</code> coefficients.</p>
 <div class="arithmatex">\[
     t \sim \mathcal{U}^d([0, 1[)
 \]</div>
@@ -1668,7 +1668,7 @@ because seems more concise (not <code>random</code> &amp; <code>gauss</code> as 
 <span class="normal">58</span>
 <span class="normal">59</span>
 <span class="normal">60</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenrand</span><span class="p">(</span><span class="o">*</span><span class="n">d</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return a random tensor of uniform sampled `float` coefficients.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return a random tensor of uniformly sampled `float` coefficients.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        t \sim \mathcal{U}^d([0, 1[)</span>
@@ -1708,7 +1708,7 @@ because seems more concise (not <code>random</code> &amp; <code>gauss</code> as 
 
     <div class="doc doc-contents ">
 
-        <p>Return a random tensor of normal sampled <code>float</code> coefficients.</p>
+        <p>Return a random tensor of normally sampled <code>float</code> coefficients.</p>
 <div class="arithmatex">\[
     t \sim \mathcal{N}^d(0, 1)
 \]</div>
@@ -1749,7 +1749,7 @@ because seems more concise (not <code>random</code> &amp; <code>gauss</code> as 
 <span class="normal">78</span>
 <span class="normal">79</span>
 <span class="normal">80</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tenrandn</span><span class="p">(</span><span class="o">*</span><span class="n">d</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return a random tensor of normal sampled `float` coefficients.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return a random tensor of normally sampled `float` coefficients.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        t \sim \mathcal{N}^d(0, 1)</span>
@@ -2283,7 +2283,7 @@ of <code>trim(t, sys.float_info.min)</code>.</li>
 <details class="see-also" open>
   <summary>See also</summary>
   <ul>
-<li>wraps: <a href="https://numpy.org/doc/stable/reference/generated/numpy.tensordot.html">`numpy.tensordot</a></li>
+<li>wraps: <a href="https://numpy.org/doc/stable/reference/generated/numpy.tensordot.html"><code>numpy.tensordot</code></a></li>
 </ul>
 </details>
 
@@ -2309,7 +2309,7 @@ of <code>trim(t, sys.float_info.min)</code>.</li>
 
 <span class="sd">    See also</span>
 <span class="sd">    --------</span>
-<span class="sd">    - wraps: [`numpy.tensordot](https://numpy.org/doc/stable/reference/generated/numpy.tensordot.html)</span>
+<span class="sd">    - wraps: [`numpy.tensordot`](https://numpy.org/doc/stable/reference/generated/numpy.tensordot.html)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">tensordot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -3121,7 +3121,7 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
     <div class="doc doc-contents ">
 
-        <p>Return the floor quotient and remainder</p>
+        <p>Return the floor quotient and remainder.</p>
 <div class="arithmatex">\[
     \left\lfloor\frac{t}{a}\right\rfloor, \ \left(t \bmod a\right)
 \]</div>
@@ -3148,7 +3148,7 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 <span class="normal">198</span>
 <span class="normal">199</span>
 <span class="normal">200</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tendivmod</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the floor quotient and remainder</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the floor quotient and remainder.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \left\lfloor\frac{t}{a}\right\rfloor, \ \left(t \bmod a\right)</span>
@@ -3579,7 +3579,7 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 
         <p>Return the elementwise maximum.</p>
 <div class="arithmatex">\[
-    \left(\min((t_0)_i, (t_1)_i, \cdots)\right)_i
+    \left(\max((t_0)_i, (t_1)_i, \cdots)\right)_i
 \]</div>
 
 
@@ -3626,7 +3626,7 @@ privileged over the other by getting the universal <code>div</code> name.</li>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the elementwise maximum.</span>
 
 <span class="sd">    $$</span>
-<span class="sd">        \left(\min((t_0)_i, (t_1)_i, \cdots)\right)_i</span>
+<span class="sd">        \left(\max((t_0)_i, (t_1)_i, \cdots)\right)_i</span>
 <span class="sd">    $$</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">ts</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">,</span> <span class="n">ts</span><span class="p">))</span>
