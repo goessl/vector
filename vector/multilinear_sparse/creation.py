@@ -30,7 +30,7 @@ def tensbasis(i, c=1):
     return {vectrim(i):c}
 
 def tensrand(*d):
-    r"""Return a random tensor of uniform sampled `float` coefficients.
+    r"""Return a random tensor of uniformly sampled `float` coefficients.
     
     $$
         t \sim \mathcal{U}^d([0, 1[)
@@ -46,7 +46,7 @@ def tensrand(*d):
     return {vectrim(i):random() for i in ndindex(*d)}
 
 def tensrandn(*d, mu=0, sigma=1):
-    r"""Return a random tensor of normal sampled `float` coefficients.
+    r"""Return a random tensor of normally sampled `float` coefficients.
     
     $$
         t \sim \mathcal{N}^d(\mu, \sigma)
