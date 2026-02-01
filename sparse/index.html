@@ -2180,7 +2180,7 @@ coefficients must be addable.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return a random vector of uniform sampled <code>float</code> coefficients.</p>
+        <p>Return a random vector of uniformly sampled <code>float</code> coefficients.</p>
 <div class="arithmatex">\[
     \vec{v}\sim\mathcal{U}^n([0, 1[)
 \]</div>
@@ -2210,7 +2210,7 @@ because seems more concise (not <code>random</code> &amp; <code>gauss</code> as 
 <span class="normal">63</span>
 <span class="normal">64</span>
 <span class="normal">65</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecsrand</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return a random vector of uniform sampled `float` coefficients.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return a random vector of uniformly sampled `float` coefficients.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \vec{v}\sim\mathcal{U}^n([0, 1[)</span>
@@ -2246,7 +2246,7 @@ because seems more concise (not <code>random</code> &amp; <code>gauss</code> as 
 
     <div class="doc doc-contents ">
 
-        <p>Return a random vector of normal sampled <code>float</code> coefficients.</p>
+        <p>Return a random vector of normally sampled <code>float</code> coefficients.</p>
 <div class="arithmatex">\[
     \vec{v}\sim\mathcal{N}^n(\mu, \sigma)
 \]</div>
@@ -2277,7 +2277,7 @@ because seems more concise (not <code>random</code> &amp; <code>gauss</code> as 
 <span class="normal">80</span>
 <span class="normal">81</span>
 <span class="normal">82</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">vecsrandn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return a random vector of normal sampled `float` coefficients.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return a random vector of normally sampled `float` coefficients.</span>
 
 <span class="sd">    $$</span>
 <span class="sd">        \vec{v}\sim\mathcal{N}^n(\mu, \sigma)</span>
