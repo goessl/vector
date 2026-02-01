@@ -29,6 +29,6 @@ def tenprod(s, t):
     
     See also
     --------
-    - wraps: [`numpy.tensordot](https://numpy.org/doc/stable/reference/generated/numpy.tensordot.html)
+    - wraps: [`numpy.tensordot`](https://numpy.org/doc/stable/reference/generated/numpy.tensordot.html)
     """
     return np.tensordot(s, t, 0)

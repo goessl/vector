@@ -187,7 +187,7 @@ def tenmod(t, a):
     return np.mod(t, a)
 
 def tendivmod(t, a):
-    r"""Return the floor quotient and remainder
+    r"""Return the floor quotient and remainder.
     
     $$
         \left\lfloor\frac{t}{a}\right\rfloor, \ \left(t \bmod a\right)

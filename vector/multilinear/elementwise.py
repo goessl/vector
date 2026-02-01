@@ -109,7 +109,7 @@ def tenhadamardmax(*ts, key=None):
     r"""Return the elementwise maximum.
     
     $$
-        \left(\min((t_0)_i, (t_1)_i, \cdots)\right)_i
+        \left(\max((t_0)_i, (t_1)_i, \cdots)\right)_i
     $$
     """
     ts = tuple(map(np.asarray, ts))

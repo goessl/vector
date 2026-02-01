@@ -133,7 +133,7 @@ def vecsaddc(v, c, i=0):
     r"""Return the sum with a basis vector.
     
     $$
-        \vec{v}+c\vec{e}_i
+        \vec{v} + c\vec{e}_i
     $$
     
     Complexity

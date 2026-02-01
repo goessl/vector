@@ -49,7 +49,7 @@ def vecbases(start=0, c=1, zero=0):
         yield vecbasis(i, c=c, zero=zero)
 
 def vecrand(n):
-    r"""Return a random vector of uniform sampled `float` coefficients.
+    r"""Return a random vector of uniformly sampled `float` coefficients.
     
     $$
         \vec{v}\sim\mathcal{U}^n([0, 1[) \qquad \mathbb{K}^n
@@ -65,7 +65,7 @@ def vecrand(n):
     return tuple(veclrand(n))
 
 def vecrandn(n, normed=True, mu=0, sigma=1, weights=None):
-    r"""Return a random vector of normal sampled `float` coefficients.
+    r"""Return a random vector of normally sampled `float` coefficients.
     
     $$
         \vec{v}\sim\mathcal{N}^n(\mu, \sigma) \qquad \mathbb{K}^n

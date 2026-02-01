@@ -22,7 +22,7 @@ def vecnpzero(d=None):
     $$
         0^{d\times 0} \qquad \text{or} \qquad \begin{pmatrix}
             0
-        \end{pmatrix} 
+        \end{pmatrix}
     $$
     
     The returned value is a `(d, 1)`-array of zeros if `d` is not `None`

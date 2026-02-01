@@ -50,7 +50,7 @@ def vecibases(start=0, c=1, zero=0):
         yield vecibasis(i, c=c, zero=zero)
 
 def vecirand(n):
-    r"""Return a random vector of uniform sampled `float` coefficients.
+    r"""Return a random vector of uniformly sampled `float` coefficients.
     
     $$
         \vec{v}\sim\mathcal{U}^n([0, 1[) \qquad \mathbb{K}^n
@@ -66,7 +66,7 @@ def vecirand(n):
     return list(veclrand(n))
 
 def vecirandn(n, normed=True, mu=0, sigma=1, weights=None):
-    r"""Return a random vector of normal sampled `float` coefficients.
+    r"""Return a random vector of normally sampled `float` coefficients.
     
     $$
         \vec{v}\sim\mathcal{N}^n(\mu, \sigma) \qquad \mathbb{K}^n
