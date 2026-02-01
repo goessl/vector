@@ -67,7 +67,9 @@ class TensorSparse:
         return tensdim(self.data)
     
     def __eq__(self, other):
-        return tenseq(self.data, other.data)
+        if isinstance(other, TensorSparse):
+            return tenseq(self.data, other.data)
+        return NotImplemented
     
     def trim(self, tol=None):
         r = type(self)()

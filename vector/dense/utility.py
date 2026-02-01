@@ -52,8 +52,7 @@ def vectrim(v, tol=None):
     ----------
     For a vector of length $n$ there will be
     
-    - $n$ scalar absolute evaluations (`abs`) &
-    - $n$ scalar comparisons (`gt`).
+    - $n$ scalar boolean evaluations (`bool`).
     
     Notes
     -----
