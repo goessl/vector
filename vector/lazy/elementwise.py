@@ -2,6 +2,8 @@ from operator import truediv, floordiv, mod
 from itertools import chain
 from functools import partial
 from operationcounter import MISSING, exception_generator, group_ordinal, prod_default
+from typing import Any, Callable, Generator
+from collections.abc import Iterable
 
 
 
@@ -11,7 +13,7 @@ __all__ = ('veclhadamard', 'veclhadamardtruediv',
 
 
 
-def veclhadamard(*vs):
+def veclhadamard(*vs:Iterable[Any]) -> Generator[Any]:
     r"""Return the elementwise product.
     
     $$
@@ -20,7 +22,7 @@ def veclhadamard(*vs):
     """
     yield from map(partial(prod_default, default=MISSING), zip(*vs))
 
-def veclhadamardtruediv(v, w):
+def veclhadamardtruediv(v:Iterable[Any], w:Iterable[Any]) -> Generator[Any]:
     r"""Return the elementwise true quotient.
     
     $$
@@ -29,7 +31,7 @@ def veclhadamardtruediv(v, w):
     """
     yield from map(truediv, v, chain(w, exception_generator(ZeroDivisionError)))
 
-def veclhadamardfloordiv(v, w):
+def veclhadamardfloordiv(v:Iterable[Any], w:Iterable[Any]) -> Generator[Any]:
     r"""Return the elementwise floor quotient.
     
     $$
@@ -38,7 +40,7 @@ def veclhadamardfloordiv(v, w):
     """
     yield from map(floordiv, v, chain(w, exception_generator(ZeroDivisionError)))
 
-def veclhadamardmod(v, w):
+def veclhadamardmod(v:Iterable[Any], w:Iterable[Any]) -> Generator[Any]:
     r"""Return the elementwise remainder.
     
     $$
@@ -47,7 +49,7 @@ def veclhadamardmod(v, w):
     """
     yield from map(mod, v, chain(w, exception_generator(ZeroDivisionError)))
 
-def veclhadamarddivmod(v, w):
+def veclhadamarddivmod(v:Iterable[Any], w:Iterable[Any]) -> Generator[tuple[Any,Any]]:
     r"""Return the elementwise floor quotient and remainder.
     
     $$
@@ -56,7 +58,7 @@ def veclhadamarddivmod(v, w):
     """
     yield from map(divmod, v, chain(w, exception_generator(ZeroDivisionError)))
 
-def veclhadamardmin(*vs, key=None):
+def veclhadamardmin(*vs:Iterable[Any], key:Callable[[Any],Any]|None=None) -> Generator[Any]:
     r"""Return the elementwise minimum.
     
     $$
@@ -65,7 +67,7 @@ def veclhadamardmin(*vs, key=None):
     """
     yield from map(partial(min, key=key), group_ordinal(*vs))
 
-def veclhadamardmax(*vs, key=None):
+def veclhadamardmax(*vs:Iterable[Any], key:Callable[[Any],Any]|None=None) -> Generator[Any]:
     r"""Return the elementwise maximum.
     
     $$
@@ -73,6 +75,3 @@ def veclhadamardmax(*vs, key=None):
     $$
     """
     yield from map(partial(max, key=key), group_ordinal(*vs))
-
-def vechadamardminmax(*vs):
-    pass

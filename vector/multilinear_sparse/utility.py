@@ -1,6 +1,8 @@
 from operator import add, sub
 from itertools import starmap, zip_longest
 from ..dense.elementwise import vechadamardmax
+from typing import Any
+from collections.abc import Mapping, MutableMapping
 
 
 
@@ -10,7 +12,7 @@ __all__ = ('tensrank', 'tensdim', 'tenseq',
 
 
 
-def tensrank(t):
+def tensrank(t:Mapping[tuple[int,...],Any]) -> int:
     r"""Return the rank.
     
     $$
@@ -19,7 +21,7 @@ def tensrank(t):
     """
     return max(map(len, t.keys()), default=0)
 
-def tensdim(t):
+def tensdim(t:Mapping[tuple[int,...],Any]) -> tuple[int,...]:
     r"""Return the dimensionalities.
     
     $$
@@ -28,7 +30,7 @@ def tensdim(t):
     """
     return tuple(si+1 for si in vechadamardmax(*t.keys()))
 
-def tenseq(s, t):
+def tenseq(s:Mapping[tuple[int,...],Any], t:Mapping[tuple[int,...],Any]) -> bool:
     r"""Return whether two tensors are equal.
     
     $$
@@ -47,7 +49,7 @@ def tenseq(s, t):
                 return False
     return True
 
-def tenstrim(t, tol=None):
+def tenstrim(t:Mapping[tuple[int,...],Any], tol:Any|None=None) -> dict[tuple[int,...],Any]:
     """Remove all near zero (`abs(t_i)<=tol`) coefficients.
     
     `tol` may also be `None`,
@@ -64,7 +66,7 @@ def tenstrim(t, tol=None):
     else:
         return {i:ti for i, ti in t.items() if abs(ti)>tol}
 
-def tensitrim(t, tol=None):
+def tensitrim(t:MutableMapping[tuple[int,...],Any], tol:Any|None=None) -> MutableMapping[tuple[int,...],Any]:
     """Remove all near zero (`abs(t_i)<=tol`) coefficients.
     
     `tol` may also be `None`,
@@ -85,13 +87,13 @@ def tensitrim(t, tol=None):
         del t[i]
     return t
 
-def tensrshift(t, n):
+def tensrshift(t:Mapping[tuple[int,...],Any], n:tuple[int,...]) -> dict[tuple[int,...],Any]:
     """Shift coefficients up."""
     #raw vector addition of indices prolly faster than vecadd
     return {tuple(starmap(add, zip_longest(i, n, fillvalue=0))):ti
             for i, ti in t.items()}
 
-def tenslshift(t, n):
+def tenslshift(t:Mapping[tuple[int,...],Any], n:tuple[int,...]) -> dict[tuple[int,...],Any]:
     """Shift coefficients down."""
     r = {}
     for i, ti in t.items():

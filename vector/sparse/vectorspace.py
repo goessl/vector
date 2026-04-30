@@ -1,3 +1,8 @@
+from typing import Any
+from collections.abc import Mapping, MutableMapping
+
+
+
 __all__ = ('vecspos',             'vecsipos',
            'vecsneg',             'vecsineg',
            'vecsadd',             'vecsiadd',
@@ -12,7 +17,7 @@ __all__ = ('vecspos',             'vecsipos',
 
 
 
-def vecspos(v):
+def vecspos(v:Mapping[int,Any]) -> dict[int,Any]:
     r"""Return the identity.
     
     $$
@@ -27,7 +32,7 @@ def vecspos(v):
     """
     return {i:+vi for i, vi in v.items()}
 
-def vecsipos(v):
+def vecsipos(v:MutableMapping[int,Any]) -> MutableMapping[int,Any]:
     r"""Apply unary plus.
     
     $$
@@ -44,7 +49,7 @@ def vecsipos(v):
         v[i] = +vi
     return v
 
-def vecsneg(v):
+def vecsneg(v:Mapping[int,Any]) -> dict[int,Any]:
     r"""Return the negation.
     
     $$
@@ -59,7 +64,7 @@ def vecsneg(v):
     """
     return {i:-vi for i, vi in v.items()}
 
-def vecsineg(v):
+def vecsineg(v:MutableMapping[int,Any]) -> MutableMapping[int,Any]:
     r"""Negate.
     
     $$
@@ -76,7 +81,7 @@ def vecsineg(v):
         v[i] = -vi
     return v
 
-def vecsadd(*vs):
+def vecsadd(*vs:Mapping[int,Any]) -> dict[int,Any]:
     r"""Return the sum.
     
     $$
@@ -103,7 +108,7 @@ def vecsadd(*vs):
                 r[i] = +vi
     return r
 
-def vecsiadd(v, *ws):
+def vecsiadd(v:MutableMapping[int,Any], *ws:Mapping[int,Any]) -> MutableMapping[int,Any]:
     r"""Add.
     
     $$
@@ -129,7 +134,7 @@ def vecsiadd(v, *ws):
                 v[i] = +wi
     return v
 
-def vecsaddc(v, c, i=0):
+def vecsaddc(v:Mapping[int,Any], c:Any, i:int=0) -> dict[int,Any]:
     r"""Return the sum with a basis vector.
     
     $$
@@ -154,7 +159,7 @@ def vecsaddc(v, c, i=0):
         r[i] = +c
     return r
 
-def vecsiaddc(v, c, i=0):
+def vecsiaddc(v:MutableMapping[int,Any], c:Any, i:int=0) -> MutableMapping[int,Any]:
     r"""Add a basis vector.
     
     $$
@@ -178,7 +183,7 @@ def vecsiaddc(v, c, i=0):
         v[i] = +c
     return v
 
-def vecssub(v, w):
+def vecssub(v:Mapping[int,Any], w:Mapping[int,Any]) -> dict[int,Any]:
     r"""Return the difference.
     
     $$
@@ -204,7 +209,7 @@ def vecssub(v, w):
             r[i] = -wi
     return r
 
-def vecsisub(v, w):
+def vecsisub(v:MutableMapping[int,Any], w:Mapping[int,Any]) -> MutableMapping[int,Any]:
     r"""Subtract.
     
     $$
@@ -229,7 +234,7 @@ def vecsisub(v, w):
             v[i] = -wi
     return v
 
-def vecssubc(v, c, i=0):
+def vecssubc(v:Mapping[int,Any], c:Any, i:int=0) -> dict[int,Any]:
     r"""Return the difference with a basis vector.
     
     $$
@@ -254,7 +259,7 @@ def vecssubc(v, c, i=0):
         r[i] = -c
     return r
 
-def vecsisubc(v, c, i=0):
+def vecsisubc(v:MutableMapping[int,Any], c:Any, i:int=0) -> MutableMapping[int,Any]:
     r"""Subtract a basis vector.
     
     $$
@@ -278,7 +283,7 @@ def vecsisubc(v, c, i=0):
         v[i] = -c
     return v
 
-def vecsmul(v, a):
+def vecsmul(v:Mapping[int,Any], a:Any) -> dict[int,Any]:
     r"""Return the product.
     
     $$
@@ -293,7 +298,7 @@ def vecsmul(v, a):
     """
     return {i:vi*a for i, vi in v.items()}
 
-def vecsrmul(a, v):
+def vecsrmul(a:Any, v:Mapping[int,Any]) -> dict[int,Any]:
     r"""Return the product.
     
     $$
@@ -308,7 +313,7 @@ def vecsrmul(a, v):
     """
     return {i:a*vi for i, vi in v.items()}
 
-def vecsimul(v, a):
+def vecsimul(v:MutableMapping[int,Any], a:Any) -> MutableMapping[int,Any]:
     r"""Multiply.
     
     $$
@@ -325,7 +330,7 @@ def vecsimul(v, a):
         v[i] *= a
     return v
 
-def vecstruediv(v, a):
+def vecstruediv(v:Mapping[int,Any], a:Any) -> dict[int,Any]:
     r"""Return the true quotient.
     
     $$
@@ -351,7 +356,7 @@ def vecstruediv(v, a):
     """
     return {i:vi/a for i, vi in v.items()}
 
-def vecsitruediv(v, a):
+def vecsitruediv(v:MutableMapping[int,Any], a:Any) -> MutableMapping[int,Any]:
     r"""True divide.
     
     $$
@@ -379,7 +384,7 @@ def vecsitruediv(v, a):
         v[i] /= a
     return v
 
-def vecsfloordiv(v, a):
+def vecsfloordiv(v:Mapping[int,Any], a:Any) -> dict[int,Any]:
     r"""Return the floor quotient.
     
     $$
@@ -394,7 +399,7 @@ def vecsfloordiv(v, a):
     """
     return {i:vi//a for i, vi in v.items()}
 
-def vecsifloordiv(v, a):
+def vecsifloordiv(v:MutableMapping[int,Any], a:Any) -> MutableMapping[int,Any]:
     r"""Floor divide.
     
     $$
@@ -411,7 +416,7 @@ def vecsifloordiv(v, a):
         v[i] //= a
     return v
 
-def vecsmod(v, a):
+def vecsmod(v:Mapping[int,Any], a:Any) -> dict[int,Any]:
     r"""Return the remainder.
     
     $$
@@ -426,7 +431,7 @@ def vecsmod(v, a):
     """
     return {i:vi%a for i, vi in v.items()}
 
-def vecsimod(v, a):
+def vecsimod(v:MutableMapping[int,Any], a:Any) -> MutableMapping[int,Any]:
     r"""Mod.
     
     $$
@@ -443,7 +448,7 @@ def vecsimod(v, a):
         v[i] %= a
     return v
 
-def vecsdivmod(v, a):
+def vecsdivmod(v:Mapping[int,Any], a:Any) -> tuple[dict[int,Any],dict[int,Any]]:
     r"""Return the floor quotient and remainder.
     
     $$

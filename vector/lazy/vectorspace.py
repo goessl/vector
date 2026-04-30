@@ -2,6 +2,8 @@ from operator import pos, neg, mul, truediv, floordiv, mod
 from itertools import chain, islice, repeat, zip_longest
 from functools import partial
 from operationcounter import MISSING, group_ordinal, sum_default
+from typing import Any, Generator
+from collections.abc import Iterable
 
 
 
@@ -10,7 +12,7 @@ __all__ = ('veclpos', 'veclneg', 'vecladd', 'vecladdc', 'veclsub', 'veclsubc',
 
 
 
-def veclpos(v):
+def veclpos(v:Iterable[Any]) -> Generator[Any]:
     r"""Return the identity.
     
     $$
@@ -19,7 +21,7 @@ def veclpos(v):
     """
     yield from map(pos, v)
 
-def veclneg(v):
+def veclneg(v:Iterable[Any]) -> Generator[Any]:
     r"""Return the negation.
     
     $$
@@ -28,7 +30,7 @@ def veclneg(v):
     """
     yield from map(neg, v)
 
-def vecladd(*vs):
+def vecladd(*vs:Iterable[Any]) -> Generator[Any]:
     r"""Return the sum.
     
     $$
@@ -41,7 +43,7 @@ def vecladd(*vs):
     """
     yield from map(partial(sum_default, default=MISSING), group_ordinal(*vs))
 
-def vecladdc(v, c, i=0, zero=0):
+def vecladdc(v:Iterable[Any], c:Any, i:int=0, zero:Any=0) -> Generator[Any]:
     r"""Return the sum with a basis vector.
     
     $$
@@ -62,7 +64,7 @@ def vecladdc(v, c, i=0, zero=0):
         yield +c
     yield from v
 
-def veclsub(v, w):
+def veclsub(v:Iterable[Any], w:Iterable[Any]) -> Generator[Any]:
     r"""Return the difference.
     
     $$
@@ -82,7 +84,7 @@ def veclsub(v, w):
         else:
             yield vi - wi
 
-def veclsubc(v, c, i=0, zero=0):
+def veclsubc(v:Iterable[Any], c:Any, i:int=0, zero:Any=0) -> Generator[Any]:
     r"""Return the difference with a basis vector.
     
     $$
@@ -103,7 +105,7 @@ def veclsubc(v, c, i=0, zero=0):
         yield -c
     yield from v
 
-def veclmul(v, a):
+def veclmul(v:Iterable[Any], a:Any) -> Generator[Any]:
     r"""Return the product.
     
     $$
@@ -112,7 +114,7 @@ def veclmul(v, a):
     """
     yield from map(mul, v, repeat(a))
 
-def veclrmul(a, v):
+def veclrmul(a:Any, v:Iterable[Any]) -> Generator[Any]:
     r"""Return the product.
     
     $$
@@ -121,7 +123,7 @@ def veclrmul(a, v):
     """
     yield from map(mul, repeat(a), v)
 
-def vecltruediv(v, a):
+def vecltruediv(v:Iterable[Any], a:Any) -> Generator[Any]:
     r"""Return the true quotient.
     
     $$
@@ -141,7 +143,7 @@ def vecltruediv(v, a):
     """
     yield from map(truediv, v, repeat(a))
 
-def veclfloordiv(v, a):
+def veclfloordiv(v:Iterable[Any], a:Any) -> Generator[Any]:
     r"""Return the floor quotient.
     
     $$
@@ -150,7 +152,7 @@ def veclfloordiv(v, a):
     """
     yield from map(floordiv, v, repeat(a))
 
-def veclmod(v, a):
+def veclmod(v:Iterable[Any], a:Any) -> Generator[Any]:
     r"""Return the remainder.
     
     $$
@@ -159,7 +161,7 @@ def veclmod(v, a):
     """
     yield from map(mod, v, repeat(a))
 
-def vecldivmod(v, a):
+def vecldivmod(v:Iterable[Any], a:Any) -> Generator[tuple[Any,Any]]:
     r"""Return the floor quotient and remainder.
     
     $$

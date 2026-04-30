@@ -1,8 +1,12 @@
+from typing import Any
+
+
+
 __all__ = ('try_conjugate', )
 
 
 
-def try_conjugate(x):
+def try_conjugate(x:Any) -> Any:
     r"""Return the complex conjugate.
     
     $$

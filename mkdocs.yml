@@ -8,17 +8,6 @@ repo_url: https://github.com/goessl/vector
 
 copyright: Copyright &copy; 2022 - 2025 Sebastian Gössl
 
-nav:
-  - Home: index.md
-  - dense.md
-  - lazy.md
-  - inplace.md
-  - sparse.md
-  - parallelised.md
-  - multilinear.md
-  - multilinear_sparse.md
-  - util.md
-
 theme:
   name: material
   features:
@@ -59,15 +48,16 @@ plugins:
             show_labels: false
             show_root_toc_entry: false
             show_symbol_type_heading: true
+            show_signature_annotations: true
             group_by_category: false
             docstring_style: numpy
 
 markdown_extensions:
-  - pymdownx.highlight
-  - pymdownx.superfences
   - admonition
   - pymdownx.arithmatex:
       generic: true
+  - pymdownx.highlight
+  - pymdownx.superfences
   - pymdownx.tasklist:
       custom_checkbox: true
 
@@ -79,3 +69,14 @@ extra_css:
   - stylesheets/complexity.css
   - stylesheets/see-also.css
   - stylesheets/references.css
+
+nav:
+  - Home: index.md
+  - dense.md
+  - lazy.md
+  - inplace.md
+  - sparse.md
+  - parallelised.md
+  - multilinear.md
+  - multilinear_sparse.md
+  - util.md

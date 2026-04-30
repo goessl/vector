@@ -2,6 +2,8 @@ from itertools import count
 from ..lazy.creation import veclrand, veclrandn
 from ..dense.hilbertspace import vecabs
 from .vectorspace import vecitruediv
+from typing import Any, Generator, Never
+from collections.abc import Iterable
 
 
 
@@ -9,7 +11,7 @@ __all__ = ('vecizero', 'vecibasis', 'vecibases', 'vecirand', 'vecirandn')
 
 
 
-def vecizero():
+def vecizero() -> list[Never]:
     r"""Return a zero vector.
     
     $$
@@ -20,7 +22,7 @@ def vecizero():
     """
     return []
 
-def vecibasis(i, c=1, zero=0):
+def vecibasis(i:int, c:Any=1, zero:Any=0) -> list[Any]:
     r"""Return a basis vector.
     
     $$
@@ -35,7 +37,7 @@ def vecibasis(i, c=1, zero=0):
     """
     return [zero]*i + [c]
 
-def vecibases(start=0, c=1, zero=0):
+def vecibases(start:int=0, c:Any=1, zero:Any=0) -> Generator[list[Any]]:
     r"""Yield all basis vectors.
     
     $$
@@ -49,7 +51,7 @@ def vecibases(start=0, c=1, zero=0):
     for i in count(start=start):
         yield vecibasis(i, c=c, zero=zero)
 
-def vecirand(n):
+def vecirand(n:int) -> list[float]:
     r"""Return a random vector of uniformly sampled `float` coefficients.
     
     $$
@@ -65,7 +67,7 @@ def vecirand(n):
     """
     return list(veclrand(n))
 
-def vecirandn(n, normed=True, mu=0, sigma=1, weights=None):
+def vecirandn(n:int, normed:bool=True, mu:float=0, sigma:float=1, weights:Iterable[Any]|None=None) -> list[Any]:
     r"""Return a random vector of normally sampled `float` coefficients.
     
     $$

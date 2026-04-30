@@ -1,4 +1,6 @@
 from operationcounter import MISSING, prod_default
+from typing import Any, Callable
+from collections.abc import Mapping
 
 
 
@@ -8,7 +10,7 @@ __all__ = ('vecshadamard', 'vecshadamardtruediv',
 
 
 
-def vecshadamard(*vs):
+def vecshadamard(*vs:Mapping[int,Any]) -> dict[int,Any]:
     r"""Return the elementwise product.
     
     $$
@@ -22,7 +24,7 @@ def vecshadamard(*vs):
         r[k] = prod_default((v[k] for v in vs), initial=MISSING, default=MISSING)
     return r
 
-def vecshadamardtruediv(v, w):
+def vecshadamardtruediv(v:Mapping[int,Any], w:Mapping[int,Any]) -> dict[int,Any]:
     r"""Return the elementwise true quotient.
     
     $$
@@ -38,7 +40,7 @@ def vecshadamardtruediv(v, w):
         r[i] = vi / wi
     return r
 
-def vecshadamardfloordiv(v, w):
+def vecshadamardfloordiv(v:Mapping[int,Any], w:Mapping[int,Any]) -> dict[int,Any]:
     r"""Return the elementwise floor quotient.
     
     $$
@@ -54,7 +56,7 @@ def vecshadamardfloordiv(v, w):
         r[i] = vi // wi
     return r
 
-def vecshadamardmod(v, w):
+def vecshadamardmod(v:Mapping[int,Any], w:Mapping[int,Any]) -> dict[int,Any]:
     r"""Return the elementwise remainder.
     
     $$
@@ -70,7 +72,7 @@ def vecshadamardmod(v, w):
         r[i] = vi % wi
     return r
 
-def vecshadamarddivmod(v, w):
+def vecshadamarddivmod(v:Mapping[int,Any], w:Mapping[int,Any]) -> dict[int,Any]:
     r"""Return the elementwise floor quotient and remainder.
     
     $$
@@ -86,7 +88,7 @@ def vecshadamarddivmod(v, w):
         q[i], r[i] = divmod(vi, wi)
     return q, r
 
-def vecshadamardmin(*vs, key=None):
+def vecshadamardmin(*vs:Mapping[int,Any], key:Callable[[Any],Any]|None=None) -> dict[int,Any]:
     r"""Return the elementwise minimum.
     
     $$
@@ -100,7 +102,7 @@ def vecshadamardmin(*vs, key=None):
         r[k] = min(v[k] for v in vs if k in v)
     return r
 
-def vecshadamardmax(*vs, key=None):
+def vecshadamardmax(*vs:Mapping[int,Any], key:Callable[[Any],Any]|None=None) -> dict[int,Any]:
     r"""Return the elementwise maximum.
     
     $$

@@ -1,4 +1,6 @@
 from ..util import try_conjugate
+from typing import Any, Generator
+from collections.abc import Iterable
 
 
 
@@ -6,7 +8,7 @@ __all__ = ('veclconj', )
 
 
 
-def veclconj(v):
+def veclconj(v:Iterable[Any]) -> Generator[Any]:
     r"""Return the complex conjugate.
     
     $$

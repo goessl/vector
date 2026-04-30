@@ -1,4 +1,6 @@
 from ..util import try_conjugate
+from typing import Any
+from collections.abc import MutableSequence
 
 
 
@@ -6,7 +8,7 @@ __all__ = ('veciconj',)
 
 
 
-def veciconj(v):
+def veciconj(v:MutableSequence[Any]) -> MutableSequence[Any]:
     r"""Complex conjugate.
     
     $$

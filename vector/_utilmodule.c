@@ -16,7 +16,8 @@ $$\n\
 Tries to call a method `conjugate`.\n\
 If not found, simply returns the element as is.\n\
 \n\
-C implementation.");
+C implementation.\n\
+");
 
 static PyObject*
 try_conjugate(PyObject* self, PyObject* x) {
@@ -29,12 +30,7 @@ try_conjugate(PyObject* self, PyObject* x) {
         return NULL;
     }
     
-    if(r == 0) { //has no conjugate method
-        Py_INCREF(x);
-        return x;
-    }
-    if(!PyCallable_Check(conj)) { //conjugate not callable, maybe "return x.conjugate"?
-        Py_DECREF(conj);
+    if(r==0 || !PyCallable_Check(conj)) { //has no conjugate method
         Py_INCREF(x);
         return x;
     }

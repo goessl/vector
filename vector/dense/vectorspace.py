@@ -1,4 +1,6 @@
 from ..lazy import veclpos, veclneg, vecladd, vecladdc, veclsub, veclsubc, veclmul, veclrmul, vecltruediv, veclfloordiv, veclmod
+from typing import Any
+from collections.abc import Iterable
 
 
 
@@ -7,7 +9,7 @@ __all__ = ('vecpos', 'vecneg', 'vecadd', 'vecaddc', 'vecsub', 'vecsubc',
 
 
 
-def vecpos(v):
+def vecpos(v:Iterable[Any]) -> tuple[Any,...]:
     r"""Return the identity.
     
     $$
@@ -22,7 +24,7 @@ def vecpos(v):
     """
     return tuple(veclpos(v))
 
-def vecneg(v):
+def vecneg(v:Iterable[Any]) -> tuple[Any,...]:
     r"""Return the negation.
     
     $$
@@ -37,7 +39,7 @@ def vecneg(v):
     """
     return tuple(veclneg(v))
 
-def vecadd(*vs):
+def vecadd(*vs:Iterable[Any]) -> tuple[Any,...]:
     r"""Return the sum.
     
     $$
@@ -56,7 +58,7 @@ def vecadd(*vs):
     """
     return tuple(vecladd(*vs))
 
-def vecaddc(v, c, i=0, zero=0):
+def vecaddc(v:Iterable[Any], c:Any, i:int=0, zero:Any=0) -> tuple[Any,...]:
     r"""Return the sum with a basis vector.
     
     $$
@@ -78,7 +80,7 @@ def vecaddc(v, c, i=0, zero=0):
     """
     return tuple(vecladdc(v, c, i=i, zero=zero))
 
-def vecsub(v, w):
+def vecsub(v:Iterable[Any], w:Iterable[Any]) -> tuple[Any,...]:
     r"""Return the difference.
     
     $$
@@ -98,7 +100,7 @@ def vecsub(v, w):
     """
     return tuple(veclsub(v, w))
 
-def vecsubc(v, c, i=0, zero=0):
+def vecsubc(v:Iterable[Any], c:Any, i:int=0, zero:Any=0) -> tuple[Any,...]:
     r"""Return the difference with a basis vector.
     
     $$
@@ -120,7 +122,7 @@ def vecsubc(v, c, i=0, zero=0):
     """
     return tuple(veclsubc(v, c, i=i, zero=zero))
 
-def vecmul(v, a):
+def vecmul(v:Iterable[Any], a:Any) -> tuple[Any,...]:
     r"""Return the product.
     
     $$
@@ -135,7 +137,7 @@ def vecmul(v, a):
     """
     return tuple(veclmul(v, a))
 
-def vecrmul(a, v):
+def vecrmul(a:Any, v:Iterable[Any]) -> tuple[Any,...]:
     r"""Return the product.
     
     $$
@@ -150,7 +152,7 @@ def vecrmul(a, v):
     """
     return tuple(veclrmul(a, v))
 
-def vectruediv(v, a):
+def vectruediv(v:Iterable[Any], a:Any) -> tuple[Any,...]:
     r"""Return the true quotient.
     
     $$
@@ -176,7 +178,7 @@ def vectruediv(v, a):
     """
     return tuple(vecltruediv(v, a))
 
-def vecfloordiv(v, a):
+def vecfloordiv(v:Iterable[Any], a:Any) -> tuple[Any,...]:
     r"""Return the floor quotient.
     
     $$
@@ -191,7 +193,7 @@ def vecfloordiv(v, a):
     """
     return tuple(veclfloordiv(v, a))
 
-def vecmod(v, a):
+def vecmod(v:Iterable[Any], a:Any) -> tuple[Any,...]:
     r"""Return the remainder.
     
     $$
@@ -206,7 +208,7 @@ def vecmod(v, a):
     """
     return tuple(veclmod(v, a))
 
-def vecdivmod(v, a):
+def vecdivmod(v:Iterable[Any], a:Any) -> tuple[tuple[Any,...], tuple[Any,...]]:
     r"""Return the floor quotient and remainder.
     
     $$

@@ -1,4 +1,5 @@
-from typing import TypeVar
+from typing import Any
+from collections.abc import Mapping, MutableMapping
 
 
 
@@ -16,12 +17,7 @@ __all__ = ('tenspos',             'tensipos',
 
 
 
-T = TypeVar('T')
-Index = tuple[int, ...]
-
-
-
-def tenspos(t:dict[Index,T]) -> dict[Index,T]:
+def tenspos(t:Mapping[tuple[int,...],Any]) -> dict[tuple[int,...],Any]:
     """Return the identity.
     
     $$
@@ -30,7 +26,7 @@ def tenspos(t:dict[Index,T]) -> dict[Index,T]:
     """
     return {i:+ti for i, ti in t.items()}
 
-def tensipos(t:dict[Index,T]) -> dict[Index,T]:
+def tensipos(t:MutableMapping[tuple[int,...],Any]) -> MutableMapping[tuple[int,...],Any]:
     """Apply unary plus.
     
     $$
@@ -41,7 +37,7 @@ def tensipos(t:dict[Index,T]) -> dict[Index,T]:
         t[i] = +ti
     return t
 
-def tensneg(t:dict[Index,T]) -> dict[Index,T]:
+def tensneg(t:Mapping[tuple[int,...],Any]) -> dict[tuple[int,...],Any]:
     """Return the negation.
     
     $$
@@ -50,7 +46,7 @@ def tensneg(t:dict[Index,T]) -> dict[Index,T]:
     """
     return {i:-ti for i, ti in t.items()}
 
-def tensineg(t:dict[Index,T]) -> dict[Index,T]:
+def tensineg(t:dict[tuple[int,...],Any]) -> dict[tuple[int,...],Any]:
     """Negate.
     
     $$
@@ -61,7 +57,7 @@ def tensineg(t:dict[Index,T]) -> dict[Index,T]:
         t[i] = -ti
     return t
 
-def tensadd(*ts:dict[Index,T]) -> dict[Index,T]:
+def tensadd(*ts:Mapping[tuple[int,...],Any]) -> dict[tuple[int,...],Any]:
     r"""Return the sum.
     
     $$
@@ -72,7 +68,7 @@ def tensadd(*ts:dict[Index,T]) -> dict[Index,T]:
     --------
     - for sum on a single coefficient: [`tensaddc`][vector.multilinear_sparse.vectorspace.tensaddc]
     """
-    r:dict[Index,T] = dict(ts[0]) if ts else {}
+    r:dict[tuple[int,...],Any] = dict(ts[0]) if ts else {}
     for t in ts[1:]:
         for i, ti in t.items():
             if i in r:
@@ -81,7 +77,7 @@ def tensadd(*ts:dict[Index,T]) -> dict[Index,T]:
                 r[i] = +ti
     return r
 
-def tensiadd(s:dict[Index,T], *ts:dict[Index,T]) -> dict[Index,T]:
+def tensiadd(s:MutableMapping[tuple[int,...],Any], *ts:Mapping[tuple[int,...],Any]) -> MutableMapping[tuple[int,...],Any]:
     r"""Add.
     
     $$
@@ -100,7 +96,7 @@ def tensiadd(s:dict[Index,T], *ts:dict[Index,T]) -> dict[Index,T]:
                 s[i] = +ti
     return s
 
-def tensaddc(t:dict[Index,T], c:T, i:Index=()) -> dict[Index,T]:
+def tensaddc(t:Mapping[tuple[int,...],Any], c:Any, i:tuple[int,...]=()) -> dict[tuple[int,...],Any]:
     """Return the sum with a basis tensor.
     
     $$
@@ -111,14 +107,14 @@ def tensaddc(t:dict[Index,T], c:T, i:Index=()) -> dict[Index,T]:
     --------
     - for sum on more coefficients: [`tensadd`][vector.multilinear_sparse.vectorspace.tensadd]
     """
-    r:dict[Index,T] = dict(t)
+    r:dict[tuple[int,...],Any] = dict(t)
     if i in r:
         r[i] += c
     else:
         r[i] = +c
     return r
 
-def tensiaddc(t:dict[Index,T], c:T, i:Index=()) -> dict[Index,T]:
+def tensiaddc(t:MutableMapping[tuple[int,...],Any], c:Any, i:tuple[int,...]=()) -> MutableMapping[tuple[int,...],Any]:
     """Add a basis tensor.
     
     $$
@@ -135,7 +131,7 @@ def tensiaddc(t:dict[Index,T], c:T, i:Index=()) -> dict[Index,T]:
         t[i] = +c
     return t
 
-def tenssub(s:dict[Index,T], t:dict[Index,T]) -> dict[Index,T]:
+def tenssub(s:Mapping[tuple[int,...],Any], t:Mapping[tuple[int,...],Any]) -> dict[tuple[int,...],Any]:
     """Return the difference.
     
     $$
@@ -146,7 +142,7 @@ def tenssub(s:dict[Index,T], t:dict[Index,T]) -> dict[Index,T]:
     --------
     - for difference on a single coefficient: [`tenssubc`][vector.multilinear_sparse.vectorspace.tenssubc]
     """
-    r:dict[Index,T] = dict(s)
+    r:dict[tuple[int,...],Any] = dict(s)
     for i, ti in t.items():
         if i in r:
             r[i] -= ti
@@ -154,7 +150,7 @@ def tenssub(s:dict[Index,T], t:dict[Index,T]) -> dict[Index,T]:
             r[i] = -ti
     return r
 
-def tensisub(s:dict[Index,T], t:dict[Index,T]) -> dict[Index,T]:
+def tensisub(s:MutableMapping[tuple[int,...],Any], t:Mapping[tuple[int,...],Any]) -> MutableMapping[tuple[int,...],Any]:
     """Subtract.
     
     $$
@@ -172,7 +168,7 @@ def tensisub(s:dict[Index,T], t:dict[Index,T]) -> dict[Index,T]:
             s[i] = -ti
     return s
 
-def tenssubc(t:dict[Index,T], c:T, i:Index=()) -> dict[Index,T]:
+def tenssubc(t:Mapping[tuple[int,...],Any], c:Any, i:tuple[int,...]=()) -> dict[tuple[int,...],Any]:
     """Return the difference with a basis tensor.
     
     $$
@@ -183,14 +179,14 @@ def tenssubc(t:dict[Index,T], c:T, i:Index=()) -> dict[Index,T]:
     --------
     - for difference on more coefficients: [`tenssub`][vector.multilinear_sparse.vectorspace.tenssub]
     """
-    r:dict[Index,T] = dict(t)
+    r:dict[tuple[int,...],Any] = dict(t)
     if i in r:
         r[i] -= c
     else:
         r[i] = -c
     return r
 
-def tensisubc(t:dict[Index,T], c:T, i:Index=()) -> dict[Index,T]:
+def tensisubc(t:MutableMapping[tuple[int,...],Any], c:Any, i:tuple[int,...]=()) -> MutableMapping[tuple[int,...],Any]:
     """Subtract a basis tensor.
     
     $$
@@ -207,7 +203,7 @@ def tensisubc(t:dict[Index,T], c:T, i:Index=()) -> dict[Index,T]:
         t[i] = -c
     return t
 
-def tensmul(t:dict[Index,T], a:T) -> dict[Index,T]:
+def tensmul(t:Mapping[tuple[int,...],Any], a:Any) -> dict[tuple[int,...],Any]:
     """Return the product.
     
     $$
@@ -216,7 +212,7 @@ def tensmul(t:dict[Index,T], a:T) -> dict[Index,T]:
     """
     return {i:ti*a for i, ti in t.items()}
 
-def tensrmul(a:T, t:dict[Index,T]) -> dict[Index,T]:
+def tensrmul(a:Any, t:Mapping[tuple[int,...],Any]) -> dict[tuple[int,...],Any]:
     """Return the product.
     
     $$
@@ -225,7 +221,7 @@ def tensrmul(a:T, t:dict[Index,T]) -> dict[Index,T]:
     """
     return {i:a*ti for i, ti in t.items()}
 
-def tensimul(t:dict[Index,T], a:T) -> dict[Index,T]:
+def tensimul(t:MutableMapping[tuple[int,...],Any], a:Any) -> MutableMapping[tuple[int,...],Any]:
     r"""Multiply.
     
     $$
@@ -236,7 +232,7 @@ def tensimul(t:dict[Index,T], a:T) -> dict[Index,T]:
         t[i] *= a
     return t
 
-def tenstruediv(t:dict[Index,T], a:T) -> dict[Index,T]:
+def tenstruediv(t:Mapping[tuple[int,...],Any], a:Any) -> dict[tuple[int,...],Any]:
     r"""Return the true quotient.
     
     $$
@@ -256,7 +252,7 @@ def tenstruediv(t:dict[Index,T], a:T) -> dict[Index,T]:
     """
     return {i:ti/a for i, ti in t.items()}
 
-def tensitruediv(t:dict[Index,T], a:T) -> dict[Index,T]:
+def tensitruediv(t:MutableMapping[tuple[int,...],Any], a:Any) -> MutableMapping[tuple[int,...],Any]:
     """True divide.
     
     $$
@@ -267,7 +263,7 @@ def tensitruediv(t:dict[Index,T], a:T) -> dict[Index,T]:
         t[i] /= a
     return t
 
-def tensfloordiv(t:dict[Index,T], a:T) -> dict[Index,T]:
+def tensfloordiv(t:Mapping[tuple[int,...],Any], a:Any) -> dict[tuple[int,...],Any]:
     r"""Return the floor quotient.
     
     $$
@@ -276,7 +272,7 @@ def tensfloordiv(t:dict[Index,T], a:T) -> dict[Index,T]:
     """
     return {i:ti//a for i, ti in t.items()}
 
-def tensifloordiv(t:dict[Index,T], a:T) -> dict[Index,T]:
+def tensifloordiv(t:MutableMapping[tuple[int,...],Any], a:Any) -> MutableMapping[tuple[int,...],Any]:
     """Floor divide.
     
     $$
@@ -287,7 +283,7 @@ def tensifloordiv(t:dict[Index,T], a:T) -> dict[Index,T]:
         t[i] //= a
     return t
 
-def tensmod(t:dict[Index,T], a:T) -> dict[Index,T]:
+def tensmod(t:Mapping[tuple[int,...],Any], a:Any) -> dict[tuple[int,...],Any]:
     r"""Return the remainder.
     
     $$
@@ -296,7 +292,7 @@ def tensmod(t:dict[Index,T], a:T) -> dict[Index,T]:
     """
     return {i:ti%a for i, ti in t.items()}
 
-def tensimod(t:dict[Index,T], a:T) -> dict[Index,T]:
+def tensimod(t:MutableMapping[tuple[int,...],Any], a:Any) -> MutableMapping[tuple[int,...],Any]:
     r"""Mod.
     
     $$
@@ -307,15 +303,15 @@ def tensimod(t:dict[Index,T], a:T) -> dict[Index,T]:
         t[i] %= a
     return t
 
-def tensdivmod(t:dict[Index,T], a:T) -> tuple[dict[Index,T], dict[Index,T]]:
+def tensdivmod(t:Mapping[tuple[int,...],Any], a:Any) -> tuple[dict[tuple[int,...],Any], dict[tuple[int,...],Any]]:
     r"""Return the floor quotient and remainder.
     
     $$
         \left\lfloor\frac{t}{a}\right\rfloor, \ \left(t \bmod a\right)
     $$
     """
-    q:dict[Index,T] = {}
-    r:dict[Index,T] = {}
+    q:dict[tuple[int,...],Any] = {}
+    r:dict[tuple[int,...],Any] = {}
     for i, ti in t.items():
         q[i], r[i] = divmod(ti, a)
     return q, r

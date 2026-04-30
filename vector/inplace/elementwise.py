@@ -1,9 +1,14 @@
+from typing import Any
+from collections.abc import MutableSequence, Sequence
+
+
+
 __all__ = ('vecihadamard', 'vecihadamardtruediv',
            'vecihadamardfloordiv', 'vecihadamardmod')
 
 
 
-def vecihadamard(v, *ws):
+def vecihadamard(v:MutableSequence[Any], *ws:Sequence[Any]) -> MutableSequence[Any]:
     r"""Return the elementwise product.
     
     $$
@@ -17,7 +22,7 @@ def vecihadamard(v, *ws):
                 v[i] *= wi
     return v
 
-def vecihadamardtruediv(v, w):
+def vecihadamardtruediv(v:MutableSequence[Any], w:Sequence[Any]) -> MutableSequence[Any]:
     r"""Return the elementwise true quotient.
     
     $$
@@ -28,7 +33,7 @@ def vecihadamardtruediv(v, w):
         v[i] /= w[i]
     return v
 
-def vecihadamardfloordiv(v, w):
+def vecihadamardfloordiv(v:MutableSequence[Any], w:Sequence[Any]) -> MutableSequence[Any]:
     r"""Return the elementwise floor quotient.
     
     $$
@@ -39,7 +44,7 @@ def vecihadamardfloordiv(v, w):
         v[i] //= w[i]
     return v
 
-def vecihadamardmod(v, w):
+def vecihadamardmod(v:MutableSequence[Any], w:Sequence[Any]) -> MutableSequence[Any]:
     r"""Return the elementwise remainder.
     
     $$

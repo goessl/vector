@@ -2,6 +2,8 @@ from operator import mul
 from itertools import tee
 from ..lazy import veclconj
 from operationcounter import sumprod_default
+from typing import Any
+from collections.abc import Iterable
 
 
 
@@ -9,7 +11,7 @@ __all__ = ('vecconj', 'vecabs', 'vecabsq', 'vecdot')
 
 
 
-def vecconj(v):
+def vecconj(v:Iterable[Any]) -> tuple[Any,...]:
     r"""Return the complex conjugate.
     
     $$
@@ -27,7 +29,7 @@ def vecconj(v):
     """
     return tuple(veclconj(v))
 
-def vecabs(v, weights=None, conjugate=False, zero=0):
+def vecabs(v:Iterable[Any], weights:Iterable[Any]|None=None, conjugate:bool=False, zero:Any=0) -> Any:
     r"""Return the Euclidean/$\ell_{\mathbb{N}_0}^2$-norm.
     
     $$
@@ -53,7 +55,7 @@ def vecabs(v, weights=None, conjugate=False, zero=0):
     #math.sqrt doesn't work for complex and cmath.sqrt always returns complex
     return vecabsq(v, weights=weights, conjugate=conjugate, zero=zero)**0.5
 
-def vecabsq(v, weights=None, conjugate=False, zero=0):
+def vecabsq(v:Iterable[Any], weights:Iterable[Any]|None=None, conjugate:bool=False, zero:Any=0) -> Any:
     r"""Return the sum of absolute squares.
     
     $$
@@ -88,7 +90,7 @@ def vecabsq(v, weights=None, conjugate=False, zero=0):
     else:
         return sumprod_default(map(mul, vc, v), weights, default=zero)
 
-def vecdot(v, w, weights=None, conjugate=False, zero=0):
+def vecdot(v:Iterable[Any], w:Iterable[Any], weights:Iterable[Any]|None=None, conjugate:bool=False, zero:Any=0) -> Any:
     r"""Return the inner product.
     
     $$

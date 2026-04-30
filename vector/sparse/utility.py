@@ -1,3 +1,8 @@
+from typing import Any
+from collections.abc import Mapping, MutableMapping
+
+
+
 __all__ = ('vecslen',
            'vecseq',
            'vecstrim', 'vecsitrim',
@@ -6,7 +11,7 @@ __all__ = ('vecslen',
 
 
 
-def vecslen(v):
+def vecslen(v:Mapping[int,Any]) -> int:
     """Return the maximum set index plus one.
     
     Doesn't handle trailing zeros, use [`vecstrim`][vector.sparse.utility.vecstrim]
@@ -14,7 +19,7 @@ def vecslen(v):
     """
     return max(v.keys(), default=0)
 
-def vecseq(v, w):
+def vecseq(v:Mapping[int,Any], w:Mapping[int,Any]) -> bool:
     r"""Return whether two vectors are equal.
     
     $$
@@ -40,7 +45,7 @@ def vecseq(v, w):
                 return False
     return True
 
-def vecstrim(v, tol=None):
+def vecstrim(v:Mapping[int,Any], tol:Any|None=None) -> dict[int,Any]:
     r"""Remove all near zero (`abs(v_i)<=tol`) coefficients.
     
     $$
@@ -72,7 +77,7 @@ def vecstrim(v, tol=None):
     else:
         return {i:vi for i, vi in v.items() if abs(vi)>tol}
 
-def vecsitrim(v, tol=None):
+def vecsitrim(v:MutableMapping[int,Any], tol:Any|None=None) -> MutableMapping[int,Any]:
     r"""Remove all near zero (`abs(v_i)<=tol`) coefficients.
     
     $$
@@ -108,7 +113,7 @@ def vecsitrim(v, tol=None):
         del v[i]
     return v
 
-def vecsrshift(v, n):
+def vecsrshift(v:Mapping[int,Any], n:int) -> dict[int,Any]:
     r"""Shift coefficients up.
     
     $$
@@ -124,7 +129,7 @@ def vecsrshift(v, n):
     """
     return {i+n:vi for i, vi in v.items()}
 
-def vecsirshift(v, n):
+def vecsirshift(v:MutableMapping[int,Any], n:int) -> MutableMapping[int,Any]:
     r"""Shift coefficients up.
     
     $$
@@ -142,7 +147,7 @@ def vecsirshift(v, n):
         v[i+n] = v.pop(i)
     return v
 
-def vecslshift(v, n):
+def vecslshift(v:Mapping[int,Any], n:int) -> dict[int,Any]:
     r"""Shift coefficients down.
     
     $$
@@ -155,7 +160,7 @@ def vecslshift(v, n):
     """
     return {i-n:vi for i, vi in v.items() if i-n>=0}
 
-def vecsilshift(v, n):
+def vecsilshift(v:MutableMapping[int,Any], n:int) -> MutableMapping[int,Any]:
     r"""Shift coefficients down.
     
     $$

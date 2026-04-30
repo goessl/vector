@@ -1,8 +1,13 @@
+from typing import Any
+from collections.abc import MutableSequence
+
+
+
 __all__ = ('vecitrim', 'vecirshift', 'vecilshift')
 
 
 
-def vecitrim(v, tol=None):
+def vecitrim(v:MutableSequence[Any], tol:Any|None=None) -> MutableSequence[Any]:
     r"""Remove all trailing near zero (`abs(v_i)<=tol`) coefficients.
     
     $$
@@ -26,7 +31,7 @@ def vecitrim(v, tol=None):
         v.pop()
     return v
 
-def vecirshift(v, n, zero=0):
+def vecirshift(v:MutableSequence[Any], n:int, zero:Any=0) -> MutableSequence[Any]:
     r"""Shift coefficients up.
     
     $$
@@ -43,7 +48,7 @@ def vecirshift(v, n, zero=0):
     v[:0] = [zero] * n
     return v
 
-def vecilshift(v, n):
+def vecilshift(v:MutableSequence[Any], n:int) -> MutableSequence[Any]:
     r"""Shift coefficients down.
     
     $$

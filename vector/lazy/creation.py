@@ -1,5 +1,6 @@
 from random import random, gauss
 from itertools import chain, count, repeat
+from typing import Any, Generator, Never
 
 
 
@@ -7,7 +8,7 @@ __all__ = ('veclzero', 'veclbasis', 'veclbases', 'veclrand', 'veclrandn')
 
 
 
-def veclzero():
+def veclzero() -> Generator[Never]:
     r"""Zero vector.
     
     $$
@@ -18,7 +19,7 @@ def veclzero():
     """
     yield from ()
 
-def veclbasis(i, c=1, zero=0):
+def veclbasis(i:int, c:Any=1, zero:Any=0) -> Generator[Any]:
     r"""Return a basis vector.
     
     $$
@@ -33,7 +34,7 @@ def veclbasis(i, c=1, zero=0):
     """
     yield from chain(repeat(zero, i), (c,))
 
-def veclbases(start=0, c=1, zero=0):
+def veclbases(start:int=0, c:Any=1, zero:Any=0) -> Generator[Generator[Any]]:
     r"""Yield all basis vectors.
     
     $$
@@ -47,7 +48,7 @@ def veclbases(start=0, c=1, zero=0):
     for i in count(start=start):
         yield veclbasis(i, c=c, zero=zero)
 
-def veclrand(n):
+def veclrand(n:int) -> Generator[float]:
     r"""Return a random vector of uniformly sampled `float` coefficients.
     
     $$
@@ -63,7 +64,7 @@ def veclrand(n):
     """
     yield from (random() for _ in range(n))
 
-def veclrandn(n, mu=0, sigma=1):
+def veclrandn(n:int, mu:float=0, sigma:float=1) -> Generator[float]:
     r"""Return a random vector of normally sampled `float` coefficients.
     
     $$

@@ -1,4 +1,6 @@
 from ..lazy import veclhadamard, veclhadamardtruediv, veclhadamardfloordiv, veclhadamardmod, veclhadamarddivmod, veclhadamardmin, veclhadamardmax
+from typing import Any, Callable
+from collections.abc import Iterable
 
 
 
@@ -8,7 +10,7 @@ __all__ = ('vechadamard', 'vechadamardtruediv',
 
 
 
-def vechadamard(*vs):
+def vechadamard(*vs:Iterable[Any]) -> tuple[Any,...]:
     r"""Return the elementwise product.
     
     $$
@@ -23,7 +25,7 @@ def vechadamard(*vs):
     """
     return tuple(veclhadamard(*vs))
 
-def vechadamardtruediv(v, w):
+def vechadamardtruediv(v:Iterable[Any], w:Iterable[Any]) -> tuple[Any,...]:
     r"""Return the elementwise true quotient.
     
     $$
@@ -38,7 +40,7 @@ def vechadamardtruediv(v, w):
     """
     return tuple(veclhadamardtruediv(v, w))
 
-def vechadamardfloordiv(v, w):
+def vechadamardfloordiv(v:Iterable[Any], w:Iterable[Any]) -> tuple[Any,...]:
     r"""Return the elementwise floor quotient.
     
     $$
@@ -53,7 +55,7 @@ def vechadamardfloordiv(v, w):
     """
     return tuple(veclhadamardfloordiv(v, w))
 
-def vechadamardmod(v, w):
+def vechadamardmod(v:Iterable[Any], w:Iterable[Any]) -> tuple[Any,...]:
     r"""Return the elementwise remainder.
     
     $$
@@ -68,7 +70,7 @@ def vechadamardmod(v, w):
     """
     return tuple(veclhadamardmod(v, w))
 
-def vechadamarddivmod(v, w):
+def vechadamarddivmod(v:Iterable[Any], w:Iterable[Any]) -> tuple[Any,...]:
     r"""Return the elementwise floor quotient and remainder.
     
     $$
@@ -87,7 +89,7 @@ def vechadamarddivmod(v, w):
         r.append(ri)
     return tuple(q), tuple(r)
 
-def vechadamardmin(*vs, key=None):
+def vechadamardmin(*vs:Iterable[Any], key:Callable[[Any], Any]|None=None) -> tuple[Any,...]:
     r"""Return the elementwise minimum.
     
     $$
@@ -102,7 +104,7 @@ def vechadamardmin(*vs, key=None):
     """
     return tuple(veclhadamardmin(*vs, key=key))
 
-def vechadamardmax(*vs, key=None):
+def vechadamardmax(*vs:Iterable[Any], key:Callable[[Any], Any]|None=None) -> tuple[Any,...]:
     r"""Return the elementwise maximum.
     
     $$

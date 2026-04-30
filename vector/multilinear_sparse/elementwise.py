@@ -1,4 +1,6 @@
 from operationcounter import MISSING, prod_default
+from typing import Any, Callable
+from collections.abc import Mapping
 
 
 
@@ -8,7 +10,7 @@ __all__ = ('tenshadamard', 'tenshadamardtruediv',
 
 
 
-def tenshadamard(*ts):
+def tenshadamard(*ts:Mapping[tuple[int,...],Any]) -> dict[tuple[int,...],Any]:
     r"""Return the elementwise product.
     
     $$
@@ -22,7 +24,7 @@ def tenshadamard(*ts):
         r[i] = prod_default((t[i] for t in ts), initial=MISSING, default=MISSING)
     return r
 
-def tenshadamardtruediv(s, t):
+def tenshadamardtruediv(s:Mapping[tuple[int,...],Any], t:Mapping[tuple[int,...],Any]) -> dict[tuple[int,...],Any]:
     r"""Return the elementwise true quotient.
     
     $$
@@ -31,7 +33,7 @@ def tenshadamardtruediv(s, t):
     """
     return {i:si/t[i] for i, si in s.items()}
 
-def tenshadamardfloordiv(s, t):
+def tenshadamardfloordiv(s:Mapping[tuple[int,...],Any], t:Mapping[tuple[int,...],Any]) -> dict[tuple[int,...],Any]:
     r"""Return the elementwise floor quotient.
     
     $$
@@ -40,7 +42,7 @@ def tenshadamardfloordiv(s, t):
     """
     return {i:si//t[i] for i, si in s.items()}
 
-def tenshadamardmod(s, t):
+def tenshadamardmod(s:Mapping[tuple[int,...],Any], t:Mapping[tuple[int,...],Any]) -> dict[tuple[int,...],Any]:
     r"""Return the elementwise remainder.
     
     $$
@@ -49,7 +51,7 @@ def tenshadamardmod(s, t):
     """
     return {i:si%t[i] for i, si in s.items()}
 
-def tenshadamarddivmod(s, t):
+def tenshadamarddivmod(s:Mapping[tuple[int,...],Any], t:Mapping[tuple[int,...],Any]) -> dict[tuple[int,...],Any]:
     r"""Return the elementwise floor quotient and remainder.
     
     $$
@@ -62,7 +64,7 @@ def tenshadamarddivmod(s, t):
         q[i], r[i] = divmod(ti, si)
     return q, r
 
-def tenshadamardmin(*ts, key=None):
+def tenshadamardmin(*ts:Mapping[tuple[int,...],Any], key:Callable[[Any],Any]|None=None) -> dict[tuple[int,...],Any]:
     r"""Return the elementwise minimum.
     
     $$
@@ -76,7 +78,7 @@ def tenshadamardmin(*ts, key=None):
         r[i] = min(t[i] for t in ts)
     return r
 
-def tenshadamardmax(*ts, key=None):
+def tenshadamardmax(*ts:Mapping[tuple[int,...],Any], key:Callable[[Any],Any]|None=None) -> dict[tuple[int,...],Any]:
     r"""Return the elementwise maximum.
     
     $$

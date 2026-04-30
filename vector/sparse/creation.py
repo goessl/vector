@@ -2,6 +2,8 @@ from random import random, gauss
 from itertools import count
 from .hilbertspace import vecsabs
 from .vectorspace import vecstruediv
+from typing import Any, Generator, Never
+from collections.abc import Mapping
 
 
 
@@ -9,7 +11,7 @@ __all__ = ('vecszero', 'vecsbasis', 'vecsbases', 'vecsrand', 'vecsrandn')
 
 
 
-vecszero = {}
+vecszero:dict[Never,Never] = {}
 r"""Zero vector.
 
 $$
@@ -19,7 +21,7 @@ $$
 An empty dictionary: `{}`.
 """
 
-def vecsbasis(i, c=1):
+def vecsbasis(i:int, c:Any=1) -> dict[int,Any]:
     r"""Return a basis vector.
     
     $$
@@ -34,7 +36,7 @@ def vecsbasis(i, c=1):
     """
     return {i:c}
 
-def vecsbases(start=0, c=1):
+def vecsbases(start:int=0, c:Any=1) -> Generator[dict[int,Any]]:
     r"""Yield all basis vectors.
     
     $$
@@ -48,7 +50,7 @@ def vecsbases(start=0, c=1):
     for i in count(start=start):
         yield vecsbasis(i, c=c)
 
-def vecsrand(n):
+def vecsrand(n:int) -> dict[int,float]:
     r"""Return a random vector of uniformly sampled `float` coefficients.
     
     $$
@@ -64,7 +66,7 @@ def vecsrand(n):
     """
     return {i:random() for i in range(n)}
 
-def vecsrandn(n, normed=True, mu=0, sigma=1, weights=None):
+def vecsrandn(n:int, normed:bool=True, mu:float=0, sigma:float=1, weights:Mapping[int,Any]|None=None) -> dict[int,Any]:
     r"""Return a random vector of normally sampled `float` coefficients.
     
     $$

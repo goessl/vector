@@ -1,6 +1,7 @@
 from random import random, gauss
 from ..dense.utility import vectrim
 from numpy import ndindex
+from typing import Any, Never
 
 
 
@@ -8,7 +9,7 @@ __all__ = ('tenszero', 'tensbasis', 'tensrand', 'tensrandn')
 
 
 
-tenszero = {}
+tenszero:dict[Never,Never] = {}
 """Zero tensor.
 
 $$
@@ -18,7 +19,7 @@ $$
 An empty dictionary: `{}`.
 """
 
-def tensbasis(i, c=1):
+def tensbasis(i:tuple[int,...], c:Any=1) -> dict[tuple[int,...],Any]:
     """Return a basis tensor.
     
     $$
@@ -29,7 +30,7 @@ def tensbasis(i, c=1):
     """
     return {vectrim(i):c}
 
-def tensrand(*d):
+def tensrand(*d:int) -> dict[tuple[int,...],float]:
     r"""Return a random tensor of uniformly sampled `float` coefficients.
     
     $$
@@ -45,7 +46,7 @@ def tensrand(*d):
     """
     return {vectrim(i):random() for i in ndindex(*d)}
 
-def tensrandn(*d, mu=0, sigma=1):
+def tensrandn(*d:int, mu:float=0, sigma:float=1) -> dict[tuple[int,...],float]:
     r"""Return a random tensor of normally sampled `float` coefficients.
     
     $$

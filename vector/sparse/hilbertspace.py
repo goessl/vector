@@ -1,5 +1,7 @@
 from ..util import try_conjugate
 from operationcounter import sum_default, sumprod_default
+from typing import Any
+from collections.abc import Mapping, MutableMapping
 
 
 
@@ -9,7 +11,7 @@ __all__ = ('vecsconj', 'vecsiconj',
 
 
 
-def vecsconj(v):
+def vecsconj(v:Mapping[int,Any]) -> dict[int,Any]:
     r"""Return the complex conjugate.
     
     $$
@@ -27,7 +29,7 @@ def vecsconj(v):
     """
     return {i:try_conjugate(vi) for i, vi in v.items()}
 
-def vecsiconj(v):
+def vecsiconj(v:MutableMapping[int,Any]) -> MutableMapping[int,Any]:
     r"""Complex conjugate.
     
     $$
@@ -47,7 +49,7 @@ def vecsiconj(v):
         v[i] = try_conjugate(vi)
     return v
 
-def vecsabs(v, weights=None, conjugate=False, zero=0):
+def vecsabs(v:Mapping[int,Any], weights:Mapping[int,Any]|None=None, conjugate:bool=False, zero:Any=0) -> Any:
     r"""Return the Euclidean/$\ell_{\mathbb{N}_0}^2$-norm.
     
     $$
@@ -71,7 +73,7 @@ def vecsabs(v, weights=None, conjugate=False, zero=0):
     """
     return vecsabsq(v, weights=weights, conjugate=conjugate, zero=zero)**0.5
 
-def vecsabsq(v, weights=None, conjugate=False, zero=0):
+def vecsabsq(v:Mapping[int,Any], weights:Mapping[int,Any]|None=None, conjugate:bool=False, zero:Any=0) -> Any:
     r"""Return the sum of absolute squares.
     
     $$
@@ -100,7 +102,7 @@ def vecsabsq(v, weights=None, conjugate=False, zero=0):
         else:
             return sum_default((try_conjugate(vi)*vi*weights[i] for i, vi in v.items()), default=zero)
 
-def vecsdot(v, w, weights=None, conjugate=False, zero=0):
+def vecsdot(v:Mapping[int,Any], w:Mapping[int,Any], weights:Mapping[int,Any]|None=None, conjugate:bool=False, zero:Any=0) -> Any:
     r"""Return the inner product.
     
     $$

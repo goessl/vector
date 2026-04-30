@@ -1,9 +1,14 @@
+from typing import Any
+from collections.abc import MutableSequence, Sequence
+
+
+
 __all__ = ('vecipos', 'vecineg', 'veciadd', 'veciaddc', 'vecisub', 'vecisubc',
            'vecimul', 'vecitruediv', 'vecifloordiv', 'vecimod')
 
 
 
-def vecipos(v):
+def vecipos(v:MutableSequence[Any]) -> MutableSequence[Any]:
     r"""Apply unary positive.
     
     $$
@@ -14,7 +19,7 @@ def vecipos(v):
         v[i] = +vi
     return v
 
-def vecineg(v):
+def vecineg(v:MutableSequence[Any]) -> MutableSequence[Any]:
     r"""Negate.
     
     $$
@@ -25,7 +30,7 @@ def vecineg(v):
         v[i] = -vi
     return v
 
-def veciadd(v, *ws):
+def veciadd(v:MutableSequence[Any], *ws:Sequence[Any]) -> MutableSequence[Any]:
     r"""Add.
     
     $$
@@ -50,7 +55,7 @@ def veciadd(v, *ws):
                 v[i] += wi
     return v
 
-def veciaddc(v, c, i=0, zero=0):
+def veciaddc(v:MutableSequence[Any], c:Any, i:int=0, zero:Any=0) -> MutableSequence[Any]:
     r"""Add a basis vector.
     
     $$
@@ -70,7 +75,7 @@ def veciaddc(v, c, i=0, zero=0):
         v[i] += c
     return v
 
-def vecisub(v, w):
+def vecisub(v:MutableSequence[Any], w:Sequence[Any]) -> MutableSequence[Any]:
     r"""Subtract.
     
     $$
@@ -87,7 +92,7 @@ def vecisub(v, w):
         v.extend([-wi for wi in w[len(v):]])
     return v
 
-def vecisubc(v, c, i=0, zero=0):
+def vecisubc(v:MutableSequence[Any], c:Any, i:int=0, zero:Any=0) -> MutableSequence[Any]:
     r"""Subtract a basis vector.
     
     $$
@@ -107,7 +112,7 @@ def vecisubc(v, c, i=0, zero=0):
         v[i] -= c
     return v
 
-def vecimul(v, a):
+def vecimul(v:MutableSequence[Any], a:Any) -> MutableSequence[Any]:
     r"""Multiply.
     
     $$
@@ -118,7 +123,7 @@ def vecimul(v, a):
         v[i] *= a
     return v
 
-def vecitruediv(v, a):
+def vecitruediv(v:MutableSequence[Any], a:Any) -> MutableSequence[Any]:
     r"""True divide.
     
     $$
@@ -140,7 +145,7 @@ def vecitruediv(v, a):
         v[i] /= a
     return v
 
-def vecifloordiv(v, a):
+def vecifloordiv(v:MutableSequence[Any], a:Any) -> MutableSequence[Any]:
     r"""Floor divide.
     
     $$
@@ -151,7 +156,7 @@ def vecifloordiv(v, a):
         v[i] //= a
     return v
 
-def vecimod(v, a):
+def vecimod(v:MutableSequence[Any], a:Any) -> MutableSequence[Any]:
     r"""Mod.
     
     $$

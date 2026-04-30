@@ -1,3 +1,5 @@
+from typing import Any
+from collections.abc import Iterable
 from ..lazy import vecleq, veclrshift, vecllshift
 
 
@@ -6,7 +8,7 @@ __all__ = ('veclen', 'veceq', 'vectrim', 'vecrshift', 'veclshift')
 
 
 
-def veclen(v):
+def veclen(v:Iterable[Any]) -> int:
     """Return the length (number of set coefficients).
     
     Doesn't handle trailing zeros, use [`vectrim`][vector.dense.utility.vectrim]
@@ -18,7 +20,7 @@ def veclen(v):
     """
     return sum(1 for _ in v)
 
-def veceq(v, w):
+def veceq(v:Iterable[Any], w:Iterable[Any]) -> bool:
     r"""Return whether two vectors are equal.
     
     $$
@@ -34,7 +36,7 @@ def veceq(v, w):
     """
     return all(vecleq(v, w))
 
-def vectrim(v, tol=None):
+def vectrim(v:Iterable[Any], tol:Any|None=None) -> tuple[Any,...]:
     r"""Remove all trailing near zero (`abs(v_i)<=tol`) coefficients.
     
     $$
@@ -68,7 +70,7 @@ def vectrim(v, tol=None):
             t.clear()
     return tuple(r)
 
-def vecrshift(v, n, zero=0):
+def vecrshift(v:Iterable[Any], n:int, zero:Any=0) -> tuple[Any,...]:
     r"""Shift coefficients up.
     
     $$
@@ -84,7 +86,7 @@ def vecrshift(v, n, zero=0):
     """
     return tuple(veclrshift(v, n, zero=zero))
 
-def veclshift(v, n):
+def veclshift(v:Iterable[Any], n:int) -> tuple[Any,...]:
     r"""Shift coefficients down.
     
     $$

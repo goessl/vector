@@ -2,6 +2,8 @@ from itertools import count
 from ..lazy import veclrand, veclrandn
 from .hilbertspace import vecabs
 from .vectorspace import vectruediv
+from typing import Any, Generator
+from collections.abc import Iterable
 
 
 
@@ -9,7 +11,7 @@ __all__ = ('veczero', 'vecbasis', 'vecbases', 'vecrand', 'vecrandn')
 
 
 
-veczero = ()
+veczero:tuple[()] = ()
 r"""Zero vector.
 
 $$
@@ -19,7 +21,7 @@ $$
 An empty tuple: `()`.
 """
 
-def vecbasis(i, c=1, zero=0):
+def vecbasis(i:int, c:Any=1, zero:Any=0) -> tuple[Any,...]:
     r"""Return a basis vector.
     
     $$
@@ -34,7 +36,7 @@ def vecbasis(i, c=1, zero=0):
     """
     return (zero,)*i + (c,)
 
-def vecbases(start=0, c=1, zero=0):
+def vecbases(start:int=0, c:Any=1, zero:Any=0) -> Generator[tuple[Any,...]]:
     r"""Yield all basis vectors.
     
     $$
@@ -48,7 +50,7 @@ def vecbases(start=0, c=1, zero=0):
     for i in count(start=start):
         yield vecbasis(i, c=c, zero=zero)
 
-def vecrand(n):
+def vecrand(n:int) -> tuple[float,...]:
     r"""Return a random vector of uniformly sampled `float` coefficients.
     
     $$
@@ -64,7 +66,7 @@ def vecrand(n):
     """
     return tuple(veclrand(n))
 
-def vecrandn(n, normed=True, mu=0, sigma=1, weights=None):
+def vecrandn(n:int, normed:bool=True, mu:float=0, sigma:float=1, weights:Iterable|None=None) -> tuple[Any,...]:
     r"""Return a random vector of normally sampled `float` coefficients.
     
     $$
