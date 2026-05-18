@@ -1,3 +1,4 @@
+import pytest
 from vector import *
 from math import isclose, sqrt
 from itertools import islice, count
@@ -199,13 +200,13 @@ def test_vecimul():
 
 def test_vectruediv():
     assert vectruediv(veczero, 1) == veczero
-    assert vectruediv((1, 2, 3, 4), 2) == (0.5, 1.0, 1.5, 2.0)
+    assert vectruediv((1, 2, 3, 4), 2) == (1/2, 2/2, 3/2, 4/2)
 
 def test_vecitruediv():
     v = []
     assert vecitruediv(v, 1)==v and v==[]
     v = [1, 2, 3, 4]
-    assert vecitruediv(v, 2)==v and v==[0.5, 1.0, 1.5, 2.0]
+    assert vecitruediv(v, 2)==v and v==[1/2, 2/2, 3/2, 4/2]
 
 
 def test_vecfloordiv():
@@ -245,24 +246,68 @@ def test_vechadamard():
     assert vechadamard(veczero, (1,)) == veczero
     assert vechadamard((1, 2, 3), (4, 5), (6, 7, 8, 9)) == (24, 70)
 
+
 def test_vechadamardtruediv():
     assert vechadamardtruediv(veczero, veczero) == veczero
     assert vechadamardtruediv(veczero, (1,)) == veczero
     assert vechadamardtruediv((1, 2, 3), (4, 5, 6, 7)) == (1/4, 2/5, 3/6)
+    with pytest.raises(ZeroDivisionError):
+        vechadamardtruediv((1, 2, 3), (4, 5))
+
+def test_vecihadamardtruediv():
+    v = []
+    assert vecihadamardtruediv(v, veczero)==v and v==[]
+    v = []
+    assert vecihadamardtruediv(v, (1,))==v and v==[]
+    v = [1, 2, 3]
+    assert vecihadamardtruediv(v, (4, 5, 6, 7))==v and v==[1/4, 2/5, 3/6]
+    with pytest.raises(ZeroDivisionError):
+        v = [1, 2, 3]
+        vecihadamardtruediv(v, (4, 5))
+
 
 def test_vechadamardfloordiv():
     assert vechadamardfloordiv(veczero, veczero) == veczero
     assert vechadamardfloordiv(veczero, (1,)) == veczero
     assert vechadamardfloordiv((1, 5, 3), (4, 2, 6)) == (0, 2, 0)
+    with pytest.raises(ZeroDivisionError):
+        vechadamardfloordiv((1, 2, 3), (4, 5))
+
+def test_vecihadamardfloordiv():
+    v = []
+    assert vecihadamardfloordiv(v, veczero)==v and v==[]
+    v = []
+    assert vecihadamardfloordiv(v, (1,))==v and v==[]
+    v = [1, 5, 3]
+    assert vecihadamardfloordiv(v, (4, 2, 6))==v and v==[0, 2, 0]
+    with pytest.raises(ZeroDivisionError):
+        v = [1, 2, 3]
+        vecihadamardfloordiv(v, (4, 5))
+
 
 def test_vechadamardmod():
     assert vechadamardmod(veczero, veczero) == veczero
     assert vechadamardmod(veczero, (1,)) == veczero
     assert vechadamardmod((1, 2, 3), (4, 5, 6)) == (1, 2, 3)
+    with pytest.raises(ZeroDivisionError):
+        vechadamardmod((1, 2, 3), (4, 5))
+
+def test_vecihadamardmod():
+    v = []
+    assert vecihadamardmod(v, veczero)==v and v==[]
+    v = []
+    assert vecihadamardmod(v, (1,))==v and v==[]
+    v = [1, 2, 3]
+    assert vecihadamardmod(v, (4, 5, 6))==v and v==[1, 2, 3]
+    with pytest.raises(ZeroDivisionError):
+        v = [1, 2, 3]
+        vecihadamardmod(v, (4, 5))
+
 
 def test_vechadamarddivmod():
     v, w = (4, 5, 6), (1, 2, 3)
     assert vechadamarddivmod(v, w) == (vechadamardfloordiv(v, w), vechadamardmod(v, w))
+
 
 def test_vechadamardmin():
     assert vechadamardmin() == veczero

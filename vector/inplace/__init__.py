@@ -43,4 +43,3 @@ Wikipedia, numpy, ...
 """
 
 from .creation import *
-from .elementwise import *
