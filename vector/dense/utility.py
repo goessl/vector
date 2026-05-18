@@ -1,5 +1,5 @@
-from typing import Any
-from collections.abc import Iterable, MutableSequence
+from typing import Any, TypeVar
+from collections.abc import Callable, Iterable, MutableSequence, Sequence
 from ..lazy import vecleq, veclrshift, vecllshift
 
 
@@ -12,7 +12,12 @@ __all__ = ('veclen',
 
 
 
-def veclen(v:Iterable[Any]) -> int:
+S = TypeVar('S', bound=Sequence)
+M = TypeVar('M', bound=MutableSequence)
+
+
+
+def veclen(v:Iterable) -> int:
     """Return the length (number of set coefficients).
     
     Doesn't handle trailing zeros, use [`vectrim`][vector.dense.utility.vectrim]
@@ -25,7 +30,7 @@ def veclen(v:Iterable[Any]) -> int:
     return sum(1 for _ in v)
 
 
-def veceq(v:Iterable[Any], w:Iterable[Any]) -> bool:
+def veceq(v:Iterable, w:Iterable) -> bool:
     r"""Return whether two vectors are equal.
     
     $$
@@ -42,7 +47,7 @@ def veceq(v:Iterable[Any], w:Iterable[Any]) -> bool:
     return all(vecleq(v, w))
 
 
-def vectrim(v:Iterable[Any], tol:Any|None=None) -> tuple[Any,...]:
+def vectrim(v:Iterable, tol:Any|None=None, factory:Callable[[Iterable],S]=tuple) -> S:
     r"""Remove all trailing near zero (`abs(v_i)<=tol`) coefficients.
     
     $$
@@ -74,9 +79,9 @@ def vectrim(v:Iterable[Any], tol:Any|None=None) -> tuple[Any,...]:
         if (x if tol is None else abs(x)>tol):
             r.extend(t)
             t.clear()
-    return tuple(r)
+    return factory(r)
 
-def vecitrim(v:MutableSequence[Any], tol:Any|None=None) -> MutableSequence[Any]:
+def vecitrim(v:M, tol:Any|None=None) -> M:
     r"""Remove all trailing near zero (`abs(v_i)<=tol`) coefficients.
     
     $$
@@ -101,7 +106,7 @@ def vecitrim(v:MutableSequence[Any], tol:Any|None=None) -> MutableSequence[Any]:
     return v
 
 
-def vecrshift(v:Iterable[Any], n:int, zero:Any=0) -> tuple[Any,...]:
+def vecrshift(v:Iterable, n:int, zero:Any=0, factory:Callable[[Iterable],S]=tuple) -> S:
     r"""Shift coefficients up.
     
     $$
@@ -115,9 +120,9 @@ def vecrshift(v:Iterable[Any], n:int, zero:Any=0) -> tuple[Any,...]:
         \end{pmatrix} \qquad \mathbb{K}^m\to\mathbb{K}^{m+n}
     $$
     """
-    return tuple(veclrshift(v, n, zero=zero))
+    return factory(veclrshift(v, n, zero=zero))
 
-def vecirshift(v:MutableSequence[Any], n:int, zero:Any=0) -> MutableSequence[Any]:
+def vecirshift(v:M, n:int, zero:Any=0) -> M:
     r"""Shift coefficients up.
     
     $$
@@ -135,7 +140,7 @@ def vecirshift(v:MutableSequence[Any], n:int, zero:Any=0) -> MutableSequence[Any
     return v
 
 
-def veclshift(v:Iterable[Any], n:int) -> tuple[Any,...]:
+def veclshift(v:Iterable, n:int, factory:Callable[[Iterable],S]=tuple) -> S:
     r"""Shift coefficients down.
     
     $$
@@ -146,9 +151,9 @@ def veclshift(v:Iterable[Any], n:int) -> tuple[Any,...]:
         \end{pmatrix} \qquad \mathbb{K}^m\to\mathbb{K}^{\max\{m-n, 0\}}
     $$
     """
-    return tuple(vecllshift(v, n))
+    return factory(vecllshift(v, n))
 
-def vecilshift(v:MutableSequence[Any], n:int) -> MutableSequence[Any]:
+def vecilshift(v:M, n:int) -> M:
     r"""Shift coefficients down.
     
     $$

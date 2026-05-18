@@ -1,6 +1,7 @@
 from itertools import chain, count, repeat
-from ..lazy import veclrand, veclrandn, vecltruediv
+from ..lazy import veclrand, veclrandn
 from .hilbertspace import vecabs
+from .vectorspace import vectruediv
 from typing import Any, Generator, TypeVar
 from collections.abc import Callable, Iterable, Sequence
 
@@ -93,4 +94,4 @@ def vecrandn(n:int, normed:bool=True, mu:float=0, sigma:float=1, weights:Iterabl
         return factory(veclrandn(n, mu, sigma))
     else:
         v:tuple[float,...] = tuple(veclrandn(n, mu, sigma))
-        return factory(vecltruediv(v, vecabs(v, weights)))
+        return vectruediv(v, vecabs(v, weights), factory=factory)

@@ -3,8 +3,8 @@ from itertools import tee
 from ..lazy import veclconj
 from ..util import try_conjugate
 from operationcounter import sumprod_default
-from typing import Any
-from collections.abc import Iterable, MutableSequence
+from typing import Any, TypeVar
+from collections.abc import Callable, Iterable, MutableSequence, Sequence
 
 
 
@@ -15,7 +15,12 @@ __all__ = ('vecconj', 'veciconj',
 
 
 
-def vecconj(v:Iterable[Any]) -> tuple[Any,...]:
+S = TypeVar('S', bound=Sequence)
+M = TypeVar('M', bound=MutableSequence)
+
+
+
+def vecconj(v:Iterable, factory:Callable[[Iterable],S]=tuple) -> S:
     r"""Return the complex conjugate.
     
     $$
@@ -31,9 +36,9 @@ def vecconj(v:Iterable[Any]) -> tuple[Any,...]:
     
     - $n$ scalar conjugations (`conjugate`).
     """
-    return tuple(veclconj(v))
+    return factory(veclconj(v))
 
-def veciconj(v:MutableSequence[Any]) -> MutableSequence[Any]:
+def veciconj(v:M) -> M:
     r"""Complex conjugate.
     
     $$
@@ -48,7 +53,7 @@ def veciconj(v:MutableSequence[Any]) -> MutableSequence[Any]:
     return v
 
 
-def vecabs(v:Iterable[Any], weights:Iterable[Any]|None=None, conjugate:bool=False, zero:Any=0) -> Any:
+def vecabs(v:Iterable, weights:Iterable|None=None, conjugate:bool=False, zero:Any=0) -> Any:
     r"""Return the Euclidean/$\ell_{\mathbb{N}_0}^2$-norm.
     
     $$
@@ -75,7 +80,7 @@ def vecabs(v:Iterable[Any], weights:Iterable[Any]|None=None, conjugate:bool=Fals
     return vecabsq(v, weights=weights, conjugate=conjugate, zero=zero)**0.5
 
 
-def vecabsq(v:Iterable[Any], weights:Iterable[Any]|None=None, conjugate:bool=False, zero:Any=0) -> Any:
+def vecabsq(v:Iterable, weights:Iterable|None=None, conjugate:bool=False, zero:Any=0) -> Any:
     r"""Return the sum of absolute squares.
     
     $$
@@ -111,7 +116,7 @@ def vecabsq(v:Iterable[Any], weights:Iterable[Any]|None=None, conjugate:bool=Fal
         return sumprod_default(map(mul, vc, v), weights, default=zero)
 
 
-def vecdot(v:Iterable[Any], w:Iterable[Any], weights:Iterable[Any]|None=None, conjugate:bool=False, zero:Any=0) -> Any:
+def vecdot(v:Iterable, w:Iterable, weights:Iterable|None=None, conjugate:bool=False, zero:Any=0) -> Any:
     r"""Return the inner product.
     
     $$
