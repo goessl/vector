@@ -484,33 +484,6 @@
   
   
     <li class="md-nav__item">
-      <a href="inplace/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    In-place
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="sparse/" class="md-nav__link">
         
   
@@ -787,9 +760,8 @@
 <h2 id="usage">Usage</h2>
 <p>This package includes</p>
 <ul>
-<li>general-purpose <strong>functions</strong> (prefixed <code>vec...</code>) with <strong>perfect complexity</strong>,</li>
+<li>general-purpose <strong>functions</strong> (prefixed <code>vec...</code>) and <strong>in-place</strong> mutations (prefixed <code>veci...</code>) with <strong>perfect complexity</strong>,</li>
 <li>lazy <strong>generators</strong> (prefixed <code>vecl...</code>),</li>
-<li><strong>in-place</strong> modifications (prefixed <code>veci...</code>),</li>
 <li><code>dicts</code> as <strong>sparse</strong> vectors (prefixed <code>vecs...</code>),</li>
 <li><em>tensor</em> functions (prefixed <code>ten...</code>) for <strong>multilinear operations</strong>,</li>
 <li>sparse <em>tensor</em> functions (prefixed <code>tens...</code>) for <strong>multilinear sparse operations</strong> &amp;</li>
@@ -808,7 +780,6 @@ infinite-dimensional by assuming that all components after the given ones are
 <th>Operation</th>
 <th><a href="dense/">Dense</a></th>
 <th><a href="lazy/">Lazy</a></th>
-<th><a href="inplace/">In-place</a></th>
 <th><a href="sparse/">Sparse</a></th>
 <th><a href="multilinear/">Multilinear</a></th>
 <th><a href="multilinear_sparse/">Multilinear sparse</a></th>
@@ -824,13 +795,11 @@ infinite-dimensional by assuming that all components after the given ones are
 <td></td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
 <tr>
 <td>Zero constant</td>
-<td><a class="autorefs autorefs-internal" title="            veczero: tuple[] = ()" href="dense/#vector.dense.creation.veczero"><code>veczero</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            veczero: _VecZero = _VecZero()" href="dense/#vector.dense.creation.veczero"><code>veczero</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            veclzero() -> Generator[Never]" href="lazy/#vector.lazy.creation.veclzero"><code>veclzero</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            vecizero() -> list[Never]" href="inplace/#vector.inplace.creation.vecizero"><code>vecizero</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecszero: dict[Never, Never] = {}" href="sparse/#vector.sparse.creation.vecszero"><code>vecszero</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenzero = np.zeros((), dtype=object)" href="multilinear/#vector.multilinear.creation.tenzero"><code>tenzero</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenszero: dict[Never, Never] = {}" href="multilinear_sparse/#vector.multilinear_sparse.creation.tenszero"><code>tenszero</code></a></td>
@@ -838,9 +807,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Basis</td>
-<td><a class="autorefs autorefs-internal" title="            vecbasis(i: int, c: Any = 1, zero: Any = 0) -> tuple[Any, ...]" href="dense/#vector.dense.creation.vecbasis"><code>vecbasis</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecbasis(i: int, c: Any = 1, zero: Any = 0, factory: Callable[[Iterable], S] = tuple) -> S" href="dense/#vector.dense.creation.vecbasis"><code>vecbasis</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            veclbasis(i: int, c: Any = 1, zero: Any = 0) -> Generator[Any]" href="lazy/#vector.lazy.creation.veclbasis"><code>veclbasis</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            vecibasis(i: int, c: Any = 1, zero: Any = 0) -> list[Any]" href="inplace/#vector.inplace.creation.vecibasis"><code>vecibasis</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecsbasis(i: int, c: Any = 1) -> dict[int, Any]" href="sparse/#vector.sparse.creation.vecsbasis"><code>vecsbasis</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenbasis(i, c=1)" href="multilinear/#vector.multilinear.creation.tenbasis"><code>tenbasis</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tensbasis(i: tuple[int, ...], c: Any = 1) -> dict[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.creation.tensbasis"><code>tensbasis</code></a></td>
@@ -848,9 +816,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Bases</td>
-<td><a class="autorefs autorefs-internal" title="            vecbases(start: int = 0, c: Any = 1, zero: Any = 0) -> Generator[tuple[Any, ...]]" href="dense/#vector.dense.creation.vecbases"><code>vecbases</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecbases(start: int = 0, c: Any = 1, zero: Any = 0, factory: Callable[[Iterable], S] = tuple) -> Generator[S]" href="dense/#vector.dense.creation.vecbases"><code>vecbases</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            veclbases(start: int = 0, c: Any = 1, zero: Any = 0) -> Generator[Generator[Any]]" href="lazy/#vector.lazy.creation.veclbases"><code>veclbases</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            vecibases(start: int = 0, c: Any = 1, zero: Any = 0) -> Generator[list[Any]]" href="inplace/#vector.inplace.creation.vecibases"><code>vecibases</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecsbases(start: int = 0, c: Any = 1) -> Generator[dict[int, Any]]" href="sparse/#vector.sparse.creation.vecsbases"><code>vecsbases</code></a></td>
 <td></td>
 <td></td>
@@ -858,9 +825,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Random uniform</td>
-<td><a class="autorefs autorefs-internal" title="            vecrand(n: int) -> tuple[float, ...]" href="dense/#vector.dense.creation.vecrand"><code>vecrand</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecrand(n: int, factory: Callable[[Iterable], S] = tuple) -> S" href="dense/#vector.dense.creation.vecrand"><code>vecrand</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            veclrand(n: int) -> Generator[float]" href="lazy/#vector.lazy.creation.veclrand"><code>veclrand</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            vecirand(n: int) -> list[float]" href="inplace/#vector.inplace.creation.vecirand"><code>vecirand</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecsrand(n: int) -> dict[int, float]" href="sparse/#vector.sparse.creation.vecsrand"><code>vecsrand</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenrand(*d)" href="multilinear/#vector.multilinear.creation.tenrand"><code>tenrand</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tensrand(*d: int) -> dict[tuple[int, ...], float]" href="multilinear_sparse/#vector.multilinear_sparse.creation.tensrand"><code>tensrand</code></a></td>
@@ -868,9 +834,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Random normal</td>
-<td><a class="autorefs autorefs-internal" title="            vecrandn(n: int, normed: bool = True, mu: float = 0, sigma: float = 1, weights: Iterable | None = None) -> tuple[Any, ...]" href="dense/#vector.dense.creation.vecrandn"><code>vecrandn</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecrandn(n: int, normed: bool = True, mu: float = 0, sigma: float = 1, weights: Iterable | None = None, factory: Callable[[Iterable], S] = tuple) -> S" href="dense/#vector.dense.creation.vecrandn"><code>vecrandn</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            veclrandn(n: int, mu: float = 0, sigma: float = 1) -> Generator[float]" href="lazy/#vector.lazy.creation.veclrandn"><code>veclrandn</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            vecirandn(n: int, normed: bool = True, mu: float = 0, sigma: float = 1, weights: Iterable[Any] | None = None) -> list[Any]" href="inplace/#vector.inplace.creation.vecirandn"><code>vecirandn</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecsrandn(n: int, normed: bool = True, mu: float = 0, sigma: float = 1, weights: Mapping[int, Any] | None = None) -> dict[int, Any]" href="sparse/#vector.sparse.creation.vecsrandn"><code>vecsrandn</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenrandn(*d)" href="multilinear/#vector.multilinear.creation.tenrandn"><code>tenrandn</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tensrandn(*d: int, mu: float = 0, sigma: float = 1) -> dict[tuple[int, ...], float]" href="multilinear_sparse/#vector.multilinear_sparse.creation.tensrandn"><code>tensrandn</code></a></td>
@@ -884,11 +849,9 @@ infinite-dimensional by assuming that all components after the given ones are
 <td></td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
 <tr>
 <td>to special type</td>
-<td></td>
 <td></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            vecdtos(v)" href="sparse/#vector.sparse.conversion.vecdtos"><code>vecdtos</code></a></td>
@@ -898,7 +861,6 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>from special type</td>
-<td></td>
 <td></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            vecstod(v, zero=0)" href="sparse/#vector.sparse.conversion.vecstod"><code>vecstod</code></a></td>
@@ -914,12 +876,10 @@ infinite-dimensional by assuming that all components after the given ones are
 <td></td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
 <tr>
 <td>Dimensionality</td>
-<td><a class="autorefs autorefs-internal" title="            veclen(v: Iterable[Any]) -> int" href="dense/#vector.dense.utility.veclen"><code>veclen</code></a></td>
-<td></td>
+<td><a class="autorefs autorefs-internal" title="            veclen(v: Iterable) -> int" href="dense/#vector.dense.utility.veclen"><code>veclen</code></a></td>
 <td></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            tendim(t)" href="multilinear/#vector.multilinear.utility.tendim"><code>tendim</code></a></td>
@@ -930,7 +890,6 @@ infinite-dimensional by assuming that all components after the given ones are
 <td>Rank</td>
 <td></td>
 <td></td>
-<td></td>
 <td><a class="autorefs autorefs-internal" title="            vecslen(v: Mapping[int, Any]) -> int" href="sparse/#vector.sparse.utility.vecslen"><code>vecslen</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenrank(t)" href="multilinear/#vector.multilinear.utility.tenrank"><code>tenrank</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tensrank(t: Mapping[tuple[int, ...], Any]) -> int" href="multilinear_sparse/#vector.multilinear_sparse.utility.tensrank"><code>tensrank</code></a></td>
@@ -938,9 +897,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Comparison</td>
-<td><a class="autorefs autorefs-internal" title="            veceq(v: Iterable[Any], w: Iterable[Any]) -> bool" href="dense/#vector.dense.utility.veceq"><code>veceq</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            veceq(v: Iterable, w: Iterable) -> bool" href="dense/#vector.dense.utility.veceq"><code>veceq</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecleq(v: Iterable[Any], w: Iterable[Any]) -> Generator[bool]" href="lazy/#vector.lazy.utility.vecleq"><code>vecleq</code></a></td>
-<td></td>
 <td><a class="autorefs autorefs-internal" title="            vecseq(v: Mapping[int, Any], w: Mapping[int, Any]) -> bool" href="sparse/#vector.sparse.utility.vecseq"><code>vecseq</code></a></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            tenseq(s: Mapping[tuple[int, ...], Any], t: Mapping[tuple[int, ...], Any]) -> bool" href="multilinear_sparse/#vector.multilinear_sparse.utility.tenseq"><code>tenseq</code></a></td>
@@ -948,9 +906,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Trimming</td>
-<td><a class="autorefs autorefs-internal" title="            vectrim(v: Iterable[Any], tol: Any | None = None) -> tuple[Any, ...]" href="dense/#vector.dense.utility.vectrim"><code>vectrim</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vectrim(v: Iterable, tol: Any | None = None, factory: Callable[[Iterable], S] = tuple) -> S" href="dense/#vector.dense.utility.vectrim"><code>vectrim</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecltrim(v: Iterable[Any], tol: Any | None = None) -> Generator[Any]" href="lazy/#vector.lazy.utility.vecltrim"><code>vecltrim</code></a></td>
-<td></td>
 <td><a class="autorefs autorefs-internal" title="            vecstrim(v: Mapping[int, Any], tol: Any | None = None) -> dict[int, Any]" href="sparse/#vector.sparse.utility.vecstrim"><code>vecstrim</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tentrim(t, tol=None)" href="multilinear/#vector.multilinear.utility.tentrim"><code>tentrim</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenstrim(t: Mapping[tuple[int, ...], Any], tol: Any | None = None) -> dict[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.utility.tenstrim"><code>tenstrim</code></a></td>
@@ -958,9 +915,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>in-place</td>
+<td><a class="autorefs autorefs-internal" title="            vecitrim(v: M, tol: Any | None = None) -> M" href="dense/#vector.dense.utility.vecitrim"><code>vecitrim</code></a></td>
 <td></td>
-<td></td>
-<td><a class="autorefs autorefs-internal" title="            vecitrim(v: MutableSequence[Any], tol: Any | None = None) -> MutableSequence[Any]" href="inplace/#vector.inplace.utility.vecitrim"><code>vecitrim</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecsitrim(v: MutableMapping[int, Any], tol: Any | None = None) -> MutableMapping[int, Any]" href="sparse/#vector.sparse.utility.vecsitrim"><code>vecsitrim</code></a></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            tensitrim(t: MutableMapping[tuple[int, ...], Any], tol: Any | None = None) -> MutableMapping[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.utility.tensitrim"><code>tensitrim</code></a></td>
@@ -968,9 +924,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Right shift</td>
-<td><a class="autorefs autorefs-internal" title="            vecrshift(v: Iterable[Any], n: int, zero: Any = 0) -> tuple[Any, ...]" href="dense/#vector.dense.utility.vecrshift"><code>vecrshift</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecrshift(v: Iterable, n: int, zero: Any = 0, factory: Callable[[Iterable], S] = tuple) -> S" href="dense/#vector.dense.utility.vecrshift"><code>vecrshift</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            veclrshift(v: Iterable[Any], n: int, zero: Any = 0) -> Generator[Any]" href="lazy/#vector.lazy.utility.veclrshift"><code>veclrshift</code></a></td>
-<td></td>
 <td><a class="autorefs autorefs-internal" title="            vecsrshift(v: Mapping[int, Any], n: int) -> dict[int, Any]" href="sparse/#vector.sparse.utility.vecsrshift"><code>vecsrshift</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenrshift(t, n)" href="multilinear/#vector.multilinear.utility.tenrshift"><code>tenrshift</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tensrshift(t: Mapping[tuple[int, ...], Any], n: tuple[int, ...]) -> dict[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.utility.tensrshift"><code>tensrshift</code></a></td>
@@ -978,9 +933,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>in-place</td>
+<td><a class="autorefs autorefs-internal" title="            vecirshift(v: M, n: int, zero: Any = 0) -> M" href="dense/#vector.dense.utility.vecirshift"><code>vecirshift</code></a></td>
 <td></td>
-<td></td>
-<td><a class="autorefs autorefs-internal" title="            vecirshift(v: MutableSequence[Any], n: int, zero: Any = 0) -> MutableSequence[Any]" href="inplace/#vector.inplace.utility.vecirshift"><code>vecirshift</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecsirshift(v: MutableMapping[int, Any], n: int) -> MutableMapping[int, Any]" href="sparse/#vector.sparse.utility.vecsirshift"><code>vecsirshift</code></a></td>
 <td></td>
 <td></td>
@@ -988,9 +942,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Left shift</td>
-<td><a class="autorefs autorefs-internal" title="            veclshift(v: Iterable[Any], n: int) -> tuple[Any, ...]" href="dense/#vector.dense.utility.veclshift"><code>veclshift</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            veclshift(v: Iterable, n: int, factory: Callable[[Iterable], S] = tuple) -> S" href="dense/#vector.dense.utility.veclshift"><code>veclshift</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecllshift(v: Iterable[Any], n: int) -> Generator[Any]" href="lazy/#vector.lazy.utility.vecllshift"><code>vecllshift</code></a></td>
-<td></td>
 <td><a class="autorefs autorefs-internal" title="            vecslshift(v: Mapping[int, Any], n: int) -> dict[int, Any]" href="sparse/#vector.sparse.utility.vecslshift"><code>vecslshift</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenlshift(t, n)" href="multilinear/#vector.multilinear.utility.tenlshift"><code>tenlshift</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenslshift(t: Mapping[tuple[int, ...], Any], n: tuple[int, ...]) -> dict[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.utility.tenslshift"><code>tenslshift</code></a></td>
@@ -998,9 +951,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>in-place</td>
+<td><a class="autorefs autorefs-internal" title="            vecilshift(v: M, n: int) -> M" href="dense/#vector.dense.utility.vecilshift"><code>vecilshift</code></a></td>
 <td></td>
-<td></td>
-<td><a class="autorefs autorefs-internal" title="            vecilshift(v: MutableSequence[Any], n: int) -> MutableSequence[Any]" href="inplace/#vector.inplace.utility.vecilshift"><code>vecilshift</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecsilshift(v: MutableMapping[int, Any], n: int) -> MutableMapping[int, Any]" href="sparse/#vector.sparse.utility.vecsilshift"><code>vecsilshift</code></a></td>
 <td></td>
 <td></td>
@@ -1014,13 +966,11 @@ infinite-dimensional by assuming that all components after the given ones are
 <td></td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
 <tr>
 <td>Conjugation</td>
-<td><a class="autorefs autorefs-internal" title="            vecconj(v: Iterable[Any]) -> tuple[Any, ...]" href="dense/#vector.dense.hilbertspace.vecconj"><code>vecconj</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecconj(v: Iterable, factory: Callable[[Iterable], S] = tuple) -> S" href="dense/#vector.dense.hilbertspace.vecconj"><code>vecconj</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            veclconj(v: Iterable[Any]) -> Generator[Any]" href="lazy/#vector.lazy.hilbertspace.veclconj"><code>veclconj</code></a></td>
-<td></td>
 <td><a class="autorefs autorefs-internal" title="            vecsconj(v: Mapping[int, Any]) -> dict[int, Any]" href="sparse/#vector.sparse.hilbertspace.vecsconj"><code>vecsconj</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenconj(t)" href="multilinear/#vector.multilinear.hilbertspace.tenconj"><code>tenconj</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tensconj(t: Mapping[tuple[int, ...], Any]) -> dict[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.hilbertspace.tensconj"><code>tensconj</code></a></td>
@@ -1028,9 +978,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>in-place</td>
+<td><a class="autorefs autorefs-internal" title="            veciconj(v: M) -> M" href="dense/#vector.dense.hilbertspace.veciconj"><code>veciconj</code></a></td>
 <td></td>
-<td></td>
-<td><a class="autorefs autorefs-internal" title="            veciconj(v: MutableSequence[Any]) -> MutableSequence[Any]" href="inplace/#vector.inplace.hilbertspace.veciconj"><code>veciconj</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecsiconj(v: MutableMapping[int, Any]) -> MutableMapping[int, Any]" href="sparse/#vector.sparse.hilbertspace.vecsiconj"><code>vecsiconj</code></a></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            tensiconj(t: MutableMapping[tuple[int, ...], Any]) -> MutableMapping[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.hilbertspace.tensiconj"><code>tensiconj</code></a></td>
@@ -1038,8 +987,7 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Norm</td>
-<td><a class="autorefs autorefs-internal" title="            vecabs(v: Iterable[Any], weights: Iterable[Any] | None = None, conjugate: bool = False, zero: Any = 0) -> Any" href="dense/#vector.dense.hilbertspace.vecabs"><code>vecabs</code></a></td>
-<td></td>
+<td><a class="autorefs autorefs-internal" title="            vecabs(v: Iterable, weights: Iterable | None = None, conjugate: bool = False, zero: Any = 0) -> Any" href="dense/#vector.dense.hilbertspace.vecabs"><code>vecabs</code></a></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            vecsabs(v: Mapping[int, Any], weights: Mapping[int, Any] | None = None, conjugate: bool = False, zero: Any = 0) -> Any" href="sparse/#vector.sparse.hilbertspace.vecsabs"><code>vecsabs</code></a></td>
 <td></td>
@@ -1048,8 +996,7 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Norm squared</td>
-<td><a class="autorefs autorefs-internal" title="            vecabsq(v: Iterable[Any], weights: Iterable[Any] | None = None, conjugate: bool = False, zero: Any = 0) -> Any" href="dense/#vector.dense.hilbertspace.vecabsq"><code>vecabsq</code></a></td>
-<td></td>
+<td><a class="autorefs autorefs-internal" title="            vecabsq(v: Iterable, weights: Iterable | None = None, conjugate: bool = False, zero: Any = 0) -> Any" href="dense/#vector.dense.hilbertspace.vecabsq"><code>vecabsq</code></a></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            vecsabsq(v: Mapping[int, Any], weights: Mapping[int, Any] | None = None, conjugate: bool = False, zero: Any = 0) -> Any" href="sparse/#vector.sparse.hilbertspace.vecsabsq"><code>vecsabsq</code></a></td>
 <td></td>
@@ -1058,8 +1005,7 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Inner product</td>
-<td><a class="autorefs autorefs-internal" title="            vecdot(v: Iterable[Any], w: Iterable[Any], weights: Iterable[Any] | None = None, conjugate: bool = False, zero: Any = 0) -> Any" href="dense/#vector.dense.hilbertspace.vecdot"><code>vecdot</code></a></td>
-<td></td>
+<td><a class="autorefs autorefs-internal" title="            vecdot(v: Iterable, w: Iterable, weights: Iterable | None = None, conjugate: bool = False, zero: Any = 0) -> Any" href="dense/#vector.dense.hilbertspace.vecdot"><code>vecdot</code></a></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            vecsdot(v: Mapping[int, Any], w: Mapping[int, Any], weights: Mapping[int, Any] | None = None, conjugate: bool = False, zero: Any = 0) -> Any" href="sparse/#vector.sparse.hilbertspace.vecsdot"><code>vecsdot</code></a></td>
 <td></td>
@@ -1074,13 +1020,11 @@ infinite-dimensional by assuming that all components after the given ones are
 <td></td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
 <tr>
 <td>Positive</td>
-<td><a class="autorefs autorefs-internal" title="            vecpos(v: Iterable[Any]) -> tuple[Any, ...]" href="dense/#vector.dense.vectorspace.vecpos"><code>vecpos</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecpos(v: Iterable, factory: Callable[[Iterable], S] = tuple) -> S" href="dense/#vector.dense.vectorspace.vecpos"><code>vecpos</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            veclpos(v: Iterable[Any]) -> Generator[Any]" href="lazy/#vector.lazy.vectorspace.veclpos"><code>veclpos</code></a></td>
-<td></td>
 <td><a class="autorefs autorefs-internal" title="            vecspos(v: Mapping[int, Any]) -> dict[int, Any]" href="sparse/#vector.sparse.vectorspace.vecspos"><code>vecspos</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenpos(t)" href="multilinear/#vector.multilinear.vectorspace.tenpos"><code>tenpos</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenspos(t: Mapping[tuple[int, ...], Any]) -> dict[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tenspos"><code>tenspos</code></a></td>
@@ -1088,9 +1032,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>in-place</td>
+<td><a class="autorefs autorefs-internal" title="            vecipos(v: M) -> M[Any, ...]" href="dense/#vector.dense.vectorspace.vecipos"><code>vecipos</code></a></td>
 <td></td>
-<td></td>
-<td><a class="autorefs autorefs-internal" title="            vecipos(v: MutableSequence[Any]) -> MutableSequence[Any]" href="inplace/#vector.inplace.vectorspace.vecipos"><code>vecipos</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecsipos(v: MutableMapping[int, Any]) -> MutableMapping[int, Any]" href="sparse/#vector.sparse.vectorspace.vecsipos"><code>vecsipos</code></a></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            tensipos(t: MutableMapping[tuple[int, ...], Any]) -> MutableMapping[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensipos"><code>tensipos</code></a></td>
@@ -1098,9 +1041,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Negative</td>
-<td><a class="autorefs autorefs-internal" title="            vecneg(v: Iterable[Any]) -> tuple[Any, ...]" href="dense/#vector.dense.vectorspace.vecneg"><code>vecneg</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecneg(v: Iterable, factory: Callable[[Iterable], S] = tuple) -> S" href="dense/#vector.dense.vectorspace.vecneg"><code>vecneg</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            veclneg(v: Iterable[Any]) -> Generator[Any]" href="lazy/#vector.lazy.vectorspace.veclneg"><code>veclneg</code></a></td>
-<td></td>
 <td><a class="autorefs autorefs-internal" title="            vecsneg(v: Mapping[int, Any]) -> dict[int, Any]" href="sparse/#vector.sparse.vectorspace.vecsneg"><code>vecsneg</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenneg(t)" href="multilinear/#vector.multilinear.vectorspace.tenneg"><code>tenneg</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tensneg(t: Mapping[tuple[int, ...], Any]) -> dict[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensneg"><code>tensneg</code></a></td>
@@ -1108,9 +1050,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>in-place</td>
+<td><a class="autorefs autorefs-internal" title="            vecineg(v: M) -> M[Any, ...]" href="dense/#vector.dense.vectorspace.vecineg"><code>vecineg</code></a></td>
 <td></td>
-<td></td>
-<td><a class="autorefs autorefs-internal" title="            vecineg(v: MutableSequence[Any]) -> MutableSequence[Any]" href="inplace/#vector.inplace.vectorspace.vecineg"><code>vecineg</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecsineg(v: MutableMapping[int, Any]) -> MutableMapping[int, Any]" href="sparse/#vector.sparse.vectorspace.vecsineg"><code>vecsineg</code></a></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            tensineg(t: dict[tuple[int, ...], Any]) -> dict[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensineg"><code>tensineg</code></a></td>
@@ -1118,9 +1059,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Addition</td>
-<td><a class="autorefs autorefs-internal" title="            vecadd(*vs: Iterable[Any]) -> tuple[Any, ...]" href="dense/#vector.dense.vectorspace.vecadd"><code>vecadd</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecadd(*vs: Iterable, factory: Callable[[Iterable], S] = tuple) -> S" href="dense/#vector.dense.vectorspace.vecadd"><code>vecadd</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecladd(*vs: Iterable[Any]) -> Generator[Any]" href="lazy/#vector.lazy.vectorspace.vecladd"><code>vecladd</code></a></td>
-<td></td>
 <td><a class="autorefs autorefs-internal" title="            vecsadd(*vs: Mapping[int, Any]) -> dict[int, Any]" href="sparse/#vector.sparse.vectorspace.vecsadd"><code>vecsadd</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenadd(*ts)" href="multilinear/#vector.multilinear.vectorspace.tenadd"><code>tenadd</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tensadd(*ts: Mapping[tuple[int, ...], Any]) -> dict[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensadd"><code>tensadd</code></a></td>
@@ -1128,9 +1068,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>in-place</td>
+<td><a class="autorefs autorefs-internal" title="            veciadd(v: M, *ws: Iterable) -> M" href="dense/#vector.dense.vectorspace.veciadd"><code>veciadd</code></a></td>
 <td></td>
-<td></td>
-<td><a class="autorefs autorefs-internal" title="            veciadd(v: MutableSequence[Any], *ws: Sequence[Any]) -> MutableSequence[Any]" href="inplace/#vector.inplace.vectorspace.veciadd"><code>veciadd</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecsiadd(v: MutableMapping[int, Any], *ws: Mapping[int, Any]) -> MutableMapping[int, Any]" href="sparse/#vector.sparse.vectorspace.vecsiadd"><code>vecsiadd</code></a></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            tensiadd(s: MutableMapping[tuple[int, ...], Any], *ts: Mapping[tuple[int, ...], Any]) -> MutableMapping[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensiadd"><code>tensiadd</code></a></td>
@@ -1138,9 +1077,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Basis addition</td>
-<td><a class="autorefs autorefs-internal" title="            vecaddc(v: Iterable[Any], c: Any, i: int = 0, zero: Any = 0) -> tuple[Any, ...]" href="dense/#vector.dense.vectorspace.vecaddc"><code>vecaddc</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecaddc(v: Iterable, c: Any, i: int = 0, zero: Any = 0, factory: Callable[[Iterable], S] = tuple) -> S" href="dense/#vector.dense.vectorspace.vecaddc"><code>vecaddc</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecladdc(v: Iterable[Any], c: Any, i: int = 0, zero: Any = 0) -> Generator[Any]" href="lazy/#vector.lazy.vectorspace.vecladdc"><code>vecladdc</code></a></td>
-<td></td>
 <td><a class="autorefs autorefs-internal" title="            vecsaddc(v: Mapping[int, Any], c: Any, i: int = 0) -> dict[int, Any]" href="sparse/#vector.sparse.vectorspace.vecsaddc"><code>vecsaddc</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenaddc(t, c, i=(0,))" href="multilinear/#vector.multilinear.vectorspace.tenaddc"><code>tenaddc</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tensaddc(t: Mapping[tuple[int, ...], Any], c: Any, i: tuple[int, ...] = ()) -> dict[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensaddc"><code>tensaddc</code></a></td>
@@ -1148,9 +1086,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>in-place</td>
+<td><a class="autorefs autorefs-internal" title="            veciaddc(v: M, c: Any, i: int = 0, zero: Any = 0) -> M" href="dense/#vector.dense.vectorspace.veciaddc"><code>veciaddc</code></a></td>
 <td></td>
-<td></td>
-<td><a class="autorefs autorefs-internal" title="            veciaddc(v: MutableSequence[Any], c: Any, i: int = 0, zero: Any = 0) -> MutableSequence[Any]" href="inplace/#vector.inplace.vectorspace.veciaddc"><code>veciaddc</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecsiaddc(v: MutableMapping[int, Any], c: Any, i: int = 0) -> MutableMapping[int, Any]" href="sparse/#vector.sparse.vectorspace.vecsiaddc"><code>vecsiaddc</code></a></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            tensiaddc(t: MutableMapping[tuple[int, ...], Any], c: Any, i: tuple[int, ...] = ()) -> MutableMapping[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensiaddc"><code>tensiaddc</code></a></td>
@@ -1158,9 +1095,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Subtraction</td>
-<td><a class="autorefs autorefs-internal" title="            vecsub(v: Iterable[Any], w: Iterable[Any]) -> tuple[Any, ...]" href="dense/#vector.dense.vectorspace.vecsub"><code>vecsub</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsub(v: Iterable, w: Iterable, factory: Callable[[Iterable], S] = tuple) -> S" href="dense/#vector.dense.vectorspace.vecsub"><code>vecsub</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            veclsub(v: Iterable[Any], w: Iterable[Any]) -> Generator[Any]" href="lazy/#vector.lazy.vectorspace.veclsub"><code>veclsub</code></a></td>
-<td></td>
 <td><a class="autorefs autorefs-internal" title="            vecssub(v: Mapping[int, Any], w: Mapping[int, Any]) -> dict[int, Any]" href="sparse/#vector.sparse.vectorspace.vecssub"><code>vecssub</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tensub(s, t)" href="multilinear/#vector.multilinear.vectorspace.tensub"><code>tensub</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenssub(s: Mapping[tuple[int, ...], Any], t: Mapping[tuple[int, ...], Any]) -> dict[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tenssub"><code>tenssub</code></a></td>
@@ -1168,9 +1104,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>in-place</td>
+<td><a class="autorefs autorefs-internal" title="            vecisub(v: M, w: Iterable) -> M" href="dense/#vector.dense.vectorspace.vecisub"><code>vecisub</code></a></td>
 <td></td>
-<td></td>
-<td><a class="autorefs autorefs-internal" title="            vecisub(v: MutableSequence[Any], w: Sequence[Any]) -> MutableSequence[Any]" href="inplace/#vector.inplace.vectorspace.vecisub"><code>vecisub</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecsisub(v: MutableMapping[int, Any], w: Mapping[int, Any]) -> MutableMapping[int, Any]" href="sparse/#vector.sparse.vectorspace.vecsisub"><code>vecsisub</code></a></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            tensisub(s: MutableMapping[tuple[int, ...], Any], t: Mapping[tuple[int, ...], Any]) -> MutableMapping[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensisub"><code>tensisub</code></a></td>
@@ -1178,9 +1113,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Basis subtraction</td>
-<td><a class="autorefs autorefs-internal" title="            vecsubc(v: Iterable[Any], c: Any, i: int = 0, zero: Any = 0) -> tuple[Any, ...]" href="dense/#vector.dense.vectorspace.vecsubc"><code>vecsubc</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsubc(v: Iterable, c: Any, i: int = 0, zero: Any = 0, factory: Callable[[Iterable], S] = tuple) -> S" href="dense/#vector.dense.vectorspace.vecsubc"><code>vecsubc</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            veclsubc(v: Iterable[Any], c: Any, i: int = 0, zero: Any = 0) -> Generator[Any]" href="lazy/#vector.lazy.vectorspace.veclsubc"><code>veclsubc</code></a></td>
-<td></td>
 <td><a class="autorefs autorefs-internal" title="            vecssubc(v: Mapping[int, Any], c: Any, i: int = 0) -> dict[int, Any]" href="sparse/#vector.sparse.vectorspace.vecssubc"><code>vecssubc</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tensubc(t, c, i=(0,))" href="multilinear/#vector.multilinear.vectorspace.tensubc"><code>tensubc</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenssubc(t: Mapping[tuple[int, ...], Any], c: Any, i: tuple[int, ...] = ()) -> dict[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tenssubc"><code>tenssubc</code></a></td>
@@ -1188,9 +1122,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>in-place</td>
+<td><a class="autorefs autorefs-internal" title="            vecisubc(v: M, c: Any, i: int = 0, zero: Any = 0) -> M" href="dense/#vector.dense.vectorspace.vecisubc"><code>vecisubc</code></a></td>
 <td></td>
-<td></td>
-<td><a class="autorefs autorefs-internal" title="            vecisubc(v: MutableSequence[Any], c: Any, i: int = 0, zero: Any = 0) -> MutableSequence[Any]" href="inplace/#vector.inplace.vectorspace.vecisubc"><code>vecisubc</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecsisubc(v: MutableMapping[int, Any], c: Any, i: int = 0) -> MutableMapping[int, Any]" href="sparse/#vector.sparse.vectorspace.vecsisubc"><code>vecsisubc</code></a></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            tensisubc(t: MutableMapping[tuple[int, ...], Any], c: Any, i: tuple[int, ...] = ()) -> MutableMapping[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensisubc"><code>tensisubc</code></a></td>
@@ -1198,9 +1131,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Multiplication</td>
-<td><a class="autorefs autorefs-internal" title="            vecrmul(a: Any, v: Iterable[Any]) -> tuple[Any, ...]" href="dense/#vector.dense.vectorspace.vecrmul"><code>vecrmul</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecrmul(a: Any, v: Iterable, factory: Callable[[Iterable], S] = tuple) -> S" href="dense/#vector.dense.vectorspace.vecrmul"><code>vecrmul</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            veclrmul(a: Any, v: Iterable[Any]) -> Generator[Any]" href="lazy/#vector.lazy.vectorspace.veclrmul"><code>veclrmul</code></a></td>
-<td></td>
 <td><a class="autorefs autorefs-internal" title="            vecsrmul(a: Any, v: Mapping[int, Any]) -> dict[int, Any]" href="sparse/#vector.sparse.vectorspace.vecsrmul"><code>vecsrmul</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenrmul(a, t)" href="multilinear/#vector.multilinear.vectorspace.tenrmul"><code>tenrmul</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tensrmul(a: Any, t: Mapping[tuple[int, ...], Any]) -> dict[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensrmul"><code>tensrmul</code></a></td>
@@ -1208,9 +1140,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>from left</td>
-<td><a class="autorefs autorefs-internal" title="            vecmul(v: Iterable[Any], a: Any) -> tuple[Any, ...]" href="dense/#vector.dense.vectorspace.vecmul"><code>vecmul</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecmul(v: Iterable, a: Any, factory: Callable[[Iterable], S] = tuple) -> S" href="dense/#vector.dense.vectorspace.vecmul"><code>vecmul</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            veclmul(v: Iterable[Any], a: Any) -> Generator[Any]" href="lazy/#vector.lazy.vectorspace.veclmul"><code>veclmul</code></a></td>
-<td></td>
 <td><a class="autorefs autorefs-internal" title="            vecsmul(v: Mapping[int, Any], a: Any) -> dict[int, Any]" href="sparse/#vector.sparse.vectorspace.vecsmul"><code>vecsmul</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenmul(t, a)" href="multilinear/#vector.multilinear.vectorspace.tenmul"><code>tenmul</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tensmul(t: Mapping[tuple[int, ...], Any], a: Any) -> dict[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensmul"><code>tensmul</code></a></td>
@@ -1218,9 +1149,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>in-place</td>
+<td><a class="autorefs autorefs-internal" title="            vecimul(v: M, a: Any) -> M" href="dense/#vector.dense.vectorspace.vecimul"><code>vecimul</code></a></td>
 <td></td>
-<td></td>
-<td><a class="autorefs autorefs-internal" title="            vecimul(v: MutableSequence[Any], a: Any) -> MutableSequence[Any]" href="inplace/#vector.inplace.vectorspace.vecimul"><code>vecimul</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecsimul(v: MutableMapping[int, Any], a: Any) -> MutableMapping[int, Any]" href="sparse/#vector.sparse.vectorspace.vecsimul"><code>vecsimul</code></a></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            tensimul(t: MutableMapping[tuple[int, ...], Any], a: Any) -> MutableMapping[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensimul"><code>tensimul</code></a></td>
@@ -1228,9 +1158,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>True division</td>
-<td><a class="autorefs autorefs-internal" title="            vectruediv(v: Iterable[Any], a: Any) -> tuple[Any, ...]" href="dense/#vector.dense.vectorspace.vectruediv"><code>vectruediv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vectruediv(v: Iterable, a: Any, factory: Callable[[Iterable], S] = tuple) -> S" href="dense/#vector.dense.vectorspace.vectruediv"><code>vectruediv</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecltruediv(v: Iterable[Any], a: Any) -> Generator[Any]" href="lazy/#vector.lazy.vectorspace.vecltruediv"><code>vecltruediv</code></a></td>
-<td></td>
 <td><a class="autorefs autorefs-internal" title="            vecstruediv(v: Mapping[int, Any], a: Any) -> dict[int, Any]" href="sparse/#vector.sparse.vectorspace.vecstruediv"><code>vecstruediv</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tentruediv(t, a)" href="multilinear/#vector.multilinear.vectorspace.tentruediv"><code>tentruediv</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenstruediv(t: Mapping[tuple[int, ...], Any], a: Any) -> dict[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tenstruediv"><code>tenstruediv</code></a></td>
@@ -1238,9 +1167,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>in-place</td>
+<td><a class="autorefs autorefs-internal" title="            vecitruediv(v: M, a: Any) -> M" href="dense/#vector.dense.vectorspace.vecitruediv"><code>vecitruediv</code></a></td>
 <td></td>
-<td></td>
-<td><a class="autorefs autorefs-internal" title="            vecitruediv(v: MutableSequence[Any], a: Any) -> MutableSequence[Any]" href="inplace/#vector.inplace.vectorspace.vecitruediv"><code>vecitruediv</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecsitruediv(v: MutableMapping[int, Any], a: Any) -> MutableMapping[int, Any]" href="sparse/#vector.sparse.vectorspace.vecsitruediv"><code>vecsitruediv</code></a></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            tensitruediv(t: MutableMapping[tuple[int, ...], Any], a: Any) -> MutableMapping[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensitruediv"><code>tensitruediv</code></a></td>
@@ -1248,9 +1176,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Floor division</td>
-<td><a class="autorefs autorefs-internal" title="            vecfloordiv(v: Iterable[Any], a: Any) -> tuple[Any, ...]" href="dense/#vector.dense.vectorspace.vecfloordiv"><code>vecfloordiv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecfloordiv(v: Iterable, a: Any, factory: Callable[[Iterable], S] = tuple) -> S" href="dense/#vector.dense.vectorspace.vecfloordiv"><code>vecfloordiv</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            veclfloordiv(v: Iterable[Any], a: Any) -> Generator[Any]" href="lazy/#vector.lazy.vectorspace.veclfloordiv"><code>veclfloordiv</code></a></td>
-<td></td>
 <td><a class="autorefs autorefs-internal" title="            vecsfloordiv(v: Mapping[int, Any], a: Any) -> dict[int, Any]" href="sparse/#vector.sparse.vectorspace.vecsfloordiv"><code>vecsfloordiv</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenfloordiv(t, a)" href="multilinear/#vector.multilinear.vectorspace.tenfloordiv"><code>tenfloordiv</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tensfloordiv(t: Mapping[tuple[int, ...], Any], a: Any) -> dict[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensfloordiv"><code>tensfloordiv</code></a></td>
@@ -1258,9 +1185,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>in-place</td>
+<td><a class="autorefs autorefs-internal" title="            vecifloordiv(v: M, a: Any) -> M" href="dense/#vector.dense.vectorspace.vecifloordiv"><code>vecifloordiv</code></a></td>
 <td></td>
-<td></td>
-<td><a class="autorefs autorefs-internal" title="            vecifloordiv(v: MutableSequence[Any], a: Any) -> MutableSequence[Any]" href="inplace/#vector.inplace.vectorspace.vecifloordiv"><code>vecifloordiv</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecsifloordiv(v: MutableMapping[int, Any], a: Any) -> MutableMapping[int, Any]" href="sparse/#vector.sparse.vectorspace.vecsifloordiv"><code>vecsifloordiv</code></a></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            tensifloordiv(t: MutableMapping[tuple[int, ...], Any], a: Any) -> MutableMapping[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensifloordiv"><code>tensifloordiv</code></a></td>
@@ -1268,9 +1194,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Mod</td>
-<td><a class="autorefs autorefs-internal" title="            vecmod(v: Iterable[Any], a: Any) -> tuple[Any, ...]" href="dense/#vector.dense.vectorspace.vecmod"><code>vecmod</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecmod(v: Iterable, a: Any, factory: Callable[[Iterable], S] = tuple) -> S" href="dense/#vector.dense.vectorspace.vecmod"><code>vecmod</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            veclmod(v: Iterable[Any], a: Any) -> Generator[Any]" href="lazy/#vector.lazy.vectorspace.veclmod"><code>veclmod</code></a></td>
-<td></td>
 <td><a class="autorefs autorefs-internal" title="            vecsmod(v: Mapping[int, Any], a: Any) -> dict[int, Any]" href="sparse/#vector.sparse.vectorspace.vecsmod"><code>vecstruediv</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenmod(t, a)" href="multilinear/#vector.multilinear.vectorspace.tenmod"><code>tenmod</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tensmod(t: Mapping[tuple[int, ...], Any], a: Any) -> dict[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensmod"><code>tensmod</code></a></td>
@@ -1278,19 +1203,17 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>in-place</td>
+<td><a class="autorefs autorefs-internal" title="            vecimod(v: M, a: Any) -> M" href="dense/#vector.dense.vectorspace.vecimod"><code>vecimod</code></a></td>
 <td></td>
-<td></td>
-<td><a class="autorefs autorefs-internal" title="            vecimod(v: MutableSequence[Any], a: Any) -> MutableSequence[Any]" href="inplace/#vector.inplace.vectorspace.vecimod"><code>vecimod</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            vecsimod(v: MutableMapping[int, Any], a: Any) -> MutableMapping[int, Any]" href="sparse/#vector.sparse.vectorspace.vecsimod"><code>vecsitruediv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecsimod(v: MutableMapping[int, Any], a: Any) -> MutableMapping[int, Any]" href="sparse/#vector.sparse.vectorspace.vecsimod"><code>vecsimod</code></a></td>
 <td></td>
 <td><a class="autorefs autorefs-internal" title="            tensimod(t: MutableMapping[tuple[int, ...], Any], a: Any) -> MutableMapping[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensimod"><code>tensimod</code></a></td>
 <td></td>
 </tr>
 <tr>
 <td>Divmod</td>
-<td><a class="autorefs autorefs-internal" title="            vecdivmod(v: Iterable[Any], a: Any) -> tuple[tuple[Any, ...], tuple[Any, ...]]" href="dense/#vector.dense.vectorspace.vecdivmod"><code>vecdivmod</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vecdivmod(v: Iterable, a: Any, factory: Callable[[Iterable], S] = tuple) -> tuple[S, S]" href="dense/#vector.dense.vectorspace.vecdivmod"><code>vecdivmod</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecldivmod(v: Iterable[Any], a: Any) -> Generator[tuple[Any, Any]]" href="lazy/#vector.lazy.vectorspace.vecldivmod"><code>vecldivmod</code></a></td>
-<td></td>
 <td><a class="autorefs autorefs-internal" title="            vecsdivmod(v: Mapping[int, Any], a: Any) -> tuple[dict[int, Any], dict[int, Any]]" href="sparse/#vector.sparse.vectorspace.vecsdivmod"><code>vecsdivmod</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tendivmod(t, a)" href="multilinear/#vector.multilinear.vectorspace.tendivmod"><code>tendivmod</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tensdivmod(t: Mapping[tuple[int, ...], Any], a: Any) -> tuple[dict[tuple[int, ...], Any], dict[tuple[int, ...], Any]]" href="multilinear_sparse/#vector.multilinear_sparse.vectorspace.tensdivmod"><code>tensdivmod</code></a></td>
@@ -1304,53 +1227,83 @@ infinite-dimensional by assuming that all components after the given ones are
 <td></td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
 <tr>
 <td>Multiplication</td>
-<td><a class="autorefs autorefs-internal" title="            vechadamard(*vs: Iterable[Any]) -> tuple[Any, ...]" href="dense/#vector.dense.elementwise.vechadamard"><code>vechadamard</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vechadamard(*vs: Iterable, factory: Callable[[Iterable], S] = tuple) -> S" href="dense/#vector.dense.elementwise.vechadamard"><code>vechadamard</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            veclhadamard(*vs: Iterable[Any]) -> Generator[Any]" href="lazy/#vector.lazy.elementwise.veclhadamard"><code>veclhadamard</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            vecihadamard(v: MutableSequence[Any], *ws: Sequence[Any]) -> MutableSequence[Any]" href="inplace/#vector.inplace.elementwise.vecihadamard"><code>vecihadamard</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecshadamard(*vs: Mapping[int, Any]) -> dict[int, Any]" href="sparse/#vector.sparse.elementwise.vecshadamard"><code>vecshadamard</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenhadamard(*ts)" href="multilinear/#vector.multilinear.elementwise.tenhadamard"><code>tenhadamard</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenshadamard(*ts: Mapping[tuple[int, ...], Any]) -> dict[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.elementwise.tenshadamard"><code>tenshadamard</code></a></td>
 <td></td>
 </tr>
 <tr>
+<td>in-place</td>
+<td><a class="autorefs autorefs-internal" title="            vecihadamard(v: M, *ws: Sequence) -> M" href="dense/#vector.dense.elementwise.vecihadamard"><code>vecihadamard</code></a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>True division</td>
-<td><a class="autorefs autorefs-internal" title="            vechadamardtruediv(v: Iterable[Any], w: Iterable[Any]) -> tuple[Any, ...]" href="dense/#vector.dense.elementwise.vechadamardtruediv"><code>vechadamardtruediv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vechadamardtruediv(v: Iterable, w: Iterable, factory: Callable[[Iterable], S] = tuple) -> S" href="dense/#vector.dense.elementwise.vechadamardtruediv"><code>vechadamardtruediv</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            veclhadamardtruediv(v: Iterable[Any], w: Iterable[Any]) -> Generator[Any]" href="lazy/#vector.lazy.elementwise.veclhadamardtruediv"><code>veclhadamardtruediv</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            vecihadamardtruediv(v: MutableSequence[Any], w: Sequence[Any]) -> MutableSequence[Any]" href="inplace/#vector.inplace.elementwise.vecihadamardtruediv"><code>vecihadamardtruediv</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecshadamardtruediv(v: Mapping[int, Any], w: Mapping[int, Any]) -> dict[int, Any]" href="sparse/#vector.sparse.elementwise.vecshadamardtruediv"><code>vecshadamardtruediv</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenhadamardtruediv(s, t)" href="multilinear/#vector.multilinear.elementwise.tenhadamardtruediv"><code>tenhadamardtruediv</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenshadamardtruediv(s: Mapping[tuple[int, ...], Any], t: Mapping[tuple[int, ...], Any]) -> dict[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.elementwise.tenshadamardtruediv"><code>tenshadamardtruediv</code></a></td>
 <td></td>
 </tr>
 <tr>
+<td>in-place</td>
+<td><a class="autorefs autorefs-internal" title="            vecihadamardtruediv(v: M, w: Iterable) -> M" href="dense/#vector.dense.elementwise.vecihadamardtruediv"><code>vecihadamardtruediv</code></a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>Floor division</td>
-<td><a class="autorefs autorefs-internal" title="            vechadamardfloordiv(v: Iterable[Any], w: Iterable[Any]) -> tuple[Any, ...]" href="dense/#vector.dense.elementwise.vechadamardfloordiv"><code>vechadamardfloordiv</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vechadamardfloordiv(v: Iterable, w: Iterable, factory: Callable[[Iterable], S] = tuple) -> S" href="dense/#vector.dense.elementwise.vechadamardfloordiv"><code>vechadamardfloordiv</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            veclhadamardfloordiv(v: Iterable[Any], w: Iterable[Any]) -> Generator[Any]" href="lazy/#vector.lazy.elementwise.veclhadamardfloordiv"><code>veclhadamardfloordiv</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            vecihadamardfloordiv(v: MutableSequence[Any], w: Sequence[Any]) -> MutableSequence[Any]" href="inplace/#vector.inplace.elementwise.vecihadamardfloordiv"><code>vecihadamardfloordiv</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecshadamardfloordiv(v: Mapping[int, Any], w: Mapping[int, Any]) -> dict[int, Any]" href="sparse/#vector.sparse.elementwise.vecshadamardfloordiv"><code>vecshadamardfloordiv</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenhadamardfloordiv(s, t)" href="multilinear/#vector.multilinear.elementwise.tenhadamardfloordiv"><code>tenhadamardfloordiv</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenshadamardfloordiv(s: Mapping[tuple[int, ...], Any], t: Mapping[tuple[int, ...], Any]) -> dict[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.elementwise.tenshadamardfloordiv"><code>tenshadamardfloordiv</code></a></td>
 <td></td>
 </tr>
 <tr>
+<td>in-place</td>
+<td><a class="autorefs autorefs-internal" title="            vecihadamardfloordiv(v: M, w: Iterable) -> M" href="dense/#vector.dense.elementwise.vecihadamardfloordiv"><code>vecihadamardfloordiv</code></a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>Mod</td>
-<td><a class="autorefs autorefs-internal" title="            vechadamardmod(v: Iterable[Any], w: Iterable[Any]) -> tuple[Any, ...]" href="dense/#vector.dense.elementwise.vechadamardmod"><code>vechadamardmod</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vechadamardmod(v: Iterable, w: Iterable, factory: Callable[[Iterable], S] = tuple) -> S" href="dense/#vector.dense.elementwise.vechadamardmod"><code>vechadamardmod</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            veclhadamardmod(v: Iterable[Any], w: Iterable[Any]) -> Generator[Any]" href="lazy/#vector.lazy.elementwise.veclhadamardmod"><code>veclhadamardmod</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            vecihadamardmod(v: MutableSequence[Any], w: Sequence[Any]) -> MutableSequence[Any]" href="inplace/#vector.inplace.elementwise.vecihadamardmod"><code>vecihadamardmod</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecshadamardmod(v: Mapping[int, Any], w: Mapping[int, Any]) -> dict[int, Any]" href="sparse/#vector.sparse.elementwise.vecshadamardmod"><code>vecshadamardmod</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenhadamardmod(s, t)" href="multilinear/#vector.multilinear.elementwise.tenhadamardmod"><code>tenhadamardmod</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenshadamardmod(s: Mapping[tuple[int, ...], Any], t: Mapping[tuple[int, ...], Any]) -> dict[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.elementwise.tenshadamardmod"><code>tenshadamardmod</code></a></td>
 <td></td>
 </tr>
 <tr>
-<td>Divmod</td>
-<td><a class="autorefs autorefs-internal" title="            vechadamarddivmod(v: Iterable[Any], w: Iterable[Any]) -> tuple[Any, ...]" href="dense/#vector.dense.elementwise.vechadamarddivmod"><code>vechadamarddivmod</code></a></td>
-<td><a class="autorefs autorefs-internal" title="            veclhadamarddivmod(v: Iterable[Any], w: Iterable[Any]) -> Generator[tuple[Any, Any]]" href="lazy/#vector.lazy.elementwise.veclhadamarddivmod"><code>veclhadamarddivmod</code></a></td>
+<td>in-place</td>
+<td><a class="autorefs autorefs-internal" title="            vecihadamardmod(v: M, w: Iterable) -> M" href="dense/#vector.dense.elementwise.vecihadamardmod"><code>vecihadamardmod</code></a></td>
 <td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Divmod</td>
+<td><a class="autorefs autorefs-internal" title="            vechadamarddivmod(v: Iterable, w: Iterable, factory: Callable[[Iterable], S] = tuple) -> tuple[S, S]" href="dense/#vector.dense.elementwise.vechadamarddivmod"><code>vechadamarddivmod</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            veclhadamarddivmod(v: Iterable[Any], w: Iterable[Any]) -> Generator[tuple[Any, Any]]" href="lazy/#vector.lazy.elementwise.veclhadamarddivmod"><code>veclhadamarddivmod</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            vecshadamarddivmod(v: Mapping[int, Any], w: Mapping[int, Any]) -> dict[int, Any]" href="sparse/#vector.sparse.elementwise.vecshadamarddivmod"><code>vecshadamarddivmod</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenhadamarddivmod(s, t)" href="multilinear/#vector.multilinear.elementwise.tenhadamarddivmod"><code>tenhadamarddivmod</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenshadamarddivmod(s: Mapping[tuple[int, ...], Any], t: Mapping[tuple[int, ...], Any]) -> dict[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.elementwise.tenshadamarddivmod"><code>tenshadamarddivmod</code></a></td>
@@ -1358,9 +1311,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Min</td>
-<td><a class="autorefs autorefs-internal" title="            vechadamardmin(*vs: Iterable[Any], key: Callable[[Any], Any] | None = None) -> tuple[Any, ...]" href="dense/#vector.dense.elementwise.vechadamardmin"><code>vechadamardmin</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vechadamardmin(*vs: Iterable, key: Callable[[Any], Any] | None = None, factory: Callable[[Iterable], S] = tuple) -> S" href="dense/#vector.dense.elementwise.vechadamardmin"><code>vechadamardmin</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            veclhadamardmin(*vs: Iterable[Any], key: Callable[[Any], Any] | None = None) -> Generator[Any]" href="lazy/#vector.lazy.elementwise.veclhadamardmin"><code>veclhadamardmin</code></a></td>
-<td></td>
 <td><a class="autorefs autorefs-internal" title="            vecshadamardmin(*vs: Mapping[int, Any], key: Callable[[Any], Any] | None = None) -> dict[int, Any]" href="sparse/#vector.sparse.elementwise.vecshadamardmin"><code>vecshadamardmin</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenhadamardmin(*ts, key=None)" href="multilinear/#vector.multilinear.elementwise.tenhadamardmin"><code>tenhadamardmin</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenshadamardmin(*ts: Mapping[tuple[int, ...], Any], key: Callable[[Any], Any] | None = None) -> dict[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.elementwise.tenshadamardmin"><code>tenshadamardmin</code></a></td>
@@ -1368,9 +1320,8 @@ infinite-dimensional by assuming that all components after the given ones are
 </tr>
 <tr>
 <td>Max</td>
-<td><a class="autorefs autorefs-internal" title="            vechadamardmax(*vs: Iterable[Any], key: Callable[[Any], Any] | None = None) -> tuple[Any, ...]" href="dense/#vector.dense.elementwise.vechadamardmax"><code>vechadamardmax</code></a></td>
+<td><a class="autorefs autorefs-internal" title="            vechadamardmax(*vs: Iterable, key: Callable[[Any], Any] | None = None, factory: Callable[[Iterable], S] = tuple) -> S" href="dense/#vector.dense.elementwise.vechadamardmax"><code>vechadamardmax</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            veclhadamardmax(*vs: Iterable[Any], key: Callable[[Any], Any] | None = None) -> Generator[Any]" href="lazy/#vector.lazy.elementwise.veclhadamardmax"><code>veclhadamardmax</code></a></td>
-<td></td>
 <td><a class="autorefs autorefs-internal" title="            vecshadamardmax(*vs: Mapping[int, Any], key: Callable[[Any], Any] | None = None) -> dict[int, Any]" href="sparse/#vector.sparse.elementwise.vecshadamardmax"><code>vecshadamardmax</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenhadamardmax(*ts, key=None)" href="multilinear/#vector.multilinear.elementwise.tenhadamardmax"><code>tenhadamardmax</code></a></td>
 <td><a class="autorefs autorefs-internal" title="            tenshadamardmax(*ts: Mapping[tuple[int, ...], Any], key: Callable[[Any], Any] | None = None) -> dict[tuple[int, ...], Any]" href="multilinear_sparse/#vector.multilinear_sparse.elementwise.tenshadamardmax"><code>tenshadamardmax</code></a></td>

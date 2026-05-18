@@ -18,7 +18,7 @@
         <link rel="prev" href="../dense/">
       
       
-        <link rel="next" href="../inplace/">
+        <link rel="next" href="../sparse/">
       
       
         
@@ -812,33 +812,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../inplace/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    In-place
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../sparse/" class="md-nav__link">
         
   
@@ -1439,13 +1412,13 @@
 <p>Lazy generator versions of <a href="../dense/"><code>dense</code></a>.</p>
 <p>Different behaviour:</p>
 <ul>
-<li><a class="autorefs autorefs-internal" title="            vecrandn(n: int, normed: bool = True, mu: float = 0, sigma: float = 1, weights: Iterable | None = None) -> tuple[Any, ...]" href="../dense/#vector.dense.creation.vecrandn"><code>vecrandn</code></a>: normalisation not possible.</li>
+<li><a class="autorefs autorefs-internal" title="            vecrandn(n: int, normed: bool = True, mu: float = 0, sigma: float = 1, weights: Iterable | None = None, factory: Callable[[Iterable], S] = tuple) -> S" href="../dense/#vector.dense.creation.vecrandn"><code>vecrandn</code></a>: normalisation not possible.</li>
 </ul>
 <p>Not implemented lazily as these are consumers:</p>
 <ul>
-<li><a class="autorefs autorefs-internal" title="            vecabs(v: Iterable[Any], weights: Iterable[Any] | None = None, conjugate: bool = False, zero: Any = 0) -> Any" href="../dense/#vector.dense.hilbertspace.vecabs"><code>vecabs</code></a></li>
-<li><a class="autorefs autorefs-internal" title="            vecabsq(v: Iterable[Any], weights: Iterable[Any] | None = None, conjugate: bool = False, zero: Any = 0) -> Any" href="../dense/#vector.dense.hilbertspace.vecabsq"><code>vecabsq</code></a></li>
-<li><a class="autorefs autorefs-internal" title="            vecdot(v: Iterable[Any], w: Iterable[Any], weights: Iterable[Any] | None = None, conjugate: bool = False, zero: Any = 0) -> Any" href="../dense/#vector.dense.hilbertspace.vecdot"><code>vecdot</code></a></li>
+<li><a class="autorefs autorefs-internal" title="            vecabs(v: Iterable, weights: Iterable | None = None, conjugate: bool = False, zero: Any = 0) -> Any" href="../dense/#vector.dense.hilbertspace.vecabs"><code>vecabs</code></a></li>
+<li><a class="autorefs autorefs-internal" title="            vecabsq(v: Iterable, weights: Iterable | None = None, conjugate: bool = False, zero: Any = 0) -> Any" href="../dense/#vector.dense.hilbertspace.vecabsq"><code>vecabsq</code></a></li>
+<li><a class="autorefs autorefs-internal" title="            vecdot(v: Iterable, w: Iterable, weights: Iterable | None = None, conjugate: bool = False, zero: Any = 0) -> Any" href="../dense/#vector.dense.hilbertspace.vecdot"><code>vecdot</code></a></li>
 </ul>
 
 
@@ -1753,7 +1726,7 @@ because seems more concise (not <code>random</code> &amp; <code>gauss</code> as 
     \vec{v}\sim\mathcal{N}^n(\mu, \sigma) \qquad \mathbb{K}^n
 \]</div>
 <p>The coefficients are sampled from a normal distribution.</p>
-<p>Difference to <a class="autorefs autorefs-internal" title="            vecrandn(n: int, normed: bool = True, mu: float = 0, sigma: float = 1, weights: Iterable | None = None) -> tuple[Any, ...]" href="../dense/#vector.dense.creation.vecrandn"><code>vecrandn</code></a>:
+<p>Difference to <a class="autorefs autorefs-internal" title="            vecrandn(n: int, normed: bool = True, mu: float = 0, sigma: float = 1, weights: Iterable | None = None, factory: Callable[[Iterable], S] = tuple) -> S" href="../dense/#vector.dense.creation.vecrandn"><code>vecrandn</code></a>:
 The vector can't be normalised as it isn't materialised.</p>
 
 
@@ -3356,13 +3329,13 @@ privileged over the other by getting the universal <code>div</code> name.</li>
         
         
           
-          <a href="../inplace/" class="md-footer__link md-footer__link--next" aria-label="Next: In-place">
+          <a href="../sparse/" class="md-footer__link md-footer__link--next" aria-label="Next: Sparse">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                In-place
+                Sparse
               </div>
             </div>
             <div class="md-footer__button md-icon">
