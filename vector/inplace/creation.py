@@ -1,7 +1,7 @@
 from itertools import count
 from ..lazy.creation import veclrand, veclrandn
 from ..dense.hilbertspace import vecabs
-from .vectorspace import vecitruediv
+from ..dense.vectorspace import vecitruediv
 from typing import Any, Generator, Never
 from collections.abc import Iterable
 

@@ -29,10 +29,12 @@ def test_vecrandn():
     assert not isclose(vecabsq(vecrandn(10, normed=False)), 1)
 
 
+
 #utility
 def test_veclen():
     assert veclen(veczero) == 0
     assert veclen((1, 2, 3)) == 3
+
 
 def test_veceq():
     assert veceq(veczero, veczero)
@@ -42,18 +44,42 @@ def test_veceq():
     assert not veceq((1,), veczero)
     assert not veceq((1, 2, 3), (1, 2, 4))
 
+
 def test_vectrim():
     assert vectrim(veczero) == veczero
     assert vectrim((0,)) == veczero
     assert vectrim((1, 0)) == (1,)
 
+def test_vecitrim():
+    v = []
+    assert vecitrim(v)==v and v==[]
+    v = [0]
+    assert vecitrim(v)==v and v==[]
+    v = [1, 0]
+    assert vecitrim(v)==v and v==[1]
+
+
 def test_vecrshift():
     assert vecrshift(veczero, 2) == (0, 0)
     assert vecrshift((1, 2, 3), 2) == (0, 0, 1, 2, 3)
 
+def test_vecirshift():
+    v = []
+    assert vecirshift(v, 2)==v and v==[0, 0]
+    v = [1, 2, 3]
+    assert vecirshift(v, 2)==v and v==[0, 0, 1, 2, 3]
+
+
 def test_veclshift():
     assert veclshift(veczero, 2) == veczero
     assert veclshift((1, 2, 3, 4), 2) == (3, 4)
+
+def test_vecilshift():
+    v = []
+    assert vecilshift(v, 2)==v and v==[]
+    v = [1, 2, 3, 4]
+    assert vecilshift(v, 2)==v and v==[3, 4]
+
 
 
 #Hilbert space
@@ -61,6 +87,15 @@ def test_vecconj():
     assert vecconj((1, 2, 3)) == (1, 2, 3)
     assert vecconj((1, 2j, 3)) == (1, -2j, 3)
     assert vecconj((1, 4+2j, 3.5)) == (1, 4-2j, 3.5)
+
+def test_veciconj():
+    v = [1, 2, 3]
+    assert veciconj(v)==v and v==[1, 2, 3]
+    v = [1, 2j, 3]
+    assert veciconj(v)==v and v==[1, -2j, 3]
+    v = [1, 4+2j, 3.5]
+    assert veciconj(v)==v and v==[1, 4-2j, 3.5]
+
 
 def test_vecabs():
     assert vecabs(veczero) == 0
@@ -72,6 +107,7 @@ def test_vecabs():
     assert isclose(abs(vecabs((1, 2+3j, 3+4j), conjugate=True)), sqrt(39))
     assert isclose(abs(vecabs((1, 2+3j, 3+4j), weights=(5, 6, 7, 8), conjugate=True)), sqrt(258))
 
+
 def test_vecabsq():
     assert vecabsq(veczero) == 0
     
@@ -80,28 +116,52 @@ def test_vecabsq():
     assert vecabsq((1, 2+3j, 3+4j), conjugate=True) == 39
     assert vecabsq((1, 2+3j, 3+4j), weights=(5, 6, 7, 8), conjugate=True) == 258
 
+
 def test_vecdot():
     assert vecdot(veczero, veczero) == 0
     assert vecdot((1,), veczero) == 0
     assert vecdot((1, 2), (3, 4, 5)) == 11
 
 
+
 #vector space
 def test_vecpos():
     assert vecpos((+1, -2, +3)) == (+1, -2, +3)
 
+def test_vecipos():
+    v = [+1, -2, +3]
+    assert vecipos(v)==v and  v==[+1, -2, +3]
+
+
 def test_vecneg():
     assert vecneg((+1, -2, +3)) == (-1, +2, -3)
+
+def test_vecineg():
+    v = [+1, -2, +3]
+    assert vecineg(v)==v and  v==[-1, +2, -3]
+
 
 def test_vecadd():
     assert vecadd() == veczero
     assert vecadd((1, 2)) == (1, 2)
     assert vecadd((1, 2, 3), (4, 5)) == (5, 7, 3)
 
+def test_veciadd():
+    v = []
+    assert veciadd(v)==v and v==[]
+    v = [1, 2]
+    assert veciadd(v)==v and v==[1, 2]
+    v = [1, 2]
+    assert veciadd(v, (3, 4, 5))==v and v==[4, 6, 5]
+    v = [1, 2, 3]
+    assert veciadd(v, (4, 5))==v and v==[5, 7, 3]
+
+
 def test_vecaddc():
     assert vecaddc(veczero, 2, 3) == (0, 0, 0, 2)
     assert vecaddc((1, 2), 4, 5) == (1, 2, 0, 0, 0, 4)
     assert vecaddc((1, 2, 3, 4, 5), 5, 2) == (1, 2, 8, 4, 5)
+
 
 def test_vecsub():
     assert vecsub(veczero, veczero) == veczero
@@ -109,30 +169,71 @@ def test_vecsub():
     assert vecsub(veczero, (1,)) == (-1,)
     assert vecsub((1, 2, 3), (4, 5)) == (-3, -3, 3)
 
+def test_vecisub():
+    v = [1, 2]
+    assert vecisub(v, (3, 4, 5))==v and v==[-2, -2, -5]
+    v = [1, 2, 3]
+    assert vecisub(v, (4, 5))==v and v==[-3, -3, 3]
+
+
 def test_vecsubc():
     assert vecsubc(veczero, 2, 3) == (0, 0, 0, -2)
     assert vecsubc((1, 2), 4, 5) == (1, 2, 0, 0, 0, -4)
     assert vecsubc((1, 2, 3, 4, 5), 5, 2) == (1, 2, -2, 4, 5)
 
+
+def test_vecmul():
+    assert vecmul(veczero, 5) == veczero
+    assert vecmul((1, 2, 3), 5) == (5, 10, 15)
+
 def test_vecrmul():
     assert vecrmul(5, veczero) == veczero
     assert vecrmul(5, (1, 2, 3)) == (5, 10, 15)
 
+def test_vecimul():
+    v = []
+    assert vecimul(v, 5)==v and v==[]
+    v = [1, 2, 3]
+    assert vecimul(v, 5)==v and v==[5, 10, 15]
+
+
 def test_vectruediv():
     assert vectruediv(veczero, 1) == veczero
-    assert vectruediv((4,), 2) == (2,)
+    assert vectruediv((1, 2, 3, 4), 2) == (0.5, 1.0, 1.5, 2.0)
+
+def test_vecitruediv():
+    v = []
+    assert vecitruediv(v, 1)==v and v==[]
+    v = [1, 2, 3, 4]
+    assert vecitruediv(v, 2)==v and v==[0.5, 1.0, 1.5, 2.0]
+
 
 def test_vecfloordiv():
     assert vecfloordiv(veczero, 1) == veczero
-    assert vecfloordiv((3,), 2) == (1,)
+    assert vecfloordiv((1, 2, 3, 4), 2) == (0, 1, 1, 2)
+
+def test_vecifloordiv():
+    v = []
+    assert vecifloordiv(v, 1)==v and v==[]
+    v = [1, 2, 3, 4]
+    assert vecifloordiv(v, 2)==v and v==[0, 1, 1, 2]
+
 
 def test_vecmod():
-    assert vecmod(veczero, 2) == veczero
-    assert vecmod((3,), 2) == (1,)
+    assert vecmod(veczero, 1) == veczero
+    assert vecmod((1, 2, 3, 4), 2) == (1, 0, 1, 0)
+
+def test_vecimod():
+    v = []
+    assert vecimod(v, 1)==v and v==[]
+    v = [1, 2, 3, 4]
+    assert vecimod(v, 2)==v and v==[1, 0, 1, 0]
+
 
 def test_vecdivmod():
     v, a = (1, 2, 3), 2
     assert vecdivmod(v, a) == (vecfloordiv(v, a), vecmod(v, a))
+
 
 
 #elementwise

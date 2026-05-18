@@ -1,13 +1,17 @@
 from operator import mul
 from itertools import tee
 from ..lazy import veclconj
+from ..util import try_conjugate
 from operationcounter import sumprod_default
 from typing import Any
-from collections.abc import Iterable
+from collections.abc import Iterable, MutableSequence
 
 
 
-__all__ = ('vecconj', 'vecabs', 'vecabsq', 'vecdot')
+__all__ = ('vecconj', 'veciconj',
+           'vecabs',
+           'vecabsq',
+           'vecdot')
 
 
 
@@ -28,6 +32,21 @@ def vecconj(v:Iterable[Any]) -> tuple[Any,...]:
     - $n$ scalar conjugations (`conjugate`).
     """
     return tuple(veclconj(v))
+
+def veciconj(v:MutableSequence[Any]) -> MutableSequence[Any]:
+    r"""Complex conjugate.
+    
+    $$
+        \vec{v} = \vec{v}^* \qquad \mathbb{K}^n\to\mathbb{K}^n
+    $$
+    
+    Tries to call a method `conjugate` on each element.
+    If not found, simply keeps the element as is.
+    """
+    for i, vi in enumerate(v):
+        v[i] = try_conjugate(vi)
+    return v
+
 
 def vecabs(v:Iterable[Any], weights:Iterable[Any]|None=None, conjugate:bool=False, zero:Any=0) -> Any:
     r"""Return the Euclidean/$\ell_{\mathbb{N}_0}^2$-norm.
@@ -54,6 +73,7 @@ def vecabs(v:Iterable[Any], weights:Iterable[Any]|None=None, conjugate:bool=Fals
     #hypot(*v) doesn't work for complex
     #math.sqrt doesn't work for complex and cmath.sqrt always returns complex
     return vecabsq(v, weights=weights, conjugate=conjugate, zero=zero)**0.5
+
 
 def vecabsq(v:Iterable[Any], weights:Iterable[Any]|None=None, conjugate:bool=False, zero:Any=0) -> Any:
     r"""Return the sum of absolute squares.
@@ -89,6 +109,7 @@ def vecabsq(v:Iterable[Any], weights:Iterable[Any]|None=None, conjugate:bool=Fal
         return sumprod_default(vc, v, default=zero)
     else:
         return sumprod_default(map(mul, vc, v), weights, default=zero)
+
 
 def vecdot(v:Iterable[Any], w:Iterable[Any], weights:Iterable[Any]|None=None, conjugate:bool=False, zero:Any=0) -> Any:
     r"""Return the inner product.
