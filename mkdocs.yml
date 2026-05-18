@@ -74,7 +74,6 @@ nav:
   - Home: index.md
   - dense.md
   - lazy.md
-  - inplace.md
   - sparse.md
   - parallelised.md
   - multilinear.md

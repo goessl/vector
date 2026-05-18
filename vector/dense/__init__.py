@@ -1,4 +1,4 @@
-"""Dense, immutable vector operations.
+"""Dense vector operations on sequences.
 
 ```python
 >>> from vector import vecadd
@@ -9,11 +9,11 @@
 (7, 7, 9, 3)
 ```
 
-Prefixed by `vec...` (vector).
+Two families of functions:
 
-All functions **accept vectors as single exhaustible iterables**.
-
-They **return vectors as tuples**.
+- **`vec...`** — accept any iterable, return a new sequence
+  (default `tuple`, configurable via `factory`).
+- **`veci...`** — accept a `MutableSequence`, mutate it in-place and return it.
 
 The functions are **type-independent**. However, the coefficients used must
 **support necessary scalar operations**. For instance, for vector addition,

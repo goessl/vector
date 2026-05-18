@@ -119,7 +119,7 @@ def veciadd(v:M, *ws:Iterable) -> M:
     
     See also
     --------
-    - for sum on a single coefficient: [`veciaddc`][vector.inplace.vectorspace.veciaddc]
+    - for sum on a single coefficient: [`veciaddc`][vector.dense.vectorspace.veciaddc]
     """
     it = map(sum_default, group_ordinal(*ws))
     for i, wi in enumerate(islice(it, len(v))):
@@ -200,7 +200,7 @@ def vecisub(v:M, w:Iterable) -> M:
     
     See also
     --------
-    - for difference on a single coefficient: [`vecisubc`][vector.inplace.vectorspace.vecisubc]
+    - for difference on a single coefficient: [`vecisubc`][vector.dense.vectorspace.vecisubc]
     """
     it = iter(w)
     for i, wi in enumerate(islice(it, len(v))):
@@ -242,7 +242,7 @@ def vecisubc(v:M, c:Any, i:int=0, zero:Any=0) -> M:
     
     See also
     --------
-    - for difference on more coefficients: [`vecisub`][vector.inplace.vectorspace.vecisub]
+    - for difference on more coefficients: [`vecisub`][vector.dense.vectorspace.vecisub]
     """
     if i < len(v):
         v[i] -= c
