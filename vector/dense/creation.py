@@ -7,7 +7,9 @@ from collections.abc import Callable, Iterable, Sequence
 
 
 
-__all__ = ('veczero', 'vecbasis', 'vecbases', 'vecrand', 'vecrandn')
+__all__ = ('veczero',
+           'vecbasis', 'vecbases',
+           'vecrand',  'vecrandn')
 
 
 

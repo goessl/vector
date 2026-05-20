@@ -47,7 +47,7 @@ def veceq(v:Iterable, w:Iterable) -> bool:
     return all(vecleq(v, w))
 
 
-def vectrim(v:Iterable, tol:Any|None=None, factory:Callable[[Iterable],S]=tuple) -> S:
+def vectrim(v:Iterable, tol:Any|None=None, factory:Callable[[Iterable],S]|None=None) -> S:
     r"""Remove all trailing near zero (`abs(v_i)<=tol`) coefficients.
     
     $$
@@ -73,6 +73,7 @@ def vectrim(v:Iterable, tol:Any|None=None, factory:Callable[[Iterable],S]=tuple)
     allow cutting of elements that are exactly zero by `trim(v, 0)` instead
     of `trim(v, sys.float_info.min)`.
     """
+    factory = type(v) if factory is None else factory
     r, t = [], []
     for x in v:
         t.append(x)
@@ -106,7 +107,7 @@ def vecitrim(v:M, tol:Any|None=None) -> M:
     return v
 
 
-def vecrshift(v:Iterable, n:int, zero:Any=0, factory:Callable[[Iterable],S]=tuple) -> S:
+def vecrshift(v:Iterable, n:int, zero:Any=0, factory:Callable[[Iterable],S]|None=None) -> S:
     r"""Shift coefficients up.
     
     $$
@@ -120,6 +121,7 @@ def vecrshift(v:Iterable, n:int, zero:Any=0, factory:Callable[[Iterable],S]=tupl
         \end{pmatrix} \qquad \mathbb{K}^m\to\mathbb{K}^{m+n}
     $$
     """
+    factory = type(v) if factory is None else factory
     return factory(veclrshift(v, n, zero=zero))
 
 def vecirshift(v:M, n:int, zero:Any=0) -> M:
@@ -140,7 +142,7 @@ def vecirshift(v:M, n:int, zero:Any=0) -> M:
     return v
 
 
-def veclshift(v:Iterable, n:int, factory:Callable[[Iterable],S]=tuple) -> S:
+def veclshift(v:Iterable, n:int, factory:Callable[[Iterable],S]|None=None) -> S:
     r"""Shift coefficients down.
     
     $$
@@ -151,6 +153,7 @@ def veclshift(v:Iterable, n:int, factory:Callable[[Iterable],S]=tuple) -> S:
         \end{pmatrix} \qquad \mathbb{K}^m\to\mathbb{K}^{\max\{m-n, 0\}}
     $$
     """
+    factory = type(v) if factory is None else factory
     return factory(vecllshift(v, n))
 
 def vecilshift(v:M, n:int) -> M:

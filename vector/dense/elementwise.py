@@ -19,7 +19,7 @@ M = TypeVar('M', bound=MutableSequence)
 
 
 
-def vechadamard(*vs:Iterable, factory:Callable[[Iterable],S]=tuple) -> S:
+def vechadamard(*vs:Iterable, factory:Callable[[Iterable],S]|None=None) -> S:
     r"""Return the elementwise product.
     
     $$
@@ -32,6 +32,8 @@ def vechadamard(*vs:Iterable, factory:Callable[[Iterable],S]=tuple) -> S:
     
     - $\begin{cases}(N-1)\min_in_i&N\ge1\land\min_in_i\ge1\\0&N\le1\lor\min_in_i=0\end{cases}$ scalar multiplications (`mul`).
     """
+    if factory is None:
+        factory = type(vs[0]) if vs else tuple
     return factory(veclhadamard(*vs))
 
 def vecihadamard(v:M, *ws:Sequence) -> M:
@@ -49,7 +51,7 @@ def vecihadamard(v:M, *ws:Sequence) -> M:
     return v
 
 
-def vechadamardtruediv(v:Iterable, w:Iterable, factory:Callable[[Iterable],S]=tuple) -> S:
+def vechadamardtruediv(v:Iterable, w:Iterable, factory:Callable[[Iterable],S]|None=None) -> S:
     r"""Return the elementwise true quotient.
     
     $$
@@ -62,6 +64,7 @@ def vechadamardtruediv(v:Iterable, w:Iterable, factory:Callable[[Iterable],S]=tu
     
     - $n$ scalar true divisions (`truediv`).
     """
+    factory = type(v) if factory is None else factory
     return factory(veclhadamardtruediv(v, w))
 
 def vecihadamardtruediv(v:M, w:Iterable) -> M:
@@ -76,7 +79,7 @@ def vecihadamardtruediv(v:M, w:Iterable) -> M:
     return v
 
 
-def vechadamardfloordiv(v:Iterable, w:Iterable, factory:Callable[[Iterable],S]=tuple) -> S:
+def vechadamardfloordiv(v:Iterable, w:Iterable, factory:Callable[[Iterable],S]|None=None) -> S:
     r"""Return the elementwise floor quotient.
     
     $$
@@ -89,6 +92,7 @@ def vechadamardfloordiv(v:Iterable, w:Iterable, factory:Callable[[Iterable],S]=t
     
     - $n$ scalar floor divisions (`floordiv`).
     """
+    factory = type(v) if factory is None else factory
     return factory(veclhadamardfloordiv(v, w))
 
 def vecihadamardfloordiv(v:M, w:Iterable) -> M:
@@ -103,7 +107,7 @@ def vecihadamardfloordiv(v:M, w:Iterable) -> M:
     return v
 
 
-def vechadamardmod(v:Iterable, w:Iterable, factory:Callable[[Iterable],S]=tuple) -> S:
+def vechadamardmod(v:Iterable, w:Iterable, factory:Callable[[Iterable],S]|None=None) -> S:
     r"""Return the elementwise remainder.
     
     $$
@@ -116,6 +120,7 @@ def vechadamardmod(v:Iterable, w:Iterable, factory:Callable[[Iterable],S]=tuple)
     
     - $n$ scalar modulos (`mod`).
     """
+    factory = type(v) if factory is None else factory
     return factory(veclhadamardmod(v, w))
 
 def vecihadamardmod(v:M, w:Iterable) -> M:
@@ -130,7 +135,7 @@ def vecihadamardmod(v:M, w:Iterable) -> M:
     return v
 
 
-def vechadamarddivmod(v:Iterable, w:Iterable, factory:Callable[[Iterable],S]=tuple) -> tuple[S, S]:
+def vechadamarddivmod(v:Iterable, w:Iterable, factory:Callable[[Iterable],S]|None=None) -> tuple[S, S]:
     r"""Return the elementwise floor quotient and remainder.
     
     $$
@@ -143,6 +148,7 @@ def vechadamarddivmod(v:Iterable, w:Iterable, factory:Callable[[Iterable],S]=tup
     
     - $n$ scalar divmods (`divmod`).
     """
+    factory = type(v) if factory is None else factory
     q, r = [], []
     for qi, ri in veclhadamarddivmod(v, w):
         q.append(qi)
@@ -150,7 +156,7 @@ def vechadamarddivmod(v:Iterable, w:Iterable, factory:Callable[[Iterable],S]=tup
     return factory(q), factory(r)
 
 
-def vechadamardmin(*vs:Iterable, key:Callable[[Any], Any]|None=None, factory:Callable[[Iterable],S]=tuple) -> S:
+def vechadamardmin(*vs:Iterable, key:Callable[[Any], Any]|None=None, factory:Callable[[Iterable],S]|None=None) -> S:
     r"""Return the elementwise minimum.
     
     $$
@@ -163,9 +169,11 @@ def vechadamardmin(*vs:Iterable, key:Callable[[Any], Any]|None=None, factory:Cal
     
     - $\min\{n, m\}$ comparisons (`lt`).
     """
+    if factory is None:
+        factory = type(vs[0]) if vs else tuple
     return factory(veclhadamardmin(*vs, key=key))
 
-def vechadamardmax(*vs:Iterable, key:Callable[[Any], Any]|None=None, factory:Callable[[Iterable],S]=tuple) -> S:
+def vechadamardmax(*vs:Iterable, key:Callable[[Any], Any]|None=None, factory:Callable[[Iterable],S]|None=None) -> S:
     r"""Return the elementwise maximum.
     
     $$
@@ -178,4 +186,6 @@ def vechadamardmax(*vs:Iterable, key:Callable[[Any], Any]|None=None, factory:Cal
     
     - $\min\{n, m\}$ comparisons (`gt`).
     """
+    if factory is None:
+        factory = type(vs[0]) if vs else tuple
     return factory(veclhadamardmax(*vs, key=key))

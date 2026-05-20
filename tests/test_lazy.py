@@ -104,8 +104,8 @@ def test_veclfloordiv():
     assert tuple(veclfloordiv((3,), 2)) == vecfloordiv((3,), 2)
 
 def test_veclmod():
-    assert tuple(vecmod(veclzero(), 2)) == vecmod(veczero, 2)
-    assert tuple(vecmod((3,), 2)) == vecmod((3,), 2)
+    assert tuple(veclmod(veclzero(), 2)) == vecmod(veczero, 2)
+    assert tuple(veclmod((3,), 2)) == vecmod((3,), 2)
 
 def test_vecldivmod():
     v, a = (1, 2, 3), 2
@@ -114,12 +114,12 @@ def test_vecldivmod():
 
 #elementwise
 def test_veclhadamard():
-    assert tuple(vechadamard()) == vechadamard()
-    assert tuple(vechadamard(veclzero())) == vechadamard(veczero)
-    assert tuple(vechadamard(veclzero(), veclzero())) == vechadamard(veczero,  veczero)
-    assert tuple(vechadamard((1,), veclzero())) == vechadamard((1,), veczero)
-    assert tuple(vechadamard(veclzero(), (1,))) == vechadamard(veczero, (1,))
-    assert tuple(vechadamard((1, 2, 3), (4, 5), (6, 7, 8, 9))) == vechadamard((1, 2, 3), (4, 5), (6, 7, 8, 9))
+    assert tuple(veclhadamard()) == vechadamard()
+    assert tuple(veclhadamard(veclzero())) == vechadamard(veczero)
+    assert tuple(veclhadamard(veclzero(), veclzero())) == vechadamard(veczero,  veczero)
+    assert tuple(veclhadamard((1,), veclzero())) == vechadamard((1,), veczero)
+    assert tuple(veclhadamard(veclzero(), (1,))) == vechadamard(veczero, (1,))
+    assert tuple(veclhadamard((1, 2, 3), (4, 5), (6, 7, 8, 9))) == vechadamard((1, 2, 3), (4, 5), (6, 7, 8, 9))
 
 def test_veclhadamardtruediv():
     assert tuple(veclhadamardtruediv(veclzero(), veclzero())) == vechadamardtruediv(veczero, veczero)

@@ -20,7 +20,7 @@ M = TypeVar('M', bound=MutableSequence)
 
 
 
-def vecconj(v:Iterable, factory:Callable[[Iterable],S]=tuple) -> S:
+def vecconj(v:Iterable, factory:Callable[[Iterable],S]|None=None) -> S:
     r"""Return the complex conjugate.
     
     $$
@@ -36,6 +36,7 @@ def vecconj(v:Iterable, factory:Callable[[Iterable],S]=tuple) -> S:
     
     - $n$ scalar conjugations (`conjugate`).
     """
+    factory = type(v) if factory is None else factory
     return factory(veclconj(v))
 
 def veciconj(v:M) -> M:

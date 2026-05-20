@@ -25,7 +25,7 @@ M = TypeVar('M', bound=MutableSequence)
 
 
 
-def vecpos(v:Iterable, factory:Callable[[Iterable],S]=tuple) -> S:
+def vecpos(v:Iterable, factory:Callable[[Iterable],S]|None=None) -> S:
     r"""Return the identity.
     
     $$
@@ -38,6 +38,7 @@ def vecpos(v:Iterable, factory:Callable[[Iterable],S]=tuple) -> S:
     
     - $n$ scalar unary plus operations (`pos`).
     """
+    factory = type(v) if factory is None else factory
     return factory(veclpos(v))
 
 def vecipos(v:M) -> M[Any,...]:
@@ -58,7 +59,7 @@ def vecipos(v:M) -> M[Any,...]:
     return v
 
 
-def vecneg(v:Iterable, factory:Callable[[Iterable],S]=tuple) -> S:
+def vecneg(v:Iterable, factory:Callable[[Iterable],S]|None=None) -> S:
     r"""Return the negation.
     
     $$
@@ -71,6 +72,7 @@ def vecneg(v:Iterable, factory:Callable[[Iterable],S]=tuple) -> S:
     
     - $n$ scalar negations (`neg`).
     """
+    factory = type(v) if factory is None else factory
     return factory(veclneg(v))
 
 def vecineg(v:M) -> M[Any,...]:
@@ -91,7 +93,7 @@ def vecineg(v:M) -> M[Any,...]:
     return v
 
 
-def vecadd(*vs:Iterable, factory:Callable[[Iterable],S]=tuple) -> S:
+def vecadd(*vs:Iterable, factory:Callable[[Iterable],S]|None=None) -> S:
     r"""Return the sum.
     
     $$
@@ -108,6 +110,8 @@ def vecadd(*vs:Iterable, factory:Callable[[Iterable],S]=tuple) -> S:
     --------
     - for sum on a single coefficient: [`vecaddc`][vector.dense.vectorspace.vecaddc]
     """
+    if factory is None:
+        factory = type(vs[0]) if vs else tuple
     return factory(vecladd(*vs))
 
 def veciadd(v:M, *ws:Iterable) -> M:
@@ -128,7 +132,7 @@ def veciadd(v:M, *ws:Iterable) -> M:
     return v
 
 
-def vecaddc(v:Iterable, c:Any, i:int=0, zero:Any=0, factory:Callable[[Iterable],S]=tuple) -> S:
+def vecaddc(v:Iterable, c:Any, i:int=0, zero:Any=0, factory:Callable[[Iterable],S]|None=None) -> S:
     r"""Return the sum with a basis vector.
     
     $$
@@ -148,6 +152,7 @@ def vecaddc(v:Iterable, c:Any, i:int=0, zero:Any=0, factory:Callable[[Iterable],
     --------
     - for sum on more coefficients: [`vecadd`][vector.dense.vectorspace.vecadd]
     """
+    factory = type(v) if factory is None else factory
     return factory(vecladdc(v, c, i=i, zero=zero))
 
 def veciaddc(v:M, c:Any, i:int=0, zero:Any=0) -> M:
@@ -171,7 +176,7 @@ def veciaddc(v:M, c:Any, i:int=0, zero:Any=0) -> M:
     return v
 
 
-def vecsub(v:Iterable, w:Iterable, factory:Callable[[Iterable],S]=tuple) -> S:
+def vecsub(v:Iterable, w:Iterable, factory:Callable[[Iterable],S]|None=None) -> S:
     r"""Return the difference.
     
     $$
@@ -189,6 +194,7 @@ def vecsub(v:Iterable, w:Iterable, factory:Callable[[Iterable],S]=tuple) -> S:
     --------
     - for difference on a single coefficient: [`vecsubc`][vector.dense.vectorspace.vecsubc]
     """
+    factory = type(v) if factory is None else factory
     return factory(veclsub(v, w))
 
 def vecisub(v:M, w:Iterable) -> M:
@@ -209,7 +215,7 @@ def vecisub(v:M, w:Iterable) -> M:
     return v
 
 
-def vecsubc(v:Iterable, c:Any, i:int=0, zero:Any=0, factory:Callable[[Iterable],S]=tuple) -> S:
+def vecsubc(v:Iterable, c:Any, i:int=0, zero:Any=0, factory:Callable[[Iterable],S]|None=None) -> S:
     r"""Return the difference with a basis vector.
     
     $$
@@ -229,6 +235,7 @@ def vecsubc(v:Iterable, c:Any, i:int=0, zero:Any=0, factory:Callable[[Iterable],
     --------
     - for difference on more coefficients: [`vecsub`][vector.dense.vectorspace.vecsub]
     """
+    factory = type(v) if factory is None else factory
     return factory(veclsubc(v, c, i=i, zero=zero))
 
 def vecisubc(v:M, c:Any, i:int=0, zero:Any=0) -> M:
@@ -252,7 +259,7 @@ def vecisubc(v:M, c:Any, i:int=0, zero:Any=0) -> M:
     return v
 
 
-def vecmul(v:Iterable, a:Any, factory:Callable[[Iterable],S]=tuple) -> S:
+def vecmul(v:Iterable, a:Any, factory:Callable[[Iterable],S]|None=None) -> S:
     r"""Return the product.
     
     $$
@@ -265,9 +272,10 @@ def vecmul(v:Iterable, a:Any, factory:Callable[[Iterable],S]=tuple) -> S:
     
     - $n$ scalar multiplications (`rmul`).
     """
+    factory = type(v) if factory is None else factory
     return factory(veclmul(v, a))
 
-def vecrmul(a:Any, v:Iterable, factory:Callable[[Iterable],S]=tuple) -> S:
+def vecrmul(a:Any, v:Iterable, factory:Callable[[Iterable],S]|None=None) -> S:
     r"""Return the product.
     
     $$
@@ -280,6 +288,7 @@ def vecrmul(a:Any, v:Iterable, factory:Callable[[Iterable],S]=tuple) -> S:
     
     - $n$ scalar multiplications (`rmul`).
     """
+    factory = type(v) if factory is None else factory
     return factory(veclrmul(a, v))
 
 def vecimul(v:M, a:Any) -> M:
@@ -294,7 +303,7 @@ def vecimul(v:M, a:Any) -> M:
     return v
 
 
-def vectruediv(v:Iterable, a:Any, factory:Callable[[Iterable],S]=tuple) -> S:
+def vectruediv(v:Iterable, a:Any, factory:Callable[[Iterable],S]|None=None) -> S:
     r"""Return the true quotient.
     
     $$
@@ -318,6 +327,7 @@ def vectruediv(v:Iterable, a:Any, factory:Callable[[Iterable],S]=tuple) -> S:
     privileged over the other by getting the universal `div` name.
     - `truediv`/`floordiv` is unambiguous, like Python `operator`s.
     """
+    factory = type(v) if factory is None else factory
     return factory(vecltruediv(v, a))
 
 def vecitruediv(v:M, a:Any) -> M:
@@ -343,7 +353,7 @@ def vecitruediv(v:M, a:Any) -> M:
     return v
 
 
-def vecfloordiv(v:Iterable, a:Any, factory:Callable[[Iterable],S]=tuple) -> S:
+def vecfloordiv(v:Iterable, a:Any, factory:Callable[[Iterable],S]|None=None) -> S:
     r"""Return the floor quotient.
     
     $$
@@ -356,6 +366,7 @@ def vecfloordiv(v:Iterable, a:Any, factory:Callable[[Iterable],S]=tuple) -> S:
     
     - $n$ scalar floor divisions (`floordiv`).
     """
+    factory = type(v) if factory is None else factory
     return factory(veclfloordiv(v, a))
 
 def vecifloordiv(v:M, a:Any) -> M:
@@ -370,7 +381,7 @@ def vecifloordiv(v:M, a:Any) -> M:
     return v
 
 
-def vecmod(v:Iterable, a:Any, factory:Callable[[Iterable],S]=tuple) -> S:
+def vecmod(v:Iterable, a:Any, factory:Callable[[Iterable],S]|None=None) -> S:
     r"""Return the remainder.
     
     $$
@@ -383,6 +394,7 @@ def vecmod(v:Iterable, a:Any, factory:Callable[[Iterable],S]=tuple) -> S:
     
     - $n$ scalar modulos (`mod`).
     """
+    factory = type(v) if factory is None else factory
     return factory(veclmod(v, a))
 
 def vecimod(v:M, a:Any) -> M:
@@ -397,7 +409,7 @@ def vecimod(v:M, a:Any) -> M:
     return v
 
 
-def vecdivmod(v:Iterable, a:Any, factory:Callable[[Iterable],S]=tuple) -> tuple[S, S]:
+def vecdivmod(v:Iterable, a:Any, factory:Callable[[Iterable],S]|None=None) -> tuple[S, S]:
     r"""Return the floor quotient and remainder.
     
     $$
@@ -410,6 +422,7 @@ def vecdivmod(v:Iterable, a:Any, factory:Callable[[Iterable],S]=tuple) -> tuple[
     
     - $n$ scalar divmods (`divmod`).
     """
+    factory = type(v) if factory is None else factory
     q, r = [], []
     for vi in v:
         qi, ri = divmod(vi, a)
