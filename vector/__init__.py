@@ -1,5 +1,4 @@
 from .dense import *
-from .lazy import *
 from .sparse import *
 from .parallelised import *
 from .multilinear import *

@@ -1,6 +1,7 @@
-from ..lazy import veclpos, veclneg, vecladd, vecladdc, veclsub, veclsubc, veclmul, veclrmul, vecltruediv, veclfloordiv, veclmod, vecldivmod
-from itertools import islice, repeat
-from operationcounter import group_ordinal, sum_default
+from operator import pos, neg, mul, truediv, floordiv, mod
+from itertools import chain, islice, repeat, zip_longest
+from functools import partial
+from operationcounter import MISSING, group_ordinal, sum_default
 from typing import Any, TypeVar
 from collections.abc import Callable, Iterable, Iterator, MutableSequence
 
@@ -39,7 +40,7 @@ def vecpos(v:Iterable, factory:Callable[[Iterable],V]|None=None) -> V:
     - $n$ scalar unary plus operations (`pos`).
     """
     factory = factory or (iter if isinstance(v, Iterator) else type(v))
-    return factory(veclpos(v))
+    return factory(map(pos, v))
 
 def vecipos(v:M) -> M:
     r"""Apply the unary plus operator.
@@ -73,7 +74,7 @@ def vecneg(v:Iterable, factory:Callable[[Iterable],V]|None=None) -> V:
     - $n$ scalar negations (`neg`).
     """
     factory = factory or (iter if isinstance(v, Iterator) else type(v))
-    return factory(veclneg(v))
+    return factory(map(neg, v))
 
 def vecineg(v:M) -> M:
     r"""Negate.
@@ -110,9 +111,10 @@ def vecadd(*vs:Iterable, factory:Callable[[Iterable],V]|None=None) -> V:
     --------
     - for sum on a single coefficient: [`vecaddc`][vector.dense.vectorspace.vecaddc]
     """
-    if factory is None: #TODO
-        factory = type(vs[0]) if vs else tuple
-    return factory(vecladd(*vs))
+    result = map(partial(sum_default, default=MISSING), group_ordinal(*vs))
+    if factory is None:
+        factory = (iter if isinstance(vs[0], Iterator) else type(vs[0])) if vs else tuple
+    return factory(result)
 
 def veciadd(v:M, *ws:Iterable) -> M:
     r"""Add.
@@ -152,8 +154,17 @@ def vecaddc(v:Iterable, c:Any, i:int=0, zero:Any=0, factory:Callable[[Iterable],
     --------
     - for sum on more coefficients: [`vecadd`][vector.dense.vectorspace.vecadd]
     """
+    def result():
+        it = iter(v)
+        yield from islice(chain(it, repeat(zero)), i)
+        try:
+            yield next(it) + c
+        except StopIteration:
+            yield +c
+        yield from it
+    
     factory = factory or (iter if isinstance(v, Iterator) else type(v))
-    return factory(vecladdc(v, c, i=i, zero=zero))
+    return factory(result())
 
 def veciaddc(v:M, c:Any, i:int=0, zero:Any=0) -> M:
     r"""Add a basis vector.
@@ -194,8 +205,18 @@ def vecsub(v:Iterable, w:Iterable, factory:Callable[[Iterable],V]|None=None) -> 
     --------
     - for difference on a single coefficient: [`vecsubc`][vector.dense.vectorspace.vecsubc]
     """
+    def result():
+        sentinel = object()
+        for vi, wi in zip_longest(v, w, fillvalue=sentinel):
+            if wi is sentinel:
+                yield vi
+            elif vi is sentinel:
+                yield -wi
+            else:
+                yield vi - wi
+    
     factory = factory or (iter if isinstance(v, Iterator) else type(v))
-    return factory(veclsub(v, w))
+    return factory(result())
 
 def vecisub(v:M, w:Iterable) -> M:
     r"""Subtract.
@@ -235,8 +256,17 @@ def vecsubc(v:Iterable, c:Any, i:int=0, zero:Any=0, factory:Callable[[Iterable],
     --------
     - for difference on more coefficients: [`vecsub`][vector.dense.vectorspace.vecsub]
     """
+    def result():
+        it = iter(v)
+        yield from islice(chain(it, repeat(zero)), i)
+        try:
+            yield next(it) - c
+        except StopIteration:
+            yield -c
+        yield from it
+    
     factory = factory or (iter if isinstance(v, Iterator) else type(v))
-    return factory(veclsubc(v, c, i=i, zero=zero))
+    return factory(result())
 
 def vecisubc(v:M, c:Any, i:int=0, zero:Any=0) -> M:
     r"""Subtract a basis vector.
@@ -273,7 +303,7 @@ def vecmul(v:Iterable, a:Any, factory:Callable[[Iterable],V]|None=None) -> V:
     - $n$ scalar multiplications (`rmul`).
     """
     factory = factory or (iter if isinstance(v, Iterator) else type(v))
-    return factory(veclmul(v, a))
+    return factory(map(mul, v, repeat(a)))
 
 def vecrmul(a:Any, v:Iterable, factory:Callable[[Iterable],V]|None=None) -> V:
     r"""Return the product.
@@ -289,7 +319,7 @@ def vecrmul(a:Any, v:Iterable, factory:Callable[[Iterable],V]|None=None) -> V:
     - $n$ scalar multiplications (`rmul`).
     """
     factory = factory or (iter if isinstance(v, Iterator) else type(v))
-    return factory(veclrmul(a, v))
+    return factory(map(mul, repeat(a), v))
 
 def vecimul(v:M, a:Any) -> M:
     r"""Multiply.
@@ -328,7 +358,7 @@ def vectruediv(v:Iterable, a:Any, factory:Callable[[Iterable],V]|None=None) -> V
     - `truediv`/`floordiv` is unambiguous, like Python `operator`s.
     """
     factory = factory or (iter if isinstance(v, Iterator) else type(v))
-    return factory(vecltruediv(v, a))
+    return factory(map(truediv, v, repeat(a)))
 
 def vecitruediv(v:M, a:Any) -> M:
     r"""True divide.
@@ -367,7 +397,7 @@ def vecfloordiv(v:Iterable, a:Any, factory:Callable[[Iterable],V]|None=None) -> 
     - $n$ scalar floor divisions (`floordiv`).
     """
     factory = factory or (iter if isinstance(v, Iterator) else type(v))
-    return factory(veclfloordiv(v, a))
+    return factory(map(floordiv, v, repeat(a)))
 
 def vecifloordiv(v:M, a:Any) -> M:
     r"""Floor divide.
@@ -395,7 +425,7 @@ def vecmod(v:Iterable, a:Any, factory:Callable[[Iterable],V]|None=None) -> V:
     - $n$ scalar modulos (`mod`).
     """
     factory = factory or (iter if isinstance(v, Iterator) else type(v))
-    return factory(veclmod(v, a))
+    return factory(map(mod, v, repeat(a)))
 
 def vecimod(v:M, a:Any) -> M:
     r"""Mod.
@@ -422,12 +452,14 @@ def vecdivmod(v:Iterable, a:Any, factory:Callable[[Iterable],V]|None=None):
     
     - $n$ scalar divmods (`divmod`).
     """
+    result = map(divmod, v, repeat(a))
+    
     factory = factory or (iter if isinstance(v, Iterator) else type(v))
     if factory is iter:
-        return vecldivmod(v, a)
+        return result
     
     q, r = [], []
-    for qi, ri in vecldivmod(v, a):
+    for qi, ri in result:
         q.append(qi)
         r.append(ri)
     return factory(q), factory(r)

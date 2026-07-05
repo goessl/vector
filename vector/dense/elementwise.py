@@ -1,7 +1,9 @@
-from ..lazy import veclhadamard, veclhadamardtruediv, veclhadamardfloordiv, veclhadamardmod, veclhadamarddivmod, veclhadamardmin, veclhadamardmax
+from operator import truediv, floordiv, mod
 from itertools import chain, islice, repeat
+from functools import partial
+from operationcounter import MISSING, raiser, group_ordinal, prod_default
 from typing import Any, TypeVar
-from collections.abc import Iterable, Sequence, MutableSequence, Callable
+from collections.abc import Iterable, Iterator, Sequence, MutableSequence, Callable
 
 
 
@@ -33,8 +35,8 @@ def vechadamard(*vs:Iterable, factory:Callable[[Iterable],S]|None=None) -> S:
     - $\begin{cases}(N-1)\min_in_i&N\ge1\land\min_in_i\ge1\\0&N\le1\lor\min_in_i=0\end{cases}$ scalar multiplications (`mul`).
     """
     if factory is None:
-        factory = type(vs[0]) if vs else tuple
-    return factory(veclhadamard(*vs))
+        factory = (iter if isinstance(vs[0], Iterator) else type(vs[0])) if vs else tuple
+    return factory(map(partial(prod_default, default=MISSING), zip(*vs)))
 
 def vecihadamard(v:M, *ws:Sequence) -> M:
     r"""Return the elementwise product.
@@ -64,8 +66,8 @@ def vechadamardtruediv(v:Iterable, w:Iterable, factory:Callable[[Iterable],S]|No
     
     - $n$ scalar true divisions (`truediv`).
     """
-    factory = type(v) if factory is None else factory
-    return factory(veclhadamardtruediv(v, w))
+    factory = factory or (iter if isinstance(v, Iterator) else type(v))
+    return factory(map(truediv, v, chain(w, raiser(ZeroDivisionError))))
 
 def vecihadamardtruediv(v:M, w:Iterable) -> M:
     r"""Return the elementwise true quotient.
@@ -92,8 +94,8 @@ def vechadamardfloordiv(v:Iterable, w:Iterable, factory:Callable[[Iterable],S]|N
     
     - $n$ scalar floor divisions (`floordiv`).
     """
-    factory = type(v) if factory is None else factory
-    return factory(veclhadamardfloordiv(v, w))
+    factory = factory or (iter if isinstance(v, Iterator) else type(v))
+    return factory(map(floordiv, v, chain(w, raiser(ZeroDivisionError))))
 
 def vecihadamardfloordiv(v:M, w:Iterable) -> M:
     r"""Return the elementwise floor quotient.
@@ -120,8 +122,8 @@ def vechadamardmod(v:Iterable, w:Iterable, factory:Callable[[Iterable],S]|None=N
     
     - $n$ scalar modulos (`mod`).
     """
-    factory = type(v) if factory is None else factory
-    return factory(veclhadamardmod(v, w))
+    factory = factory or (iter if isinstance(v, Iterator) else type(v))
+    return factory(map(mod, v, chain(w, raiser(ZeroDivisionError))))
 
 def vecihadamardmod(v:M, w:Iterable) -> M:
     r"""Return the elementwise remainder.
@@ -148,9 +150,13 @@ def vechadamarddivmod(v:Iterable, w:Iterable, factory:Callable[[Iterable],S]|Non
     
     - $n$ scalar divmods (`divmod`).
     """
-    factory = type(v) if factory is None else factory
+    result = map(divmod, v, chain(w, raiser(ZeroDivisionError)))
+    factory = factory or (iter if isinstance(v, Iterator) else type(v))
+    if factory is iter:
+        return result
+    
     q, r = [], []
-    for qi, ri in veclhadamarddivmod(v, w):
+    for qi, ri in result:
         q.append(qi)
         r.append(ri)
     return factory(q), factory(r)
@@ -170,8 +176,8 @@ def vechadamardmin(*vs:Iterable, key:Callable[[Any], Any]|None=None, factory:Cal
     - $\min\{n, m\}$ comparisons (`lt`).
     """
     if factory is None:
-        factory = type(vs[0]) if vs else tuple
-    return factory(veclhadamardmin(*vs, key=key))
+        factory = (iter if isinstance(vs[0], Iterator) else type(vs[0])) if vs else tuple
+    return factory(map(partial(min, key=key), group_ordinal(*vs)))
 
 def vechadamardmax(*vs:Iterable, key:Callable[[Any], Any]|None=None, factory:Callable[[Iterable],S]|None=None) -> S:
     r"""Return the elementwise maximum.
@@ -187,5 +193,5 @@ def vechadamardmax(*vs:Iterable, key:Callable[[Any], Any]|None=None, factory:Cal
     - $\min\{n, m\}$ comparisons (`gt`).
     """
     if factory is None:
-        factory = type(vs[0]) if vs else tuple
-    return factory(veclhadamardmax(*vs, key=key))
+        factory = (iter if isinstance(vs[0], Iterator) else type(vs[0])) if vs else tuple
+    return factory(map(partial(max, key=key), group_ordinal(*vs)))

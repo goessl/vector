@@ -1,8 +1,8 @@
+from random import random, gauss
 from itertools import chain, count, repeat
-from ..lazy import veclrand, veclrandn
 from .hilbertspace import vecabs
 from .vectorspace import vectruediv
-from typing import Any, Generator, TypeVar
+from typing import Generator, TypeVar
 from collections.abc import Callable, Iterable
 
 
@@ -13,13 +13,14 @@ __all__ = ('veczero',
 
 
 
+T = TypeVar('T')
 V = TypeVar('V')
 
 
 
 class _VecZero(tuple):
-    def __call__(self, factory:Callable[[],V]=tuple) -> V:
-        return factory()
+    def __call__(self, factory:Callable[[tuple[()]],V]=tuple) -> V:
+        return factory(self)
 
 veczero:_VecZero = _VecZero()
 r"""Zero vector.
@@ -33,7 +34,7 @@ An empty tuple that is also callable as a factory shorthand:
 """
 
 
-def vecbasis(i:int, c:Any=1, zero:Any=0, factory:Callable[[Iterable],V]=tuple) -> V:
+def vecbasis(i:int, c:T=1, zero:T=0, factory:Callable[[Iterable[T]],V]=tuple) -> V:
     r"""Return a basis vector.
     
     $$
@@ -48,7 +49,7 @@ def vecbasis(i:int, c:Any=1, zero:Any=0, factory:Callable[[Iterable],V]=tuple) -
     """
     return factory(chain(repeat(zero, i), (c,)))
 
-def vecbases(start:int=0, c:Any=1, zero:Any=0, factory:Callable[[Iterable],V]=tuple) -> Generator[V]:
+def vecbases(start:int=0, c:T=1, zero:T=0, factory:Callable[[Iterable[T]],V]=tuple) -> Generator[V]:
     r"""Yield all basis vectors.
     
     $$
@@ -62,7 +63,7 @@ def vecbases(start:int=0, c:Any=1, zero:Any=0, factory:Callable[[Iterable],V]=tu
     for i in count(start=start):
         yield vecbasis(i, c=c, zero=zero, factory=factory)
 
-def vecrand(n:int, factory:Callable[[Iterable],V]=tuple) -> V:
+def vecrand(n:int, factory:Callable[[Iterable[float]],V]=tuple) -> V:
     r"""Return a random vector of uniformly sampled `float` coefficients.
     
     $$
@@ -76,9 +77,9 @@ def vecrand(n:int, factory:Callable[[Iterable],V]=tuple) -> V:
     Naming like [`numpy.random`](https://numpy.org/doc/stable/reference/random/legacy.html),
     because seems more concise (not `random` & `gauss` as in the stdlib).
     """
-    return factory(veclrand(n))
+    return factory(random() for _ in range(n))
 
-def vecrandn(n:int, normed:bool=True, mu:float=0.0, sigma:float=1.0, weights:Iterable|None=None, factory:Callable[[Iterable],V]=tuple) -> V:
+def vecrandn(n:int, normed:bool=True, mu:float=0.0, sigma:float=1.0, weights:Iterable[float]|None=None, factory:Callable[[Iterable[float]],V]=tuple) -> V:
     r"""Return a random vector of normally sampled `float` coefficients.
     
     $$
@@ -92,8 +93,9 @@ def vecrandn(n:int, normed:bool=True, mu:float=0.0, sigma:float=1.0, weights:Ite
     Naming like [`numpy.random`](https://numpy.org/doc/stable/reference/random/legacy.html),
     because seems more concise (not `random` & `gauss` as in the stdlib).
     """
+    result = (gauss(mu, sigma) for _ in range(n))
     if not normed:
-        return factory(veclrandn(n, mu, sigma))
+        return factory(result)
     else:
-        v:tuple[float,...] = tuple(veclrandn(n, mu, sigma))
+        v:tuple[float,...] = tuple(result)
         return vectruediv(v, vecabs(v, weights), factory=factory)

@@ -1,17 +1,16 @@
 from operator import mul
 from itertools import tee
-from ..lazy import veclconj
 from ..util import try_conjugate
 from operationcounter import sumprod_default
 from typing import Any, TypeVar
-from collections.abc import Callable, Iterable, Iterator, MutableSequence, Sequence
+from collections.abc import Callable, Generator, Iterable, Iterator, MutableSequence, Sequence
 
 
 
 __all__ = ('vecconj', 'veciconj',
            'vecabs',
-           'vecabsq',
-           'vecdot')
+           'vecabsq', 'vecabsqs',
+           'vecdot',  'vecdots')
 
 
 
@@ -38,7 +37,7 @@ def vecconj(v:Iterable, factory:Callable[[Iterable],V]|None=None) -> V:
     - $n$ scalar conjugations (`conjugate`).
     """
     factory = factory or (iter if isinstance(v, Iterator) else type(v))
-    return factory(veclconj(v))
+    return factory(map(try_conjugate, v))
 
 def veciconj(v:M) -> M:
     r"""Complex conjugate.
@@ -82,6 +81,34 @@ def vecabs(v:Iterable, weights:Iterable|None=None, conjugate:bool=False, zero:An
     return vecabsq(v, weights=weights, conjugate=conjugate, zero=zero)**0.5
 
 
+def vecabsqs(v:Iterable, weights:Iterable|None=None, conjugate:bool=False) -> Generator:
+    r"""Return the absolute squares.
+    
+    $$
+        v_i^{(*)}v_i\omega_i
+    $$
+    
+    Complexity
+    ----------
+    For a vector of length $n$ there will be
+    
+    - $n$ scalar conjugations (`conjugate`) (if selected),
+    - $\begin{cases}n-1&n\ge1\\0&n\le1\end{cases}$ scalar additions (`add`) &
+    - $n$/$2n$ scalar multiplications (`mul`) without/with weights.
+    
+    Notes
+    -----
+    Reasons why it exists:
+    
+    - Occurs in math.
+    - Most importantly: type independent because it doesn't use `sqrt`.
+    
+    References
+    ----------
+    - <https://docs.python.org/3/library/itertools.html#itertools-recipes>: `sum_of_squares`
+    """
+    yield from vecdots(*tee(v, 2), weights, conjugate)
+
 def vecabsq(v:Iterable, weights:Iterable|None=None, conjugate:bool=False, zero:Any=0) -> Any:
     r"""Return the sum of absolute squares.
     
@@ -111,6 +138,30 @@ def vecabsq(v:Iterable, weights:Iterable|None=None, conjugate:bool=False, zero:A
     return vecdot(*tee(v, 2), weights, conjugate, zero)
 
 
+def vecdots(v:Iterable, w:Iterable, weights:Iterable|None=None, conjugate:bool=False) -> Generator:
+    r"""Return the elementwise product.
+    
+    $$
+        v_i^{(*)}w_i\omega_i
+    $$
+    
+    Complexity
+    ----------
+    For two vectors of lengths $n$ & $m$ there will be
+    
+    - $\min\{n, m\}$ scalar conjugations (`conjugate`) (if selected),
+    - $\min\{n, m\}$/$2\min\{n, m\}$ scalar multiplications (`mul` without/with weights) &
+    - $\begin{cases}\min\{n, m\}-1&n\ge1\land m\ge1\\0&n\le1\lor m\le1\end{cases}$ scalar additions (`add`).
+    """
+    if conjugate:
+        v = vecconj(v, iter)
+    
+    if weights is None:
+        yield from map(mul, v, w)
+    else:
+        yield from map(mul, map(mul, v, w), weights)
+
+
 def vecdot(v:Iterable, w:Iterable, weights:Iterable|None=None, conjugate:bool=False, zero:Any=0) -> Any:
     r"""Return the inner product.
     
@@ -127,7 +178,7 @@ def vecdot(v:Iterable, w:Iterable, weights:Iterable|None=None, conjugate:bool=Fa
     - $\begin{cases}\min\{n, m\}-1&n\ge1\land m\ge1\\0&n\le1\lor m\le1\end{cases}$ scalar additions (`add`).
     """
     if conjugate:
-        v = veclconj(v)
+        v = vecconj(v, iter)
     #don't sum(vecldot) but rather use sumprod explicitly for improved float precision
     if weights is None:
         return sumprod_default(v, w, default=zero)
