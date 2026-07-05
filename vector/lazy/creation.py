@@ -1,6 +1,7 @@
 from random import random, gauss
 from itertools import chain, count, repeat
-from typing import Any, Generator, Never
+from typing import Any, Never
+from collections.abc import Generator
 
 
 
@@ -19,7 +20,7 @@ def veclzero() -> Generator[Never]:
     """
     yield from ()
 
-def veclbasis(i:int, c:Any=1, zero:Any=0) -> Generator[Any]:
+def veclbasis(i:int, c:Any=1, zero:Any=0) -> Generator:
     r"""Return a basis vector.
     
     $$
@@ -34,7 +35,7 @@ def veclbasis(i:int, c:Any=1, zero:Any=0) -> Generator[Any]:
     """
     yield from chain(repeat(zero, i), (c,))
 
-def veclbases(start:int=0, c:Any=1, zero:Any=0) -> Generator[Generator[Any]]:
+def veclbases(start:int=0, c:Any=1, zero:Any=0) -> Generator[Generator]:
     r"""Yield all basis vectors.
     
     $$
@@ -64,7 +65,7 @@ def veclrand(n:int) -> Generator[float]:
     """
     yield from (random() for _ in range(n))
 
-def veclrandn(n:int, mu:float=0, sigma:float=1) -> Generator[float]:
+def veclrandn(n:int, mu:float=0.0, sigma:float=1.1) -> Generator[float]:
     r"""Return a random vector of normally sampled `float` coefficients.
     
     $$

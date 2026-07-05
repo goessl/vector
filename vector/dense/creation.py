@@ -3,7 +3,7 @@ from ..lazy import veclrand, veclrandn
 from .hilbertspace import vecabs
 from .vectorspace import vectruediv
 from typing import Any, Generator, TypeVar
-from collections.abc import Callable, Iterable, Sequence
+from collections.abc import Callable, Iterable
 
 
 
@@ -13,12 +13,12 @@ __all__ = ('veczero',
 
 
 
-S = TypeVar('S', bound=Sequence)
+V = TypeVar('V')
 
 
 
 class _VecZero(tuple):
-    def __call__(self, factory:Callable[[],Sequence]=tuple) -> Sequence:
+    def __call__(self, factory:Callable[[],V]=tuple) -> V:
         return factory()
 
 veczero:_VecZero = _VecZero()
@@ -33,7 +33,7 @@ An empty tuple that is also callable as a factory shorthand:
 """
 
 
-def vecbasis(i:int, c:Any=1, zero:Any=0, factory:Callable[[Iterable],S]=tuple) -> S:
+def vecbasis(i:int, c:Any=1, zero:Any=0, factory:Callable[[Iterable],V]=tuple) -> V:
     r"""Return a basis vector.
     
     $$
@@ -48,7 +48,7 @@ def vecbasis(i:int, c:Any=1, zero:Any=0, factory:Callable[[Iterable],S]=tuple) -
     """
     return factory(chain(repeat(zero, i), (c,)))
 
-def vecbases(start:int=0, c:Any=1, zero:Any=0, factory:Callable[[Iterable],S]=tuple) -> Generator[S]:
+def vecbases(start:int=0, c:Any=1, zero:Any=0, factory:Callable[[Iterable],V]=tuple) -> Generator[V]:
     r"""Yield all basis vectors.
     
     $$
@@ -62,7 +62,7 @@ def vecbases(start:int=0, c:Any=1, zero:Any=0, factory:Callable[[Iterable],S]=tu
     for i in count(start=start):
         yield vecbasis(i, c=c, zero=zero, factory=factory)
 
-def vecrand(n:int, factory:Callable[[Iterable],S]=tuple) -> S:
+def vecrand(n:int, factory:Callable[[Iterable],V]=tuple) -> V:
     r"""Return a random vector of uniformly sampled `float` coefficients.
     
     $$
@@ -78,7 +78,7 @@ def vecrand(n:int, factory:Callable[[Iterable],S]=tuple) -> S:
     """
     return factory(veclrand(n))
 
-def vecrandn(n:int, normed:bool=True, mu:float=0, sigma:float=1, weights:Iterable|None=None, factory:Callable[[Iterable],S]=tuple) -> S:
+def vecrandn(n:int, normed:bool=True, mu:float=0.0, sigma:float=1.0, weights:Iterable|None=None, factory:Callable[[Iterable],V]=tuple) -> V:
     r"""Return a random vector of normally sampled `float` coefficients.
     
     $$

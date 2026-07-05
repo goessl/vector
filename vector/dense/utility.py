@@ -1,6 +1,6 @@
 from typing import Any, TypeVar
-from collections.abc import Callable, Iterable, MutableSequence, Sequence
-from ..lazy import vecleq, veclrshift, vecllshift
+from collections.abc import Callable, Iterable, Iterator, MutableSequence
+from ..lazy import vecleq, vecltrim, veclrshift, vecllshift
 
 
 
@@ -12,7 +12,7 @@ __all__ = ('veclen',
 
 
 
-S = TypeVar('S', bound=Sequence)
+V = TypeVar('V')
 M = TypeVar('M', bound=MutableSequence)
 
 
@@ -27,10 +27,12 @@ def veclen(v:Iterable) -> int:
     -----
     For generators as they have no `len`gth, altough the vector is gone then.
     """
+    if hasattr(v, '__len__'):
+        return len(v)
     return sum(1 for _ in v)
 
 
-def veceq(v:Iterable, w:Iterable) -> bool:
+def veceq(v:Iterable, w:Iterable, factory:Callable[[Iterable],V]=all) -> V:
     r"""Return whether two vectors are equal.
     
     $$
@@ -44,10 +46,11 @@ def veceq(v:Iterable, w:Iterable) -> bool:
     - $\min\{n, m\}$ scalar comparisons (`eq`) &
     - $|n-m|$ scalar boolean evaluations (`bool`).
     """
+    factory = factory or (iter if isinstance(v, Iterator) else type(v))
     return all(vecleq(v, w))
 
 
-def vectrim(v:Iterable, tol:Any|None=None, factory:Callable[[Iterable],S]|None=None) -> S:
+def vectrim(v:Iterable, tol:Any|None=None, factory:Callable[[Iterable],V]|None=None) -> V:
     r"""Remove all trailing near zero (`abs(v_i)<=tol`) coefficients.
     
     $$
@@ -73,14 +76,8 @@ def vectrim(v:Iterable, tol:Any|None=None, factory:Callable[[Iterable],S]|None=N
     allow cutting of elements that are exactly zero by `trim(v, 0)` instead
     of `trim(v, sys.float_info.min)`.
     """
-    factory = type(v) if factory is None else factory
-    r, t = [], []
-    for x in v:
-        t.append(x)
-        if (x if tol is None else abs(x)>tol):
-            r.extend(t)
-            t.clear()
-    return factory(r)
+    factory = factory or (iter if isinstance(v, Iterator) else type(v))
+    return factory(vecltrim(v))
 
 def vecitrim(v:M, tol:Any|None=None) -> M:
     r"""Remove all trailing near zero (`abs(v_i)<=tol`) coefficients.
@@ -102,12 +99,12 @@ def vecitrim(v:M, tol:Any|None=None) -> M:
     allow cutting of elements that are exactly zero by `trim(v, 0)` instead
     of `trim(v, sys.float_info.min)`.
     """
-    while v and (not v[-1] if tol is None else abs(v[-1])<=tol):
-        v.pop()
+    idx = next((i for i in reversed(range(len(v))) if v[i]), -1)
+    del v[idx+1:]
     return v
 
 
-def vecrshift(v:Iterable, n:int, zero:Any=0, factory:Callable[[Iterable],S]|None=None) -> S:
+def vecrshift(v:Iterable, n:int, zero:Any=0, factory:Callable[[Iterable],V]|None=None) -> V:
     r"""Shift coefficients up.
     
     $$
@@ -121,7 +118,7 @@ def vecrshift(v:Iterable, n:int, zero:Any=0, factory:Callable[[Iterable],S]|None
         \end{pmatrix} \qquad \mathbb{K}^m\to\mathbb{K}^{m+n}
     $$
     """
-    factory = type(v) if factory is None else factory
+    factory = factory or (iter if isinstance(v, Iterator) else type(v))
     return factory(veclrshift(v, n, zero=zero))
 
 def vecirshift(v:M, n:int, zero:Any=0) -> M:
@@ -142,7 +139,7 @@ def vecirshift(v:M, n:int, zero:Any=0) -> M:
     return v
 
 
-def veclshift(v:Iterable, n:int, factory:Callable[[Iterable],S]|None=None) -> S:
+def veclshift(v:Iterable, n:int, factory:Callable[[Iterable],V]|None=None) -> V:
     r"""Shift coefficients down.
     
     $$
@@ -153,7 +150,7 @@ def veclshift(v:Iterable, n:int, factory:Callable[[Iterable],S]|None=None) -> S:
         \end{pmatrix} \qquad \mathbb{K}^m\to\mathbb{K}^{\max\{m-n, 0\}}
     $$
     """
-    factory = type(v) if factory is None else factory
+    factory = factory or (iter if isinstance(v, Iterator) else type(v))
     return factory(vecllshift(v, n))
 
 def vecilshift(v:M, n:int) -> M:

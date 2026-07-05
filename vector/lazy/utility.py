@@ -1,6 +1,6 @@
 from itertools import chain, islice, repeat, zip_longest
-from typing import Any, Generator
-from collections.abc import Iterable
+from typing import Any
+from collections.abc import Generator, Iterable
 
 
 
@@ -8,7 +8,7 @@ __all__ = ('vecleq', 'vecltrim', 'veclrshift', 'vecllshift')
 
 
 
-def vecleq(v:Iterable[Any], w:Iterable[Any]) -> Generator[bool]:
+def vecleq(v:Iterable, w:Iterable) -> Generator[bool]:
     r"""Return if two vectors are equal.
     
     $$
@@ -24,7 +24,7 @@ def vecleq(v:Iterable[Any], w:Iterable[Any]) -> Generator[bool]:
         else:
             yield vi == wi
 
-def vecltrim(v:Iterable[Any], tol:Any|None=None) -> Generator[Any]:
+def vecltrim(v:Iterable, tol:Any|None=None) -> Generator:
     r"""Remove all trailing near zero (`abs(v_i)<=tol`) coefficients.
     
     $$
@@ -51,7 +51,7 @@ def vecltrim(v:Iterable[Any], tol:Any|None=None) -> Generator[Any]:
             yield from t
             t.clear()
 
-def veclrshift(v:Iterable[Any], n:int, zero:Any=0) -> Generator[Any]:
+def veclrshift(v:Iterable, n:int, zero:Any=0) -> Generator:
     r"""Shift coefficients up.
     
     $$
@@ -67,7 +67,7 @@ def veclrshift(v:Iterable[Any], n:int, zero:Any=0) -> Generator[Any]:
     """
     yield from chain(repeat(zero, n), v)
 
-def vecllshift(v:Iterable[Any], n:int) -> Generator[Any]:
+def vecllshift(v:Iterable, n:int) -> Generator:
     r"""Shift coefficients down.
     
     $$

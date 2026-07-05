@@ -4,7 +4,7 @@ from ..lazy import veclconj
 from ..util import try_conjugate
 from operationcounter import sumprod_default
 from typing import Any, TypeVar
-from collections.abc import Callable, Iterable, MutableSequence, Sequence
+from collections.abc import Callable, Iterable, Iterator, MutableSequence, Sequence
 
 
 
@@ -15,12 +15,13 @@ __all__ = ('vecconj', 'veciconj',
 
 
 
+V = TypeVar('V')
 S = TypeVar('S', bound=Sequence)
 M = TypeVar('M', bound=MutableSequence)
 
 
 
-def vecconj(v:Iterable, factory:Callable[[Iterable],S]|None=None) -> S:
+def vecconj(v:Iterable, factory:Callable[[Iterable],V]|None=None) -> V:
     r"""Return the complex conjugate.
     
     $$
@@ -36,7 +37,7 @@ def vecconj(v:Iterable, factory:Callable[[Iterable],S]|None=None) -> S:
     
     - $n$ scalar conjugations (`conjugate`).
     """
-    factory = type(v) if factory is None else factory
+    factory = factory or (iter if isinstance(v, Iterator) else type(v))
     return factory(veclconj(v))
 
 def veciconj(v:M) -> M:
@@ -107,14 +108,7 @@ def vecabsq(v:Iterable, weights:Iterable|None=None, conjugate:bool=False, zero:A
     ----------
     - <https://docs.python.org/3/library/itertools.html#itertools-recipes>: `sum_of_squares`
     """
-    vc, v = tee(v, 2)
-    if conjugate:
-        vc = veclconj(vc)
-    
-    if weights is None:
-        return sumprod_default(vc, v, default=zero)
-    else:
-        return sumprod_default(map(mul, vc, v), weights, default=zero)
+    return vecdot(*tee(v, 2), weights, conjugate, zero)
 
 
 def vecdot(v:Iterable, w:Iterable, weights:Iterable|None=None, conjugate:bool=False, zero:Any=0) -> Any:
@@ -134,7 +128,7 @@ def vecdot(v:Iterable, w:Iterable, weights:Iterable|None=None, conjugate:bool=Fa
     """
     if conjugate:
         v = veclconj(v)
-    
+    #don't sum(vecldot) but rather use sumprod explicitly for improved float precision
     if weights is None:
         return sumprod_default(v, w, default=zero)
     else:

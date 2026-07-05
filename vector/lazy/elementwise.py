@@ -1,9 +1,9 @@
 from operator import truediv, floordiv, mod
 from itertools import chain
 from functools import partial
-from operationcounter import MISSING, exception_generator, group_ordinal, prod_default
-from typing import Any, Callable, Generator
-from collections.abc import Iterable
+from operationcounter import MISSING, raiser, group_ordinal, prod_default
+from typing import Any
+from collections.abc import Callable, Generator, Iterable
 
 
 
@@ -13,7 +13,7 @@ __all__ = ('veclhadamard', 'veclhadamardtruediv',
 
 
 
-def veclhadamard(*vs:Iterable[Any]) -> Generator[Any]:
+def veclhadamard(*vs:Iterable) -> Generator:
     r"""Return the elementwise product.
     
     $$
@@ -22,43 +22,43 @@ def veclhadamard(*vs:Iterable[Any]) -> Generator[Any]:
     """
     yield from map(partial(prod_default, default=MISSING), zip(*vs))
 
-def veclhadamardtruediv(v:Iterable[Any], w:Iterable[Any]) -> Generator[Any]:
+def veclhadamardtruediv(v:Iterable, w:Iterable) -> Generator:
     r"""Return the elementwise true quotient.
     
     $$
         \left(\frac{v_i}{w_i}\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m
     $$
     """
-    yield from map(truediv, v, chain(w, exception_generator(ZeroDivisionError)))
+    yield from map(truediv, v, chain(w, raiser(ZeroDivisionError)))
 
-def veclhadamardfloordiv(v:Iterable[Any], w:Iterable[Any]) -> Generator[Any]:
+def veclhadamardfloordiv(v:Iterable, w:Iterable) -> Generator:
     r"""Return the elementwise floor quotient.
     
     $$
         \left(\left\lfloor\frac{v_i}{w_i}\right\rfloor\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m
     $$
     """
-    yield from map(floordiv, v, chain(w, exception_generator(ZeroDivisionError)))
+    yield from map(floordiv, v, chain(w, raiser(ZeroDivisionError)))
 
-def veclhadamardmod(v:Iterable[Any], w:Iterable[Any]) -> Generator[Any]:
+def veclhadamardmod(v:Iterable, w:Iterable) -> Generator:
     r"""Return the elementwise remainder.
     
     $$
         \left(v_i \bmod w_i\right)_i \qquad \mathbb{K}^m\times\mathbb{K}^n\to\mathbb{K}^m
     $$
     """
-    yield from map(mod, v, chain(w, exception_generator(ZeroDivisionError)))
+    yield from map(mod, v, chain(w, raiser(ZeroDivisionError)))
 
-def veclhadamarddivmod(v:Iterable[Any], w:Iterable[Any]) -> Generator[tuple[Any,Any]]:
+def veclhadamarddivmod(v:Iterable, w:Iterable) -> Generator[tuple[Any,Any]]:
     r"""Return the elementwise floor quotient and remainder.
     
     $$
         \left(\left\lfloor\frac{v_i}{w_i}\right\rfloor\right)_i, \ \left(v_i \bmod w_i\right)_i \qquad \mathbb{K}^n\times\mathbb{K}^m\to\mathbb{K}^n\times\mathbb{K}^n
     $$
     """
-    yield from map(divmod, v, chain(w, exception_generator(ZeroDivisionError)))
+    yield from map(divmod, v, chain(w, raiser(ZeroDivisionError)))
 
-def veclhadamardmin(*vs:Iterable[Any], key:Callable[[Any],Any]|None=None) -> Generator[Any]:
+def veclhadamardmin(*vs:Iterable, key:Callable[[Any],Any]|None=None) -> Generator:
     r"""Return the elementwise minimum.
     
     $$
@@ -67,7 +67,7 @@ def veclhadamardmin(*vs:Iterable[Any], key:Callable[[Any],Any]|None=None) -> Gen
     """
     yield from map(partial(min, key=key), group_ordinal(*vs))
 
-def veclhadamardmax(*vs:Iterable[Any], key:Callable[[Any],Any]|None=None) -> Generator[Any]:
+def veclhadamardmax(*vs:Iterable, key:Callable[[Any],Any]|None=None) -> Generator:
     r"""Return the elementwise maximum.
     
     $$
