@@ -73,7 +73,6 @@ extra_css:
 nav:
   - Home: index.md
   - dense.md
-  - lazy.md
   - sparse.md
   - parallelised.md
   - multilinear.md
