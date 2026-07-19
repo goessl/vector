@@ -13,9 +13,6 @@ from .creation import *
 from .conversion import *
 from .utility import *
 from .hilbertspace import *
-try:
-    from ._vectorspace import *
-except ImportError:
-    from ._pyvectorspace import *
+from .vectorspace import *
 from .elementwise import *
 from .objectoriented import *

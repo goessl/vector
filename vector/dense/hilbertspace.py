@@ -1,7 +1,7 @@
 from operator import mul
 from itertools import tee
 from ..util import try_conjugate
-from operationcounter import sumprod_default
+from iteration import sumprod_default
 from typing import Any, TypeVar
 from collections.abc import Callable, Generator, Iterable, Iterator, MutableSequence, Sequence
 

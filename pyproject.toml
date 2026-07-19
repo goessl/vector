@@ -1,6 +1,6 @@
 [build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "vector"
@@ -14,7 +14,7 @@ authors = [
 license = "MIT"
 license-files = ["LICENSE"]
 dependencies = [
-  "operationcounter @ git+https://github.com/goessl/operationcounter.git",
+  "iteration @ git+https://github.com/goessl/iteration.git",
   "numpy"
 ]
 
@@ -24,14 +24,7 @@ Documentation = "https://goessl.github.io/vector"
 Repository = "https://github.com/goessl/vector.git"
 
 [project.optional-dependencies]
-test = ["pytest"]
-
-[[tool.setuptools.ext-modules]]
-name = "vector._util"
-sources = ["vector/_utilmodule.c"]
-py-limited-api = true
-
-[[tool.setuptools.ext-modules]]
-name = "vector.multilinear_sparse._vectorspace"
-sources = ["vector/multilinear_sparse/_vectorspacemodule.c"]
-py-limited-api = true
+test = [
+  "pytest",
+  "operationcounter @ git+https://github.com/goessl/operationcounter.git"
+]

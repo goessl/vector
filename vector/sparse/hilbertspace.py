@@ -1,5 +1,5 @@
 from ..util import try_conjugate
-from operationcounter import sum_default, sumprod_default
+from iteration import sum_default, sumprod_default
 from typing import Any
 from collections.abc import Mapping, MutableMapping
 

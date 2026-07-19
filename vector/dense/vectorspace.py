@@ -1,7 +1,7 @@
 from operator import pos, neg, mul, truediv, floordiv, mod
 from itertools import chain, islice, repeat, zip_longest
 from functools import partial
-from operationcounter import MISSING, group_ordinal, sum_default
+from iteration import MISSING, group_ordinal, sum_default
 from typing import Any, TypeVar
 from collections.abc import Callable, Iterable, Iterator, MutableSequence
 

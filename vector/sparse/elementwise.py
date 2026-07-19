@@ -1,4 +1,4 @@
-from operationcounter import MISSING, prod_default
+from iteration import MISSING, prod_default
 from typing import Any, Callable
 from collections.abc import Mapping
 
